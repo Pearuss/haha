@@ -1,0 +1,131 @@
+@tailwind base;
+
+body {
+  @apply bg-gray-200;
+}
+a {
+  @apply text-blue-700;
+}
+
+@tailwind components;
+
+.active {
+  @apply underline;
+}
+li {
+  @apply list-none;
+}
+.mainContent {
+  @apply flex px-[4vw] py-8 bg-gray-200 min-h-[calc(100vh-100px)];
+}
+.mainContent > * {
+  @apply flex-1;
+}
+
+.tagContent {
+  @apply mb-10 mt-2 w-full;
+}
+.tagContent div {
+  @apply border border-blue-500 px-4 py-2  font-semibold rounded-full ml-4 cursor-pointer hover:bg-blue-400 active:bg-blue-300 active:text-white hover:text-white hover:animate-jelly active:animate-jelly flex-1 max-w-[11rem] mb-4;
+}
+.tagContent > p {
+  @apply mb-2;
+}
+
+.parentDropdown {
+  @apply w-max flex gap-1 mx-auto border border-blue-200 bg-blue-200 rounded-full;
+}
+
+.dropdown {
+  @apply relative;
+}
+.dropdown > a {
+  @apply py-3 px-10 border-l hover:bg-blue-400 hover:rounded-full hover:text-white relative;
+}
+/* .dropdown-menu {
+  @apply absolute top-[200px] left-[50%] ;
+} */
+.homeClass {
+  @apply border-none ml-4;
+}
+
+.dropdown-menu {
+  @apply absolute left-[50%] top-[calc(100%+1.4rem)] bg-white z-40 pl-6 pr-12 py-4 rounded-md pointer-events-none -translate-y-20 shadow-md w-[12vw] opacity-0 animate-transformCustom transition-all;
+}
+.dropdown-menu a {
+  @apply py-2 px-4;
+}
+.dropdown.activeClass > a + .dropdown-menu {
+  @apply opacity-100 translate-y-0 pointer-events-auto;
+}
+.dropdown.activeClass .dropdown-menu a {
+  @apply hover:bg-blue-300 hover:rounded-full;
+}
+.userDropdown {
+  @apply flex gap-2 items-center border-2 p-2 rounded-3xl relative cursor-pointer;
+}
+.userDropdown-menu {
+  @apply absolute right-[10%] top-[calc(100%+0.8rem)] bg-white z-40 pl-5 pr-8 py-4 rounded-md pointer-events-none -translate-y-3 opacity-0 shadow-md w-[10vw] animate-transformCustom animate-opacityCustom;
+}
+.userDropdown.activeClass .userDropdown-menu {
+  @apply opacity-100 translate-y-0 pointer-events-auto;
+}
+.userDropdown.activeClass .userDropdown-menu a {
+  @apply hover:bg-blue-300 hover:rounded-full;
+}
+.userDropdown .link {
+  @apply p-2;
+}
+.userLink {
+  @apply flex items-center gap-1;
+}
+
+.mentions--singleLine .mentions__control {
+  display: inline-block;
+}
+.mentions--singleLine .mentions__higlighter {
+  padding: 1px;
+  border: 2px inset transparent;
+}
+.mentions--singleLine .mentions__input {
+  padding: 5px;
+  border: 2px inset;
+}
+
+.mentions--multiLine .mentions__control {
+  font-family: monospace;
+  font-size: 11pt;
+  border: 1px solid silver;
+}
+.mentions--multiLine .mentions__highlighter {
+  padding: 9px;
+}
+.mentions--multiLine .mentions__input {
+  padding: 9px;
+  min-height: 63px;
+  outline: 0;
+  border: 0;
+}
+
+.mentions__suggestions__list {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: 10pt;
+}
+
+.mentions__suggestions__item {
+  padding: 5px 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.mentions__suggestions__item--focused {
+  background-color: #cee4e5;
+}
+
+.mentions__mention {
+  background-color: #cee4e5;
+}
+
+@tailwind utilities;
+@tailwind base;
+@tailwind components;
