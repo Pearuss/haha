@@ -15,7 +15,7 @@ function HeaderRight(): ReactElement {
         </div>
         <div className="userDropdown-menu">
           <div className="flex flex-col gap-1">
-            <Link href="#">
+            <Link href="/user/profile">
               <a className="link">Profile</a>
             </Link>
             <Link href="#">

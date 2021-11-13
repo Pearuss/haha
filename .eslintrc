@@ -10,6 +10,7 @@
     "react/require-default-props": "off", // Allow non-defined react props as undefined
     "react/jsx-one-expression-per-line": "off",
     "react/react-in-jsx-scope": "off",
+    "import/export": 0,
     "import/order": [
       "error",
       {

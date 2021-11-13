@@ -1,4 +1,5 @@
 module.exports = {
+  important: true,
   purge: ['./src/**/*.{js,ts,jsx,tsx}', './_posts/**/*.md'],
   darkMode: false,
   theme: {
@@ -38,6 +39,11 @@ module.exports = {
           800: '#2c5282',
           900: '#2a4365',
         },
+        lightBlack: '#000000bf',
+        lightGray: '#333333',
+        darkRed: '#E50914',
+        grayLightText: '#B3B3B3',
+        grayText: '#737373'
       },
       keyframes: {
         jelly: {
