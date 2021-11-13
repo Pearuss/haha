@@ -2,7 +2,8 @@ import React from 'react';
 
 import { SWRConfig } from 'swr';
 
-import axiosClient from '../api-client/axios-client';
+import useFetch from '../hooks/use-fetch';
+// import axiosClient from '../api-client/axios-client';
 import { EmptyLayout } from '../layout';
 import { AppPropsWithLayout } from '../modals';
 
@@ -16,7 +17,12 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const Layout = Component.Layout ?? EmptyLayout;
 
   return (
-    <SWRConfig value={{ fetcher: (url) => axiosClient.get(url), shouldRetryOnError: false }}>
+    <SWRConfig
+      value={{
+        fetcher: (url) => useFetch(url),
+        shouldRetryOnError: false,
+      }}
+    >
       <Layout>
         <Component {...pageProps} />
       </Layout>

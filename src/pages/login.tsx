@@ -6,9 +6,9 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { authApi } from '../api-client';
 import LoginComponent from '../common/Auth/login';
 import ThemeWrapper from '../container/themeWrapper';
+import { useAuth } from '../hooks';
 import adminTheme from '../styles/theme/materialClient';
 
 // import Swal from "sweetalert2";
@@ -20,6 +20,10 @@ const schema = yup.object().shape({
 });
 
 const Login = () => {
+  const { login } = useAuth({
+    revalidateOnMount: false,
+  });
+
   //   const dispatch = useDispatch();
   const router = useRouter();
   const { handleSubmit, control, formState } = useForm({
@@ -29,8 +33,8 @@ const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  const [errorFormLogin, serErrorFormLogin] = useState(null);
-  //   const { setLoading } = FormStoreContainer.useContainer();
+  const [errorFormLogin, setErrorFormLogin] = useState('');
+  const [isLoadingForm, setIsLoadingForm] = useState(false);
 
   //   useEffect(() => {
   //     if (localStorage.getItem("token")) {
@@ -55,13 +59,14 @@ const Login = () => {
       password: data.password,
     };
     try {
-      const response = await authApi.login(userData);
-      console.log(response);
+      setIsLoadingForm(true);
+      await login(userData);
+      setIsLoadingForm(false);
+      router.push('/');
     } catch (error) {
       console.log(error);
+      setErrorFormLogin('error');
     }
-    router.push('/user/profile');
-
     // try {
     //   setLoading(true);
     //   const userData = await useFetch(`${api_url.apiEndpoint}/auth/login`, {
@@ -100,6 +105,7 @@ const Login = () => {
         control={control}
         formState={formState}
         errorForm={errorFormLogin}
+        isLoading={isLoadingForm}
       />
     </ThemeWrapper>
   );

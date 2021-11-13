@@ -46,11 +46,11 @@ li {
   @apply absolute top-[200px] left-[50%] ;
 } */
 .homeClass {
-  @apply border-none ml-4;
+  @apply border-none;
 }
 
 .dropdown-menu {
-  @apply absolute left-[50%] top-[calc(100%+1.4rem)] bg-white z-40 pl-6 pr-12 py-4 rounded-md pointer-events-none -translate-y-20 shadow-md w-[12vw] opacity-0 animate-transformCustom transition-all;
+  @apply absolute left-[50%] top-[calc(100%+1.4rem)] bg-white z-40 pl-6 pr-12 py-4 rounded-md pointer-events-none translate-y-20 shadow-md w-[12vw] opacity-0 animate-transformCustom transition-all;
 }
 .dropdown-menu a {
   @apply py-2 px-4;
@@ -65,7 +65,7 @@ li {
   @apply flex gap-2 items-center border-2 p-2 rounded-3xl relative cursor-pointer;
 }
 .userDropdown-menu {
-  @apply absolute right-[10%] top-[calc(100%+0.8rem)] bg-white z-40 pl-5 pr-8 py-4 rounded-md pointer-events-none -translate-y-3 opacity-0 shadow-md w-[10vw] animate-transformCustom animate-opacityCustom;
+  @apply absolute right-[10%] top-[calc(100%+0.8rem)] bg-white z-40 pl-5 pr-8 py-4 rounded-md pointer-events-none translate-y-0 opacity-0 shadow-md w-[10vw] animate-transformCustom animate-opacityCustom;
 }
 .userDropdown.activeClass .userDropdown-menu {
   @apply opacity-100 translate-y-0 pointer-events-auto;

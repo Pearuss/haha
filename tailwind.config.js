@@ -3,6 +3,22 @@ module.exports = {
   purge: ['./src/**/*.{js,ts,jsx,tsx}', './_posts/**/*.md'],
   darkMode: false,
   theme: {
+    screens: {
+      sm: '640px',
+      // => @media (min-width: 640px) { ... }
+
+      md: '768px',
+      // => @media (min-width: 768px) { ... }
+
+      lg: '1024px',
+      // => @media (min-width: 1024px) { ... }
+
+      xl: '1280px',
+      // => @media (min-width: 1280px) { ... }
+
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ... }
+    },
     fontSize: {
       xs: '0.75rem',
       sm: '0.875rem',
@@ -39,11 +55,11 @@ module.exports = {
           800: '#2c5282',
           900: '#2a4365',
         },
-        lightBlack: '#000000bf',
+        lightBlack: '#0c0c0cbf',
         lightGray: '#333333',
         darkRed: '#E50914',
         grayLightText: '#B3B3B3',
-        grayText: '#737373'
+        grayText: '#737373',
       },
       keyframes: {
         jelly: {

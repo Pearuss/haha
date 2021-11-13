@@ -11,11 +11,11 @@ import useSWR from 'swr';
 function Menu(): ReactElement {
   const router = useRouter();
 
-  const { data } = useSWR('/menu', { revalidateOnFocus: false });
+  const { data } = useSWR('http://localhost:3001/menu', { revalidateOnFocus: false });
 
   return (
     <div>
-      <div className="w-max flex gap-1 mx-auto border border-blue-200 bg-blue-200 py-4 pl-2 pr-5 rounded-full">
+      <div className="w-max flex gap-1 2xl:gap-5 mx-auto border border-blue-200 bg-blue-200 py-4 pl-2 pr-8 rounded-full">
         <li className={router.pathname === '/home' ? 'active dropdown' : 'dropdown'} data-dropdown>
           <Link href="/">
             <a className="homeClass" data-dropdown-button>

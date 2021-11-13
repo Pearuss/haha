@@ -39,7 +39,9 @@
     "remark-gfm": "^1.0.0",
     "remark-parse": "^9.0.0",
     "remark-rehype": "^8.1.0",
+    "status-code-enum": "^1.0.0",
     "styled-jsx-plugin-postcss": "^4.0.1",
+    "sweetalert2": "^11.1.10",
     "swr": "^1.0.1",
     "unified": "^9.2.1",
     "yup": "^0.32.11"
