@@ -9,7 +9,7 @@ import { useAuth } from '../../hooks';
 
 function HeaderRight(): ReactElement {
   const router = useRouter();
-  const { logout } = useAuth();
+  const { logout, profile } = useAuth();
 
   const logoutHandler = async () => {
     try {
@@ -42,7 +42,7 @@ function HeaderRight(): ReactElement {
         <div className="userDropdown-menu">
           <div className="flex flex-col gap-1">
             <Link href="/user/profile">
-              <a className="link">Profile</a>
+              <a className="link hover:text-white">Profile</a>
             </Link>
             <Link href="/user/create">
               <a className="link hover:text-white">Create post</a>
@@ -50,7 +50,16 @@ function HeaderRight(): ReactElement {
             <Link href="/user/posts">
               <a className="link hover:text-white">My posts</a>
             </Link>
-            <div className="link logoutCustom" onClick={logoutHandler} aria-hidden="true">
+            {(profile?.isAdmin || false) && (
+              <Link href="/user/admin">
+                <a className="link hover:text-white">Moderator</a>
+              </Link>
+            )}
+            <div
+              className="link hover:bg-blue-300 hover:text-white hover:rounded-full"
+              onClick={logoutHandler}
+              aria-hidden="true"
+            >
               Log out
             </div>
           </div>

@@ -14,7 +14,6 @@ function PostDetail({ dataPostDetail }: any): ReactElement {
           objectFit="cover"
           className="rounded-full"
           priority
-          placeholder="blur"
         />
         <span className="font-medium text-xl ml-2 text-blue-300">{dataPostDetail.author}</span>
         <span className="text-gray-800 text-sm ml-1 mt-1">@{dataPostDetail.tags}· 21 hour</span>

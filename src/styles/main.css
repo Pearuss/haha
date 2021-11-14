@@ -70,8 +70,7 @@ li {
 .userDropdown.activeClass .userDropdown-menu {
   @apply opacity-100 translate-y-0 pointer-events-auto;
 }
-.userDropdown.activeClass .userDropdown-menu a,
-.userDropdown.activeClass .userDropdown-menu .logoutCustom {
+.userDropdown.activeClass .userDropdown-menu a {
   @apply hover:bg-blue-300 hover:rounded-full;
 }
 .userDropdown .link {

@@ -2,7 +2,7 @@
 import React from 'react';
 
 import Post from '../../common/Post';
-import { MainLayout } from '../../layout';
+import { AdminLayout } from '../../layout';
 
 interface PostItem {
   id: string;
@@ -12,8 +12,6 @@ interface PostItem {
 }
 
 function PostsPage({ posts }: any) {
-  console.log(posts);
-
   return (
     <div className="mr-16">
       <p className="text-3xl font-bold">Thong's Posts</p>
@@ -24,7 +22,7 @@ function PostsPage({ posts }: any) {
   );
 }
 
-PostsPage.Layout = MainLayout;
+PostsPage.Layout = AdminLayout;
 
 export default PostsPage;
 
