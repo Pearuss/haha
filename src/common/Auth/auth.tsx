@@ -10,7 +10,7 @@ function Auth({ children }: any) {
 
   useEffect(() => {
     if (!firstLoading && !profile?.username) {
-      router.push('/login');
+      router.replace('/login');
     }
   }, [router, profile, firstLoading]);
 
