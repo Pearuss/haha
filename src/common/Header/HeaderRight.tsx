@@ -2,8 +2,26 @@ import React, { ReactElement } from 'react';
 
 import { GlobeAltIcon, UserCircleIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Swal from 'sweetalert2';
+
+import { useAuth } from '../../hooks';
 
 function HeaderRight(): ReactElement {
+  const router = useRouter();
+  const { logout } = useAuth();
+
+  const logoutHandler = async () => {
+    try {
+      await logout();
+      router.push('/');
+      if (router.pathname === '/') {
+        Swal.fire('Logout success!');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="flex items-center justify-end text-blue-400 gap-4">
       <Link href="/login">
@@ -35,6 +53,9 @@ function HeaderRight(): ReactElement {
             <Link href="#">
               <a className="link">Moderator</a>
             </Link>
+            <div className="link logoutCustom" onClick={logoutHandler} aria-hidden="true">
+              Log out
+            </div>
           </div>
         </div>
       </div>
