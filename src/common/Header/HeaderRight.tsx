@@ -50,9 +50,6 @@ function HeaderRight(): ReactElement {
             <Link href="/user/posts">
               <a className="link hover:text-white">My posts</a>
             </Link>
-            <Link href="#">
-              <a className="link hover:text-white">Logout</a>
-            </Link>
             <div className="link logoutCustom" onClick={logoutHandler} aria-hidden="true">
               Log out
             </div>
