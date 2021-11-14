@@ -15,17 +15,17 @@ function HeaderRight(): ReactElement {
         </div>
         <div className="userDropdown-menu">
           <div className="flex flex-col gap-1">
-            <Link href="#">
-              <a className="link">Profile</a>
+            <Link href="/user/create">
+              <a className="link hover:text-white">Create post</a>
+            </Link>
+            <Link href="/user/posts">
+              <a className="link hover:text-white">My posts</a>
             </Link>
             <Link href="#">
-              <a className="link">Post now</a>
+              <a className="link hover:text-white">Profile</a>
             </Link>
             <Link href="#">
-              <a className="link">Goal</a>
-            </Link>
-            <Link href="#">
-              <a className="link">Moderator</a>
+              <a className="link hover:text-white">Logout</a>
             </Link>
           </div>
         </div>

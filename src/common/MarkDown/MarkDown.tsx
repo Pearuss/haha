@@ -22,7 +22,7 @@ function HomePage({ content, setNewPost }: any) {
 
   return (
     <div>
-      <MarkdownEditor value={content} height={200} onChange={handleChange} />
+      <MarkdownEditor value={content} height={300} onChange={handleChange} />
     </div>
   );
 }
