@@ -9,14 +9,14 @@ const axiosClient = axios.create({
 
 // Add a response interceptor
 
-/* eslint prefer-arrow-callback: 0 */
+/* eslint-disable */
 axiosClient.interceptors.response.use(
   function (response) {
     return response.data;
   },
   function (error) {
     return Promise.reject(error);
-  },
+  }
 );
 
 export default axiosClient;

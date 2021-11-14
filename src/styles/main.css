@@ -46,11 +46,11 @@ li {
   @apply absolute top-[200px] left-[50%] ;
 } */
 .homeClass {
-  @apply border-none ml-4;
+  @apply border-none;
 }
 
 .dropdown-menu {
-  @apply absolute left-[50%] top-[calc(100%+1.4rem)] bg-white z-40 pl-6 pr-12 py-4 rounded-md pointer-events-none -translate-y-20 shadow-md w-[12vw] opacity-0 animate-transformCustom transition-all;
+  @apply absolute left-[50%] top-[calc(100%+1.4rem)] bg-white z-40 pl-6 pr-12 py-4 rounded-md pointer-events-none translate-y-20 shadow-md w-[12vw] opacity-0 animate-transformCustom transition-all;
 }
 .dropdown-menu a {
   @apply py-2 px-4;

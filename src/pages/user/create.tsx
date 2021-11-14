@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import React, { useState, useEffect } from 'react';
 
-import ModalPost from '../../common/ModalPost';
+import ModalPost from '../../common/CreatePost';
 import { HeaderLayout } from '../../layout';
 
 interface INewPost {
@@ -9,6 +9,7 @@ interface INewPost {
   content: string;
   tag: string[];
   category: string;
+  public: boolean;
 }
 
 function UserCreatePage({ catData, tagData }: any) {
@@ -16,7 +17,8 @@ function UserCreatePage({ catData, tagData }: any) {
     title: '',
     content: '',
     tag: [],
-    category: catData[0],
+    category: catData[0].name,
+    public: true,
   });
 
   const handleUpload = () => {
@@ -34,7 +36,8 @@ function UserCreatePage({ catData, tagData }: any) {
       title: '',
       content: '',
       tag: [],
-      category: catData[0],
+      category: catData[0].name,
+      public: true,
     });
   };
 
@@ -43,13 +46,15 @@ function UserCreatePage({ catData, tagData }: any) {
     const tagE: HTMLElement | any = document.querySelector('.tag');
     const tagSelect: HTMLElement | any = document.querySelector('.tagselect');
     const tagCheckbox: NodeList | any = document.querySelectorAll('.tagcheckbox');
+    tagE.style.display = 'none';
 
     tagSelect.addEventListener('click', () => {
-      if (tagE.style.display === 'flex') {
-        tagE.style.display = 'none';
-      } else {
+      if (tagE.style.display === 'none') {
         tagE.style.display = 'flex';
+      } else {
+        tagE.style.display = 'none';
       }
+      console.log(tagE.style.display);
     });
 
     tagCheckbox.forEach((tagItem: HTMLInputElement) => {
@@ -91,7 +96,7 @@ function UserCreatePage({ catData, tagData }: any) {
   }, []);
 
   return (
-    <div className="mr-16 mt-3">
+    <div className="mx-auto mt-3">
       <ModalPost
         newPost={newPost}
         setNewPost={setNewPost}

@@ -23,13 +23,13 @@
       },
       {
         "id": 5,
-        "path": "/visualStudioCode",
-        "name": "VisualStudioCode"
+        "path": "/wifi",
+        "name": "Wifi"
       },
       {
         "id": 6,
-        "path": "/wifi",
-        "name": "Wifi"
+        "path": "/visualStudioCode",
+        "name": "VisualStudioCode"
       }
     ],
     "tagsCloud": [
