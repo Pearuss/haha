@@ -2,10 +2,18 @@ import React from 'react';
 
 import { SWRConfig } from 'swr';
 
+import Router from 'next/router';
 import useFetch from '../hooks/use-fetch';
-// import axiosClient from '../api-client/axios-client';
 import { EmptyLayout } from '../layout';
 import { AppPropsWithLayout } from '../modals';
+import 'nprogress/nprogress.css';
+import NProgress from 'nprogress';
+
+
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
+
 
 import '../styles/main.css';
 import '../styles/prism-a11y-dark.css';
