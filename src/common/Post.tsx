@@ -16,7 +16,6 @@ function Post({ post }: any): ReactElement {
           height="100%"
           objectFit="fill"
           priority
-          placeholder="blur"
         />
         <div className="flex-1 ml-4 relative cursor-auto">
           <h3 className="text-lg text-blue-700 font-medium">{post.title}</h3>

@@ -28,7 +28,6 @@ function ProfilePage({ data }: any) {
             objectFit="cover"
             className="  z-10"
             priority
-            placeholder="blur"
           />
         </div>
       </div>
