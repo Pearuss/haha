@@ -30,7 +30,9 @@ function Index({ data }: any): ReactElement {
     for (let i = 0; i < focusHeading.length; i++) {
       focusHeading[i].addEventListener('click', () => {
         headingE[i].scrollIntoView();
-        window.scrollBy(0, -130);
+        console.log(headingE[i].offsetTop);
+
+        window.scroll(0, headingE[i].offsetTop + 130);
       });
     }
 

@@ -9,7 +9,7 @@ import ReactCodeMirror from '@uiw/react-markdown-editor/cjs/components/CodeMirro
 
 const MarkdownEditor = dynamic<any>(
   () => import('@uiw/react-markdown-editor').then((mod) => mod.default),
-  { ssr: false },
+  { ssr: false }
 );
 
 function HomePage({ content, setNewPost }: any) {
@@ -21,8 +21,13 @@ function HomePage({ content, setNewPost }: any) {
   };
 
   return (
-    <div>
-      <MarkdownEditor value={content} height={300} onChange={handleChange} />
+    <div className="break-normal break-words break-all">
+      <MarkdownEditor
+        value={content}
+        height={300}
+        onChange={handleChange}
+        className="break-normal break-words break-all"
+      />
     </div>
   );
 }

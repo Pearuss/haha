@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import React, { useState, useEffect } from 'react';
+import useSWR from 'swr';
 
 import ModalPost from '../../common/CreatePost';
 import { HeaderLayout } from '../../layout';
@@ -12,12 +13,19 @@ interface INewPost {
   public: boolean;
 }
 
-function UserCreatePage({ catData, tagData }: any) {
+function UserCreatePage() {
+  const { data: tagData }: any = useSWR('http://localhost:3001/tags', { revalidateOnFocus: false });
+  const { data: catData }: any = useSWR('http://localhost:3001/category', {
+    revalidateOnFocus: false,
+  });
+
+  // console.log(data1);
+
   const [newPost, setNewPost] = useState<INewPost>({
     title: '',
     content: '',
     tag: [],
-    category: catData[0].name,
+    category: catData?.[0]?.name,
     public: true,
   });
 
@@ -41,6 +49,16 @@ function UserCreatePage({ catData, tagData }: any) {
     });
   };
 
+  useEffect(() => {
+    setNewPost({
+      title: '',
+      content: '',
+      tag: [],
+      category: catData?.[0]?.name,
+      public: true,
+    });
+  }, [catData]);
+
   // Select tags
   useEffect(() => {
     const tagE: HTMLElement | any = document.querySelector('.tag');
@@ -54,7 +72,6 @@ function UserCreatePage({ catData, tagData }: any) {
       } else {
         tagE.style.display = 'none';
       }
-      console.log(tagE.style.display);
     });
 
     tagCheckbox.forEach((tagItem: HTMLInputElement) => {
@@ -96,13 +113,13 @@ function UserCreatePage({ catData, tagData }: any) {
   }, []);
 
   return (
-    <div className="mx-auto mt-3">
+    <div className="mx-auto mt-3 max-w-full">
       <ModalPost
         newPost={newPost}
         setNewPost={setNewPost}
         catData={catData}
         handleUpload={handleUpload}
-        tagData={tagData}
+        tagData={tagData?.followingTags}
       />
     </div>
   );

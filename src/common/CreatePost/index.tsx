@@ -80,7 +80,7 @@ function ModalPost({
             <div className="flex">
               <p className="font-bold text-xl">Category:</p>
               <select className="category ml-3 cursor-pointer w-44">
-                {catData.map((item: any) => (
+                {catData?.map((item: any) => (
                   <option key={item.id}>{item.name}</option>
                 ))}
               </select>
@@ -111,7 +111,7 @@ function ModalPost({
       <div className="absolute tag flex-wrap top-20 right-10 w-1/4 h-1/2 bg-white rounded-3xl border-gray-700 border-2 p-3">
         <p className="font-bold text-black mx-auto">Sellect Tag</p>
         <p className="absolute flex top-10 w-full flex-wrap">
-          {tagData.map((item: any) => (
+          {tagData?.map((item: any) => (
             <div key={item.id} className="mr-3">
               <input className="mr-1 tagcheckbox" type="checkbox" name={item.name} id={item.id} />
               {`#${item.name}`}
