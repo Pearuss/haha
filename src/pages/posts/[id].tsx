@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 
@@ -6,9 +6,24 @@ import CommentSection from '../../common/CommentSection';
 import InputMention from '../../common/InputMention/InputMention';
 import PostDetail from '../../common/PostDetail';
 import { DetailPostLayout } from '../../layout';
+import { useAuth } from '../../hooks';
 
 function Index({ data }: any): ReactElement {
+  const [isLogin, setIsLogin] = useState(false);
+
+  const { profile, firstLoading } = useAuth();
   const router = useRouter();
+
+  useEffect(() => {
+    if (!firstLoading && !profile?.username) {
+      setIsLogin(false);
+    } else if (profile?.username) {
+      setIsLogin(true);
+    }
+  }, [profile, firstLoading]);
+
+  console.log(profile);
+
   if (router.isFallback) {
     return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>;
   }
@@ -61,13 +76,16 @@ function Index({ data }: any): ReactElement {
       <p className="text-4xl pb-6 text-blue-500">Create diagrams online realtime collaboration!</p>
       <PostDetail dataPostDetail={data} />
 
-      <div className="w-full relative mb-2">
-        <InputMention />
-      </div>
+      {isLogin && (
+        <div className="w-full relative mb-2">
+          <InputMention />
+        </div>
+      )}
 
-      {data.allComments?.map((comment: any) => (
-        <CommentSection key={comment.id} comment={comment} />
-      ))}
+      {isLogin &&
+        data.allComments?.map((comment: any) => (
+          <CommentSection key={comment.id} comment={comment} />
+        ))}
     </div>
   );
 }
@@ -79,7 +97,7 @@ export const getStaticPaths = async () => {
   const res = await fetch('http://localhost:3001/posts?_limit=5');
   const posts = await res.json();
 
-  const paths = posts.map((post: any) => ({
+  const paths = posts?.data?.map((post: any) => ({
     params: { id: post.id.toString() },
   }));
 

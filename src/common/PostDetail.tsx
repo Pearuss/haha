@@ -1,17 +1,48 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import CodeBlock from '../common/CodeBlock';
 import { BriefcaseIcon, EyeIcon, HeartIcon, ChatIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import { truncate } from '../utilities/helper';
+import { useAuth } from '../hooks';
+import { useRouter } from 'next/router';
 
 function PostDetail({ dataPostDetail }: any): ReactElement {
-  const contentBody = truncate(`${dataPostDetail.body}`, 580).toString();
+  const { profile } = useAuth();
+  const router = useRouter();
+
+  const [isReadMore, setIsReadMore] = useState(true);
+
+  // useEffect(() => {
+  //   if (!firstLoading && !profile?.username && !isReadMore) {
+  //     setIsLogin(true)
+  //   }
+  // }, [profile, firstLoading]);
+
+  let contentBody = isReadMore
+    ? truncate(`${dataPostDetail.body}`, 580).toString() // max content length is 580
+    : truncate(`${dataPostDetail.body}`, 20000).toString(); // see full content
+
+  const ReadMoreHandler = () => {
+    if (profile?.message == 'You need to login to access') {
+      router.replace('/login');
+    } else if (profile?.username) {
+      setIsReadMore(false);
+    } else {
+      router.replace('/login');
+    }
+
+    // !firstLoading && profile ? setIsReadMore(false) : router.push('/login');
+
+    // console.log(profile);
+
+    // setIsReadMore(false);
+  };
   return (
-    <div className="relative bg-white rounded-lg shadow-md px-4 pt-2 py-16 text-gray-700">
+    <div className="relative bg-white rounded-lg shadow-md px-4 pt-2 py-16 text-gray-700 h-auto">
       <div className="flex items-center">
         <Image
-          src="/images/post1.jpg"
+          src="/images/toc2.jpg"
           width={48}
           height={48}
           objectFit="cover"
@@ -25,11 +56,17 @@ function PostDetail({ dataPostDetail }: any): ReactElement {
         {dataPostDetail.title}
       </div>
       {/* <div className="mx-2">{dataPostDetail.body}</div> */}
-      <div className="mx-2 mb-2 mt-5">
+      <div className="mx-2 mb-4 mt-5 h-auto">
         <ReactMarkdown components={CodeBlock} children={contentBody} />
       </div>
       {dataPostDetail.body.length > 600 && (
-        <button type="button" className="ml-2 font-medium text-lg text-black cursor-pointer">
+        <button
+          onClick={ReadMoreHandler}
+          type="button"
+          className={`ml-2 font-medium font-serif text-lg text-black cursor-pointer ${
+            isReadMore ? '' : 'hidden'
+          }`}
+        >
           See more
         </button>
       )}

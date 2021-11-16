@@ -30,7 +30,7 @@ function Post({ post }: any): ReactElement {
             <span className="pl-3">{post.comments}</span>
           </div>
 
-          <p className="absolute bottom-8 text-gray-600">2020/08/25</p>
+          <p className="absolute bottom-8 text-gray-600">12 Feb 2020</p>
           <p className="absolute bottom-0 text-gray-600">
             {post.tags} - {post.author}
           </p>

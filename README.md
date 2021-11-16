@@ -6,7 +6,7 @@ npm install
 
 2.Set up fake data with json-server
 
-cd json-server && npm install -g json-server && npm run dev
+cd json-server && npm install  && npm run dev
 
 3.Run project as development environment
 
