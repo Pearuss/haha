@@ -26,7 +26,7 @@ function ProfilePage({ data }: any) {
             width={132}
             height={132}
             objectFit="cover"
-            className="  z-10"
+            className="z-10"
             priority
           />
         </div>

@@ -2,7 +2,7 @@
 import React from 'react';
 
 import Post from '../../common/Post';
-import { MainLayout } from '../../layout';
+import { AdminLayout } from '../../layout';
 
 interface PostItem {
   id: string;
@@ -12,11 +12,10 @@ interface PostItem {
 }
 
 function PostsPage({ posts }: any) {
-  console.log(posts);
-
   return (
     <div className="mr-16">
-      <p className="text-3xl font-bold">Thong's Posts</p>
+      <p className="leading-8 text-gray-700 font-medium text-base">Home/My Post</p>
+      <h1>Thong's Posts</h1>
       {posts?.map((post: PostItem) => (
         <Post key={post.id} post={post} />
       ))}
@@ -24,7 +23,7 @@ function PostsPage({ posts }: any) {
   );
 }
 
-PostsPage.Layout = MainLayout;
+PostsPage.Layout = AdminLayout;
 
 export default PostsPage;
 

@@ -2,6 +2,7 @@
 import React from 'react';
 
 import Image from 'next/image';
+// import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import Post from '../common/Post';
@@ -22,7 +23,7 @@ function HomePage({ data }: any) {
   return (
     <div className="mr-16">
       <p className="text-4xl pb-6 text-blue-500">Create diagrams online realtime collaboration!</p>
-      <div className="flex w-full bg-white rounded-md h-16 items-center p-3">
+      <div className="flex w-full bg-white rounded-md h-20 items-center p-3">
         <Image
           src="/images/post2.jpg"
           alt="Picture of the author"
@@ -39,11 +40,51 @@ function HomePage({ data }: any) {
           onClick={() => router.push('/user/create')}
         />
       </div>
-      <div className="grid grid-cols-4 h-20 gap-10 pt-4 mb-20">
-        <textarea className="w-full h-full" />
-        <textarea className="w-full h-full" />
-        <textarea className="w-full h-full" />
-        <textarea className="w-full h-full" />
+      <div className="mt-4 ">
+        <div className="flex items-center justify-between">
+          <div className="text-lg font-medium text-gray-700">Recent posts</div>
+          {/* <Link href="#">
+            <a className="text-sm text-blue-400">View all</a>
+          </Link> */}
+        </div>
+        <div className="grid grid-cols-3 h-40 gap-10 pt-4 mb-10">
+          <div className="relative w-full h-full bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:scale-105 transition-all">
+            <div className="font-medium text-blue-600 pb-1">Sunt aut facere repellat provident</div>
+            <div className="text-gray-600 text-sm">
+              Quia et suscipit suscipit recusandae consequuntur ....
+            </div>
+
+            <div className="absolute bottom-1 right-4 text-gray-700 pb-2 text-xs">
+              <span>ReactJs - Pearuss</span>
+              <span className="ml-3">|</span>
+              <span className="ml-3">12 Feb 2020 </span>
+            </div>
+          </div>
+          <div className="relative w-full h-full bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:scale-105 transition-all">
+            <div className="font-medium text-blue-600 pb-1">Sunt aut facere repellat provident</div>
+            <div className="text-gray-600 text-sm">
+              Quia et suscipit suscipit recusandae consequuntur ....
+            </div>
+
+            <div className="absolute bottom-1 right-4 text-gray-700 pb-2 text-xs">
+              <span>ReactJs - Pearuss</span>
+              <span className="ml-3">|</span>
+              <span className="ml-3">12 Feb 2020 </span>
+            </div>
+          </div>
+          <div className="relative w-full h-full bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:scale-105 transition-all">
+            <div className="font-medium text-blue-600 pb-1">Sunt aut facere repellat provident</div>
+            <div className="text-gray-600 text-sm">
+              Quia et suscipit suscipit recusandae consequuntur ....
+            </div>
+
+            <div className="absolute bottom-1 right-4 text-gray-700 pb-2 text-xs">
+              <span>ReactJs - Pearuss</span>
+              <span className="ml-3">|</span>
+              <span className="ml-3">12 Feb 2020 </span>
+            </div>
+          </div>
+        </div>
       </div>
       {data?.map((post: PostItem) => (
         <Post key={post.id} post={post} />

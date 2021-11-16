@@ -2,9 +2,17 @@
 
 body {
   @apply bg-gray-200;
+  scroll-behavior: smooth;
+  overflow-y: scroll;
 }
 a {
   @apply text-blue-700;
+}
+
+h1 {
+  color: black;
+  font-size: 2em !important;
+  font-weight: bolder !important;
 }
 
 @tailwind components;
@@ -70,8 +78,7 @@ li {
 .userDropdown.activeClass .userDropdown-menu {
   @apply opacity-100 translate-y-0 pointer-events-auto;
 }
-.userDropdown.activeClass .userDropdown-menu a,
-.userDropdown.activeClass .userDropdown-menu .logoutCustom {
+.userDropdown.activeClass .userDropdown-menu a {
   @apply hover:bg-blue-300 hover:rounded-full;
 }
 .userDropdown .link {
@@ -126,6 +133,12 @@ li {
 
 .mentions__mention {
   background-color: #cee4e5;
+}
+
+.heading-active {
+  color: #90cdf4;
+  text-decoration: underline;
+  pointer-events: none;
 }
 
 @tailwind utilities;

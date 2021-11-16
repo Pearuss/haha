@@ -1,11 +1,12 @@
 import React, { ReactElement } from 'react';
-
+import ReactMarkdown from 'react-markdown';
+import CodeBlock from '../common/CodeBlock';
 import { BriefcaseIcon, EyeIcon, HeartIcon, ChatIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 
 function PostDetail({ dataPostDetail }: any): ReactElement {
   return (
-    <div className="relative bg-white rounded-lg h-[23vw] shadow-md px-4 py-2">
+    <div className="relative bg-white rounded-lg shadow-md px-4 py-2">
       <div className="flex items-center">
         <Image
           src="/images/post1.jpg"
@@ -21,8 +22,11 @@ function PostDetail({ dataPostDetail }: any): ReactElement {
       <div className="w-max text-blue-400 font-semibold text-2xl mx-auto">
         {dataPostDetail.title}
       </div>
-      <div className="mx-2">{dataPostDetail.body}</div>
-      <div className="flex items-center justify-evenly absolute bottom-[4%] left-0 right-0 text-gray-800">
+      {/* <div className="mx-2">{dataPostDetail.body}</div> */}
+      <div className="mx-2 mb-10 mt-5">
+        <ReactMarkdown components={CodeBlock} children={dataPostDetail.body} />
+      </div>
+      <div className="flex items-center justify-evenly absolute bottom-[4%] mt - left-0 right-0 text-gray-800">
         <div className="flex items-center gap-2">
           <BriefcaseIcon className="h-5 active:text-purple-800-500 hover:text-purple-800" />
           <span>{dataPostDetail.inWorks}</span>

@@ -39,7 +39,7 @@ function ModalPost({
       <div className="flex flex-row h-full bg-white rounded-tl-lg rounded-bl-lg">
         <div className="w-2/3">
           <div className="flex relative w-full justify-between rounded-tl-2xl bg-white border-b-2 p-3">
-            <p className="leading-8 text-gray-700 font-medium text-base">User/Create Post</p>
+            <p className="leading-8 text-gray-700 font-medium text-base">Home/Create Post</p>
             <div className="flex items-center text-base font-medium text-gray-600">
               <Switch
                 checked={newPost.public}
