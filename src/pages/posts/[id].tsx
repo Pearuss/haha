@@ -30,7 +30,6 @@ function Index({ data }: any): ReactElement {
     for (let i = 0; i < focusHeading.length; i++) {
       focusHeading[i].addEventListener('click', () => {
         headingE[i].scrollIntoView();
-        console.log(headingE[i].offsetTop);
 
         window.scroll(0, headingE[i].offsetTop + 130);
       });
@@ -78,6 +77,7 @@ export default Index;
 export const getStaticPaths = async () => {
   const res = await fetch('http://localhost:3001/posts?_limit=5');
   const posts = await res.json();
+  console.log('posts', posts);
 
   const paths = posts.map((post: any) => ({
     params: { id: post.id.toString() },
