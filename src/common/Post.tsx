@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import { EyeIcon, ChatIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
 import Link from 'next/link';
+import { truncate } from '../utilities/helper';
 
 function Post({ post }: any): ReactElement {
   const linkDetail = `/posts/${post.id}`;
@@ -19,7 +20,7 @@ function Post({ post }: any): ReactElement {
         />
         <div className="flex-1 ml-4 relative cursor-auto">
           <h3 className="text-lg text-blue-700 font-medium">{post.title}</h3>
-          <p className="text-base text-gray-800">{post.body}</p>
+          <p className="text-base pt-1 text-gray-700">{truncate(`${post.body}`, 280)}</p>
           <div className="flex items-center absolute bottom-0 right-[12%] text-gray-600">
             <EyeIcon className="h-5" />
             <span className="pl-3">{post.views}</span>
