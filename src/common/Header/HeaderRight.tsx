@@ -47,7 +47,7 @@ function HeaderRight(): ReactElement {
             <Link href="/user/create">
               <a className="link hover:text-white">Create post</a>
             </Link>
-            <Link href="/user/posts">
+            <Link href="/user/posts/1">
               <a className="link hover:text-white">My posts</a>
             </Link>
             {(profile?.isAdmin || false) && (

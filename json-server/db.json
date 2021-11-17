@@ -3,28 +3,28 @@
     "followingTags": [
       {
         "id": 1,
-        "path": "/blazor",
-        "name": "Blazor"
+        "path": "/ReactJS",
+        "name": "ReactJS"
       },
       {
         "id": 2,
-        "path": "/scrum",
-        "name": "Scrum"
+        "path": "/Java",
+        "name": "Java"
       },
       {
         "id": 3,
-        "path": "/tomcat",
-        "name": "Tomcat"
+        "path": "/JavaScript",
+        "name": "JavaScript"
       },
       {
         "id": 4,
-        "path": "/stripe",
-        "name": "Stripe"
+        "path": "/CPP",
+        "name": "CPP"
       },
       {
         "id": 5,
-        "path": "/wifi",
-        "name": "Wifi"
+        "path": "/GoLang",
+        "name": "GoLang"
       },
       {
         "id": 6,
@@ -155,7 +155,7 @@
   "posts": [
     {
       "userId": 1,
-      "tags": "ReactJs",
+      "tags": "ReactJS",
       "author": "Pearuss",
       "authorInfo": [
         {

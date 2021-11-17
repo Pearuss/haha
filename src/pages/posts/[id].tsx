@@ -22,8 +22,6 @@ function Index({ data }: any): ReactElement {
     }
   }, [profile, firstLoading]);
 
-  console.log(profile);
-
   if (router.isFallback) {
     return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>;
   }
@@ -46,7 +44,7 @@ function Index({ data }: any): ReactElement {
       focusHeading[i].addEventListener('click', () => {
         headingE[i].scrollIntoView();
 
-        window.scroll(0, headingE[i].offsetTop + 130);
+        window.scroll(0, headingE[i].offsetTop + 75);
       });
     }
 
@@ -95,7 +93,6 @@ export default Index;
 export const getStaticPaths = async () => {
   const res = await fetch('http://localhost:3001/posts?_limit=5');
   const posts = await res.json();
-  console.log('posts', posts);
 
   const paths = posts?.data?.map((post: any) => ({
     params: { id: post.id.toString() },
