@@ -23,60 +23,62 @@ function Index({ data }: any): ReactElement {
     }
   }, [profile, firstLoading]);
 
-  console.log(profile);
+  // console.log(profile);
 
-  // if (router.isFallback) {
-  //   return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>;
-  // }
-  // useEffect(() => {
-  //   const contentIndexE: any = document.querySelector('.contentIndex');
-  //   const headingE: any = document.getElementsByTagName('h1');
+  if (router.isFallback) {
+    return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>;
+  }
+  useEffect(() => {
+    const contentIndexE: any = document.querySelector('.contentIndex');
+    const headingE: any = document.getElementsByTagName('h1');
 
-  //   let html = '';
-  //   for (let i = 0; i < headingE.length; i++) {
-  //     headingE[i].id = `${i + 1}-h-id`;
-  //     html += `<li><a class="headingContent cursor-pointer">${i + 1}. ${
-  //       headingE[i].innerHTML
-  //     }</a></li>`;
-  //   }
+    let html = '';
+    for (let i = 0; i < headingE.length; i++) {
+      headingE[i].id = `${i + 1}-h-id`;
+      html += `<li><a class="headingContent cursor-pointer">${i + 1}. ${
+        headingE[i].innerHTML
+      }</a></li>`;
+    }
 
-  //   contentIndexE.innerHTML = html;
+    contentIndexE.innerHTML = html;
 
-  //   const focusHeading: any = document.querySelectorAll(`.headingContent`);
-  //   for (let i = 0; i < focusHeading.length; i++) {
-  //     focusHeading[i].addEventListener('click', () => {
-  //       headingE[i].scrollIntoView();
+    const focusHeading: any = document.querySelectorAll(`.headingContent`);
+    for (let i = 0; i < focusHeading.length; i++) {
+      focusHeading[i].addEventListener('click', () => {
+        headingE[i].scrollIntoView();
 
-  //       window.scroll(0, headingE[i].offsetTop + 130);
-  //     });
-  //   }
+        window.scroll(0, headingE[i].offsetTop + 130);
+      });
+    }
 
-  //   window.addEventListener('scroll', () => {
-  //     let current = 0;
+    window.addEventListener('scroll', () => {
+      let current = 0;
 
-  //     for (let i = 0; i < headingE.length; i++) {
-  //       const headingTop = headingE[i].offsetTop;
+      for (let i = 0; i < headingE.length; i++) {
+        const headingTop = headingE[i].offsetTop;
 
-  //       if (pageYOffset >= headingTop) {
-  //         current = i + 1;
-  //       }
-  //     }
+        if (pageYOffset >= headingTop) {
+          current = i + 1;
+        }
+      }
 
-  //     for (let i = 0; i < focusHeading.length; i++) {
-  //       if (i + 1 === current) {
-  //         focusHeading[i].classList.add('heading-active');
-  //       } else {
-  //         focusHeading[i].classList.remove('heading-active');
-  //       }
-  //     }
-  //   });
-  // });
+      for (let i = 0; i < focusHeading.length; i++) {
+        if (i + 1 === current) {
+          focusHeading[i].classList.add('heading-active');
+        } else {
+          focusHeading[i].classList.remove('heading-active');
+        }
+      }
+    });
+  });
   return (
     <div className="mr-16">
       <p className="text-4xl pb-6 text-blue-500">Create diagrams online realtime collaboration!</p>
       <PostDetail dataPostDetail={data} />
 
-      {isLogin && <CommentSection />}
+      {isLogin && (   
+          <CommentSection />
+      )}
 
       {/* {isLogin &&
         data.allComments?.map((comment: any) => (

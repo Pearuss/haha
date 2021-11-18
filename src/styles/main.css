@@ -149,7 +149,13 @@ li {
   cursor: pointer;
 }
 
-.btnLoadMore.active {
+.btnLoadMore.disable {
+  cursor: context-menu;
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.btnPrevPage.disable {
   cursor: context-menu;
   opacity: 0.7;
   text-decoration: none;
