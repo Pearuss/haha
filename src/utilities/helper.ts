@@ -5,3 +5,7 @@ export function truncate(string: string, n: number) {
 
   return string?.length > n ? string.substr(0, n - 1) + '...' : string;
 }
+
+export function replaceTagBr(string: string) {
+  return string.split('\n').join('<br/>');
+}

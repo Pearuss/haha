@@ -7,10 +7,11 @@
 import { useEffect, useState, useRef } from 'react';
 
 import { MentionsInput, Mention } from 'react-mentions';
+import { replaceTagBr } from '../../utilities/helper';
 
 import { APIservice } from './services';
 
-const NewPost = () => {
+const NewPost = ({ handleSubmit }: any) => {
   const [content, setContent] = useState<any>('');
   const [users, setUsers] = useState<any>([]);
   const [tags, setTags] = useState<any>([]);
@@ -22,11 +23,11 @@ const NewPost = () => {
     getTags();
   }, []);
 
-  function addContent(input: string | any[]) {
+  const addContent = (input: string | any[]) => {
     if (input.length <= 350) {
       setContent(input);
     }
-  }
+  };
 
   async function getActors(): Promise<void> {
     const res = await APIservice.get('/users');
@@ -58,25 +59,28 @@ const NewPost = () => {
     let newContent = content;
 
     newContent = newContent.split('@@@__').join('<a href="/user/');
-    newContent = newContent.split('^^^__').join('">@');
+    newContent = newContent.split('^^^__').join('" style="color:#0000EE; font-weight: 500;">@');
     newContent = newContent.split('@@@^^^').join('</a>');
 
     newContent = newContent.split('$$$__').join('<a href="/tag/');
-    newContent = newContent.split('~~~__').join('">#');
+    newContent = newContent
+      .split('~~~__')
+      .join('" style="background-color:#63B3ED; font-weight: 500;">#');
     newContent = newContent.split('$$$~~~').join('</a>');
     if (newContent !== '') {
       const body = newContent.trim();
+      handleSubmit(replaceTagBr(body));
+      setContent('');
     }
   }
 
   return (
     <div className="w-full">
-      <div className="heading text-left font-bold text-2xl ml-5 mt-5 mb-3 text-gray-800">
-        Comment
-      </div>
+      <div className="heading text-left font-bold text-2xl ml-5 mt-5 text-gray-800">Comment</div>
       <form
         onSubmit={savePost}
-        className="editor mx-auto w-full flex flex-col text-gray-800 border border-gray-300 p-4 shadow-sm rounded"
+        // className="editor mx-auto w-full flex flex-col text-gray-800 border border-gray-300 p-4 shadow-sm rounded"
+        className="editor items-center border-gray-300 bg-white flex-col py-2 px-4 w-full h-auto mb-8 mt-3 border rounded-md"
       >
         <div className="description outline-none px-5 py-2 rounded-full">
           <MentionsInput
@@ -91,6 +95,7 @@ const NewPost = () => {
               trigger="@"
               data={users}
               markup="@@@____id__^^^____display__@@@^^^"
+              displayTransform={(_id, display) => `@${display}`}
               style={{
                 backgroundColor: '#daf4fa',
               }}
@@ -100,10 +105,10 @@ const NewPost = () => {
               trigger="#"
               data={tags}
               markup="$$$____id__~~~____display__$$$~~~"
+              displayTransform={(_id, display) => `#${display}`}
               style={{
-                backgroundColor: '#daf4fa',
+                backgroundColor: '#0091F7',
               }}
-              onAdd={(display) => setTagNames((tagNames: any) => [...tagNames, display])}
               appendSpaceOnAdd
             />
           </MentionsInput>
@@ -115,9 +120,9 @@ const NewPost = () => {
             /350
           </div>
         </div>
-        <div className="buttons flex">
+        <div className="buttons flex justify-end">
           <button
-            className="btn border border-none bg-gray-400 p-1 px-6 font-semibold cursor-pointer text-gray-500 ml-auto rounded-sm"
+            className="py-2 px-4 font-medium pr-6  rounded-md"
             onClick={(e) => {
               e.preventDefault();
               setContent('');
@@ -125,7 +130,7 @@ const NewPost = () => {
           >
             Cancel
           </button>
-          <button className="btn border-none p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-blue-400 rounded-sm">
+          <button className="py-1 px-3 font-medium border text-blue-600 border-blue-600 rounded-md">
             Comment
           </button>
         </div>

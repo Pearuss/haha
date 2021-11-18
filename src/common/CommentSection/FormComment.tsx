@@ -6,10 +6,10 @@ export default function FormComment({ handleSubmit, submitLabel }: any): ReactEl
   const onSubmit = (event: any) => {
     event.preventDefault();
     handleSubmit(text);
-    console.log(text);
 
     setText('');
   };
+
   return (
     <div className="relative flex items-center bg-white flex-col py-2 px-4 w-full h-auto my-8 border  rounded-md">
       <textarea

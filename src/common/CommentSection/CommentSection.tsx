@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 
-import FormComment from './FormComment';
+// import FormComment from './FormComment';
+import InputMention from '../InputMention/InputMention';
 import { getComments as getCommentsApi, createComment as createCommentApi } from './api';
 import Comment from './Comment';
 
@@ -25,10 +26,11 @@ function CommentSection(): ReactElement {
       setActiveComment(null);
     });
   };
-  console.log(backendComments);
+  // console.log(backendComments);
   return (
     <div className="w-full relative mb-2">
-      <FormComment submitLabel="Reply" handleSubmit={addComment} />
+      {/* <FormComment submitLabel="Reply" handleSubmit={addComment} /> */}
+      <InputMention handleSubmit={addComment} />
       {rootComments.map((rootComment) => (
         <Comment
           key={rootComment.id}

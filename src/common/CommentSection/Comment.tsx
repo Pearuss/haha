@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react';
 
 import Image from 'next/image';
 import FormComment from './FormComment';
+import parse from 'html-react-parser';
 
 function Comment({
   commentContent,
@@ -15,6 +16,29 @@ function Comment({
     activeComment && activeComment.type === 'replying' && activeComment.id === commentContent.id;
 
   const replyId = parentId ? parentId : commentContent.id;
+  // console.log('before', commentContent?.body);
+  // console.log('after', parse(commentContent?.body));
+
+  // const options: HTMLReactParserOptions  = {
+  //   replace: ({ attribs, children }: any) => {
+  //     if (!attribs) {
+  //       return;
+  //     }
+
+  //     if (attribs.id === 'main') {
+  //       return <h1 style={{ fontSize: 42 }}>{domToReact(children, options)}</h1>;
+  //     }
+
+  //     if (attribs.class === 'prettify') {
+  //       return (
+  //         <span style={{ color: 'hotpink' }}>
+  //           {domToReact(children, options)}
+  //         </span>
+  //       );
+  //     }
+  //   }
+  // };
+
   return (
     <div className="flex w-full items-center shadow-sm bg-white rounded-lg relative mb-4">
       <div className="absolute top-3 left-2">
@@ -31,7 +55,8 @@ function Comment({
           <span className="text-lg text-blue-300 font-medium">{commentContent?.username}</span>
           <span className="mr-4 text-sm font-medium text-gray-700">Feb 12</span>
         </div>
-        <p>{commentContent?.body}</p>
+        <p>{parse(commentContent?.body)}</p>
+        {/* <p>{commentContent?.body}</p> */}
         <div className="mt-2 font-serif font-medium">See more</div>
         <div className="flex items-center justify-between text-gray-700 pt-2">
           <div className="flex items-center mr-6">
