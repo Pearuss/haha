@@ -11,7 +11,7 @@ import { replaceTagBr } from '../../utilities/helper';
 
 import { APIservice } from './services';
 
-const NewPost = ({ handleSubmit, initialText, submitLabel }: any) => {
+const NewPost = ({ handleSubmit, initialText, submitLabel, handleCancel }: any) => {
   const [content, setContent] = useState<any>(initialText);
   const [users, setUsers] = useState<any>([]);
   const [tags, setTags] = useState<any>([]);
@@ -78,10 +78,6 @@ const NewPost = ({ handleSubmit, initialText, submitLabel }: any) => {
     setContent('');
   };
 
-  const hideFormInput = () => {
-    console.log(1);
-  };
-
   return (
     <div className="w-full">
       {submitLabel === 'Comment' ? (
@@ -141,7 +137,7 @@ const NewPost = ({ handleSubmit, initialText, submitLabel }: any) => {
               if (submitLabel === 'Comment') {
                 clearFormInput();
               } else {
-                hideFormInput();
+                handleCancel();
               }
             }}
           >
