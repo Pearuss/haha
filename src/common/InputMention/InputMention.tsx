@@ -74,9 +74,22 @@ const NewPost = ({ handleSubmit, initialText, submitLabel }: any) => {
     }
   }
 
+  const clearFormInput = () => {
+    setContent('');
+  };
+
+  const hideFormInput = () => {
+    console.log(1);
+  };
+
   return (
     <div className="w-full">
-      <div className="heading text-left font-bold text-2xl ml-5 mt-5 text-gray-800">Comment</div>
+      {submitLabel === 'Comment' ? (
+        <div className="heading text-left font-bold text-2xl ml-5 mt-5 text-gray-800">Comment</div>
+      ) : (
+        ''
+      )}
+
       <form
         onSubmit={savePost}
         // className="editor mx-auto w-full flex flex-col text-gray-800 border border-gray-300 p-4 shadow-sm rounded"
@@ -125,7 +138,11 @@ const NewPost = ({ handleSubmit, initialText, submitLabel }: any) => {
             className="py-2 px-4 font-medium pr-6  rounded-md"
             onClick={(e) => {
               e.preventDefault();
-              setContent('');
+              if (submitLabel === 'Comment') {
+                clearFormInput();
+              } else {
+                hideFormInput();
+              }
             }}
           >
             Cancel

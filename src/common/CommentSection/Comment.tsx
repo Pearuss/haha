@@ -39,7 +39,6 @@ function Comment({
       router.replace('/login');
     }
   }, [profile]);
-  console.log(profile);
 
   // console.log('before', commentContent?.body);
   // console.log('after', parse(commentContent?.body));

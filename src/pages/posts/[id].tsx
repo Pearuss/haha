@@ -80,6 +80,11 @@ function Index({ data }: any): ReactElement {
       }
     });
   }, [isReadMore]);
+
+  const toggleFormComment = () => {
+    setShowFormComment(!showFormComment);
+  };
+
   return (
     <div className="flex mr-16 w-[70vw]">
       <div className="w-[17.5vw] px-5">{isShowContentIndex ? <ContentIndex /> : ''}</div>
@@ -92,7 +97,7 @@ function Index({ data }: any): ReactElement {
           <div className="flex items-center justify-between py-4 px-4 shadow-sm font-medium text-gray-700 rounded-md bg-white mb-4">
             <div className="text-lg">Comments (20)</div>
             <button
-              onClick={() => setShowFormComment(true)}
+              onClick={toggleFormComment}
               className="flex items-center py-[0.35rem] px-3 rounded-md border border-blue-600 text-blue-600"
             >
               <Image src="/images/pencil2.png" width={20} height={20} />
@@ -100,7 +105,9 @@ function Index({ data }: any): ReactElement {
             </button>
           </div>
         )}
-        {isLogin && <CommentSection showForm={showFormComment} />}
+        {isLogin && (
+          <CommentSection showForm={showFormComment} setShowFormComment={setShowFormComment} />
+        )}
       </div>
 
       {/* {isLogin &&
