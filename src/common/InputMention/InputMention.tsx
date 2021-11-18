@@ -15,7 +15,7 @@ const NewPost = ({ handleSubmit }: any) => {
   const [content, setContent] = useState<any>('');
   const [users, setUsers] = useState<any>([]);
   const [tags, setTags] = useState<any>([]);
-  const [tagNames, setTagNames] = useState<any>([]);
+  // const [tagNames, setTagNames] = useState<any>([]);
   const myInput = useRef<any>();
 
   useEffect(() => {

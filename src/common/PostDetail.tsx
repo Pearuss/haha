@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useState, useCallback } from 'react';
 import ReactMarkdown from 'react-markdown';
 import CodeBlock from '../common/CodeBlock';
 import { BriefcaseIcon, EyeIcon, HeartIcon, ChatIcon } from '@heroicons/react/solid';
@@ -13,17 +13,12 @@ function PostDetail({ dataPostDetail }: any): ReactElement {
 
   const [isReadMore, setIsReadMore] = useState(true);
 
-  // useEffect(() => {
-  //   if (!firstLoading && !profile?.username && !isReadMore) {
-  //     setIsLogin(true)
-  //   }
-  // }, [profile, firstLoading]);
-
   let contentBody = isReadMore
     ? truncate(`${dataPostDetail.body}`, 580).toString() // max content length is 580
     : truncate(`${dataPostDetail.body}`, 20000).toString(); // see full content
+  
 
-  const ReadMoreHandler = () => {
+  const ReadMoreHandler = useCallback(() => {
     if (profile?.message == 'You need to login to access') {
       router.replace('/login');
     } else if (profile?.username) {
@@ -31,13 +26,7 @@ function PostDetail({ dataPostDetail }: any): ReactElement {
     } else {
       router.replace('/login');
     }
-
-    // !firstLoading && profile ? setIsReadMore(false) : router.push('/login');
-
-    // console.log(profile);
-
-    // setIsReadMore(false);
-  };
+  }, [profile]);
   return (
     <div className="relative bg-white rounded-lg shadow-md px-4 pt-2 py-16 mb-8 text-gray-700 h-auto">
       <div className="flex items-center">
@@ -59,7 +48,7 @@ function PostDetail({ dataPostDetail }: any): ReactElement {
       <div className="mx-2 mb-4 mt-5 h-auto">
         <ReactMarkdown components={CodeBlock} children={contentBody} />
       </div>
-      {dataPostDetail.body.length > 600 && (
+      {dataPostDetail.body.length > 580 && (
         <button
           onClick={ReadMoreHandler}
           type="button"

@@ -16,11 +16,11 @@ export function useAuth(option?: Partial<PublicConfiguration>) {
   });
   const firstLoading = profile === undefined && error === undefined;
 
-  const random_boolean = Math.random() < 0.5;
+  // const random_boolean = Math.random() < 0.5;
 
-  if (profile) {
-    profile.isAdmin = random_boolean;
-  }
+  // if (profile) {
+  //   profile.isAdmin = random_boolean;
+  // }
 
   async function login(data: LoginPayLoad) {
     await authApi.login(data);

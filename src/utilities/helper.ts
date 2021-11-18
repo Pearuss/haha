@@ -1,5 +1,3 @@
-import { indexOf } from 'lodash';
-
 export function truncate(string: string, n: number) {
   //  console.log(indexOf(string, '#', 2));
 

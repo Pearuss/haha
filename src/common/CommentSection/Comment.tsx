@@ -1,8 +1,11 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState, useCallback } from 'react';
 
 import Image from 'next/image';
 import FormComment from './FormComment';
 import parse from 'html-react-parser';
+import { truncate } from '../../utilities/helper';
+import { useAuth } from '../../hooks';
+import { useRouter } from 'next/router';
 
 function Comment({
   commentContent,
@@ -12,10 +15,31 @@ function Comment({
   addComment,
   parentId = null,
 }: any): ReactElement {
+  const { profile } = useAuth();
+  const router = useRouter();
+
   const isReplying =
     activeComment && activeComment.type === 'replying' && activeComment.id === commentContent.id;
 
   const replyId = parentId ? parentId : commentContent.id;
+
+  const [isReadMore, setIsReadMore] = useState(true);
+
+  let contentBody = isReadMore
+    ? truncate(`${commentContent?.body}`, 210).toString() // max content length is 580
+    : truncate(`${commentContent?.body}`, 20000).toString(); // see full content
+
+  const ReadMoreHandler = useCallback(() => {
+    if (profile?.message == 'You need to login to access') {
+      router.replace('/login');
+    } else if (profile?.username) {
+      setIsReadMore(false);
+    } else {
+      router.replace('/login');
+    }
+  }, [profile]);
+  console.log(profile);
+
   // console.log('before', commentContent?.body);
   // console.log('after', parse(commentContent?.body));
 
@@ -55,9 +79,16 @@ function Comment({
           <span className="text-lg text-blue-300 font-medium">{commentContent?.username}</span>
           <span className="mr-4 text-sm font-medium text-gray-700">Feb 12</span>
         </div>
-        <p>{parse(commentContent?.body)}</p>
+        <p>{parse(contentBody)}</p>
         {/* <p>{commentContent?.body}</p> */}
-        <div className="mt-2 font-serif font-medium">See more</div>
+        {commentContent?.body.length > 210 && (
+          <button
+            className={`mt-2 font-serif font-medium cursor-pointer ${isReadMore ? '' : 'hidden'}`}
+            onClick={ReadMoreHandler}
+          >
+            See more
+          </button>
+        )}
         <div className="flex items-center justify-between text-gray-700 pt-2">
           <div className="flex items-center mr-6">
             <span className="flex items-center mr-4">
