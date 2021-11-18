@@ -32,7 +32,8 @@ router.render = (req, res) => {
 
   if (req.method === 'GET' && totalCountHeader) {
     const queryParams = queryString.parse(req._parsedUrl.query);
-    // const totalHeaderArray = totalCountHeader['__wrapped__'];
+    const totalHeaderArray = totalCountHeader['__wrapped__'];
+    const count = totalHeaderArray?.posts?.length;
     // let count = 0;
     // for (const key in totalHeaderArray) {
     //   totalHeaderArray[key].map(() => {
@@ -47,7 +48,7 @@ router.render = (req, res) => {
       pagination: {
         _page: Number.parseInt(queryParams._page) || 1,
         _limit: Number.parseInt(queryParams._limit) || 10,
-        // _totalRow: Number.parseInt(count),
+        _totalRow: Number.parseInt(count) || 0,
       },
     };
     // console.log(results);
