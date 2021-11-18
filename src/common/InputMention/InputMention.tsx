@@ -66,9 +66,6 @@ const NewPost = () => {
     newContent = newContent.split('$$$~~~').join('</a>');
     if (newContent !== '') {
       const body = newContent.trim();
-
-      console.log('tagNames', tagNames);
-      console.log('body', body);
     }
   }
 

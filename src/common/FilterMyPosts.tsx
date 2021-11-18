@@ -6,8 +6,6 @@ export function FilterMyPosts() {
   const { data: catData }: any = useSWR('http://localhost:3001/category', {
     revalidateOnFocus: false,
   });
-  console.log(tagData);
-  console.log(catData);
 
   return (
     <div className="fixed pt-10 mt-4 ml-3 h-full bg-gray-400 bg-opacity-80 max-w-[16vw] px-1 rounded-3xl shadow-customShadow">

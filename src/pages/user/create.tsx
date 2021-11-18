@@ -32,9 +32,6 @@ function UserCreatePage() {
   const handleUpload = () => {
     const tagCheckbox: NodeList | any = document.querySelectorAll('.tagcheckbox');
 
-    console.log('--------------');
-    console.log('newPost: ', newPost);
-    console.log('--------------');
 
     tagCheckbox.forEach((tagItem: HTMLInputElement) => {
       tagItem.checked = false;

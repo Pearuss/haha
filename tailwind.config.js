@@ -55,7 +55,7 @@ module.exports = {
           800: '#2c5282',
           900: '#2a4365',
         },
-        lightBlack: '#0c0c0cbf',
+        lightBlack: '#111111bf',
         lightGray: '#333333',
         darkRed: '#E50914',
         grayLightText: '#B3B3B3',

@@ -28,7 +28,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
       proxyRes.on('end', function () {
         try {
           const { accessToken, expiredAt } = JSON.parse(body);
-          console.log({ accessToken, expiredAt });
 
           const cookies = new Cookies(req, res, {
             secure: process.env.NODE_ENV !== 'development',
