@@ -39,7 +39,7 @@ function PostDetail({ dataPostDetail }: any): ReactElement {
     // setIsReadMore(false);
   };
   return (
-    <div className="relative bg-white rounded-lg shadow-md px-4 pt-2 py-16 text-gray-700 h-auto">
+    <div className="relative bg-white rounded-lg shadow-md px-4 pt-2 py-16 mb-8 text-gray-700 h-auto">
       <div className="flex items-center">
         <Image
           src="/images/toc2.jpg"

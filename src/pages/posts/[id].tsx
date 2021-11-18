@@ -3,6 +3,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 // import InputMention from '../../common/InputMention/InputMention';
+import Image from 'next/image';
 import PostDetail from '../../common/PostDetail';
 import { DetailPostLayout } from '../../layout';
 import { useAuth } from '../../hooks';
@@ -11,6 +12,7 @@ import CommentSection from '../../common/CommentSection/CommentSection';
 
 function Index({ data }: any): ReactElement {
   const [isLogin, setIsLogin] = useState(false);
+  const [showFormComment, setShowFormComment] = useState(false);
 
   const { profile, firstLoading } = useAuth();
   const router = useRouter();
@@ -76,9 +78,19 @@ function Index({ data }: any): ReactElement {
       <p className="text-4xl pb-6 text-blue-500">Create diagrams online realtime collaboration!</p>
       <PostDetail dataPostDetail={data} />
 
-      {isLogin && (   
-          <CommentSection />
+      {isLogin && (
+        <div className="flex items-center justify-between py-4 px-4 shadow-sm font-medium text-gray-700 rounded-md bg-white mb-4">
+          <div className="text-lg">Comments (20)</div>
+          <button
+            onClick={() => setShowFormComment(true)}
+            className="flex items-center py-[0.35rem] px-3 rounded-md border border-blue-600 text-blue-600"
+          >
+            <Image src="/images/pencil2.png" width={20} height={20} />
+            <span className="ml-1">Add comment</span>
+          </button>
+        </div>
       )}
+      {isLogin && <CommentSection showForm={showFormComment} />}
 
       {/* {isLogin &&
         data.allComments?.map((comment: any) => (
