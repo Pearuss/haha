@@ -63,12 +63,15 @@ function Comment({
         {isReplying && (
           <FormComment
             submitLabel="Reply"
+            initialText={`${parentId == null ? '' : `@${commentContent.username} `}`}
             handleSubmit={(text: any) =>
               addComment(
-                `${parentId == null ? '' : `@${commentContent.username}`} ${text}`,
+                // `${parentId == null ? '' : `@${commentContent.username}`} ${text}`,
+                text,
                 replyId
               )
             }
+            handleCancel={() => setActiveComment(null)}
           />
         )}
         {replies.length > 0 && (

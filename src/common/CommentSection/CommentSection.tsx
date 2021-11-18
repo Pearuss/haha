@@ -4,7 +4,7 @@ import FormComment from './FormComment';
 import { getComments as getCommentsApi, createComment as createCommentApi } from './api';
 import Comment from './Comment';
 
-function CommentSection(): ReactElement {
+function CommentSection({ showForm }: any): ReactElement {
   const [backendComments, setBackendComments] = useState<any[]>([]);
   const [activeComment, setActiveComment] = useState(null);
 
@@ -28,7 +28,7 @@ function CommentSection(): ReactElement {
   console.log(backendComments);
   return (
     <div className="w-full relative mb-2">
-      <FormComment submitLabel="Reply" handleSubmit={addComment} />
+      {showForm && <FormComment submitLabel="Reply" handleSubmit={addComment} />}
       {rootComments.map((rootComment) => (
         <Comment
           key={rootComment.id}
