@@ -16,6 +16,9 @@ interface PostItem {
 
 function ProfilePage({ data }: any) {
   const { profile } = useAuth();
+
+  console.log(profile);
+  
   return (
     <div className="relative flex items-center flex-col w-full h-100vh pt-4 pr-8">
       <div className="relative max-w-full w-full h-[220px] max-h-[220px]">

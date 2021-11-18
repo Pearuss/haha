@@ -9,7 +9,7 @@ import { useAuth } from '../../hooks';
 
 function HeaderRight(): ReactElement {
   const router = useRouter();
-  const { logout, profile } = useAuth();
+  const { logout } = useAuth();
 
   const logoutHandler = async () => {
     try {
@@ -50,11 +50,11 @@ function HeaderRight(): ReactElement {
             <Link href="/user/posts/1">
               <a className="link hover:text-white">My posts</a>
             </Link>
-            {(profile?.isAdmin || false) && (
+            {/* {(profile?.isAdmin || false) && (
               <Link href="/user/admin">
                 <a className="link hover:text-white">Moderator</a>
               </Link>
-            )}
+            )} */}
             <div
               className="link hover:bg-blue-300 hover:text-white hover:rounded-full"
               onClick={logoutHandler}
