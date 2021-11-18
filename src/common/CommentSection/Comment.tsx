@@ -1,8 +1,9 @@
 import React, { ReactElement } from 'react';
 
 import Image from 'next/image';
-import FormComment from './FormComment';
+// import FormComment from './FormComment';
 import parse from 'html-react-parser';
+import InputMention from '../InputMention/InputMention';
 
 function Comment({
   commentContent,
@@ -86,9 +87,9 @@ function Comment({
         </div>
         <div className="w-full border-b border-gray-200 pt-4"></div>
         {isReplying && (
-          <FormComment
+          <InputMention
             submitLabel="Reply"
-            initialText={`${parentId == null ? '' : `@${commentContent.username} `}`}
+            initialText={`${parentId == null ? '' : `@${commentContent.username}`}`}
             handleSubmit={(text: any) =>
               addComment(
                 // `${parentId == null ? '' : `@${commentContent.username}`} ${text}`,

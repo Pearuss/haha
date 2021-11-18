@@ -11,11 +11,11 @@ import { replaceTagBr } from '../../utilities/helper';
 
 import { APIservice } from './services';
 
-const NewPost = ({ handleSubmit }: any) => {
-  const [content, setContent] = useState<any>('');
+const NewPost = ({ handleSubmit, initialText, submitLabel }: any) => {
+  const [content, setContent] = useState<any>(initialText);
   const [users, setUsers] = useState<any>([]);
   const [tags, setTags] = useState<any>([]);
-  const [tagNames, setTagNames] = useState<any>([]);
+  // const [tagNames, setTagNames] = useState<any>([]);
   const myInput = useRef<any>();
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const NewPost = ({ handleSubmit }: any) => {
     let newContent = content;
 
     newContent = newContent.split('@@@__').join('<a href="/user/');
-    newContent = newContent.split('^^^__').join('" style="color:#0000EE; font-weight: 500;">@');
+    newContent = newContent.split('^^^__').join('" style="color:#ADE3FF; font-weight: 500;">@');
     newContent = newContent.split('@@@^^^').join('</a>');
 
     newContent = newContent.split('$$$__').join('<a href="/tag/');
@@ -131,7 +131,7 @@ const NewPost = ({ handleSubmit }: any) => {
             Cancel
           </button>
           <button className="py-1 px-3 font-medium border text-blue-600 border-blue-600 rounded-md">
-            Comment
+            {submitLabel}
           </button>
         </div>
       </form>

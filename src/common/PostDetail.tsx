@@ -7,11 +7,11 @@ import { truncate } from '../utilities/helper';
 import { useAuth } from '../hooks';
 import { useRouter } from 'next/router';
 
-function PostDetail({ dataPostDetail }: any): ReactElement {
+function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactElement {
   const { profile } = useAuth();
   const router = useRouter();
 
-  const [isReadMore, setIsReadMore] = useState(true);
+  // const [isReadMore, setIsReadMore] = useState(true);
 
   // useEffect(() => {
   //   if (!firstLoading && !profile?.username && !isReadMore) {

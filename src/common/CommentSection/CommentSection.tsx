@@ -26,22 +26,23 @@ function CommentSection({ showForm }: any): ReactElement {
       setActiveComment(null);
     });
   };
-  // console.log(backendComments);
+
   return (
     <div className="w-full relative mb-2">
-      {/* <FormComment submitLabel="Reply" handleSubmit={addComment} /> */}
-
-      {showForm && <InputMention handleSubmit={addComment} />}
-      {rootComments.map((rootComment) => (
-        <Comment
-          key={rootComment.id}
-          commentContent={rootComment}
-          replies={getReplies(rootComment.id)}
-          activeComment={activeComment}
-          addComment={addComment}
-          setActiveComment={setActiveComment}
-        />
-      ))}
+      {showForm && <InputMention handleSubmit={addComment} initialText="" submitLabel="Comment" />}
+      {rootComments.map((rootComment) => {
+        return (
+          <Comment
+            key={rootComment.id}
+            userId={rootComment.userId}
+            commentContent={rootComment}
+            replies={getReplies(rootComment.id)}
+            activeComment={activeComment}
+            addComment={addComment}
+            setActiveComment={setActiveComment}
+          />
+        );
+      })}
     </div>
   );
 }

@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 // import InputMention from '../../common/InputMention/InputMention';
 import Image from 'next/image';
 import PostDetail from '../../common/PostDetail';
+import { ContentIndex } from '../../common/ContentIndex';
 import { DetailPostLayout } from '../../layout';
 import { useAuth } from '../../hooks';
 
@@ -13,6 +14,8 @@ import CommentSection from '../../common/CommentSection/CommentSection';
 function Index({ data }: any): ReactElement {
   const [isLogin, setIsLogin] = useState(false);
   const [showFormComment, setShowFormComment] = useState(false);
+  const [isShowContentIndex, setIsShowContentIndex] = useState(true);
+  const [isReadMore, setIsReadMore] = useState(true);
 
   const { profile, firstLoading } = useAuth();
   const router = useRouter();
@@ -40,6 +43,10 @@ function Index({ data }: any): ReactElement {
       html += `<li><a class="headingContent cursor-pointer">${i + 1}. ${
         headingE[i].innerHTML
       }</a></li>`;
+    }
+
+    if (html === '') {
+      setIsShowContentIndex(false);
     }
 
     contentIndexE.innerHTML = html;
@@ -72,25 +79,29 @@ function Index({ data }: any): ReactElement {
         }
       }
     });
-  });
+  }, [isReadMore]);
   return (
-    <div className="mr-16">
-      <p className="text-4xl pb-6 text-blue-500">Create diagrams online realtime collaboration!</p>
-      <PostDetail dataPostDetail={data} />
-
-      {isLogin && (
-        <div className="flex items-center justify-between py-4 px-4 shadow-sm font-medium text-gray-700 rounded-md bg-white mb-4">
-          <div className="text-lg">Comments (20)</div>
-          <button
-            onClick={() => setShowFormComment(true)}
-            className="flex items-center py-[0.35rem] px-3 rounded-md border border-blue-600 text-blue-600"
-          >
-            <Image src="/images/pencil2.png" width={20} height={20} />
-            <span className="ml-1">Add comment</span>
-          </button>
-        </div>
-      )}
-      {isLogin && <CommentSection showForm={showFormComment} />}
+    <div className="flex mr-16 w-[70vw]">
+      <div className="w-[17.5vw] px-5">{isShowContentIndex ? <ContentIndex /> : ''}</div>
+      <div className="w-[50vw]">
+        <p className="text-4xl pb-6 text-blue-500">
+          Create diagrams online realtime collaboration!
+        </p>
+        <PostDetail dataPostDetail={data} isReadMore={isReadMore} setIsReadMore={setIsReadMore} />
+        {isLogin && (
+          <div className="flex items-center justify-between py-4 px-4 shadow-sm font-medium text-gray-700 rounded-md bg-white mb-4">
+            <div className="text-lg">Comments (20)</div>
+            <button
+              onClick={() => setShowFormComment(true)}
+              className="flex items-center py-[0.35rem] px-3 rounded-md border border-blue-600 text-blue-600"
+            >
+              <Image src="/images/pencil2.png" width={20} height={20} />
+              <span className="ml-1">Add comment</span>
+            </button>
+          </div>
+        )}
+        {isLogin && <CommentSection showForm={showFormComment} />}
+      </div>
 
       {/* {isLogin &&
         data.allComments?.map((comment: any) => (
