@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useCallback } from 'react';
+import React, { ReactElement, useCallback } from 'react';
 import ReactMarkdown from 'react-markdown';
 import CodeBlock from '../common/CodeBlock';
 import { BriefcaseIcon, EyeIcon, HeartIcon, ChatIcon } from '@heroicons/react/solid';

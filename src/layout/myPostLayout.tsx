@@ -7,7 +7,7 @@ import { LayoutProps } from '../modals';
 
 export function MyPostLayout({ children }: LayoutProps) {
   return (
-    <Auth className="antialiased w-full px-7">
+    <Auth className="antialiased w-full">
       <Header />
       <div className="flex">
         <div className="w-[70vw]">{children}</div>
