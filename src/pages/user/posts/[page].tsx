@@ -29,15 +29,13 @@ function PostsPage() {
   const [dataPosts, setDataPosts] = useState<PostItem[]>([]);
 
   const [filter, setFilter] = useState(false);
-  let totalPage = Number(data?.pagination._totalRow);
+  const totalPage = Math.ceil(Number(data?.pagination._totalRow) / 5);
 
   useEffect(() => {
     setDataPosts(data?.data);
   }, [data]);
 
   useEffect(() => {
-    totalPage = data?.pagination._totalRow;
-
     if (Number(router.query.page) < 1) {
       router.push(`/user/posts/1`);
     }
