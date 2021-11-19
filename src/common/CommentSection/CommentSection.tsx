@@ -1,10 +1,10 @@
 import React, { ReactElement, useEffect, useState } from 'react';
-import useCall from '../../hooks/use-call';
+// import useCall from '../../hooks/use-call';
 import useFetch from '../../hooks/use-fetch';
 
 // import FormComment from './FormComment';
 import InputMention from '../InputMention/InputMention';
-import { getComments as getCommentsApi, createComment as createCommentApi } from './api';
+// import { getComments as getCommentsApi, createComment as createCommentApi } from './api';
 import Comment from './Comment';
 
 function CommentSection({ showForm, postId }: any): ReactElement {
@@ -20,7 +20,7 @@ function CommentSection({ showForm, postId }: any): ReactElement {
   // console.log(value);
 
   const rootComments = backendComments?.filter(
-    (backendComment) => backendComment.parentId === 'root'
+    (backendComment) => backendComment.parentId === null
   );
   const getReplies = (commentId: any) =>
     backendComments
@@ -33,16 +33,14 @@ function CommentSection({ showForm, postId }: any): ReactElement {
     //   setActiveComment(null);
     // });
     if (typeof parentId === 'undefined') {
-      parentId = 'root';
+      parentId = null;
     }
-    console.log(parentId);
-
     useFetch(`http://localhost:3001/allComments`, {
       method: 'POST',
       body: JSON.stringify({
         id: Math.random().toString(36).substr(2, 9),
         body: text,
-        parentId: parentId,
+        parentId,
         userId: '2',
         username: 'Paine',
         postId: postId,
