@@ -27,7 +27,7 @@ function Comment({
   const [isReadMore, setIsReadMore] = useState(true);
 
   let contentBody = isReadMore
-    ? truncate(`${commentContent?.body}`, 210).toString() // max content length is 580
+    ? truncate(`${commentContent?.body}`, 210).toString() // max content length is 210
     : truncate(`${commentContent?.body}`, 20000).toString(); // see full content
 
   const ReadMoreHandler = useCallback(() => {

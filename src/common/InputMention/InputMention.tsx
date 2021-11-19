@@ -79,7 +79,7 @@ const NewPost = ({ handleSubmit, initialText, submitLabel, handleCancel }: any) 
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full rounded-md">
       {submitLabel === 'Comment' ? (
         <div className="heading text-left font-bold text-2xl ml-5 mt-5 text-gray-800">Comment</div>
       ) : (
@@ -89,11 +89,11 @@ const NewPost = ({ handleSubmit, initialText, submitLabel, handleCancel }: any) 
       <form
         onSubmit={savePost}
         // className="editor mx-auto w-full flex flex-col text-gray-800 border border-gray-300 p-4 shadow-sm rounded"
-        className="editor items-center border-gray-300 bg-white flex-col py-2 px-4 w-full h-auto mb-8 mt-3 border rounded-md"
+        className="editor items-center border-gray-300 bg-white flex-col py-2 px-4 w-full h-auto mb-8 mt-3 border"
       >
         <div className="description outline-none px-5 py-2 rounded-full">
           <MentionsInput
-            className="mentions bg-white text-base"
+            className="mentions bg-white text-base rounded-md"
             inputRef={myInput}
             spellCheck="false"
             placeholder="Enter your thoughts on this post."

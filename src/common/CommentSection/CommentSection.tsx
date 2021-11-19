@@ -42,7 +42,7 @@ function CommentSection({ showForm, postId }: any): ReactElement {
         body: text,
         parentId,
         userId: '2',
-        username: 'Paine',
+        username: 'Pearuss',
         postId: postId,
       }),
     }).then((comment) => {

@@ -8,8 +8,8 @@
       },
       {
         "id": 2,
-        "path": "/Java",
-        "name": "Java"
+        "path": "/tailwindCSS",
+        "name": "TailwindCSS"
       },
       {
         "id": 3,
@@ -28,8 +28,23 @@
       },
       {
         "id": 6,
-        "path": "/visualStudioCode",
-        "name": "VisualStudioCode"
+        "path": "/postCSS",
+        "name": "PostCSS"
+      },
+      {
+        "id": 7,
+        "path": "/solidity",
+        "name": "Solidity"
+      },
+      {
+        "id": 8,
+        "path": "/rush",
+        "name": "Rush"
+      },
+      {
+        "id": 9,
+        "path": "/php",
+        "name": "PHP"
       }
     ],
     "tagsCloud": [
@@ -57,6 +72,21 @@
         "id": 5,
         "path": "/visualStudioCode",
         "name": "VisualStudioCode"
+      },
+      {
+        "id": 7,
+        "path": "/solidity",
+        "name": "Solidity"
+      },
+      {
+        "id": 8,
+        "path": "/rush",
+        "name": "Rush"
+      },
+      {
+        "id": 10,
+        "path": "/tailwindCSS",
+        "name": "TailwindCSS"
       }
     ]
   },

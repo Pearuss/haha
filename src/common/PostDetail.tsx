@@ -58,21 +58,21 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactEl
           See more
         </button>
       )}
-      <div className="flex items-center justify-evenly absolute bottom-[4%] mt - left-0 right-0 text-gray-800">
+      <div className="flex items-center justify-evenly absolute bottom-[4%] mt - left-0 right-0 text-gray-800 text-blue-400">
         <div className="flex items-center gap-2">
-          <BriefcaseIcon className="h-5 active:text-purple-800-500 hover:text-purple-800" />
+          <Image src="/images/target.png" width={20} height={20} />
           <span>{dataPostDetail.inWorks}</span>
         </div>
         <div className="flex items-center gap-2">
-          <HeartIcon className="h-5 active:text-red-700 hover:text-red-700" />
+          <Image src="/images/heart.png" width={20} height={20} />
           <span>{dataPostDetail.likes}</span>
         </div>
         <div className="flex items-center gap-2">
-          <ChatIcon className="h-5 active:text-blue-500 hover:text-blue-500" />
+          <Image src="/images/comment.png" width={20} height={20} />
           <span>{dataPostDetail.comments}</span>
         </div>
         <div className="flex items-center gap-2">
-          <EyeIcon className="h-5 active:text-red-500 hover:text-red-700" />
+          <Image src="/images/view.png" width={20} height={20} />
           <span>{dataPostDetail.views}</span>
         </div>
       </div>
