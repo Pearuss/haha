@@ -14,7 +14,7 @@ function Comment({
   activeComment,
   setActiveComment,
   addComment,
-  parentId = null,
+  parentId = "root",
 }: any): ReactElement {
   const { profile } = useAuth();
   const router = useRouter();
@@ -22,7 +22,7 @@ function Comment({
   const isReplying =
     activeComment && activeComment.type === 'replying' && activeComment.id === commentContent.id;
 
-  const replyId = parentId ? parentId : commentContent.id;
+  const replyId = parentId == 'root' ? parentId : commentContent.id;
 
   const [isReadMore, setIsReadMore] = useState(true);
 
@@ -119,7 +119,7 @@ function Comment({
         {isReplying && (
           <InputMention
             submitLabel="Reply"
-            initialText={`${parentId == null ? '' : `@${commentContent.username}`}`}
+            initialText={`${parentId == "root" ? '' : `@${commentContent.username} `}`}
             handleSubmit={(text: any) =>
               addComment(
                 // `${parentId == null ? '' : `@${commentContent.username}`} ${text}`,

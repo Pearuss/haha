@@ -20,6 +20,8 @@ function Index({ data }: any): ReactElement {
   const { profile, firstLoading } = useAuth();
   const router = useRouter();
 
+  const postId = router.query.id;
+
   useEffect(() => {
     if (!firstLoading && !profile?.username) {
       setIsLogin(false);
@@ -106,7 +108,11 @@ function Index({ data }: any): ReactElement {
           </div>
         )}
         {isLogin && (
-          <CommentSection showForm={showFormComment} setShowFormComment={setShowFormComment} />
+          <CommentSection
+            postId={postId}
+            showForm={showFormComment}
+            setShowFormComment={setShowFormComment}
+          />
         )}
       </div>
 
