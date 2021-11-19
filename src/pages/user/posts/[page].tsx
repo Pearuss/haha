@@ -36,7 +36,6 @@ function PostsPage() {
   }, [data]);
 
   useEffect(() => {
-    // totalPage = data?.pagination._totalRow;
     totalPage = data?.pagination._totalRow;
 
     if (Number(router.query.page) < 1) {
