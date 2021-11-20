@@ -69,6 +69,7 @@ function CommentSection({ showForm, postId }: any): ReactElement {
           />
         );
       })}
+      {/* <div className="w-full border-b border-gray-200"></div> */}
     </div>
   );
 }
