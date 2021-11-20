@@ -6,14 +6,15 @@ import { LayoutProps } from '../modals';
 
 export function DetailPostLayout({ children }: LayoutProps) {
   return (
-    <div className="w-full">
+    <div className="w-full antialiased">
       <Header />
-      <div className="flex">
-        <div className="flex w-[70vw]">{children}</div>
-        <div className="w-[30vw]">
+      <div className="flex pt-4">
+        <div className="flex w-[68vw]">{children}</div>
+        <div className="w-[28vw]">
           <TagSection />
         </div>
       </div>
     </div>
+
   );
 }

@@ -88,8 +88,10 @@ function Index({ data }: any): ReactElement {
   };
 
   return (
-    <div className="flex mr-16 w-[70vw]">
-      <div className="w-[17.5vw] px-5">{isShowContentIndex ? <ContentIndex /> : ''}</div>
+    <div className="flex mr-16 w-full">
+      <div className={`w-[14vw] mx-4 px-5 ${isShowContentIndex == false ? 'hidden' : ''}`}>
+        {isShowContentIndex ? <ContentIndex /> : ''}
+      </div>
       <div className="w-[50vw]">
         <p className="text-4xl pb-6 text-blue-500">
           Create diagrams online realtime collaboration!

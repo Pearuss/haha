@@ -10,17 +10,18 @@ function Post({ post }: any): ReactElement {
   return (
     <Link href={linkDetail} key={post.id}>
       <div className="flex w-full h-56 bg-white rounded-lg px-3 py-5 mb-4 shadow-lg cursor-pointer hover:transform hover:scale-105 transition-all">
-        <Image
-          className="w-1/5 rounded-md overflow-hidden"
-          src="/images/post2.jpg"
-          width="120%"
-          height="100%"
-          objectFit="fill"
-          priority
-        />
-        <div className="flex-1 ml-4 relative cursor-auto">
+        <div className="relative max-w-full w-36 h-[184px] max-h-[184px] ">
+          <Image
+            className="rounded-md"
+            src="/images/person1.jpg"
+            layout="fill"
+            objectFit="cover"
+            priority
+          />
+        </div>
+        <div className="flex-1 ml-5 relative cursor-auto">
           <h3 className="text-lg text-blue-700 font-medium">{post.title}</h3>
-          <p className="text-base pt-1 text-gray-700">{truncate(`${post.body}`, 280)}</p>
+          <p className="text-base pt-1 text-gray-700">{truncate(`${post.body}`, 260)}</p>
           <div className="flex items-center absolute bottom-0 right-[12%] text-gray-600">
             <EyeIcon className="h-5" />
             <span className="pl-3">{post.views}</span>

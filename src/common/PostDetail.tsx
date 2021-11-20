@@ -1,7 +1,6 @@
 import React, { ReactElement, useCallback } from 'react';
 import ReactMarkdown from 'react-markdown';
 import CodeBlock from '../common/CodeBlock';
-import { BriefcaseIcon, EyeIcon, HeartIcon, ChatIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import { truncateBody } from '../utilities/helper';
 import { useAuth } from '../hooks';
@@ -79,5 +78,5 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactEl
     </div>
   );
 }
-
+// PostDetail.Layout = MainLayout;
 export default PostDetail;
