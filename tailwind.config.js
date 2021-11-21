@@ -4,20 +4,22 @@ module.exports = {
   darkMode: false,
   theme: {
     screens: {
-      sm: '640px',
+      sm: { min: '640px', max: '767px' },
       // => @media (min-width: 640px) { ... }
 
-      md: '768px',
+      md: { min: '768px', max: '1023px' },
       // => @media (min-width: 768px) { ... }
 
-      lg: '1024px',
+      lg: { min: '1024px', max: '1279px' },
       // => @media (min-width: 1024px) { ... }
 
-      xl: '1280px',
+      xl: { min: '1280px', max: '1535px' },
       // => @media (min-width: 1280px) { ... }
 
-      '2xl': '1536px',
+      '2xl': { min: '1536px', max: '1919px' },
       // => @media (min-width: 1536px) { ... }
+      '3xl': '1920px',
+      // => @media (min-width: 1920px) { ... }
     },
     fontSize: {
       xs: '0.75rem',

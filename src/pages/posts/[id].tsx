@@ -2,11 +2,10 @@ import React, { ReactElement, useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 
-// import InputMention from '../../common/InputMention/InputMention';
 import Image from 'next/image';
 import PostDetail from '../../common/PostDetail';
 import { ContentIndex } from '../../common/ContentIndex';
-import { DetailPostLayout } from '../../layout';
+import { MainLayout } from '../../layout';
 import { useAuth } from '../../hooks';
 
 import CommentSection from '../../common/CommentSection/CommentSection';
@@ -20,7 +19,16 @@ function Index({ data }: any): ReactElement {
   const { profile, firstLoading } = useAuth();
   const router = useRouter();
 
+  const postId = router.query.id;
+
+  if (router.isFallback) {
+    return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>;
+  }
+  console.log('reload');
+
   useEffect(() => {
+    console.log('1');
+
     if (!firstLoading && !profile?.username) {
       setIsLogin(false);
     } else if (profile?.username) {
@@ -28,30 +36,38 @@ function Index({ data }: any): ReactElement {
     }
   }, [profile, firstLoading]);
 
-  // console.log(profile);
-
-  if (router.isFallback) {
-    return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>;
-  }
   useEffect(() => {
-    const contentIndexE: any = document.querySelector('.contentIndex');
+    console.log('2');
+
+    try {
+      const contentIndexE: any = document.querySelector('.contentIndex');
+      const headingE: any = document.getElementsByTagName('h1');
+
+      let html = '';
+      for (let i = 0; i < headingE.length; i++) {
+        headingE[i].id = `${i + 1}-h-id`;
+        html += `<li><a class="headingContent cursor-pointer">${i + 1}. ${
+          headingE[i].innerHTML
+        }</a></li>`;
+      }
+
+      if (html === '') {
+        setIsShowContentIndex(false);
+      }
+
+      contentIndexE.innerHTML = contentIndexE == null ? '' : html;
+    } catch (error) {
+      // console.log(error);
+      // location.reload();
+    }
+  }, [isReadMore]);
+
+  useEffect(() => {
+    console.log('3');
+
     const headingE: any = document.getElementsByTagName('h1');
-
-    let html = '';
-    for (let i = 0; i < headingE.length; i++) {
-      headingE[i].id = `${i + 1}-h-id`;
-      html += `<li><a class="headingContent cursor-pointer">${i + 1}. ${
-        headingE[i].innerHTML
-      }</a></li>`;
-    }
-
-    if (html === '') {
-      setIsShowContentIndex(false);
-    }
-
-    contentIndexE.innerHTML = html;
-
     const focusHeading: any = document.querySelectorAll(`.headingContent`);
+
     for (let i = 0; i < focusHeading.length; i++) {
       focusHeading[i].addEventListener('click', () => {
         headingE[i].scrollIntoView();
@@ -86,10 +102,16 @@ function Index({ data }: any): ReactElement {
   };
 
   return (
-    <div className="flex mr-16 w-[70vw]">
-      <div className="w-[17.5vw] px-5">{isShowContentIndex ? <ContentIndex /> : ''}</div>
-      <div className="w-[50vw]">
-        <p className="text-4xl pb-6 text-blue-500">
+    <div className="flex w-full">
+      {isShowContentIndex && (
+        <div className={`w-[14vw] mx-4 px-5`}>
+          <ContentIndex />
+        </div>
+      )}
+      <div
+        className={`${isShowContentIndex == false ? 'w-[101%] ml-[5vw] mr-[4vw]' : ''} w-[50vw] `}
+      >
+        <p className="text-4xl xl:text-3xl lg:text-2xl md:text-2xl pb-6 text-blue-500">
           Create diagrams online realtime collaboration!
         </p>
         <PostDetail dataPostDetail={data} isReadMore={isReadMore} setIsReadMore={setIsReadMore} />
@@ -106,7 +128,11 @@ function Index({ data }: any): ReactElement {
           </div>
         )}
         {isLogin && (
-          <CommentSection showForm={showFormComment} setShowFormComment={setShowFormComment} />
+          <CommentSection
+            postId={postId}
+            showForm={showFormComment}
+            setShowFormComment={setShowFormComment}
+          />
         )}
       </div>
 
@@ -117,7 +143,7 @@ function Index({ data }: any): ReactElement {
     </div>
   );
 }
-Index.Layout = DetailPostLayout;
+Index.Layout = MainLayout;
 
 export default Index;
 

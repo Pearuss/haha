@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import { FilterMyPosts } from '../../../common/FilterMyPosts';
 import Post from '../../../common/Post';
-import { MyPostLayout } from '../../../layout';
+import { MainLayout } from '../../../layout';
 import Pagination from '../../../common/Pagination';
 
 interface PostItem {
@@ -50,16 +50,16 @@ function PostsPage() {
   };
 
   return (
-    <div className="flex w-[70vw]">
-      <div className="w-[17.5vw] mt-0">
-        <FilterMyPosts
-          onClickNoFilter={onClickNoFilter}
-          onClickFilter={onClickFilter}
-          setFilter={setFilter}
-        />
-      </div>
-      <div className="w-[50vw]">
+    <div className="mr-16">
+      <div className="relative w-full">
         <p className="leading-8 text-gray-700 font-medium text-base">Home/My Post</p>
+        <div className="mt-0">
+          <FilterMyPosts
+            onClickNoFilter={onClickNoFilter}
+            onClickFilter={onClickFilter}
+            setFilter={setFilter}
+          />
+        </div>
         <h1 className="mb-6">Thong's Posts</h1>
         {dataPosts?.length > 0 ? (
           dataPosts?.map((post: PostItem) => <Post key={post.id} post={post} />)
@@ -72,6 +72,6 @@ function PostsPage() {
   );
 }
 
-PostsPage.Layout = MyPostLayout;
+PostsPage.Layout = MainLayout;
 
 export default PostsPage;

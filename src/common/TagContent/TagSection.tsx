@@ -11,11 +11,11 @@ function TagSection() {
   const { data } = useSWR('http://localhost:3001/tags', { revalidateOnFocus: false });
 
   return (
-    <div className="sticky top-[152px] max-w-[35vw] h-[100vh] max-h-[140vh] text-gray-700 z-30 mt-4 overflow-y-hidden">
+    <div className="sticky 3xl:top-[10px]  2xl:top-[-80px] xl:top-[-100px] lg:top-[110px]  3xl:max-w-[35vw] 2xl:max-w-[32vw] xl:max-w-[30vw] lg:max-w-[26vw] h-full max-h-[140vh] text-gray-700 z-30 mt-5 overflow-y-visible">
       {/* <UserInfo /> */}
       <Image src="/images/calendar.png" width={700} height={300} priority />
-      <FollowTag data={data?.followingTags} />
-      <FollowTag data={data?.tagsCloud} />
+      <FollowTag data={data?.followingTags} titleTagName="Following Tags" />
+      <FollowTag data={data?.tagsCloud} titleTagName="Tags Cloud" />
     </div>
   );
 }

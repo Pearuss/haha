@@ -9,8 +9,8 @@ import HeaderRight from './HeaderRight';
 
 function Header(): ReactElement {
   return (
-    <div className="sticky top-0 z-50">
-      <header className="grid grid-cols-3 md:px-10 py-2 bg-white">
+    <div className="sticky w-full top-0 z-50">
+      <header className="w-full grid grid-cols-3 px-10 py-2 bg-white">
         <HeaderLeft />
         <HeaderMiddle />
         <HeaderRight />

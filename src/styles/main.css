@@ -11,7 +11,7 @@ a {
 
 h1 {
   color: black;
-  font-size: 2em !important;
+  font-size: 3em !important;
   font-weight: bolder !important;
 }
 
@@ -24,17 +24,17 @@ li {
   @apply list-none;
 }
 .mainContent {
-  @apply flex px-[4vw] py-8 bg-gray-200 min-h-[calc(100vh-100px)];
+  @apply flex mx-[calc(3.5vw+0.5rem)] lg:mx-[calc(1.5vw+0.5rem)] py-8 bg-gray-200 min-h-[calc(100vh-100px)];
 }
 .mainContent > * {
   @apply flex-1;
 }
 
 .tagContent {
-  @apply mb-10 mt-2 w-full;
+  @apply mb-4 mt-2 w-full;
 }
 .tagContent div {
-  @apply border border-blue-500 px-4 py-2  font-semibold rounded-full ml-4 cursor-pointer hover:bg-blue-400 active:bg-blue-300 active:text-white hover:text-white hover:animate-jelly active:animate-jelly flex-1 max-w-[11rem] mb-4;
+  @apply border border-blue-500 px-4 lg:px-2 lg:py-1 py-2  font-semibold rounded-full ml-4 lg:ml-2 cursor-pointer hover:bg-blue-400 active:bg-blue-300 active:text-white hover:text-white hover:animate-jelly active:animate-jelly flex-1 max-w-[33%] xl:max-w-[42%] lg:max-w-[52%] mb-4;
 }
 .tagContent > p {
   @apply mb-2;
@@ -48,14 +48,14 @@ li {
   @apply relative;
 }
 .dropdown > a {
-  @apply py-3 px-10 border-l hover:bg-blue-400 hover:rounded-full hover:text-white relative;
+  @apply py-3 px-10 lg:px-8 border-l hover:bg-blue-400 hover:rounded-full hover:text-white relative;
 }
 /* .dropdown-menu {
   @apply absolute top-[200px] left-[50%] ;
 } */
-.homeClass {
+/* .homeClass {
   @apply border-none;
-}
+} */
 
 .dropdown-menu {
   @apply absolute left-[50%] top-[calc(100%+1.4rem)] bg-white z-40 pl-6 pr-12 py-4 rounded-md pointer-events-none translate-y-20 shadow-md w-[12vw] opacity-0 animate-transformCustom transition-all;
@@ -104,7 +104,8 @@ li {
 .mentions--multiLine .mentions__control {
   font-family: monospace;
   font-size: 11pt;
-  border: 1px solid silver;
+  /* border: 1px solid silver; */
+  border: 1px solid transparent;
 }
 .mentions--multiLine .mentions__highlighter {
   padding: 9px;
@@ -159,6 +160,9 @@ li {
   cursor: context-menu;
   opacity: 0.7;
   text-decoration: none;
+}
+.contentIndex li {
+  @apply pb-2;
 }
 
 @tailwind utilities;

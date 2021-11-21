@@ -27,7 +27,7 @@ function Comment({
   const [isReadMore, setIsReadMore] = useState(true);
 
   let contentBody = isReadMore
-    ? truncate(`${commentContent?.body}`, 210).toString() // max content length is 580
+    ? truncate(`${commentContent?.body}`, 210).toString() // max content length is 210
     : truncate(`${commentContent?.body}`, 20000).toString(); // see full content
 
   const ReadMoreHandler = useCallback(() => {
@@ -89,6 +89,7 @@ function Comment({
             See more
           </button>
         )}
+
         <div className="flex items-center justify-between text-gray-700 pt-2">
           <div className="flex items-center mr-6">
             <span className="flex items-center mr-4">
@@ -115,11 +116,11 @@ function Comment({
             </span>
           </div>
         </div>
-        <div className="w-full border-b border-gray-200 pt-4"></div>
+        {/* <div className="w-full border-b border-gray-200 pt-4"></div> */}
         {isReplying && (
           <InputMention
             submitLabel="Reply"
-            initialText={`${parentId == null ? '' : `@${commentContent.username}`}`}
+            initialText={`${parentId == null ? '' : `@${commentContent.username} `}`}
             handleSubmit={(text: any) =>
               addComment(
                 // `${parentId == null ? '' : `@${commentContent.username}`} ${text}`,
@@ -132,6 +133,7 @@ function Comment({
         )}
         {replies.length > 0 && (
           <div className={replies}>
+            <div className="w-full border-b border-gray-200 pt-4"></div>
             {replies?.map((reply: any) => (
               <Comment
                 commentContent={reply}
