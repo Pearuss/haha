@@ -24,11 +24,8 @@ function Index({ data }: any): ReactElement {
   if (router.isFallback) {
     return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>;
   }
-  console.log('reload');
 
   useEffect(() => {
-    console.log('1');
-
     if (!firstLoading && !profile?.username) {
       setIsLogin(false);
     } else if (profile?.username) {
@@ -37,8 +34,6 @@ function Index({ data }: any): ReactElement {
   }, [profile, firstLoading]);
 
   useEffect(() => {
-    console.log('2');
-
     try {
       const contentIndexE: any = document.querySelector('.contentIndex');
       const headingE: any = document.getElementsByTagName('h1');
@@ -63,8 +58,6 @@ function Index({ data }: any): ReactElement {
   }, [isReadMore]);
 
   useEffect(() => {
-    console.log('3');
-
     const headingE: any = document.getElementsByTagName('h1');
     const focusHeading: any = document.querySelectorAll(`.headingContent`);
 
@@ -109,7 +102,9 @@ function Index({ data }: any): ReactElement {
         </div>
       )}
       <div
-        className={`${isShowContentIndex == false ? 'w-[101%] ml-[5vw] mr-[4vw]' : ''} w-[50vw] mr-[2vw] pl-2 `}
+        className={`${
+          isShowContentIndex == false ? 'w-[101%] ml-[5vw] mr-[4vw]' : ''
+        } w-[50vw] mr-[2vw] pl-2 `}
       >
         <p className="text-4xl xl:text-3xl lg:text-2xl md:text-2xl pb-6 text-blue-500">
           Create diagrams online realtime collaboration!

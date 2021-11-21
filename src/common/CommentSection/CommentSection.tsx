@@ -46,8 +46,6 @@ function CommentSection({ showForm, postId }: any): ReactElement {
         postId: postId,
       }),
     }).then((comment) => {
-      console.log(comment);
-
       setBackendComments([comment, ...backendComments]);
       setActiveComment(null);
     });
