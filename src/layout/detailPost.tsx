@@ -6,7 +6,7 @@ import { LayoutProps } from '../modals';
 
 export function DetailPostLayout({ children }: LayoutProps) {
   return (
-    <div className="w-full px-7">
+    <div className="w-full">
       <Header />
       <div className="flex">
         <div className="flex w-[70vw]">{children}</div>
