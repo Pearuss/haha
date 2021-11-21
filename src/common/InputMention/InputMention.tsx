@@ -79,7 +79,7 @@ const NewPost = ({ handleSubmit, initialText, submitLabel, handleCancel }: any) 
   };
 
   return (
-    <div className="w-full rounded-md">
+    <div className="w-full rounded-md text-gray-700">
       {submitLabel === 'Comment' ? (
         <div className="heading text-left font-bold text-2xl ml-5 mt-5 text-gray-800">Comment</div>
       ) : (
@@ -141,7 +141,7 @@ const NewPost = ({ handleSubmit, initialText, submitLabel, handleCancel }: any) 
               }
             }}
           >
-            Cancel
+            {submitLabel === 'Comment' ? 'Clear' : 'Cancel'}
           </button>
           <button className="py-1 px-3 font-medium border text-blue-600 border-blue-600 rounded-md">
             {submitLabel}

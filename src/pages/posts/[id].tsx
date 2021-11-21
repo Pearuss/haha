@@ -51,7 +51,7 @@ function Index({ data }: any): ReactElement {
       setIsShowContentIndex(false);
     }
 
-    contentIndexE.innerHTML = html;
+    contentIndexE.innerHTML = html == null ? '' : html;
 
     const focusHeading: any = document.querySelectorAll(`.headingContent`);
     for (let i = 0; i < focusHeading.length; i++) {
@@ -88,12 +88,14 @@ function Index({ data }: any): ReactElement {
   };
 
   return (
-    <div className="flex mr-16 w-full">
-      <div className={`w-[14vw] mx-4 px-5 ${isShowContentIndex == false ? 'hidden' : ''}`}>
-        {isShowContentIndex ? <ContentIndex /> : ''}
-      </div>
-      <div className="w-[50vw]">
-        <p className="text-4xl pb-6 text-blue-500">
+    <div className="flex w-full">
+      {isShowContentIndex && (
+        <div className={`w-[14vw] mx-4 px-5`}>
+          <ContentIndex />
+        </div>
+      )}
+      <div className={`${isShowContentIndex == false ? 'w-[101%] ml-[5vw] mr-[4vw]' : ''} w-[50vw] `}>
+        <p className="text-4xl xl:text-3xl lg:text-2xl md:text-2xl pb-6 text-blue-500">
           Create diagrams online realtime collaboration!
         </p>
         <PostDetail dataPostDetail={data} isReadMore={isReadMore} setIsReadMore={setIsReadMore} />

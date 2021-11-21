@@ -714,6 +714,16 @@
       "postId": "1",
       "createdAt": 1637290898270,
       "updatedAt": 1637290898270
+    },
+    {
+      "id": "j7wajyz1x",
+      "body": "test",
+      "parentId": null,
+      "userId": "2",
+      "username": "Pearuss",
+      "postId": "3",
+      "createdAt": 1637459459451,
+      "updatedAt": 1637459459451
     }
   ]
 }
