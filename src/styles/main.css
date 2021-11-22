@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  @apply bg-gray-200;
+  @apply bg-white;
 }
 a {
   @apply text-blue-700;
@@ -24,11 +24,11 @@ li {
   @apply list-none;
 }
 .mainContent {
-  @apply flex mx-[calc(3.5vw+0.5rem)] lg:mx-[calc(1.5vw+0.5rem)] py-8 bg-gray-200 min-h-[calc(100vh-100px)];
+  @apply flex mx-[calc(3.5vw+0.5rem)] lg:mx-[calc(1.5vw+0.5rem)] py-14 bg-white min-h-[calc(100vh-100px)];
 }
-.mainContent > * {
+/* .mainContent > * {
   @apply flex-1;
-}
+} */
 
 .tagContent {
   @apply mb-4 mt-2 w-full;

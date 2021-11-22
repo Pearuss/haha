@@ -7,6 +7,8 @@ import PostDetail from '../../common/PostDetail';
 import { ContentIndex } from '../../common/ContentIndex';
 import { MainLayout } from '../../layout';
 import { useAuth } from '../../hooks';
+import ListIcon from '@mui/icons-material/List';
+import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 
 import CommentSection from '../../common/CommentSection/CommentSection';
 
@@ -51,15 +53,12 @@ function Index({ data }: any): ReactElement {
       }
 
       contentIndexE.innerHTML = contentIndexE == null ? '' : html;
-    } catch (error) {
-      // console.log(error);
-      // location.reload();
-    }
+    } catch (error) {}
   }, [isReadMore]);
 
   useEffect(() => {
-    const headingE: any = document.getElementsByTagName('h1');
     const focusHeading: any = document.querySelectorAll(`.headingContent`);
+    const headingE: any = document.getElementsByTagName('h1');
 
     for (let i = 0; i < focusHeading.length; i++) {
       focusHeading[i].addEventListener('click', () => {
@@ -97,21 +96,33 @@ function Index({ data }: any): ReactElement {
   return (
     <div className="flex w-full">
       {isShowContentIndex && (
-        <div className={`w-[10vw]`}>
-          <ContentIndex />
+        <div className="">
+          <div className={`hidden w-[10vw] md:hidden`}>
+            <ContentIndex />
+          </div>
+          {/* <div className={`hidden w-[5vw] md:block`}>
+            <ListIcon
+              color="action"
+              className="btnShowTopic fixed top-[12rem] text-4xl p-1 border-gray-600 border text-black hover:bg-gray-500 hover:shadow-"
+            />
+            <CancelPresentationIcon
+              color="action"
+              className="btnHideTopic fixed top-[12rem] text-4xl p-1 border-gray-600 border text-black hover:bg-gray-500 hover:shadow-"
+            />
+          </div> */}
         </div>
       )}
       <div
         className={`${
-          isShowContentIndex == false ? 'w-[101%] ml-[5vw] mr-[4vw]' : ''
-        } w-[50vw] mr-[2vw] pl-2 `}
+          isShowContentIndex == false ? 'w-[100%] ml-[3vw] mr-[3vw]' : ''
+        } w-full mr-[2vw] pl-2 md:w-[100%] md:mx-[3vw] md:pl-0`}
       >
         <p className="text-4xl xl:text-3xl lg:text-2xl md:text-2xl pb-6 text-blue-500">
           Create diagrams online realtime collaboration!
         </p>
         <PostDetail dataPostDetail={data} isReadMore={isReadMore} setIsReadMore={setIsReadMore} />
         {isLogin && (
-          <div className="flex items-center justify-between py-4 px-4 shadow-sm font-medium text-gray-700 rounded-md bg-white mb-4">
+          <div className="flex items-center justify-between py-4 mt-12 shadow-sm font-medium text-gray-700 rounded-md bg-white mb-4">
             <div className="text-lg">Comments (20)</div>
             <button
               onClick={toggleFormComment}
