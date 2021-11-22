@@ -22,11 +22,11 @@ export function MainLayout({ children }: LayoutProps) {
     });
   }, [isShowTag]);
   return (
-    <div className="antialiased w-full">
+    <div className="antialiased w-full bg-white">
       <Header />
-      <div className="mainContent relative">
+      <div className="mainContent mt-[30px] bg-white">
         {children}
-        <div className={`tagSection md:${isShowTag ? 'inline-block' : 'hidden'}`}>
+        <div className={`tagSection md:${isShowTag ? 'block' : 'hidden'}`}>
           <TagSection />
         </div>
         <div className={`hidden md:block`}>

@@ -16,6 +16,6 @@ function Auth({ children }: any) {
 
   if (!profile?.username) return <p>Loading...</p>;
 
-  return <div>{children}</div>;
+  return <div className="bg-white">{children}</div>;
 }
 export default Auth;

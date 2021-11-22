@@ -94,7 +94,7 @@ function Index({ data }: any): ReactElement {
   };
 
   return (
-    <div className="flex w-full">
+    <div className="flex mr-16">
       {isShowContentIndex && (
         <div className="">
           <div className={`hidden w-[10vw] md:hidden`}>

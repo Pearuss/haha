@@ -22,26 +22,9 @@ function HomePage({ data }: any) {
 
   return (
     <div className="mr-16">
-      <p className="text-4xl xl:text-3xl lg:text-2xl pb-6 text-blue-500">
+      <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl pb-6 text-blue-500">
         Create diagrams online realtime collaboration!
       </p>
-      <div className="flex w-full bg-white rounded-md h-20 items-center p-3">
-        <Image
-          src="/images/post2.jpg"
-          alt="Picture of the author"
-          className="flex rounded-full"
-          width={50}
-          height={50}
-        />
-        <input
-          type="text"
-          onChange={() => {}}
-          defaultValue=""
-          placeholder="What are you thinking?"
-          className="w-full text-white py-3 bg-blue-300 placeholder-white rounded-full ml-3 text-md box-border px-6 hover:bg-blue-400 cursor-pointer"
-          onClick={() => router.push('/user/create')}
-        />
-      </div>
       <div className="mt-4 ">
         <div className="flex items-center justify-between">
           <div className="text-lg font-medium text-gray-700">Recent posts</div>
