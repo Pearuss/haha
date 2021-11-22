@@ -42,3 +42,10 @@ export function paging(currentPage: number, totalPage: number) {
 
   return rangeWithDots;
 }
+
+export function convertReplyTagInit(string: string, id: number) {
+  const mention = string.split(' ');
+  mention[0] = `<a href="/user/${id}" style="color:#ADE3FF; font-weight: 500;">${mention[0]}</a>`;
+  const result = mention.join(' ');
+  return result;
+}

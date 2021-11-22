@@ -121,6 +121,12 @@ function Comment({
           <InputMention
             submitLabel="Reply"
             initialText={`${parentId == null ? '' : `@${commentContent.username} `}`}
+            commentContent={commentContent}
+            // initialText={`${
+            //   parentId == null
+            //     ? ''
+            //     : `${parse('<p class="text-darkRed">@${commentContent.username}</p>')} `
+            // }`}
             handleSubmit={(text: any) =>
               addComment(
                 // `${parentId == null ? '' : `@${commentContent.username}`} ${text}`,
