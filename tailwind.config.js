@@ -64,6 +64,7 @@ module.exports = {
         grayText: '#737373',
         mainColor: '#ADD9E6',
         lightGreen: '#36CB83',
+        blueTag: '#76dce6',
       },
       keyframes: {
         jelly: {

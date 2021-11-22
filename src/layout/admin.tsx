@@ -9,7 +9,7 @@ export function AdminLayout({ children }: LayoutProps) {
   return (
     <Auth className="antialiased w-full">
       <Header />
-      <div className="mainContent">
+      <div className="mainContent mt-[30px] bg-white">
         {children}
         <TagSection />
       </div>

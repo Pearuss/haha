@@ -6,9 +6,9 @@ import { LayoutProps } from '../modals';
 
 export function MainLayout({ children }: LayoutProps) {
   return (
-    <div className="antialiased w-full">
+    <div className="antialiased w-full bg-white">
       <Header />
-      <div className="mainContent">
+      <div className="mainContent mt-[30px] bg-white">
         {children}
         <TagSection />
       </div>

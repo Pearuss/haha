@@ -4,7 +4,7 @@ import { SearchIcon } from '@heroicons/react/solid';
 
 function HeaderMiddle(): ReactElement {
   return (
-    <div className="flex items-center border-2 shadow-md rounded-full text-blue-400">
+    <div className="flex items-center border-2 shadow-sm rounded-full text-blue-400">
       <input
         type="text"
         placeholder="Where are you going"
