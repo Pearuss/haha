@@ -7,8 +7,6 @@ import PostDetail from '../../common/PostDetail';
 import { ContentIndex } from '../../common/ContentIndex';
 import { MainLayout } from '../../layout';
 import { useAuth } from '../../hooks';
-import ListIcon from '@mui/icons-material/List';
-import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 
 import CommentSection from '../../common/CommentSection/CommentSection';
 
@@ -97,19 +95,9 @@ function Index({ data }: any): ReactElement {
     <div className="flex mr-16">
       {isShowContentIndex && (
         <div className="">
-          <div className={`hidden w-[10vw] md:hidden`}>
+          <div className={`w-[10vw] md:hidden`}>
             <ContentIndex />
           </div>
-          {/* <div className={`hidden w-[5vw] md:block`}>
-            <ListIcon
-              color="action"
-              className="btnShowTopic fixed top-[12rem] text-4xl p-1 border-gray-600 border text-black hover:bg-gray-500 hover:shadow-"
-            />
-            <CancelPresentationIcon
-              color="action"
-              className="btnHideTopic fixed top-[12rem] text-4xl p-1 border-gray-600 border text-black hover:bg-gray-500 hover:shadow-"
-            />
-          </div> */}
         </div>
       )}
       <div

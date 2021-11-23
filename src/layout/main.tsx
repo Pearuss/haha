@@ -7,41 +7,12 @@ import TagSection from '../common/TagContent/TagSection';
 import { LayoutProps } from '../modals';
 
 export function MainLayout({ children }: LayoutProps) {
-  const [isShowTag, setIsShowTag] = useState(false);
-
-  useEffect(() => {
-    const btnShowTag = document.querySelector('.btnShowTag');
-    const btnHideTag = document.querySelector('.btnHideTag');
-
-    btnShowTag?.addEventListener('click', () => {
-      setIsShowTag(true);
-    });
-
-    btnHideTag?.addEventListener('click', () => {
-      setIsShowTag(false);
-    });
-  }, [isShowTag]);
   return (
     <div className="antialiased w-full bg-white">
       <Header />
-      <div className="mainContent mt-[30px] bg-white">
+      <div className="mainContent mt-[30px] bg-white relative">
         {children}
-        <div className={`tagSection md:${isShowTag ? 'block' : 'hidden'}`}>
-          <TagSection />
-        </div>
-        <div className={`hidden md:block`}>
-          {isShowTag ? (
-            <CancelPresentationIcon
-              color="action"
-              className="btnHideTag fixed top-[12rem] text-4xl p-1 border-gray-600 border text-black hover:bg-gray-500 hover:shadow-"
-            />
-          ) : (
-            <ListIcon
-              color="action"
-              className="btnShowTag fixed top-[12rem] text-4xl p-1 border-gray-600 border text-black hover:bg-gray-500 hover:shadow-"
-            />
-          )}
-        </div>
+        <TagSection />
       </div>
     </div>
   );
