@@ -8,17 +8,15 @@ import { useEffect, useState, useRef } from 'react';
 
 import { MentionsInput, Mention } from 'react-mentions';
 import { replaceTagBr, convertReplyTagInit } from '../../utilities/helper';
-import parse from 'html-react-parser';
 
 import { APIservice } from './services';
 
-const NewPost = ({ handleSubmit, initialText, submitLabel, handleCancel, commentContent }: any) => {
+const NewPost = ({ handleSubmit, initialText, submitLabel, handleCancel }: any) => {
   const [content, setContent] = useState<any>(initialText);
   const [users, setUsers] = useState<any>([]);
   const [tags, setTags] = useState<any>([]);
   // const [tagNames, setTagNames] = useState<any>([]);
   const myInput = useRef<any>();
-  console.log('initial', parse(`<a>${initialText}</a>`));
 
   useEffect(() => {
     getActors();
@@ -75,8 +73,6 @@ const NewPost = ({ handleSubmit, initialText, submitLabel, handleCancel, comment
         handleSubmit(replaceTagBr(body));
         setContent('');
       } else if (submitLabel === 'Reply') {
-        console.log(commentContent.userId);
-
         handleSubmit(replaceTagBr(convertReplyTagInit(body, 1)));
         setContent('');
       }

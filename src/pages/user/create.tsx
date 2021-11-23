@@ -19,8 +19,6 @@ function UserCreatePage() {
     revalidateOnFocus: false,
   });
 
-  // console.log(data1);
-
   const [newPost, setNewPost] = useState<INewPost>({
     title: '',
     content: '',
@@ -31,7 +29,6 @@ function UserCreatePage() {
 
   const handleUpload = () => {
     const tagCheckbox: NodeList | any = document.querySelectorAll('.tagcheckbox');
-
 
     tagCheckbox.forEach((tagItem: HTMLInputElement) => {
       tagItem.checked = false;

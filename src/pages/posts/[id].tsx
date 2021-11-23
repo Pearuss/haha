@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import PostDetail from '../../common/PostDetail';
 import { ContentIndex } from '../../common/ContentIndex';
-import { MainLayout } from '../../layout';
+import { DetailPostLayout } from '../../layout';
 import { useAuth } from '../../hooks';
 
 import CommentSection from '../../common/CommentSection/CommentSection';
@@ -137,7 +137,7 @@ function Index({ data }: any): ReactElement {
     </div>
   );
 }
-Index.Layout = MainLayout;
+Index.Layout = DetailPostLayout;
 
 export default Index;
 
