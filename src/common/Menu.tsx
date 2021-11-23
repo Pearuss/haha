@@ -1,14 +1,10 @@
 import React, { ReactElement, useEffect } from 'react';
 
-import MenuIcon from '@mui/icons-material/Menu';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import CloseIcon from '@mui/icons-material/Close';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
-
-// interface Props {
-
-// }
 
 function Menu(): ReactElement {
   const router = useRouter();
@@ -16,25 +12,69 @@ function Menu(): ReactElement {
   const { data } = useSWR('http://localhost:3001/menu', { revalidateOnFocus: false });
 
   useEffect(() => {
-    const btnMenu = document.querySelector('.btnMenu');
+    const btnMenuMobile = document.querySelector('.btnMenuMobile');
+    const btnCloseMenuMb = document.querySelector('.btnCloseMenuMb');
     const menuMobile: any = document.querySelector('.menuMobile');
+    const cover: any = document.querySelector('.cover');
 
-    btnMenu?.addEventListener('click', () => {
+    btnMenuMobile?.addEventListener('click', () => {
       menuMobile.classList.remove('md:-translate-x-full');
+      menuMobile.classList.add('md:translate-x-0');
+      menuMobile.classList.remove('sm:-translate-x-full');
+      menuMobile.classList.add('sm:translate-x-0');
+      menuMobile.classList.remove('ssm:-translate-x-full');
+      menuMobile.classList.add('ssm:translate-x-0');
+      cover.classList.remove('hidden');
     });
-  });
+
+    btnCloseMenuMb?.addEventListener('click', () => {
+      menuMobile.classList.add('md:-translate-x-full');
+      menuMobile.classList.remove('md:translate-x-0');
+      menuMobile.classList.add('sm:-translate-x-full');
+      menuMobile.classList.remove('sm:translate-x-0');
+      menuMobile.classList.add('ssm:-translate-x-full');
+      menuMobile.classList.remove('ssm:translate-x-0');
+      cover.classList.add('hidden');
+    });
+
+    cover?.addEventListener('click', () => {
+      menuMobile.classList.add('md:-translate-x-full');
+      menuMobile.classList.remove('md:translate-x-0');
+      menuMobile.classList.add('sm:-translate-x-full');
+      menuMobile.classList.remove('sm:translate-x-0');
+      menuMobile.classList.add('ssm:-translate-x-full');
+      menuMobile.classList.remove('ssm:translate-x-0');
+      cover.classList.add('hidden');
+    });
+  }, []);
 
   return (
     <>
-      {/* <div className="absolute text-center menuMobile top-0 left-0 -translate-x-full transform md:-translate-x-full transition duration-200 ease-in-out">
-        <p className="text-3xl font-medium">Menu</p>
-        <li className={router.pathname === '/home' ? 'active dropdown' : 'dropdown'} data-dropdown>
+      {/* cover */}
+      <div className="cover hidden absolute top-0 left-0 w-[100vw] h-[100vh] bg-gray-600 bg-opacity-30 z-40"></div>
+
+      {/* Mobile menu */}
+      <div className="absolute border-r text-gray-700 font-semibold border-gray-300 shadow-lg z-50 bg-white w-[35vw] h-[100vh] text-center menuMobile top-0 left-0 -translate-x-full transform transition duration-200 ease-in-out md:-translate-x-full sm:-translate-x-full sm:w-[45vw] ssm:-translate-x-full ssm:w-[50vw]">
+        <div className="flex p-4 items-center border-b border-gray-300">
+          <CloseIcon className="ml-1 mr-9 btnCloseMenuMb" />
+          <div className="relative flex items-center cursor-pointer pt-4 ml-[-2rem] max-w-[250px] w-[250px] md:h-[38px] md:mt-1 h-[45px] max-h-[45px]">
+            <Image src="/logo.svg" layout="fill" priority />
+          </div>
+        </div>
+        <li
+          className={`${
+            router.pathname === '/home' ? 'active dropdown' : 'dropdown'
+          } py-4 px-6 border-b border-gray-300`}
+          data-dropdown
+        >
           <Link href="/">
             <a data-dropdown-button>Home</a>
           </Link>
         </li>
         <li
-          className={router.pathname === '/operator' ? 'active dropdown' : 'dropdown'}
+          className={`${
+            router.pathname === '/operator' ? 'active dropdown' : 'dropdown'
+          } py-4 px-6 border-b border-gray-300`}
           data-dropdown
         >
           <Link href="">
@@ -54,7 +94,9 @@ function Menu(): ReactElement {
           </div>
         </li>
         <li
-          className={router.pathname === '/security' ? 'active dropdown' : 'dropdown'}
+          className={`${
+            router.pathname === '/security' ? 'active dropdown' : 'dropdown'
+          } py-4 px-6 border-b border-gray-300`}
           data-dropdown
         >
           <Link href="">
@@ -73,7 +115,9 @@ function Menu(): ReactElement {
           </div>
         </li>
         <li
-          className={router.pathname === '/development' ? 'active dropdown' : 'dropdown'}
+          className={`${
+            router.pathname === '/development' ? 'active dropdown' : 'dropdown'
+          } py-4 px-6 border-b border-gray-300`}
           data-dropdown
         >
           <Link href="">
@@ -92,7 +136,9 @@ function Menu(): ReactElement {
           </div>
         </li>
         <li
-          className={router.pathname === '/cloudVirtual' ? 'active dropdown' : 'dropdown'}
+          className={`${
+            router.pathname === '/cloudVirtual' ? 'active dropdown' : 'dropdown'
+          } py-4 px-6 border-b border-gray-300`}
           data-dropdown
         >
           <Link href="">
@@ -111,7 +157,9 @@ function Menu(): ReactElement {
           </div>
         </li>
         <li
-          className={router.pathname === '/management' ? 'active dropdown' : 'dropdown'}
+          className={`${
+            router.pathname === '/management' ? 'active dropdown' : 'dropdown'
+          } py-4 px-6 border-b border-gray-300`}
           data-dropdown
         >
           <Link href="">
@@ -130,7 +178,9 @@ function Menu(): ReactElement {
           </div>
         </li>
         <li
-          className={router.pathname === '/design' ? 'active dropdown' : 'dropdown'}
+          className={`${
+            router.pathname === '/design' ? 'active dropdown' : 'dropdown'
+          } py-4 px-6 border-b border-gray-300`}
           data-dropdown
         >
           <Link href="">
@@ -148,7 +198,12 @@ function Menu(): ReactElement {
             </div>
           </div>
         </li>
-        <li className={router.pathname === '/tools' ? 'active dropdown' : 'dropdown'} data-dropdown>
+        <li
+          className={`${
+            router.pathname === '/tools' ? 'active dropdown' : 'dropdown'
+          } py-4 px-6 border-b border-gray-300`}
+          data-dropdown
+        >
           <Link href="">
             <a className="  cursor-pointer" data-dropdown-button>
               Tools
@@ -164,8 +219,9 @@ function Menu(): ReactElement {
             </div>
           </div>
         </li>
-      </div> */}
-      <div className="w-max text-gray-700 font-semibold flex gap-10 3xl:gap-9 2xl:gap-7 xl:gap-2  lg:gap-0 mx-auto py-5 rounded-2xl md:hidden">
+      </div>
+      {/* Desktop menu */}
+      <div className="w-max text-gray-700 font-semibold flex gap-10 3xl:gap-9 2xl:gap-7 xl:gap-2  lg:gap-0 mx-auto py-5 rounded-2xl md:hidden sm:hidden ssm:hidden">
         <li className={router.pathname === '/home' ? 'active dropdown' : 'dropdown'} data-dropdown>
           <Link href="/">
             <a data-dropdown-button>Home</a>
@@ -303,17 +359,6 @@ function Menu(): ReactElement {
           </div>
         </li>
       </div>
-      {/* <div className="hidden w-full justify-between text-gray-700 font-semibold gap-10 3xl:gap-9 2xl:gap-7 xl:gap-2  lg:gap-0 px-5 py-5 rounded-2xl md:flex">
-        <p>Menu</p>
-        <div className="flex">
-          <div className="btnMenu px-2">
-            <MenuIcon />
-          </div>
-          <div className="px-2">
-            <MoreVertIcon />
-          </div>
-        </div>
-      </div> */}
     </>
   );
 }

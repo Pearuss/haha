@@ -33,7 +33,7 @@ function HeaderRight(): ReactElement {
         </button>
       </Link>
       <GlobeAltIcon className="h-6 cursor-pointer md:h-5" />
-      <MenuIcon className="h-6 cursor-pointer" />
+      <MenuIcon className="hidden btnMenuMobile h-6 cursor-pointer md:block sm:block ssm:block" />
       <div className="userDropdown" data-dropdown>
         <div className="userLink text-sm" data-dropdown-button>
           <UserCircleIcon className="h-8 cursor-pointer md:h6" />
