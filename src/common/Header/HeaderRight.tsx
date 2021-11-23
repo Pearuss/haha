@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import { GlobeAltIcon, UserCircleIcon } from '@heroicons/react/solid';
+import { GlobeAltIcon, UserCircleIcon, MenuIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
@@ -27,16 +27,16 @@ function HeaderRight(): ReactElement {
       <Link href="/login">
         <button
           type="button"
-          className="bg-transparent rounded-full py-2 px-3 cursor-pointer  outline-none hover:bg-blue-100 active:animate-jelly "
+          className="bg-transparent rounded-full py-2 px-3 cursor-pointer  outline-none hover:bg-blue-100 active:animate-jelly md:hidden sm:hidden ssm:hidden "
         >
           Become a Host
         </button>
       </Link>
-      <GlobeAltIcon className="h-6 cursor-pointer" />
+      <GlobeAltIcon className="h-6 cursor-pointer md:h-5" />
+      <MenuIcon className="h-6 cursor-pointer" />
       <div className="userDropdown" data-dropdown>
-        {/* <MenuIcon className="h-6 cursor-pointer" /> */}
-        <div className="userLink" data-dropdown-button>
-          <UserCircleIcon className="h-8 cursor-pointer" />
+        <div className="userLink text-sm" data-dropdown-button>
+          <UserCircleIcon className="h-8 cursor-pointer md:h6" />
           Pearuss
         </div>
         <div className="userDropdown-menu">

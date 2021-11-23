@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet');
+
 html {
   scroll-behavior: smooth;
 }
@@ -31,10 +33,10 @@ li {
 } */
 
 .tagContent {
-  @apply mb-4 mt-2 w-full;
+  @apply mb-4 mt-2 w-full font-medium;
 }
 .tagContent div {
-  @apply inline-block border border-blue-200 px-4 lg:px-2 lg:py-1 py-2  font-semibold rounded-xl ml-4  cursor-pointer hover:bg-blue-200 active:bg-blue-300 active:text-white hover:text-white hover:animate-jelly active:animate-jelly mb-4;
+  @apply inline-block border border-blue-200 px-4 lg:px-2 lg:py-1 py-2  font-medium rounded-xl ml-4  cursor-pointer hover:bg-blue-200 active:bg-blue-300 active:text-white hover:text-white hover:animate-jelly active:animate-jelly mb-4;
 }
 .tagContent > p {
   @apply mb-2;
@@ -70,7 +72,7 @@ li {
   @apply hover:bg-gray-300 hover:rounded-md;
 }
 .userDropdown {
-  @apply flex gap-2 items-center border-2 p-2 rounded-3xl relative cursor-pointer;
+  @apply flex gap-2 items-center border-2 p-2 md:p-1 md:rounded-full rounded-3xl relative cursor-pointer;
 }
 .userDropdown-menu {
   @apply absolute right-[10%] top-[calc(100%+0.8rem)] bg-white z-40 pl-2 pr-4 py-4 rounded-md pointer-events-none -translate-y-3 opacity-0 shadow-md w-[10vw] animate-transformCustom animate-opacityCustom;

@@ -10,7 +10,7 @@ cd json-server && npm install  && npm run dev
 
 3.Run project as development environment
 
-cd .. && npm run dev
+Ctrl Shift + ` && cd .. && npm run dev
 
 4.Build project
 
