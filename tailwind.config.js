@@ -4,6 +4,7 @@ module.exports = {
   darkMode: false,
   theme: {
     screens: {
+      ssm: { max: '639px' },
       sm: { min: '640px', max: '767px' },
       // => @media (min-width: 640px) { ... }
 
@@ -34,6 +35,9 @@ module.exports = {
       '6xl': '4rem',
     },
     extend: {
+      fontFamily: {
+        sans: ['Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+      },
       colors: {
         gray: {
           100: '#f7fafc',

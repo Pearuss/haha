@@ -14,7 +14,7 @@ function Menu(): ReactElement {
   const { data } = useSWR('http://localhost:3001/menu', { revalidateOnFocus: false });
 
   return (
-    <div className="w-max text-gray-700 font-semibold flex gap-10 3xl:gap-9 2xl:gap-7 xl:gap-2  lg:gap-0 mx-auto py-5 rounded-2xl">
+    <div className="w-max text-gray-600 font-semibold flex gap-10 3xl:gap-9 2xl:gap-7 xl:gap-2  lg:gap-0 mx-auto py-5 rounded-2xl md:hidden sm:hidden ssm:hidden">
       <li className={router.pathname === '/home' ? 'active dropdown' : 'dropdown'} data-dropdown>
         <Link href="/">
           <a data-dropdown-button>Home</a>

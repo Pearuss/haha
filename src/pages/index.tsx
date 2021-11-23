@@ -22,7 +22,7 @@ function HomePage({ data }: any) {
 
   return (
     <div className="mr-16">
-      <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl pb-6 text-blue-500">
+      <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-6 text-blue-500 font-normal">
         Create diagrams online realtime collaboration!
       </p>
       <div className="mt-4 ">
@@ -32,7 +32,7 @@ function HomePage({ data }: any) {
             <a className="text-sm text-blue-400">View all</a>
           </Link> */}
         </div>
-        <div className="grid grid-cols-3 lg:grid-cols-2 h-40 gap-10 pt-4 mb-10">
+        <div className="grid grid-cols-3 lg:grid-cols-2 md:grid-cols-2 h-40 gap-10 pt-4 mb-10">
           <div className="relative w-full h-full bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:scale-105 transition-all">
             <div className="font-medium text-blue-600 pb-1">Sunt aut facere repellat provident</div>
             <div className="text-gray-600 text-sm">
@@ -57,7 +57,7 @@ function HomePage({ data }: any) {
               <span className="ml-3">12 Feb 2020 </span>
             </div>
           </div>
-          <div className="relative w-full h-full bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:scale-105 transition-all lg:hidden">
+          <div className="relative w-full h-full bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:scale-105 transition-all lg:hidden md:hidden">
             <div className="font-medium text-blue-600 pb-1">Sunt aut facere repellat provident</div>
             <div className="text-gray-600 text-sm">
               Quia et suscipit suscipit recusandae consequuntur ....

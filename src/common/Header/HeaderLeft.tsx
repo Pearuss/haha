@@ -5,9 +5,9 @@ import Link from 'next/link';
 
 function HeaderLeft(): ReactElement {
   return (
-    <div className="flex items-center cursor-pointer py-2 ml-[-2rem]">
+    <div className="relative flex items-center cursor-pointer pt-4 ml-[-2rem] max-w-[250px] w-[250px] md:h-[38px] md:mt-1 h-[45px] max-h-[45px]">
       <Link href="/">
-        <Image src="/logo.svg" width={250} height={40} priority />
+        <Image src="/logo.svg" layout="fill" priority />
       </Link>
     </div>
   );
