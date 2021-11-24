@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import { GlobeAltIcon, UserCircleIcon, MenuIcon } from '@heroicons/react/solid';
+import { GlobeAltIcon, UserCircleIcon, MenuIcon, SearchIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
@@ -23,20 +23,26 @@ function HeaderRight(): ReactElement {
     }
   };
   return (
-    <div className="flex items-center justify-end text-blue-400 gap-4">
+    <div className="flex items-center justify-end text-blue-400 gap-4 ssm:gap-2">
       <Link href="/login">
         <button
           type="button"
-          className="bg-transparent rounded-full py-2 px-3 cursor-pointer  outline-none hover:bg-blue-100 active:animate-jelly md:hidden sm:hidden ssm:hidden "
+          className="bg-transparent rounded-full py-2 px-3 cursor-pointer  outline-none hover:bg-blue-100 active:animate-jelly lg:hidden md:hidden sm:hidden ssm:hidden "
         >
           Become a Host
         </button>
       </Link>
-      <GlobeAltIcon className="h-6 cursor-pointer md:h-5" />
+      <SearchIcon className="hidden ssm:inline-flex h-[18px] cursor-pointer" />
+      <GlobeAltIcon className="h-6 cursor-pointer md:hidden sm:hidden ssm:hidden" />
+      <MenuIcon className="hidden btnMenuMobile h-6 cursor-pointer sm:h-[22px] ssm:h-5 md:inline-block sm:inline-block ssm:inline-block" />
+      <div className="userDropdown ssm:mr-[-1.2rem]" data-dropdown>
+        <div className="userLink text-sm sm:text-xs ssm:text-[10px]" data-dropdown-button>
+          <UserCircleIcon className="h-8 cursor-pointer md:h6 sm:h-5 ssm:h-4" />
+      {/* <GlobeAltIcon className="h-6 cursor-pointer md:h-5" />
       <MenuIcon className="hidden btnMenuMobile h-6 cursor-pointer md:block sm:block ssm:block" />
       <div className="userDropdown" data-dropdown>
         <div className="userLink text-sm" data-dropdown-button>
-          <UserCircleIcon className="h-8 cursor-pointer md:h6" />
+          <UserCircleIcon className="h-8 cursor-pointer md:h6" /> */}
           Pearuss
         </div>
         <div className="userDropdown-menu">
@@ -56,7 +62,7 @@ function HeaderRight(): ReactElement {
               </Link>
             )} */}
             <div
-              className="link hover:bg-blue-300 hover:text-white hover:rounded-full"
+              className="link hover:bg-gray-300 hover:text-white hover:rounded-full"
               onClick={logoutHandler}
               aria-hidden="true"
             >

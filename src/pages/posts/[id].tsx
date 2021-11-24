@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 
-import TagSection from '../../common/TagContent/TagSection';
+import TagSectionMobile from '../../common/TagContent/TagSectionMobile';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Image from 'next/image';
 import PostDetail from '../../common/PostDetail';
@@ -134,7 +134,7 @@ function Index({ data }: any): ReactElement {
           <div
             className={`w-[10vw] ${
               isShowTopicMobile ? '' : 'md:hidden sm:hidden ssm:hidden'
-            } md:w-[15vw] sm:w-[20vw] ssm:w-[20vw]`}
+            } md:w-[20vw] sm:w-[20vw] ssm:w-[20vw]`}
           >
             <ContentIndex />
           </div>
@@ -142,7 +142,7 @@ function Index({ data }: any): ReactElement {
       )}
       <div
         className={`${
-          isShowContentIndex == false ? 'w-[100%] ml-[3vw] mr-[3vw]' : ''
+          isShowContentIndex == false ? 'flex-1 ml-[3vw] mr-[3vw]' : ''
         } w-full mr-[2vw] pl-2 md:w-[100%] md:mx-[3vw] md:pl-0`}
       >
         <p className="text-4xl xl:text-3xl lg:text-2xl md:text-2xl pb-6 text-blue-500">
@@ -174,7 +174,7 @@ function Index({ data }: any): ReactElement {
         data.allComments?.map((comment: any) => (
           <CommentSection key={comment.id} comment={comment} />
         ))} */}
-      <div className="btnOption sticky hidden top-20 z-50 w-max max-h-8 px-1 border-2 border-gray-500 hover:bg-gray-400 md:block sm:block ssm:block">
+      <div className="btnOption sticky hidden top-20 z-40 w-max max-h-8 px-1 border-2 border-gray-500 hover:bg-gray-400 md:block sm:block ssm:block">
         <MoreVertIcon />
         <ul className="listOption absolute hidden text-center font-semibold text-base -left-28 top-0 border-2 border-gray-500 bg-white shadow-md">
           <li
@@ -192,11 +192,11 @@ function Index({ data }: any): ReactElement {
         </ul>
       </div>
       <div
-        className={`w-full transition duration-200 ease-in-out 3xl:max-w-[34vw] 2xl:max-w-[32vw] xl:max-w-[30vw] md:w-[35vw] md:h-[100vh] md:fixed md:top-0 md:right-0 md:z-50 md:bg-white md:px-3 md:border-gray-300 md:shadow-lg md:border-l md:overflow-scroll sm:w-[35vw] sm:h-[100vh] sm:fixed sm:top-0 sm:right-0 sm:z-50 sm:bg-white sm:px-3 sm:border-gray-300 sm:shadow-lg sm:border-l sm:overflow-scroll ssm:w-[35vw] ssm:h-[100vh] ssm:fixed ssm:top-0 ssm:right-0 ssm:z-50 ssm:bg-white ssm:px-3 ssm:border-gray-300 ssm:shadow-lg ssm:border-l ssm:overflow-scroll ${
+        className={`w-full transition duration-200 ease-in-out 3xl:max-w-[34vw] 2xl:max-w-[32vw] xl:max-w-[30vw] md:w-[35vw] md:h-[100vh] md:fixed md:top-0 md:right-0 md:z-50 md:bg-white md:px-3 md:border-gray-300 md:shadow-lg md:border-l md:overflow-scroll sm:w-[45vw] sm:h-[100vh] sm:fixed sm:top-0 sm:right-0 sm:z-50 sm:bg-white sm:px-3 sm:border-gray-300 sm:shadow-lg sm:border-l sm:overflow-scroll ssm:w-[50vw] ssm:h-[100vh] ssm:fixed ssm:top-0 ssm:right-0 ssm:z-50 ssm:bg-white ssm:px-3 ssm:border-gray-300 ssm:shadow-lg ssm:border-l ssm:overflow-scroll ${
           isShowTagMobile ? '' : 'md:translate-x-full sm:translate-x-full ssm:translate-x-full'
         }`}
       >
-        <TagSection />
+        <TagSectionMobile />
       </div>
       {/* cover */}
       <div className="coverTag hidden fixed z-50 top-0 left-0 w-[100vw] h-[100vh] bg-gray-600 bg-opacity-30"></div>

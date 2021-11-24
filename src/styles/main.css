@@ -26,7 +26,7 @@ li {
   @apply list-none;
 }
 .mainContent {
-  @apply flex mx-[calc(3vw+0.5rem)] lg:mx-[calc(1.5vw+0.5rem)] py-8 min-h-[calc(100vh-100px)];
+  @apply flex mx-[calc(3vw+0.5rem)] lg:mx-[calc(1.5vw+0.5rem)] py-8 min-h-[calc(100vh-171px)];
 }
 
 .mainDetailContent {
@@ -76,19 +76,19 @@ li {
   @apply hover:bg-gray-300 hover:rounded-md;
 }
 .userDropdown {
-  @apply flex gap-2 items-center border-2 p-2 md:p-1 md:rounded-full rounded-3xl relative cursor-pointer;
+  @apply flex gap-2 items-center border-2 p-2 md:p-1 ssm:p-1 md:rounded-full rounded-3xl relative cursor-pointer;
 }
 .userDropdown-menu {
-  @apply absolute right-[10%] top-[calc(100%+0.8rem)] bg-white z-40 pl-2 pr-4 py-4 rounded-md pointer-events-none -translate-y-3 opacity-0 shadow-md w-[10vw] animate-transformCustom animate-opacityCustom;
+  @apply absolute right-[10%] top-[calc(100%+0.8rem)] bg-white z-40 py-4 rounded-md pointer-events-none -translate-y-3 opacity-0 shadow-md w-[9vw] ssm:w-[26vw] sm:w-[22vw] md:w-[20vw] lg:w-[16vw] xl:w-[14vw] ssm:text-xs sm:text-sm animate-transformCustom animate-opacityCustom;
 }
 .userDropdown.activeClass .userDropdown-menu {
   @apply opacity-100 translate-y-0 pointer-events-auto;
 }
 .userDropdown.activeClass .userDropdown-menu a {
-  @apply hover:bg-blue-300 hover:rounded-full;
+  @apply hover:bg-gray-300 hover:rounded-full;
 }
 .userDropdown .link {
-  @apply p-2;
+  @apply py-2 px-8 mx-auto ssm:py-1 ssm:px-6;
 }
 
 .userLink {

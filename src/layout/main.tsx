@@ -6,7 +6,7 @@ import { LayoutProps } from '../modals';
 
 export function MainLayout({ children }: LayoutProps) {
   return (
-    <div className="antialiased w-full bg-white">
+    <div className="antialiased w-full float-left block bg-white">
       <Header />
       <div className="mainContent mt-[30px] bg-white relative">
         {children}
