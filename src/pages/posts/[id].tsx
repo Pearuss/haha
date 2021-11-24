@@ -2,6 +2,8 @@ import React, { ReactElement, useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 
+import TagSection from '../../common/TagContent/TagSection';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Image from 'next/image';
 import PostDetail from '../../common/PostDetail';
 import { ContentIndex } from '../../common/ContentIndex';
@@ -15,6 +17,8 @@ function Index({ data }: any): ReactElement {
   const [showFormComment, setShowFormComment] = useState(false);
   const [isShowContentIndex, setIsShowContentIndex] = useState(true);
   const [isReadMore, setIsReadMore] = useState(true);
+  const [isShowTopicMobile, setIsShowTopicMobile] = useState(false);
+  const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
   const { profile, firstLoading } = useAuth();
   const router = useRouter();
@@ -24,6 +28,21 @@ function Index({ data }: any): ReactElement {
   if (router.isFallback) {
     return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>;
   }
+
+  useEffect(() => {
+    const btnOption: any = document.querySelector('.btnOption');
+    const listOption: any = document.querySelector('.listOption');
+
+    btnOption?.addEventListener('click', () => {
+      listOption?.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!btnOption.contains(e.target)) {
+        listOption?.classList.add('hidden');
+      }
+    });
+  }, []);
 
   useEffect(() => {
     if (!firstLoading && !profile?.username) {
@@ -87,15 +106,36 @@ function Index({ data }: any): ReactElement {
     });
   }, [isReadMore]);
 
+  useEffect(() => {
+    const coverTag = document.querySelector('.cover');
+    coverTag?.addEventListener('click', () => {
+      setIsShowTagMobile(false);
+    });
+  }, []);
+
   const toggleFormComment = () => {
     setShowFormComment(!showFormComment);
   };
 
+  const showTopicMobile = () => {
+    setIsShowTopicMobile(!isShowTopicMobile);
+  };
+
+  const showTagMobile = () => {
+    const coverTag = document.querySelector('.cover');
+    coverTag?.classList.remove('hidden');
+    setIsShowTagMobile(true);
+  };
+
   return (
-    <div className="flex mr-16 md:mr-0 sm:mr-0">
+    <div className="relative flex md:mr-0 sm:mr-0">
       {isShowContentIndex && (
         <div className="">
-          <div className={`w-[10vw] md:hidden`}>
+          <div
+            className={`w-[10vw] ${
+              isShowTopicMobile ? '' : 'md:hidden sm:hidden ssm:hidden'
+            } md:w-[15vw] sm:w-[20vw] ssm:w-[20vw]`}
+          >
             <ContentIndex />
           </div>
         </div>
@@ -134,6 +174,32 @@ function Index({ data }: any): ReactElement {
         data.allComments?.map((comment: any) => (
           <CommentSection key={comment.id} comment={comment} />
         ))} */}
+      <div className="btnOption sticky hidden top-20 z-50 w-max max-h-8 px-1 border-2 border-gray-500 hover:bg-gray-400 md:block sm:block ssm:block">
+        <MoreVertIcon />
+        <ul className="listOption absolute hidden text-center font-semibold text-base -left-28 top-0 border-2 border-gray-500 bg-white shadow-md">
+          <li
+            className="btnShowTopic px-2 py-1 border-b border-gray-500 hover:bg-gray-400"
+            onClick={showTopicMobile}
+          >
+            {`${isShowTopicMobile ? 'Hide' : 'Show'} Topic`}
+          </li>
+          <li
+            className="btnShowTag px-2 py-1 border-gray-500 hover:bg-gray-400"
+            onClick={showTagMobile}
+          >
+            Tag Section
+          </li>
+        </ul>
+      </div>
+      <div
+        className={`w-full transition duration-200 ease-in-out 3xl:max-w-[34vw] 2xl:max-w-[32vw] xl:max-w-[30vw] md:w-[35vw] md:h-[100vh] md:fixed md:top-0 md:right-0 md:z-50 md:bg-white md:px-3 md:border-gray-300 md:shadow-lg md:border-l md:overflow-scroll sm:w-[35vw] sm:h-[100vh] sm:fixed sm:top-0 sm:right-0 sm:z-50 sm:bg-white sm:px-3 sm:border-gray-300 sm:shadow-lg sm:border-l sm:overflow-scroll ssm:w-[35vw] ssm:h-[100vh] ssm:fixed ssm:top-0 ssm:right-0 ssm:z-50 ssm:bg-white ssm:px-3 ssm:border-gray-300 ssm:shadow-lg ssm:border-l ssm:overflow-scroll ${
+          isShowTagMobile ? '' : 'md:translate-x-full sm:translate-x-full ssm:translate-x-full'
+        }`}
+      >
+        <TagSection />
+      </div>
+      {/* cover */}
+      <div className="coverTag hidden fixed z-50 top-0 left-0 w-[100vw] h-[100vh] bg-gray-600 bg-opacity-30"></div>
     </div>
   );
 }
