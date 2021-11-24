@@ -40,29 +40,6 @@ function Comment({
     }
   }, [profile]);
 
-  // console.log('before', commentContent?.body);
-  // console.log('after', parse(commentContent?.body));
-
-  // const options: HTMLReactParserOptions  = {
-  //   replace: ({ attribs, children }: any) => {
-  //     if (!attribs) {
-  //       return;
-  //     }
-
-  //     if (attribs.id === 'main') {
-  //       return <h1 style={{ fontSize: 42 }}>{domToReact(children, options)}</h1>;
-  //     }
-
-  //     if (attribs.class === 'prettify') {
-  //       return (
-  //         <span style={{ color: 'hotpink' }}>
-  //           {domToReact(children, options)}
-  //         </span>
-  //       );
-  //     }
-  //   }
-  // };
-
   return (
     <div className="flex w-full items-center shadow-sm bg-white rounded-lg relative mb-4">
       <div className="absolute top-3 left-2">

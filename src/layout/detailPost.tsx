@@ -4,7 +4,7 @@ import Header from '../common/Header/Header';
 import TagSection from '../common/TagContent/TagSection';
 import { LayoutProps } from '../modals';
 
-export function MainLayout({ children }: LayoutProps) {
+export function DetailPostLayout({ children }: LayoutProps) {
   return (
     <div className="antialiased w-full bg-white">
       <Header />

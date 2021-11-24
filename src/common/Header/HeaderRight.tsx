@@ -34,10 +34,15 @@ function HeaderRight(): ReactElement {
       </Link>
       <SearchIcon className="hidden ssm:inline-flex h-[18px] cursor-pointer" />
       <GlobeAltIcon className="h-6 cursor-pointer md:hidden sm:hidden ssm:hidden" />
-      <MenuIcon className="h-6 cursor-pointer sm:h-[22px] ssm:h-5" />
+      <MenuIcon className="hidden btnMenuMobile h-6 cursor-pointer sm:h-[22px] ssm:h-5 md:inline-block sm:inline-block ssm:inline-block" />
       <div className="userDropdown ssm:mr-[-1.2rem]" data-dropdown>
         <div className="userLink text-sm sm:text-xs ssm:text-[10px]" data-dropdown-button>
           <UserCircleIcon className="h-8 cursor-pointer md:h6 sm:h-5 ssm:h-4" />
+      {/* <GlobeAltIcon className="h-6 cursor-pointer md:h-5" />
+      <MenuIcon className="hidden btnMenuMobile h-6 cursor-pointer md:block sm:block ssm:block" />
+      <div className="userDropdown" data-dropdown>
+        <div className="userLink text-sm" data-dropdown-button>
+          <UserCircleIcon className="h-8 cursor-pointer md:h6" /> */}
           Pearuss
         </div>
         <div className="userDropdown-menu">

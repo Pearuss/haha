@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import PostDetail from '../../common/PostDetail';
 import { ContentIndex } from '../../common/ContentIndex';
-import { MainLayout } from '../../layout';
+import { DetailPostLayout } from '../../layout';
 import { useAuth } from '../../hooks';
 
 import CommentSection from '../../common/CommentSection/CommentSection';
@@ -92,7 +92,7 @@ function Index({ data }: any): ReactElement {
   };
 
   return (
-    <div className="flex mr-16">
+    <div className="flex mr-16 md:mr-0 sm:mr-0">
       {isShowContentIndex && (
         <div className="">
           <div className={`w-[10vw] md:hidden`}>
@@ -137,7 +137,7 @@ function Index({ data }: any): ReactElement {
     </div>
   );
 }
-Index.Layout = MainLayout;
+Index.Layout = DetailPostLayout;
 
 export default Index;
 

@@ -10,8 +10,6 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactEl
   const { profile } = useAuth();
   const router = useRouter();
 
-  // const [isReadMore, setIsReadMore] = useState(true);
-
   let contentBody = isReadMore
     ? truncateBody(`${dataPostDetail.body}`, 580).toString() // max content length is 580
     : truncateBody(`${dataPostDetail.body}`, 20000).toString(); // see full content
@@ -57,7 +55,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactEl
           See more
         </button>
       )}
-      <div className="flex items-center justify-evenly absolute bottom-[4%] mt - left-0 right-0 text-gray-800 text-blue-400">
+      <div className="flex items-center justify-evenly absolute bottom-[4%] mt - left-0 right-0 text-blue-400">
         <div className="flex items-center gap-2">
           <Image src="/images/target.png" width={20} height={20} />
           <span>{dataPostDetail.inWorks}</span>
