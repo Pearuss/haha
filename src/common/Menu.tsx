@@ -54,7 +54,7 @@ function Menu(): ReactElement {
       <div className="cover hidden absolute top-0 left-0 w-[100vw] h-[100vh] bg-gray-600 bg-opacity-30 z-40"></div>
 
       {/* Mobile menu */}
-      <div className="absolute border-r text-gray-700 font-semibold border-gray-300 shadow-lg z-50 bg-white w-[35vw] h-[100vh] text-center menuMobile top-0 left-0 -translate-x-full transform transition duration-200 ease-in-out md:-translate-x-full sm:-translate-x-full sm:w-[45vw] ssm:-translate-x-full ssm:w-[50vw]">
+      <div className="absolute border-r text-gray-600 font-semibold border-gray-300 shadow-lg z-50 bg-white w-[35vw] h-[100vh] text-center menuMobile top-0 left-0 -translate-x-full transform transition duration-200 ease-in-out md:-translate-x-full sm:-translate-x-full sm:w-[45vw] ssm:-translate-x-full ssm:w-[70vw]">
         <div className="flex p-4 items-center border-b border-gray-300">
           <CloseIcon className="ml-1 mr-9 btnCloseMenuMb" />
           <div className="relative flex items-center cursor-pointer pt-4 ml-[-2rem] max-w-[250px] w-[250px] md:h-[38px] md:mt-1 h-[45px] max-h-[45px]">
@@ -68,7 +68,7 @@ function Menu(): ReactElement {
           data-dropdown
         >
           <Link href="/">
-            <a data-dropdown-button>Home</a>
+            <a data-dropdown-button className="cursor-pointer ssm:text-xs">Home</a>
           </Link>
         </li>
         <li
@@ -77,11 +77,9 @@ function Menu(): ReactElement {
           } py-4 px-6 border-b border-gray-300`}
           data-dropdown
         >
-          <Link href="">
-            <a className="cursor-pointer" data-dropdown-button>
-              Operator
-            </a>
-          </Link>
+          <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
+            Operator
+          </a>
 
           <div className="dropdown-menu">
             <div className="flex flex-col gap-1">
@@ -99,11 +97,9 @@ function Menu(): ReactElement {
           } py-4 px-6 border-b border-gray-300`}
           data-dropdown
         >
-          <Link href="">
-            <a className="cursor-pointer" data-dropdown-button>
-              Security
-            </a>
-          </Link>
+          <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
+            Security
+          </a>
           <div className="dropdown-menu">
             <div className="flex flex-col gap-1">
               {data?.security.map((result: any) => (
@@ -120,11 +116,9 @@ function Menu(): ReactElement {
           } py-4 px-6 border-b border-gray-300`}
           data-dropdown
         >
-          <Link href="">
-            <a className="cursor-pointer" data-dropdown-button>
-              Development
-            </a>
-          </Link>
+          <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
+            Development
+          </a>
           <div className="dropdown-menu">
             <div className="flex flex-col gap-1">
               {data?.development.map((result: any) => (
@@ -141,11 +135,9 @@ function Menu(): ReactElement {
           } py-4 px-6 border-b border-gray-300`}
           data-dropdown
         >
-          <Link href="">
-            <a className="cursor-pointer" data-dropdown-button>
-              Cloud Virtual
-            </a>
-          </Link>
+          <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
+            Cloud Virtual
+          </a>
           <div className="dropdown-menu">
             <div className="flex flex-col gap-1">
               {data?.cloudVirtual.map((result: any) => (
@@ -162,11 +154,9 @@ function Menu(): ReactElement {
           } py-4 px-6 border-b border-gray-300`}
           data-dropdown
         >
-          <Link href="">
-            <a className="  cursor-pointer" data-dropdown-button>
-              Management
-            </a>
-          </Link>
+          <a className="  cursor-pointer ssm:text-xs" data-dropdown-button>
+            Management
+          </a>
           <div className="dropdown-menu">
             <div className="flex flex-col gap-1">
               {data?.management.map((result: any) => (
@@ -183,11 +173,9 @@ function Menu(): ReactElement {
           } py-4 px-6 border-b border-gray-300`}
           data-dropdown
         >
-          <Link href="">
-            <a className="  cursor-pointer" data-dropdown-button>
-              Design
-            </a>
-          </Link>
+          <a className="  cursor-pointer ssm:text-xs" data-dropdown-button>
+            Design
+          </a>
           <div className="dropdown-menu">
             <div className="flex flex-col gap-1">
               {data?.design.map((result: any) => (
@@ -204,11 +192,9 @@ function Menu(): ReactElement {
           } py-4 px-6 border-b border-gray-300`}
           data-dropdown
         >
-          <Link href="">
-            <a className="  cursor-pointer" data-dropdown-button>
-              Tools
-            </a>
-          </Link>
+          <a className="  cursor-pointer ssm:text-xs" data-dropdown-button>
+            Tools
+          </a>
           <div className="dropdown-menu">
             <div className="flex flex-col gap-1">
               {data?.tools.map((result: any) => (
@@ -221,17 +207,19 @@ function Menu(): ReactElement {
         </li>
       </div>
       {/* Desktop menu */}
-      <div className="w-max text-gray-700 font-semibold flex gap-10 3xl:gap-9 2xl:gap-7 xl:gap-2  lg:gap-0 mx-auto py-5 rounded-2xl md:hidden sm:hidden ssm:hidden">
+      <div className="w-max text-gray-600 font-semibold flex gap-10 3xl:gap-9 2xl:gap-7 xl:gap-2  lg:gap-0 mx-auto py-5 rounded-2xl md:hidden sm:hidden ssm:hidden">
         <li className={router.pathname === '/home' ? 'active dropdown' : 'dropdown'} data-dropdown>
           <Link href="/">
-            <a data-dropdown-button>Home</a>
+            <a data-dropdown-button>
+              Home
+            </a>
           </Link>
         </li>
         <li
           className={router.pathname === '/operator' ? 'active dropdown' : 'dropdown'}
           data-dropdown
         >
-          <a className="cursor-pointer" data-dropdown-button>
+          <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
             Operator
           </a>
 
@@ -249,7 +237,7 @@ function Menu(): ReactElement {
           className={router.pathname === '/security' ? 'active dropdown' : 'dropdown'}
           data-dropdown
         >
-          <a className="cursor-pointer" data-dropdown-button>
+          <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
             Security
           </a>
 
@@ -267,7 +255,7 @@ function Menu(): ReactElement {
           className={router.pathname === '/development' ? 'active dropdown' : 'dropdown'}
           data-dropdown
         >
-          <a className="cursor-pointer" data-dropdown-button>
+          <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
             Development
           </a>
 
@@ -285,7 +273,7 @@ function Menu(): ReactElement {
           className={router.pathname === '/cloudVirtual' ? 'active dropdown' : 'dropdown'}
           data-dropdown
         >
-          <a className="cursor-pointer" data-dropdown-button>
+          <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
             Cloud Virtual
           </a>
 
@@ -303,7 +291,7 @@ function Menu(): ReactElement {
           className={router.pathname === '/management' ? 'active dropdown' : 'dropdown'}
           data-dropdown
         >
-          <a className="  cursor-pointer" data-dropdown-button>
+          <a className="  cursor-pointer ssm:text-xs" data-dropdown-button>
             Management
           </a>
 
@@ -321,7 +309,7 @@ function Menu(): ReactElement {
           className={router.pathname === '/design' ? 'active dropdown' : 'dropdown'}
           data-dropdown
         >
-          <a className="  cursor-pointer" data-dropdown-button>
+          <a className="  cursor-pointer ssm:text-xs" data-dropdown-button>
             Design
           </a>
 
@@ -336,7 +324,7 @@ function Menu(): ReactElement {
           </div>
         </li>
         <li className={router.pathname === '/tools' ? 'active dropdown' : 'dropdown'} data-dropdown>
-          <a className="  cursor-pointer" data-dropdown-button>
+          <a className="  cursor-pointer ssm:text-xs" data-dropdown-button>
             Tools
           </a>
 

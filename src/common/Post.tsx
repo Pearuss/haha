@@ -9,8 +9,8 @@ function Post({ post }: any): ReactElement {
   const linkDetail = `/posts/${post.id}`;
   return (
     <Link href={linkDetail} key={post.id}>
-      <div className="relative flex ssm:flex-col w-full ssm:h-auto ssm:max-h-full h-full max-h-[280px] bg-white rounded-lg px-3 py-5 mb-4 cursor-pointer ssm:border ssm:border-gray-300 ssm:p-4 ssm:pb-20">
-        <div className="relative max-w-[200px] ssm:max-w-full ssm:w-full w-[200px] ssm:min-h-[200px]">
+      <div className="relative flex ssm:flex-col w-full ssm:h-auto ssm:max-h-full h-[280px] max-h-[280px] bg-white rounded-lg px-3 py-5 mb-4 cursor-pointer ssm:border ssm:border-gray-300 ssm:p-4 ssm:pb-20">
+        <div className="relative max-w-[200px] ssm:max-w-full ssm:w-full w-[200px] ssm:min-h-[200px] h-auto">
           <Image
             className="rounded-md ssm:h-full"
             src="/images/toc2.jpg"
