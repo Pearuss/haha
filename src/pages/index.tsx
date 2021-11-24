@@ -1,10 +1,7 @@
 /* eslint-disable no-param-reassign */
 import React from 'react';
 
-import Image from 'next/image';
 // import Link from 'next/link';
-import { useRouter } from 'next/router';
-
 import Post from '../common/Post';
 import { MainLayout } from '../layout';
 
@@ -18,10 +15,8 @@ interface PostItem {
 }
 
 function HomePage({ data }: any) {
-  const router = useRouter();
-
   return (
-    <div className="mr-16">
+    <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
       <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-6 text-blue-500 font-normal">
         Create diagrams online realtime collaboration!
       </p>
@@ -32,8 +27,21 @@ function HomePage({ data }: any) {
             <a className="text-sm text-blue-400">View all</a>
           </Link> */}
         </div>
-        <div className="grid grid-cols-3 lg:grid-cols-2 md:grid-cols-2 h-40 gap-10 pt-4 mb-10">
+        <div className="grid grid-cols-3 lg:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 ssm:grid-cols-1 sm:h-[10.5rem] xl:h-[10.5rem] h-40 gap-10 pt-4 mb-10 ssm:mx-auto">
           <div className="relative w-full h-full bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:scale-105 transition-all">
+            <div className="font-medium text-blue-600 pb-1">Sunt aut facere repellat provident</div>
+            <div className="text-gray-600 text-sm">
+              Quia et suscipit suscipit recusandae consequuntur consequuntur consequuntur
+              consequuntur ....
+            </div>
+
+            <div className="absolute bottom-1 right-4 text-gray-700 pb-2 text-xs">
+              <span>ReactJs - Pearuss</span>
+              <span className="ml-3">|</span>
+              <span className="ml-3">12 Feb 2020 </span>
+            </div>
+          </div>
+          <div className="relative w-full h-full bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:scale-105 transition-all ssm:hidden">
             <div className="font-medium text-blue-600 pb-1">Sunt aut facere repellat provident</div>
             <div className="text-gray-600 text-sm">
               Quia et suscipit suscipit recusandae consequuntur ....
@@ -45,19 +53,7 @@ function HomePage({ data }: any) {
               <span className="ml-3">12 Feb 2020 </span>
             </div>
           </div>
-          <div className="relative w-full h-full bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:scale-105 transition-all">
-            <div className="font-medium text-blue-600 pb-1">Sunt aut facere repellat provident</div>
-            <div className="text-gray-600 text-sm">
-              Quia et suscipit suscipit recusandae consequuntur ....
-            </div>
-
-            <div className="absolute bottom-1 right-4 text-gray-700 pb-2 text-xs">
-              <span>ReactJs - Pearuss</span>
-              <span className="ml-3">|</span>
-              <span className="ml-3">12 Feb 2020 </span>
-            </div>
-          </div>
-          <div className="relative w-full h-full bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:scale-105 transition-all lg:hidden md:hidden">
+          <div className="relative w-full h-full bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:scale-105 transition-all lg:hidden md:hidden xl:hidden sm:hidden ssm:hidden">
             <div className="font-medium text-blue-600 pb-1">Sunt aut facere repellat provident</div>
             <div className="text-gray-600 text-sm">
               Quia et suscipit suscipit recusandae consequuntur ....

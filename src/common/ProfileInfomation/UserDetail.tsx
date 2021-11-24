@@ -13,7 +13,7 @@ function UserDetail({ data }: any): ReactElement {
       >
         Edit Profile
       </button>
-      <div className="mt-[4.4rem] pl-6">
+      <div className="pt-[4.4rem] pl-6">
         <div className="font-semibold text-xl text-blue-400 pb-2">Le Huynh Duc - Fresher</div>
         <div className="font-medium text-gray-700">Hybrid Technologies Vietnam</div>
         <div className="flex items-center text-gray-700 pt-2">

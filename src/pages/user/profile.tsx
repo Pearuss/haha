@@ -20,7 +20,7 @@ function ProfilePage({ data }: any) {
   console.log(profile);
   
   return (
-    <div className="relative flex items-center flex-col w-full h-100vh pt-4 pr-8 bg-white">
+    <div className="relative mr-16 bg-white md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
       <div className="relative max-w-full w-full h-[220px] max-h-[220px]">
         <Image src="/images/cover-photo4.jpg" layout="fill" objectFit="cover" />
         <div className="absolute w-[138px] h-[138px] bottom-[-66px] left-4 overflow-hidden rounded-full border-[6px] border-white">

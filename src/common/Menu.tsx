@@ -165,7 +165,7 @@ function Menu(): ReactElement {
           </div>
         </li>
       </div> */}
-      <div className="w-max text-gray-700 font-semibold flex gap-10 3xl:gap-9 2xl:gap-7 xl:gap-2  lg:gap-0 mx-auto py-5 rounded-2xl md:hidden">
+      <div className="w-max text-gray-600 font-semibold flex gap-10 3xl:gap-9 2xl:gap-4 xl:gap-2  lg:gap-0 mx-auto py-5 rounded-2xl md:hidden sm:hidden ssm:hidden">
         <li className={router.pathname === '/home' ? 'active dropdown' : 'dropdown'} data-dropdown>
           <Link href="/">
             <a data-dropdown-button>Home</a>
@@ -175,11 +175,9 @@ function Menu(): ReactElement {
           className={router.pathname === '/operator' ? 'active dropdown' : 'dropdown'}
           data-dropdown
         >
-          <Link href="">
-            <a className="cursor-pointer" data-dropdown-button>
-              Operator
-            </a>
-          </Link>
+          <a className="cursor-pointer" data-dropdown-button>
+            Operator
+          </a>
 
           <div className="dropdown-menu">
             <div className="flex flex-col gap-1">
@@ -195,11 +193,10 @@ function Menu(): ReactElement {
           className={router.pathname === '/security' ? 'active dropdown' : 'dropdown'}
           data-dropdown
         >
-          <Link href="">
-            <a className="cursor-pointer" data-dropdown-button>
-              Security
-            </a>
-          </Link>
+          <a className="cursor-pointer" data-dropdown-button>
+            Security
+          </a>
+
           <div className="dropdown-menu">
             <div className="flex flex-col gap-1">
               {data?.security.map((result: any) => (
@@ -214,11 +211,10 @@ function Menu(): ReactElement {
           className={router.pathname === '/development' ? 'active dropdown' : 'dropdown'}
           data-dropdown
         >
-          <Link href="">
-            <a className="cursor-pointer" data-dropdown-button>
-              Development
-            </a>
-          </Link>
+          <a className="cursor-pointer" data-dropdown-button>
+            Development
+          </a>
+
           <div className="dropdown-menu">
             <div className="flex flex-col gap-1">
               {data?.development.map((result: any) => (
@@ -233,11 +229,10 @@ function Menu(): ReactElement {
           className={router.pathname === '/cloudVirtual' ? 'active dropdown' : 'dropdown'}
           data-dropdown
         >
-          <Link href="">
-            <a className="cursor-pointer" data-dropdown-button>
-              Cloud Virtual
-            </a>
-          </Link>
+          <a className="cursor-pointer" data-dropdown-button>
+            Cloud Virtual
+          </a>
+
           <div className="dropdown-menu">
             <div className="flex flex-col gap-1">
               {data?.cloudVirtual.map((result: any) => (
@@ -252,11 +247,10 @@ function Menu(): ReactElement {
           className={router.pathname === '/management' ? 'active dropdown' : 'dropdown'}
           data-dropdown
         >
-          <Link href="">
-            <a className="  cursor-pointer" data-dropdown-button>
-              Management
-            </a>
-          </Link>
+          <a className="  cursor-pointer" data-dropdown-button>
+            Management
+          </a>
+
           <div className="dropdown-menu">
             <div className="flex flex-col gap-1">
               {data?.management.map((result: any) => (
@@ -271,11 +265,10 @@ function Menu(): ReactElement {
           className={router.pathname === '/design' ? 'active dropdown' : 'dropdown'}
           data-dropdown
         >
-          <Link href="">
-            <a className="  cursor-pointer" data-dropdown-button>
-              Design
-            </a>
-          </Link>
+          <a className="  cursor-pointer" data-dropdown-button>
+            Design
+          </a>
+
           <div className="dropdown-menu">
             <div className="flex flex-col gap-1">
               {data?.design.map((result: any) => (
@@ -287,11 +280,10 @@ function Menu(): ReactElement {
           </div>
         </li>
         <li className={router.pathname === '/tools' ? 'active dropdown' : 'dropdown'} data-dropdown>
-          <Link href="">
-            <a className="  cursor-pointer" data-dropdown-button>
-              Tools
-            </a>
-          </Link>
+          <a className="  cursor-pointer" data-dropdown-button>
+            Tools
+          </a>
+
           <div className="dropdown-menu">
             <div className="flex flex-col gap-1">
               {data?.tools.map((result: any) => (
