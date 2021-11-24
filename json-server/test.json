@@ -854,6 +854,16 @@
       "postId": "1",
       "createdAt": 1637658007112,
       "updatedAt": 1637658007112
+    },
+    {
+      "id": "9irf16ahh",
+      "body": "<a href=\"/user/1\" style=\"color:#ADE3FF; font-weight: 500;\">@Rex:</a> Hello",
+      "parentId": "1",
+      "userId": "2",
+      "username": "Pearuss",
+      "postId": "1",
+      "createdAt": 1637732760719,
+      "updatedAt": 1637732760719
     }
   ]
 }

@@ -7,7 +7,7 @@ export function DetailPostLayout({ children }: LayoutProps) {
   return (
     <div className="antialiased w-full bg-white">
       <Header />
-      <div className="mainContent mt-[30px] bg-white relative">{children}</div>
+      <div className="mainDetailContent mt-[30px] bg-white relative">{children}</div>
     </div>
   );
 }

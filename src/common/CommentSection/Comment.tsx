@@ -97,7 +97,7 @@ function Comment({
         {isReplying && (
           <InputMention
             submitLabel="Reply"
-            initialText={`${parentId == null ? '' : `@${commentContent.username} `}`}
+            initialText={`${parentId == null ? '' : `@${commentContent.username}: `}`}
             commentContent={commentContent}
             // initialText={`${
             //   parentId == null
