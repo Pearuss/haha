@@ -31,19 +31,12 @@ function Index({ data }: any): ReactElement {
   }
 
   useEffect(() => {
-    const btnOption: any = document.querySelector('.btnOption');
-    const listOption: any = document.querySelector('.listOption');
+    const btnCloseTopic: any = document.querySelector('.btnCloseTopic');
 
-    btnOption?.addEventListener('click', () => {
-      listOption?.classList.toggle('hidden');
+    btnCloseTopic?.addEventListener('click', () => {
+      setIsShowTopicMobile(!isShowTopicMobile);
     });
-
-    document.addEventListener('click', function (e) {
-      if (!btnOption.contains(e.target)) {
-        listOption?.classList.add('hidden');
-      }
-    });
-  }, []);
+  }, [isShowTopicMobile]);
 
   useEffect(() => {
     if (!firstLoading && !profile?.username) {
@@ -147,7 +140,13 @@ function Index({ data }: any): ReactElement {
     <div className="relative flex md:mr-0 sm:mr-0">
       {isShowContentIndex && (
         <div className="mr-4 sm:mr-8 ssm:mr-12">
-          <div className={`w-[10vw] ssm:w-[40vw] ssm:z-50  ssm:bg-white ssm:absolute ssm:left-0 ssm:top-0 ${isShowTopicMobile ? '' : 'md:hidden sm:hidden ssm:hidden'}`}>
+          <div
+            className={`topicSsm w-[10vw] ssm:w-[40vw] ssm:topicSsm ssm:z-50 ssm:bg-white transition duration-200 ease-in-out ssm:fixed ssm:left-0 ssm:top-0 ${
+              isShowTopicMobile
+                ? 'ssm:translate-x-0 top-0 '
+                : 'md:hidden sm:hidden ssm:-translate-x-full top-0'
+            }`}
+          >
             <ContentIndex />
           </div>
           {isShowTopicMobile ? (
