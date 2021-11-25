@@ -147,7 +147,7 @@ function Index({ data }: any): ReactElement {
     <div className="relative flex md:mr-0 sm:mr-0">
       {isShowContentIndex && (
         <div className="mr-4 sm:mr-8 ssm:mr-12">
-          <div className={`w-[10vw] ${isShowTopicMobile ? '' : 'md:hidden sm:hidden ssm:hidden'}`}>
+          <div className={`w-[10vw] ssm:w-[40vw] ssm:z-50  ssm:bg-white ssm:absolute ssm:left-0 ssm:top-0 ${isShowTopicMobile ? '' : 'md:hidden sm:hidden ssm:hidden'}`}>
             <ContentIndex />
           </div>
           {isShowTopicMobile ? (
