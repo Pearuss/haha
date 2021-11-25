@@ -1,9 +1,10 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useCallback, useState } from 'react';
 
 import { GlobeAltIcon, UserCircleIcon, MenuIcon, SearchIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
+import useToggle from '../../hooks/use-toggle';
 
 import { useAuth } from '../../hooks';
 
@@ -11,7 +12,9 @@ function HeaderRight(): ReactElement {
   const router = useRouter();
   const { logout } = useAuth();
 
-  const logoutHandler = async () => {
+  const [showSearchInput, setShowSearchInput] = useToggle(false);
+
+  const logoutHandler = useCallback(async () => {
     try {
       await logout();
       router.push('/');
@@ -21,9 +24,10 @@ function HeaderRight(): ReactElement {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, []);
+
   return (
-    <div className="flex items-center justify-end text-blue-400 gap-4 ssm:gap-2">
+    <div className="relative flex items-center justify-end text-blue-400 gap-4 ssm:gap-2">
       <Link href="/login">
         <button
           type="button"
@@ -32,13 +36,22 @@ function HeaderRight(): ReactElement {
           Become a Host
         </button>
       </Link>
-      <SearchIcon className="hidden ssm:inline-flex h-[18px] cursor-pointer" />
+      {showSearchInput && (
+        <input
+          className="changePlaceholder absolute outline-none py-1 px-3 w-[50vw] bottom-[-3rem] right-0 rounded-3xl bg-blue-100"
+          placeholder="What are you looking for ?"
+        />
+      )}
+      <SearchIcon
+        className="hidden ssm:inline-flex h-[18px] cursor-pointer"
+        onClick={setShowSearchInput}
+      />
       <GlobeAltIcon className="h-6 cursor-pointer md:hidden sm:hidden ssm:hidden" />
       <MenuIcon className="hidden btnMenuMobile h-6 cursor-pointer sm:h-[22px] ssm:h-5 md:inline-block sm:inline-block ssm:inline-block" />
       <div className="userDropdown ssm:mr-[-1.2rem]" data-dropdown>
         <div className="userLink text-sm sm:text-xs ssm:text-[10px]" data-dropdown-button>
           <UserCircleIcon className="h-8 cursor-pointer md:h6 sm:h-5 ssm:h-4" />
-      {/* <GlobeAltIcon className="h-6 cursor-pointer md:h-5" />
+          {/* <GlobeAltIcon className="h-6 cursor-pointer md:h-5" />
       <MenuIcon className="hidden btnMenuMobile h-6 cursor-pointer md:block sm:block ssm:block" />
       <div className="userDropdown" data-dropdown>
         <div className="userLink text-sm" data-dropdown-button>

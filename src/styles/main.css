@@ -174,3 +174,9 @@ li {
 @tailwind utilities;
 @tailwind base;
 @tailwind components;
+
+@layer utilities {
+  .changePlaceholder::placeholder {
+    @apply mx-auto text-sm;
+  }
+}
