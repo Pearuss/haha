@@ -107,7 +107,7 @@ function UserCreatePage() {
   }, []);
 
   return (
-    <div className="mx-auto mt-3 max-w-full">
+    <div className="mx-auto mt-3 w-full">
       <ModalPost
         newPost={newPost}
         setNewPost={setNewPost}

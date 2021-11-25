@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 
 import TagSectionMobile from '../../common/TagContent/TagSectionMobile';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import CloseIcon from '@mui/icons-material/Close';
 import Image from 'next/image';
 import PostDetail from '../../common/PostDetail';
 import { ContentIndex } from '../../common/ContentIndex';
@@ -121,23 +122,49 @@ function Index({ data }: any): ReactElement {
     setIsShowTopicMobile(!isShowTopicMobile);
   };
 
-  const showTagMobile = () => {
-    const coverTag = document.querySelector('.cover');
-    coverTag?.classList.remove('hidden');
-    setIsShowTagMobile(true);
-  };
+  useEffect(() => {
+    const btnShowTag = document.querySelector('.btnShowTag');
+    const menuMobile: any = document.querySelector('.menuMobile');
+    const cover: any = document.querySelector('.cover');
+
+    btnShowTag?.addEventListener('click', () => {
+      setIsShowTagMobile(true);
+      menuMobile.classList.add(
+        'md:-translate-x-full',
+        'sm:-translate-x-full',
+        'ssm:-translate-x-full'
+      );
+      menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
+    });
+
+    cover.addEventListener('click', () => {
+      cover.classList.add('hidden');
+      setIsShowTagMobile(false);
+    });
+  }, []);
 
   return (
     <div className="relative flex md:mr-0 sm:mr-0">
       {isShowContentIndex && (
-        <div className="mr-4">
-          <div
-            className={`w-[10vw] ${
-              isShowTopicMobile ? '' : 'md:hidden sm:hidden ssm:hidden'
-            } md:w-[20vw] sm:w-[20vw] ssm:w-[20vw]`}
-          >
+        <div className="mr-4 sm:mr-8 ssm:mr-12">
+          <div className={`w-[10vw] ${isShowTopicMobile ? '' : 'md:hidden sm:hidden ssm:hidden'}`}>
             <ContentIndex />
           </div>
+          {isShowTopicMobile ? (
+            <div
+              onClick={showTopicMobile}
+              className="btnOption fixed top-[8rem] hidden z-40 w-max max-h-8 px-1 border-2 border-gray-500 hover:bg-gray-400 md:block sm:block ssm:block"
+            >
+              <CloseIcon />
+            </div>
+          ) : (
+            <div
+              onClick={showTopicMobile}
+              className="btnOption fixed top-[8rem] hidden z-40 w-max max-h-8 px-1 border-2 border-gray-500 hover:bg-gray-400 md:block sm:block ssm:block"
+            >
+              <MoreVertIcon />
+            </div>
+          )}
         </div>
       )}
       <div
@@ -174,23 +201,7 @@ function Index({ data }: any): ReactElement {
         data.allComments?.map((comment: any) => (
           <CommentSection key={comment.id} comment={comment} />
         ))} */}
-      <div className="btnOption sticky hidden top-20 z-40 w-max max-h-8 px-1 border-2 border-gray-500 hover:bg-gray-400 md:block sm:block ssm:block">
-        <MoreVertIcon />
-        <ul className="listOption absolute hidden text-center font-semibold text-base -left-28 top-0 border-2 border-gray-500 bg-white shadow-md">
-          <li
-            className="btnShowTopic px-2 py-1 border-b border-gray-500 hover:bg-gray-400"
-            onClick={showTopicMobile}
-          >
-            {`${isShowTopicMobile ? 'Hide' : 'Show'} Topic`}
-          </li>
-          <li
-            className="btnShowTag px-2 py-1 border-gray-500 hover:bg-gray-400"
-            onClick={showTagMobile}
-          >
-            Tag Section
-          </li>
-        </ul>
-      </div>
+
       <div
         className={`w-full transition duration-200 ease-in-out 3xl:max-w-[34vw] 2xl:max-w-[32vw] xl:max-w-[30vw] md:w-[35vw] md:h-[100vh] md:fixed md:top-0 md:right-0 md:z-50 md:bg-white md:px-3 md:border-gray-300 md:shadow-lg md:border-l md:overflow-scroll sm:w-[45vw] sm:h-[100vh] sm:fixed sm:top-0 sm:right-0 sm:z-50 sm:bg-white sm:px-3 sm:border-gray-300 sm:shadow-lg sm:border-l sm:overflow-scroll ssm:w-[50vw] ssm:h-[100vh] ssm:fixed ssm:top-0 ssm:right-0 ssm:z-50 ssm:bg-white ssm:px-3 ssm:border-gray-300 ssm:shadow-lg ssm:border-l ssm:overflow-scroll ${
           isShowTagMobile ? '' : 'md:translate-x-full sm:translate-x-full ssm:translate-x-full'

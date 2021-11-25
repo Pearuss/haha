@@ -61,12 +61,12 @@ function Menu(): ReactElement {
             <Image src="/logo.svg" layout="fill" priority />
           </div>
         </div>
-        {router.pathname === '/posts/[id]' ? (
+        {/* {router.pathname === '/posts/[id]' ? (
           ''
         ) : (
           <li className={`btnShowTag py-4 px-6 border-b border-gray-300`}>Tag Section</li>
-        )}
-        {/* <li className={`btnShowTag py-4 px-6 border-b border-gray-300`}>Tag Section</li> */}
+        )} */}
+        <li className={`btnShowTag py-4 px-6 border-b border-gray-300`}>Tag Section</li>
         <li
           className={`${
             router.pathname === '/home' ? 'active dropdown' : 'dropdown'

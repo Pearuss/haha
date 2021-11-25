@@ -7,6 +7,7 @@ import { FilterMyPosts } from '../../../common/FilterMyPosts';
 import Post from '../../../common/Post';
 import { MainLayout } from '../../../layout';
 import Pagination from '../../../common/Pagination';
+import TagSectionobile from '../../../common/TagContent/TagSectionMobile';
 
 interface PostItem {
   id: string;
@@ -17,6 +18,8 @@ interface PostItem {
 
 function PostsPage() {
   const router = useRouter();
+
+  const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
   const { data }: any = useSWR(`http://localhost:3001/posts?_page=${router.query.page}&_limit=5`, {
     revalidateOnFocus: false,
@@ -40,6 +43,27 @@ function PostsPage() {
       router.push(`/user/posts/1`);
     }
   }, [router.query.page]);
+
+  useEffect(() => {
+    const btnShowTag = document.querySelector('.btnShowTag');
+    const menuMobile: any = document.querySelector('.menuMobile');
+    const cover: any = document.querySelector('.cover');
+
+    btnShowTag?.addEventListener('click', () => {
+      setIsShowTagMobile(true);
+      menuMobile.classList.add(
+        'md:-translate-x-full',
+        'sm:-translate-x-full',
+        'ssm:-translate-x-full'
+      );
+      menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
+    });
+
+    cover.addEventListener('click', () => {
+      cover.classList.add('hidden');
+      setIsShowTagMobile(false);
+    });
+  }, []);
 
   const onClickNoFilter = () => {
     setDataPosts(dataAll);
@@ -68,6 +92,13 @@ function PostsPage() {
         <p className="text-lg text-red-600">There are no posts to display !</p>
       )}
       {!filter && <Pagination totalPage={totalPage} currentPage={Number(router.query.page)} />}
+      <div
+        className={`hidden p-3 z-50 overflow-scroll md:block sm:block ssm:block fixed h-[100vh] w-[35vw] top-0 right-0 bg-white transition duration-200 ease-in-out md:w-[40vw] sm:w-[50vw] ssm:w-[50vw] transform ${
+          !isShowTagMobile ? 'translate-x-full' : ''
+        }`}
+      >
+        <TagSectionobile />
+      </div>
     </div>
   );
 }
