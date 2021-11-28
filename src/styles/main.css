@@ -52,7 +52,7 @@ li {
   @apply relative;
 }
 .dropdown > a {
-  @apply py-3 px-10 xl:text-[14px] xl:px-8 lg:text-[14px] lg:px-5 rounded-md hover:bg-gray-300 hover:text-white relative;
+  @apply py-3 px-10 xl:px-8 lg:text-[14px] lg:px-5 rounded-md hover:bg-gray-300 hover:text-white relative;
 }
 /* .dropdown-menu {
   @apply absolute top-[200px] left-[50%] ;
@@ -65,10 +65,11 @@ li {
 }
 
 .dropdown-menu {
-  @apply absolute left-2 top-[calc(100%+0.1rem)] bg-white z-40 pl-6 pr-12 py-4 rounded-md pointer-events-none translate-y-20 shadow-md w-[12vw] md:w-[21vw] sm:w-[23vw] ssm:w-[36vw] sm:left-[40%] md:p-4 sm:py-2 sm:px-[2px] ssm:py-2 ssm:px-0 md:top-full sm:top-full ssm:top-full opacity-0 animate-transformCustom transition-all;
+  @apply absolute left-2 top-[calc(100%+1px)] bg-white z-40 pl-6 pr-12 py-4 rounded-md pointer-events-none translate-y-20 shadow-md w-[12vw]
+  2xl:w-[13vw] xl:w-[15vw] md:w-[21vw] sm:w-[23vw] ssm:w-[36vw] sm:left-[40%] md:p-4 sm:py-2 sm:px-[2px] ssm:py-2 ssm:px-0 md:top-full sm:top-full ssm:top-full opacity-0 animate-transformCustom transition-all;
 }
 .dropdown-menu a {
-  @apply py-2 px-4 md:px-1 sm:px-1 ssm:text-xs;
+  @apply py-2 px-4 2xl:px-2 xl:px-2  md:px-1 sm:px-1 ssm:text-xs;
 }
 .dropdown.activeClass > a + .dropdown-menu {
   @apply opacity-100 translate-y-0 pointer-events-auto;
@@ -80,7 +81,7 @@ li {
   @apply flex gap-2 items-center border-2 p-2 md:p-1 ssm:p-1 md:rounded-full rounded-3xl relative cursor-pointer;
 }
 .userDropdown-menu {
-  @apply absolute right-[10%] top-[calc(100%+0.8rem)] bg-white z-40 py-4 rounded-md pointer-events-none -translate-y-3 opacity-0 shadow-md w-[9vw] ssm:w-[26vw] sm:w-[22vw] md:w-[20vw] lg:w-[16vw] xl:w-[14vw] ssm:text-xs sm:text-sm animate-transformCustom animate-opacityCustom;
+  @apply absolute right-[10%] top-[calc(100%+0.8rem)] bg-white z-40 py-4 rounded-md pointer-events-none -translate-y-3 opacity-0 shadow-md w-[9vw] ssm:w-[26vw] sm:w-[22vw] md:w-[20vw] lg:w-[16vw] xl:w-[13vw] 2xl:w-[11vw] ssm:text-xs sm:text-sm transition-all animate-transformCustom animate-opacityCustom;
 }
 .userDropdown.activeClass .userDropdown-menu {
   @apply opacity-100 translate-y-0 pointer-events-auto;

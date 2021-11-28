@@ -40,6 +40,10 @@ userMenu.addEventListener('click', (e) => {
     dropdown.classList.remove('activeClass');
   });
 });
+
+
+
+
 // menuMobile.addEventListener('click', (e) => {
 //   const isDropdownButton = e.target.matches('[data-dropdown-button]');
 //   if (!isDropdownButton && e.target.closest('[data-dropdown]') != null) return;

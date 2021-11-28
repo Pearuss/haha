@@ -60,6 +60,9 @@ function HeaderRight(): ReactElement {
         </div>
         <div className="userDropdown-menu">
           <div className="flex flex-col gap-1">
+          <Link href="/login">
+              <a className="xl:hidden 2xl:hidden 3xl:hidden link hover:text-white">Login</a>
+            </Link>
             <Link href="/user/profile">
               <a className="link hover:text-white">Profile</a>
             </Link>
