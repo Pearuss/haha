@@ -20,7 +20,9 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactEl
   useEffect(() => {
     if (!firstLoading && !profile?.username) {
       setIsLogin(false);
+      setIsReadMore(true);
     } else if (profile?.username) {
+      setIsReadMore(false);
       setIsLogin(true);
     }
   }, [profile, firstLoading]);

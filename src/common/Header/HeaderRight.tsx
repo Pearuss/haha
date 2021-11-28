@@ -47,7 +47,7 @@ function HeaderRight(): ReactElement {
         onClick={setShowSearchInput}
       />
       <GlobeAltIcon className="h-6 cursor-pointer md:hidden sm:hidden ssm:hidden" />
-      <MenuIcon className="hidden btnMenuMobile h-6 cursor-pointer sm:h-[22px] ssm:h-5 md:inline-block sm:inline-block ssm:inline-block" />
+      <MenuIcon className="hidden btnMenuMobile h-6 cursor-pointer sm:h-[22px] ssm:h-5 lg:inline-block md:inline-block sm:inline-block ssm:inline-block" />
       <div className="userDropdown ssm:mr-[-1.2rem]" data-dropdown>
         <div className="userLink text-sm sm:text-xs ssm:text-[10px]" data-dropdown-button>
           <UserCircleIcon className="h-8 cursor-pointer md:h6 sm:h-5 ssm:h-4" />
