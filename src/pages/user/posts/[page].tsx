@@ -76,7 +76,7 @@ function PostsPage() {
   return (
     <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
       <div className="relative w-full">
-        <p className="leading-8 text-gray-700 font-medium text-base">Home/My Post</p>
+        <p className="leading-8 text-gray-600 font-medium text-base">Home / My Post</p>
         <div className="mt-0 md:hidden sm:hidden ssm:hidden">
           <FilterMyPosts
             onClickNoFilter={onClickNoFilter}
