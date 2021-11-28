@@ -144,14 +144,14 @@ function Menu(): ReactElement {
           <li className={`btnShowTag py-4 px-6 ssm:px-0 border-b border-gray-300`}>Tag Section</li>
         )} */}
         <li
-          className={`btnShowTag py-4 px-16 lg:px-10 ssm:px-10 border-b border-gray-300 cursor-pointer ssm:text-xs`}
+          className={`btnShowTag w-full text-left py-4 px-16 lg:px-10 ssm:px-10 border-b border-gray-300 cursor-pointer ssm:text-xs`}
         >
           Tag Section
         </li>
         <li
           className={`${
             router.pathname === '/home' ? 'active dropdown' : 'dropdown'
-          } py-4 px-6 ssm:px-0 border-b border-gray-300`}
+          } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
           data-dropdown
         >
           <Link href="/">
@@ -163,7 +163,7 @@ function Menu(): ReactElement {
         <li
           className={`${
             router.pathname === '/operator' ? 'active dropdown' : 'dropdown'
-          } py-4 px-6 ssm:px-0 border-b border-gray-300`}
+          } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
           data-dropdown
         >
           <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
@@ -183,7 +183,7 @@ function Menu(): ReactElement {
         <li
           className={`${
             router.pathname === '/security' ? 'active dropdown' : 'dropdown'
-          } py-4 px-6 ssm:px-0 border-b border-gray-300`}
+          } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
           data-dropdown
         >
           <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
@@ -202,7 +202,7 @@ function Menu(): ReactElement {
         <li
           className={`${
             router.pathname === '/development' ? 'active dropdown' : 'dropdown'
-          } py-4 px-6 ssm:px-0 border-b border-gray-300`}
+          } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
           data-dropdown
         >
           <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
@@ -221,7 +221,7 @@ function Menu(): ReactElement {
         <li
           className={`${
             router.pathname === '/cloudVirtual' ? 'active dropdown' : 'dropdown'
-          } py-4 px-6 ssm:px-0 border-b border-gray-300`}
+          } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
           data-dropdown
         >
           <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
@@ -240,7 +240,7 @@ function Menu(): ReactElement {
         <li
           className={`${
             router.pathname === '/management' ? 'active dropdown' : 'dropdown'
-          } py-4 px-6 ssm:px-0 border-b border-gray-300`}
+          } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
           data-dropdown
         >
           <a className="  cursor-pointer ssm:text-xs" data-dropdown-button>
@@ -259,7 +259,7 @@ function Menu(): ReactElement {
         <li
           className={`${
             router.pathname === '/design' ? 'active dropdown' : 'dropdown'
-          } py-4 px-6 ssm:px-0 border-b border-gray-300`}
+          } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
           data-dropdown
         >
           <a className="  cursor-pointer ssm:text-xs" data-dropdown-button>
@@ -278,7 +278,7 @@ function Menu(): ReactElement {
         <li
           className={`${
             router.pathname === '/tools' ? 'active dropdown' : 'dropdown'
-          } py-4 px-6 ssm:px-0 border-b border-gray-300`}
+          } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
           data-dropdown
         >
           <a className="  cursor-pointer ssm:text-xs" data-dropdown-button>
