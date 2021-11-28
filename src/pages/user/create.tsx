@@ -108,7 +108,7 @@ function UserCreatePage() {
 
   return (
     <div className="mx-auto mt-3 w-full">
-      <p className="leading-8 text-gray-600 font-medium text-base">Home / Create Post</p>
+      {/* <p className="leading-8 text-gray-600 font-medium text-base">Home / Create Post</p> */}
       <ModalPost
         newPost={newPost}
         setNewPost={setNewPost}
