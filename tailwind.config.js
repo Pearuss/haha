@@ -37,7 +37,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+        sans: ['Roboto'],
       },
       colors: {
         gray: {

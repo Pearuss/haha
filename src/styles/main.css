@@ -64,7 +64,7 @@ li {
 } */
 
 .dropdown-menu {
-  @apply absolute left-[50%] top-[calc(100%+1.4rem)] bg-white z-40 pl-6 pr-12 py-4 rounded-md pointer-events-none translate-y-20 shadow-md w-[12vw] md:w-[21vw] sm:w-[23vw] ssm:w-[36vw] sm:left-[40%] md:p-4 sm:py-2 sm:px-[2px] ssm:py-2 ssm:px-0 md:top-full sm:top-full ssm:top-full opacity-0 animate-transformCustom transition-all;
+  @apply absolute left-2 top-[calc(100%+1.4rem)] bg-white z-40 pl-6 pr-12 py-4 rounded-md pointer-events-none translate-y-20 shadow-md w-[12vw] md:w-[21vw] sm:w-[23vw] ssm:w-[36vw] sm:left-[40%] md:p-4 sm:py-2 sm:px-[2px] ssm:py-2 ssm:px-0 md:top-full sm:top-full ssm:top-full opacity-0 animate-transformCustom transition-all;
 }
 .dropdown-menu a {
   @apply py-2 px-4 md:px-1 sm:px-1 ssm:text-xs;
