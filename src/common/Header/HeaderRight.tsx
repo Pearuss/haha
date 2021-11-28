@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useState } from 'react';
+import React, { ReactElement, useCallback } from 'react';
 
 import { GlobeAltIcon, UserCircleIcon, MenuIcon, SearchIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
@@ -27,7 +27,7 @@ function HeaderRight(): ReactElement {
   }, []);
 
   return (
-    <div className="relative flex items-center justify-end text-blue-400 gap-4 ssm:gap-2">
+    <div className="userMenu relative flex items-center justify-end text-blue-400 gap-4 ssm:gap-2">
       <Link href="/login">
         <button
           type="button"

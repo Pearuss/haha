@@ -27,9 +27,9 @@ const Login = () => {
   //   const dispatch = useDispatch();
   const router = useRouter();
   const { handleSubmit, control, formState } = useForm({
-    mode: 'onTouched',
-    criteriaMode: 'firstError',
-    shouldFocusError: true,
+    mode: 'all',
+    // criteriaMode: 'firstError',
+    shouldFocusError: false,
     resolver: yupResolver(schema),
   });
 

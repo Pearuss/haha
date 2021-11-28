@@ -219,7 +219,7 @@ function Menu(): ReactElement {
         </li>
       </div>
       {/* Desktop menu */}
-      <div className="test w-max text-gray-600 font-normal flex gap-10 3xl:gap-9 2xl:gap-7 xl:gap-2  lg:gap-0 mx-auto py-5 rounded-2xl md:hidden sm:hidden ssm:hidden">
+      <div className="menuConfig w-max text-gray-600 font-normal flex gap-10 3xl:gap-9 2xl:gap-7 xl:gap-2  lg:gap-0 mx-auto  rounded-2xl md:hidden sm:hidden ssm:hidden">
         <li className={router.pathname === '/home' ? 'active dropdown' : 'dropdown'} data-dropdown>
           <Link href="/">
             <a data-dropdown-button>Home</a>

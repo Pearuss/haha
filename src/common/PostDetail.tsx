@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback } from 'react';
+import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import CodeBlock from '../common/CodeBlock';
 import Image from 'next/image';
@@ -7,17 +7,26 @@ import { useAuth } from '../hooks';
 import { useRouter } from 'next/router';
 
 function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactElement {
-  const { profile } = useAuth();
+  const { profile, firstLoading } = useAuth();
   const router = useRouter();
 
-  let contentBody = isReadMore
-    ? truncateBody(`${dataPostDetail.body}`, 580).toString() // max content length is 580
-    : truncateBody(`${dataPostDetail.body}`, 20000).toString(); // see full content
+  const [isLogin, setIsLogin] = useState(false);
+
+  let contentBody =
+    isReadMore && !isLogin
+      ? truncateBody(`${dataPostDetail.body}`, 580).toString() // max content length is 580
+      : truncateBody(`${dataPostDetail.body}`, 20000).toString(); // see full content
+
+  useEffect(() => {
+    if (!firstLoading && !profile?.username) {
+      setIsLogin(false);
+    } else if (profile?.username) {
+      setIsLogin(true);
+    }
+  }, [profile, firstLoading]);
 
   const ReadMoreHandler = useCallback(() => {
-    if (profile?.message == 'You need to login to access') {
-      router.replace('/login');
-    } else if (profile?.username) {
+    if (isLogin) {
       setIsReadMore(false);
     } else {
       router.replace('/login');
@@ -50,7 +59,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactEl
           type="button"
           className={`ml-2 font-medium font-serif text-lg text-black cursor-pointer ${
             isReadMore ? '' : 'hidden'
-          }`}
+          } ${isLogin ? 'hidden' : ''}`}
         >
           See more
         </button>

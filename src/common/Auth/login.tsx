@@ -49,10 +49,10 @@ function login({ submit, errorForm, handleSubmit, control, formState, isLoading 
               return (
                 <TextField
                   inputProps={{ style: { color: 'white' } }}
-                  className="bg-lightGray rounded-md !mt-6 !text-white "
+                  className="loginPlaceholder bg-lightGray rounded-md !mt-6 !text-white "
                   error={!!errors.email}
                   variant="filled"
-                  label={errors.email?.message || 'email'}
+                  label={errors.email?.message || 'Email'}
                   placeholder="Enter your email"
                   color="primary"
                   size="medium"
@@ -73,7 +73,7 @@ function login({ submit, errorForm, handleSubmit, control, formState, isLoading 
                 className="placeholder-white bg-lightGray rounded-md !mt-6"
                 type="password"
                 variant="filled"
-                label={errors.password?.message || 'password'}
+                label={errors.password?.message || 'Password'}
                 placeholder="Enter your password"
                 size="medium"
                 color="primary"
