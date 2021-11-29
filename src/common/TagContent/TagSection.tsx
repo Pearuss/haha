@@ -18,7 +18,11 @@ function TagSection() {
     >
       {/* <UserInfo /> */}
       {/* <Image src="/images/calendar.png" width={700} height={300} priority /> */}
-      <Calendar className="w-full" onChange={() => {}} value={new Date()} />
+      <Calendar
+        className="w-full text-lg rounded-2xl border border-gray-300"
+        onChange={() => {}}
+        value={new Date()}
+      />
       <FollowTag data={data?.followingTags} titleTagName="Following Tags" />
       <FollowTag data={data?.tagsCloud} titleTagName="Tags Cloud" />
     </div>

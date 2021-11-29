@@ -89,7 +89,7 @@ function HomePage({ data }: any) {
         <Post key={post.id} post={post} />
       ))}
       <div
-        className={`hidden p-3 z-50 overflow-scroll md:block sm:block ssm:block fixed h-[100vh] w-[35vw] top-0 right-0 bg-white transition duration-200 ease-in-out md:w-[40vw] sm:w-[50vw] ssm:w-[50vw] transform ${
+        className={`hidden p-3 z-50 overflow-scroll md:block sm:block ssm:block fixed h-[100vh] w-[35vw] top-0 right-0 bg-white transition duration-200 ease-in-out md:w-[40vw] sm:w-[50vw] ssm:w-[70vw] transform ${
           !isShowTagMobile ? 'translate-x-full' : ''
         }`}
       >
