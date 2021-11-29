@@ -20,7 +20,7 @@ function Post({ post }: any): ReactElement {
       </div>
       <div className="flex-1 ml-5 relative cursor-auto ssm:w-full ssm:flex ssm:items-center ssm:flex-col ssm:ml-0 text-gray-600">
         <Link href={linkDetail} key={post.id}>
-          <h3 className="text-lg cursor-pointer text-blue-700 font-medium ssm:my-2">{post.title}</h3>
+          <h3 className="text-lg cursor-pointer text-black font-medium ssm:my-2">{post.title}</h3>
         </Link>
         <p className="text-base pt-1 text-gray-700">{truncate(`${post.body}`, 220)}</p>
 

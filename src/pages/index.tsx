@@ -47,7 +47,7 @@ function HomePage({ data }: any) {
       <div className="mt-4 ">
         <div className="grid grid-cols-3 lg:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 ssm:grid-cols-1 sm:h-[10.5rem] xl:h-[10.5rem] h-40 gap-10 pt-4 mb-10 ssm:mx-auto">
           <div className="relative w-full h-full bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:scale-105 transition-all">
-            <div className="font-medium text-blue-600 pb-1">Sunt aut facere repellat provident</div>
+            <div className="font-medium pb-1 text-black">Sunt aut facere repellat provident</div>
             <div className="text-gray-600 text-sm">
               Quia et suscipit suscipit recusandae consequuntur consequuntur consequuntur
               consequuntur ....
@@ -60,7 +60,7 @@ function HomePage({ data }: any) {
             </div>
           </div>
           <div className="relative w-full h-full bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:scale-105 transition-all ssm:hidden">
-            <div className="font-medium text-blue-600 pb-1">Sunt aut facere repellat provident</div>
+            <div className="font-medium  pb-1 text-black">Sunt aut facere repellat provident</div>
             <div className="text-gray-600 text-sm">
               Quia et suscipit suscipit recusandae consequuntur ....
             </div>
@@ -72,7 +72,7 @@ function HomePage({ data }: any) {
             </div>
           </div>
           <div className="relative w-full h-full bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:scale-105 transition-all lg:hidden md:hidden xl:hidden sm:hidden ssm:hidden">
-            <div className="font-medium text-blue-600 pb-1">Sunt aut facere repellat provident</div>
+            <div className="font-medium  pb-1 text-black">Sunt aut facere repellat provident</div>
             <div className="text-gray-600 text-sm">
               Quia et suscipit suscipit recusandae consequuntur ....
             </div>
