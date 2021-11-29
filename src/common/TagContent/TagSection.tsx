@@ -19,7 +19,7 @@ function TagSection() {
       {/* <UserInfo /> */}
       {/* <Image src="/images/calendar.png" width={700} height={300} priority /> */}
       <Calendar
-        className="w-full text-lg rounded-2xl border border-gray-300"
+        className="calendar w-full text-lg rounded-2xl border border-gray-300"
         onChange={() => {}}
         value={new Date()}
       />

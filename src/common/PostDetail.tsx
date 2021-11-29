@@ -48,11 +48,11 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactEl
         <span className="font-medium text-xl ml-2 text-blue-300">{dataPostDetail.author}</span>
         <span className="text-gray-800 text-sm ml-1 mt-1">@{dataPostDetail.tags}· 21 hour</span>
       </div>
-      <div className="w-full text-black font-semibold text-2xl sm:text-xl ssm:text-xl mx-auto">
+      <div className="w-full text-black font-semibold text-3xl sm:text-2xl ssm:text-xl mx-auto">
         {dataPostDetail.title}
       </div>
       {/* <div className="mx-2">{dataPostDetail.body}</div> */}
-      <div className="mx-2 mb-4 mt-5 h-auto">
+      <div className="postContent mx-2 mb-4 mt-5 h-auto">
         <ReactMarkdown components={CodeBlock} children={contentBody} />
       </div>
       {dataPostDetail.body.length > 580 && (

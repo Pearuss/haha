@@ -70,6 +70,7 @@ module.exports = {
         mainColor: '#ADD9E6',
         lightGreen: '#36CB83',
         blueTag: '#76dce6',
+        blueBold: '#0D55FF',
       },
       keyframes: {
         jelly: {
@@ -86,6 +87,10 @@ module.exports = {
             transform: 'scale(0.95, 1.05)',
           },
         },
+      },
+      inset: {
+        18: '76px',
+        '-18': '-76px',
       },
       animation: {
         jelly: 'jelly 0.5s',

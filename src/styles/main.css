@@ -9,10 +9,17 @@ a {
   @apply text-blue-700;
 }
 
-h1 {
+/* h1 {
   color: black;
   font-size: 3em !important;
   font-weight: bolder !important;
+} */
+
+.postContent > h1 {
+  @apply text-xl;
+  @apply text-black;
+  @apply font-bold;
+  margin-top: 30px;
 }
 
 @tailwind components;
@@ -95,6 +102,28 @@ li {
 
 .userLink {
   @apply flex items-center gap-1;
+}
+
+.calendar {
+  @apply p-2;
+}
+
+.calendar button {
+  border-radius: 12px;
+}
+
+.calendar .react-calendar__tile--active {
+  @apply bg-blueBold;
+}
+
+.calendar .react-calendar__navigation__label__labelText {
+  @apply text-xl;
+  @apply capitalize;
+  @apply font-bold;
+}
+
+.calendar .react-calendar__navigation__arrow {
+  @apply text-xl;
 }
 
 .mentions--singleLine .mentions__control {

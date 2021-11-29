@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 
 import Menu from '../Menu';
 import HeaderLeft from './HeaderLeft';
@@ -8,8 +8,35 @@ import HeaderRight from './HeaderRight';
 // interface Props {}
 
 function Header(): ReactElement {
+  // useEffect(() => {
+  //   window.addEventListener('scroll', () => {
+  //     const header: any = document.querySelector('.header');
+  //     header.classList.toggle('header-scroll', window.scrollY > 0);
+  //   });
+  // }, []);
+
+  useEffect(() => {
+    const header: any = document.querySelector('.header');
+    let lastScrollTop = 0;
+    window.addEventListener(
+      'scroll',
+      () => {
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        if (st > lastScrollTop) {
+          header.classList.add('top-0');
+          header.classList.remove('-top-18');
+        } else {
+          header.classList.remove('top-0');
+          header.classList.add('-top-18');
+        }
+        lastScrollTop = st <= 0 ? 0 : st;
+      },
+      false
+    );
+  }, []);
+
   return (
-    <div className="sticky w-full top-0 z-50 border-b border-gray-300 shadow-md bg-white">
+    <div className="header transform transition-all duration-200 ease-in-out fixed w-full top-0 z-50 border-b border-gray-300 shadow-md bg-white">
       <header className="w-full grid grid-cols-3 ssm:grid-cols-2 px-10 pt-4 py-2 md:px-4 md:pt-3  ">
         <HeaderLeft />
         <HeaderMiddle />
