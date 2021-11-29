@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useState } from 'react';
+import React, { ReactElement, useCallback } from 'react';
 
 import { GlobeAltIcon, UserCircleIcon, MenuIcon, SearchIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
@@ -27,7 +27,7 @@ function HeaderRight(): ReactElement {
   }, []);
 
   return (
-    <div className="relative flex items-center justify-end text-blue-400 gap-4 ssm:gap-2">
+    <div className="userMenu relative flex items-center justify-end text-blue-400 gap-4 ssm:gap-2">
       <Link href="/login">
         <button
           type="button"
@@ -47,7 +47,7 @@ function HeaderRight(): ReactElement {
         onClick={setShowSearchInput}
       />
       <GlobeAltIcon className="h-6 cursor-pointer md:hidden sm:hidden ssm:hidden" />
-      <MenuIcon className="hidden btnMenuMobile h-6 cursor-pointer sm:h-[22px] ssm:h-5 md:inline-block sm:inline-block ssm:inline-block" />
+      <MenuIcon className="hidden btnMenuMobile h-6 cursor-pointer sm:h-[22px] ssm:h-5 lg:inline-block md:inline-block sm:inline-block ssm:inline-block" />
       <div className="userDropdown ssm:mr-[-1.2rem]" data-dropdown>
         <div className="userLink text-sm sm:text-xs ssm:text-[10px]" data-dropdown-button>
           <UserCircleIcon className="h-8 cursor-pointer md:h6 sm:h-5 ssm:h-4" />
@@ -60,6 +60,9 @@ function HeaderRight(): ReactElement {
         </div>
         <div className="userDropdown-menu">
           <div className="flex flex-col gap-1">
+          <Link href="/login">
+              <a className="xl:hidden 2xl:hidden 3xl:hidden link hover:text-white">Login</a>
+            </Link>
             <Link href="/user/profile">
               <a className="link hover:text-white">Profile</a>
             </Link>

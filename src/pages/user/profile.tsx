@@ -45,6 +45,7 @@ function ProfilePage({ data }: any) {
 
   return (
     <div className="relative mr-16 bg-white md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
+      <p className="leading-8 text-gray-600 font-medium text-base">Home / Profile</p>
       <div className="relative max-w-full w-full h-[220px] max-h-[220px]">
         <Image src="/images/cover-photo4.jpg" layout="fill" objectFit="cover" />
         <div className="absolute w-[138px] h-[138px] bottom-[-66px] left-4 overflow-hidden rounded-full border-[6px] border-white">

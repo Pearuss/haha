@@ -45,15 +45,9 @@ function HomePage({ data }: any) {
         Create diagrams online realtime collaboration!
       </p>
       <div className="mt-4 ">
-        <div className="flex items-center justify-between">
-          <div className="text-lg font-medium text-gray-700">Recent posts</div>
-          {/* <Link href="#">
-            <a className="text-sm text-blue-400">View all</a>
-          </Link> */}
-        </div>
         <div className="grid grid-cols-3 lg:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 ssm:grid-cols-1 sm:h-[10.5rem] xl:h-[10.5rem] h-40 gap-10 pt-4 mb-10 ssm:mx-auto">
           <div className="relative w-full h-full bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:scale-105 transition-all">
-            <div className="font-medium text-blue-600 pb-1">Sunt aut facere repellat provident</div>
+            <div className="font-medium pb-1 text-black">Sunt aut facere repellat provident</div>
             <div className="text-gray-600 text-sm">
               Quia et suscipit suscipit recusandae consequuntur consequuntur consequuntur
               consequuntur ....
@@ -66,7 +60,7 @@ function HomePage({ data }: any) {
             </div>
           </div>
           <div className="relative w-full h-full bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:scale-105 transition-all ssm:hidden">
-            <div className="font-medium text-blue-600 pb-1">Sunt aut facere repellat provident</div>
+            <div className="font-medium  pb-1 text-black">Sunt aut facere repellat provident</div>
             <div className="text-gray-600 text-sm">
               Quia et suscipit suscipit recusandae consequuntur ....
             </div>
@@ -78,7 +72,7 @@ function HomePage({ data }: any) {
             </div>
           </div>
           <div className="relative w-full h-full bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:scale-105 transition-all lg:hidden md:hidden xl:hidden sm:hidden ssm:hidden">
-            <div className="font-medium text-blue-600 pb-1">Sunt aut facere repellat provident</div>
+            <div className="font-medium  pb-1 text-black">Sunt aut facere repellat provident</div>
             <div className="text-gray-600 text-sm">
               Quia et suscipit suscipit recusandae consequuntur ....
             </div>
@@ -95,7 +89,7 @@ function HomePage({ data }: any) {
         <Post key={post.id} post={post} />
       ))}
       <div
-        className={`hidden p-3 z-50 overflow-scroll md:block sm:block ssm:block fixed h-[100vh] w-[35vw] top-0 right-0 bg-white transition duration-200 ease-in-out md:w-[40vw] sm:w-[50vw] ssm:w-[50vw] transform ${
+        className={`hidden p-3 z-50 overflow-scroll md:block sm:block ssm:block fixed h-[100vh] w-[35vw] top-0 right-0 bg-white transition duration-200 ease-in-out md:w-[40vw] sm:w-[50vw] ssm:w-[70vw] transform ${
           !isShowTagMobile ? 'translate-x-full' : ''
         }`}
       >

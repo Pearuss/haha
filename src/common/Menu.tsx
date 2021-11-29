@@ -19,32 +19,109 @@ function Menu(): ReactElement {
 
     btnMenuMobile?.addEventListener('click', () => {
       menuMobile.classList.remove(
+        'lg:-translate-x-full',
         'md:-translate-x-full',
         'sm:-translate-x-full',
         'ssm:-translate-x-full'
       );
-      menuMobile.classList.add('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
+      menuMobile.classList.add(
+        'lg:translate-x-0',
+        'md:translate-x-0',
+        'sm:translate-x-0',
+        'ssm:translate-x-0'
+      );
       cover.classList.remove('hidden');
     });
 
     btnCloseMenuMb?.addEventListener('click', () => {
       menuMobile.classList.add(
+        'lg:-translate-x-full',
         'md:-translate-x-full',
         'sm:-translate-x-full',
         'ssm:-translate-x-full'
       );
-      menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
+      menuMobile.classList.remove(
+        'lg:translate-x-0',
+        'md:translate-x-0',
+        'sm:translate-x-0',
+        'ssm:translate-x-0'
+      );
       cover.classList.add('hidden');
     });
 
     cover?.addEventListener('click', () => {
       menuMobile.classList.add(
+        'lg:-translate-x-full',
         'md:-translate-x-full',
         'sm:-translate-x-full',
         'ssm:-translate-x-full'
       );
-      menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
+      menuMobile.classList.remove(
+        'lg:translate-x-0',
+        'md:translate-x-0',
+        'sm:translate-x-0',
+        'ssm:translate-x-0'
+      );
       cover.classList.add('hidden');
+    });
+  }, []);
+
+  useEffect(() => {
+    const menu: any = document.querySelector('.menuConfig');
+    const userMenu: any = document.querySelector('.userMenu');
+    const menuMobile: any = document.querySelector('.menuMobile');
+
+    menu.addEventListener('mouseover', (e: any) => {
+      const isDropdownButton = e.target.matches('[data-dropdown-button]');
+      if (!isDropdownButton && e.target.closest('[data-dropdown]') != null) return;
+
+      let currentDropdown: any;
+      if (isDropdownButton) {
+        currentDropdown = e.target.closest('[data-dropdown]');
+        currentDropdown.classList.toggle('activeClass');
+      }
+
+      document.querySelectorAll('[data-dropdown].activeClass').forEach((dropdown) => {
+        if (dropdown === currentDropdown) return;
+        dropdown.classList.remove('activeClass');
+      });
+    });
+    menu.addEventListener('mouseleave', () => {
+      document.querySelectorAll('[data-dropdown].activeClass').forEach((dropdown) => {
+        dropdown.classList.remove('activeClass');
+      });
+    });
+
+    userMenu.addEventListener('click', (e: any) => {
+      const isDropdownButton = e.target.matches('[data-dropdown-button]');
+      if (!isDropdownButton && e.target.closest('[data-dropdown]') != null) return;
+
+      let currentDropdown: any;
+      if (isDropdownButton) {
+        currentDropdown = e.target.closest('[data-dropdown]');
+        currentDropdown.classList.toggle('activeClass');
+      }
+
+      document.querySelectorAll('[data-dropdown].activeClass').forEach((dropdown) => {
+        if (dropdown === currentDropdown) return;
+        dropdown.classList.remove('activeClass');
+      });
+    });
+
+    menuMobile.addEventListener('click', (e: any) => {
+      const isDropdownButton = e.target.matches('[data-dropdown-button]');
+      if (!isDropdownButton && e.target.closest('[data-dropdown]') != null) return;
+
+      let currentDropdown: any;
+      if (isDropdownButton) {
+        currentDropdown = e.target.closest('[data-dropdown]');
+        currentDropdown.classList.toggle('activeClass');
+      }
+
+      document.querySelectorAll('[data-dropdown].activeClass').forEach((dropdown) => {
+        if (dropdown === currentDropdown) return;
+        dropdown.classList.remove('activeClass');
+      });
     });
   }, []);
 
@@ -54,23 +131,27 @@ function Menu(): ReactElement {
       <div className="cover hidden absolute top-0 left-0 w-[100vw] h-[100vh] bg-gray-600 bg-opacity-30 z-40"></div>
 
       {/* Mobile menu */}
-      <div className="menuMobile absolute border-r text-gray-700 font-semibold border-gray-300 shadow-lg z-50 bg-white w-[35vw] h-[100vh] text-center top-0 left-0 -translate-x-full transform transition duration-200 ease-in-out md:-translate-x-full sm:-translate-x-full sm:w-[45vw] ssm:-translate-x-full ssm:w-[70vw]">
-        <div className="flex p-4 items-center border-b border-gray-300">
+      <div className="menuMobile flex flex-col items-start absolute border-r text-gray-700 font-normal border-gray-300 shadow-lg z-50 bg-white w-[35vw] h-[100vh] text-center top-0 left-0 -translate-x-full transform transition duration-200 ease-in-out lg:-translate-x-full md:-translate-x-full sm:-translate-x-full sm:w-[40vw] md:w-[40vw] lg:w-[30vw] ssm:-translate-x-full ssm:w-[40vw]">
+        <div className="flex p-4 items-center border-b border-gray-300 ssm:p-0">
           <CloseIcon className="ml-1 mr-9 btnCloseMenuMb" />
-          <div className="relative flex items-center cursor-pointer pt-4 ml-[-2rem] max-w-[250px] w-[250px] md:h-[38px] md:mt-1 h-[45px] max-h-[45px]">
+          <div className="relative flex items-center cursor-pointer pt-4 ml-[-2rem] max-w-[250px] w-[250px] ssm:max-w-[110px] sm:max-w-[200px] md:mt-1 h-[45px] max-h-[45px]">
             <Image src="/logo.svg" layout="fill" priority />
           </div>
         </div>
         {/* {router.pathname === '/posts/[id]' ? (
           ''
         ) : (
-          <li className={`btnShowTag py-4 px-6 border-b border-gray-300`}>Tag Section</li>
+          <li className={`btnShowTag py-4 px-6 ssm:px-0 border-b border-gray-300`}>Tag Section</li>
         )} */}
-        <li className={`btnShowTag py-4 px-6 border-b border-gray-300`}>Tag Section</li>
+        <li
+          className={`btnShowTag w-full lg:hidden text-left py-4 px-16 lg:px-10 ssm:px-10 border-b border-gray-300 cursor-pointer ssm:text-xs`}
+        >
+          Tag Section
+        </li>
         <li
           className={`${
             router.pathname === '/home' ? 'active dropdown' : 'dropdown'
-          } py-4 px-6 border-b border-gray-300`}
+          } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
           data-dropdown
         >
           <Link href="/">
@@ -82,7 +163,7 @@ function Menu(): ReactElement {
         <li
           className={`${
             router.pathname === '/operator' ? 'active dropdown' : 'dropdown'
-          } py-4 px-6 border-b border-gray-300`}
+          } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
           data-dropdown
         >
           <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
@@ -102,7 +183,7 @@ function Menu(): ReactElement {
         <li
           className={`${
             router.pathname === '/security' ? 'active dropdown' : 'dropdown'
-          } py-4 px-6 border-b border-gray-300`}
+          } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
           data-dropdown
         >
           <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
@@ -121,7 +202,7 @@ function Menu(): ReactElement {
         <li
           className={`${
             router.pathname === '/development' ? 'active dropdown' : 'dropdown'
-          } py-4 px-6 border-b border-gray-300`}
+          } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
           data-dropdown
         >
           <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
@@ -140,7 +221,7 @@ function Menu(): ReactElement {
         <li
           className={`${
             router.pathname === '/cloudVirtual' ? 'active dropdown' : 'dropdown'
-          } py-4 px-6 border-b border-gray-300`}
+          } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
           data-dropdown
         >
           <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
@@ -159,7 +240,7 @@ function Menu(): ReactElement {
         <li
           className={`${
             router.pathname === '/management' ? 'active dropdown' : 'dropdown'
-          } py-4 px-6 border-b border-gray-300`}
+          } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
           data-dropdown
         >
           <a className="  cursor-pointer ssm:text-xs" data-dropdown-button>
@@ -178,7 +259,7 @@ function Menu(): ReactElement {
         <li
           className={`${
             router.pathname === '/design' ? 'active dropdown' : 'dropdown'
-          } py-4 px-6 border-b border-gray-300`}
+          } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
           data-dropdown
         >
           <a className="  cursor-pointer ssm:text-xs" data-dropdown-button>
@@ -197,7 +278,7 @@ function Menu(): ReactElement {
         <li
           className={`${
             router.pathname === '/tools' ? 'active dropdown' : 'dropdown'
-          } py-4 px-6 border-b border-gray-300`}
+          } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
           data-dropdown
         >
           <a className="  cursor-pointer ssm:text-xs" data-dropdown-button>
@@ -215,16 +296,13 @@ function Menu(): ReactElement {
         </li>
       </div>
       {/* Desktop menu */}
-      <div className="w-max text-gray-600 font-semibold flex gap-10 3xl:gap-9 2xl:gap-7 xl:gap-2  lg:gap-0 mx-auto py-5 rounded-2xl md:hidden sm:hidden ssm:hidden">
+      <div className="menuConfig w-max text-gray-600 font-normal flex gap-10 3xl:gap-9 2xl:gap-7 xl:gap-2  lg:gap-0 mx-auto rounded-2xl lg:hidden md:hidden sm:hidden ssm:hidden">
         <li className={router.pathname === '/home' ? 'active dropdown' : 'dropdown'} data-dropdown>
           <Link href="/">
             <a data-dropdown-button>Home</a>
           </Link>
         </li>
-        <li
-          className={router.pathname === '/operator' ? 'active dropdown' : 'dropdown'}
-          data-dropdown
-        >
+        <li className={router.pathname === '/home' ? 'active dropdown' : 'dropdown'} data-dropdown>
           <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
             Operator
           </a>

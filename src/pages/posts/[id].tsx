@@ -141,7 +141,7 @@ function Index({ data }: any): ReactElement {
       {isShowContentIndex && (
         <div className="mr-4 sm:mr-8 ssm:mr-12">
           <div
-            className={`topicSsm w-[10vw] ssm:w-[40vw] ssm:topicSsm ssm:z-50 ssm:bg-white transition duration-200 ease-in-out ssm:fixed ssm:left-0 ssm:top-0 ${
+            className={`topicSsm w-[10vw] ssm:w-[70vw] pl-2 ssm:topicSsm ssm:z-50 ssm:bg-white transition duration-200 ease-in-out ssm:fixed ssm:left-0 ssm:top-0 ${
               isShowTopicMobile
                 ? 'ssm:translate-x-0 top-0 '
                 : 'md:hidden sm:hidden ssm:-translate-x-full top-0'
@@ -171,9 +171,7 @@ function Index({ data }: any): ReactElement {
           isShowContentIndex == false ? 'flex-1 ml-[3vw] mr-[3vw]' : ''
         } w-full mr-[2vw] pl-2 md:w-[100%] md:mx-[3vw] md:pl-0`}
       >
-        <p className="text-4xl xl:text-3xl lg:text-2xl md:text-2xl pb-6 text-blue-500">
-          Create diagrams online realtime collaboration!
-        </p>
+        <p className="leading-8 mb-4 text-gray-600 font-medium text-base">Home / Post</p>
         <PostDetail dataPostDetail={data} isReadMore={isReadMore} setIsReadMore={setIsReadMore} />
         {isLogin && (
           <div className="flex items-center justify-between py-4 mt-12 shadow-sm font-medium text-gray-700 rounded-md bg-white mb-4">
@@ -200,9 +198,8 @@ function Index({ data }: any): ReactElement {
         data.allComments?.map((comment: any) => (
           <CommentSection key={comment.id} comment={comment} />
         ))} */}
-
       <div
-        className={`w-full transition duration-200 ease-in-out 3xl:max-w-[34vw] 2xl:max-w-[32vw] xl:max-w-[30vw] md:w-[35vw] md:h-[100vh] md:fixed md:top-0 md:right-0 md:z-50 md:bg-white md:px-3 md:border-gray-300 md:shadow-lg md:border-l md:overflow-scroll sm:w-[45vw] sm:h-[100vh] sm:fixed sm:top-0 sm:right-0 sm:z-50 sm:bg-white sm:px-3 sm:border-gray-300 sm:shadow-lg sm:border-l sm:overflow-scroll ssm:w-[50vw] ssm:h-[100vh] ssm:fixed ssm:top-0 ssm:right-0 ssm:z-50 ssm:bg-white ssm:px-3 ssm:border-gray-300 ssm:shadow-lg ssm:border-l ssm:overflow-scroll ${
+        className={`w-full transition duration-200 ease-in-out 3xl:max-w-[29vw] 2xl:max-w-[28vw] lg:max-w-[24vw] xl:max-w-[26vw] md:w-[35vw] md:h-[100vh] md:fixed md:top-0 md:right-0 md:z-50 md:bg-white md:px-3 md:border-gray-300 md:shadow-lg md:border-l md:overflow-scroll sm:w-[45vw] sm:h-[100vh] sm:fixed sm:top-0 sm:right-0 sm:z-50 sm:bg-white sm:px-3 sm:border-gray-300 sm:shadow-lg sm:border-l sm:overflow-scroll ssm:w-[50vw] ssm:h-[100vh] ssm:fixed ssm:top-0 ssm:right-0 ssm:z-50 ssm:bg-white ssm:px-3 ssm:border-gray-300 ssm:shadow-lg ssm:border-l ssm:overflow-scroll ${
           isShowTagMobile ? '' : 'md:translate-x-full sm:translate-x-full ssm:translate-x-full'
         }`}
       >
