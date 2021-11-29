@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 // import Link from 'next/link';
 import Post from '../common/Post';
 import { MainLayout } from '../layout';
-import TagSectionobile from '../common/TagContent/TagSectionMobile';
+import TagSectionMobile from '../common/TagContent/TagSectionMobile';
 
 // import { LayoutMeta } from 'next';
 
@@ -93,7 +93,7 @@ function HomePage({ data }: any) {
           !isShowTagMobile ? 'translate-x-full' : ''
         }`}
       >
-        <TagSectionobile />
+        <TagSectionMobile />
       </div>
     </div>
   );

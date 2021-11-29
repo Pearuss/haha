@@ -7,14 +7,7 @@ import HeaderRight from './HeaderRight';
 
 // interface Props {}
 
-function Header(): ReactElement {
-  // useEffect(() => {
-  //   window.addEventListener('scroll', () => {
-  //     const header: any = document.querySelector('.header');
-  //     header.classList.toggle('header-scroll', window.scrollY > 0);
-  //   });
-  // }, []);
-
+const Header = (): ReactElement => {
   useEffect(() => {
     const header: any = document.querySelector('.header');
     let lastScrollTop = 0;
@@ -22,6 +15,12 @@ function Header(): ReactElement {
       'scroll',
       () => {
         const st = window.pageYOffset || document.documentElement.scrollTop;
+        if (window.scrollY == 0) {
+          header.classList.add('top-0');
+          header.classList.remove('-top-18');
+          return;
+        }
+
         if (st > lastScrollTop) {
           header.classList.add('top-0');
           header.classList.remove('-top-18');
@@ -45,6 +44,6 @@ function Header(): ReactElement {
       <Menu />
     </div>
   );
-}
+};
 
 export default Header;
