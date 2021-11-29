@@ -35,9 +35,9 @@ function ModalPost({
     router.push('/');
   };
   return (
-    <div className="markdown mx-auto relative w-full">
+    <div className="markdown mx-auto relative w-full text-gray-700">
       <div className="flex flex-row h-full bg-white rounded-tl-lg rounded-bl-lg">
-        <div className="w-2/3">
+        <div className="flex-1">
           <div className="flex relative w-full justify-between rounded-tl-2xl bg-white border-b-2 p-3">
             <p className="leading-8 text-gray-700 font-medium text-base">Home/Create Post</p>
             <div className="flex items-center text-base font-medium text-gray-600">
@@ -75,49 +75,54 @@ function ModalPost({
           </div>
           <MarkDown content={newPost.content} setNewPost={setNewPost} />
         </div>
-        <div className="relative w-1/3 border-l-2 rounded-tr-lg rounded-br-lg bg-mainColor bg-opacity-50">
+        <div className="relative w-[28vw] shadow-md rounded-md ml-6">
           <div className="flex flex-col justify-around w-full bg-opacity-50 py-3 px-5">
-            <div className="flex">
-              <p className="font-bold text-xl">Category:</p>
-              <select className="category ml-3 cursor-pointer w-44">
+            <div className="flex items-center mb-2">
+              <p className="font-medium text-xl mr-8">Category:</p>
+              <select className="category outline-none border border-gray-600 p-2 rounded-md cursor-pointer w-[40%]">
                 {catData?.map((item: any) => (
                   <option key={item.id}>{item.name}</option>
                 ))}
               </select>
             </div>
-            <div className="flex mt-4">
-              <p className="font-bold">Tag:</p>
-              <div className="tagselect bg-gray-400 ml-2 px-2 cursor-pointer hover:bg-gray-300">
+            <div className="flex items-center mt-4">
+              <p className="font-medium text-xl mr-8">Tag:</p>
+              <div className="tagselect bg-gray-200 rounded-md ml-[10%] px-6 py-2 cursor-pointer hover:bg-gray-300">
                 Select
               </div>
+            </div>
+            <div className="absolute left-[10%] bottom-[20%] tag flex flex-col w-[80%] h-1/2  rounded-md border-gray-500 border-2 px-3 py-4">
+              <p className="font-medium text-lg mb-4 mx-auto">Select Tag</p>
+              <p className="flex w-full flex-wrap">
+                {tagData?.map((item: any) => (
+                  <div key={item.id} className="mr-6 mb-2">
+                    <input
+                      className="mr-1 tagcheckbox"
+                      type="checkbox"
+                      name={item.name}
+                      id={item.id}
+                    />
+                    {`#${item.name}`}
+                  </div>
+                ))}
+              </p>
             </div>
           </div>
           <button
             type="submit"
             onClick={goHomePage}
-            className="absolute bottom-3 left-10 w-1/3 p-3 bg-gray-200 hover:bg-blue-700 rounded-br-xl rounded-tl-xl text-black font-bold tracking-wider"
+            className="absolute bottom-3 left-[10%] w-[30%] p-3 bg-gray-200 hover:bg-gray-400 rounded font-semibold tracking-wider"
           >
             Cancel
           </button>
           <button
             type="submit"
             onClick={handleUpload}
-            className="absolute bottom-3 right-5 w-1/2 p-3 bg-lightGreen hover:bg-blue-700 rounded-br-xl rounded-tl-xl text-white font-bold tracking-wider"
+            className="absolute bottom-3 right-[10%] w-[30%] p-3 rounded bg-blue-300 hover:bg-blue-400  text-white font-bold tracking-wider active:animate-jelly"
           >
             Upload
           </button>
         </div>
-      </div>
-      <div className="absolute tag flex-wrap top-20 right-10 w-1/4 h-1/2 bg-white rounded-3xl border-gray-700 border-2 p-3">
-        <p className="font-bold text-black mx-auto">Sellect Tag</p>
-        <p className="absolute flex top-10 w-full flex-wrap">
-          {tagData?.map((item: any) => (
-            <div key={item.id} className="mr-3">
-              <input className="mr-1 tagcheckbox" type="checkbox" name={item.name} id={item.id} />
-              {`#${item.name}`}
-            </div>
-          ))}
-        </p>
       </div>
     </div>
   );
