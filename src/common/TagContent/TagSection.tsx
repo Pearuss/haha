@@ -13,7 +13,7 @@ function TagSection() {
 
   return (
     <div
-      className="sticky 3xl:top-[10px] 2xl:top-[-80px] xl:top-[-100px] lg:top-[110px] 3xl:max-w-[33vw] 2xl:max-w-[32vw] xl:max-w-[30vw]
+      className="sticky 3xl:top-[10px] 2xl:top-[-80px] xl:top-[-100px] lg:top-[110px] 3xl:max-w-[32vw] 2xl:max-w-[31vw] xl:max-w-[30vw]
       h-full max-h-[140vh] text-gray-700 z-30 overflow-y-visible md:py-4 sm:py-4 ssm:py-4 md:hidden sm:hidden ssm:hidden"
     >
       {/* <UserInfo /> */}
