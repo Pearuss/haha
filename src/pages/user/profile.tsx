@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
-
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Link from 'next/link';
 import Post from '../../common/Post';
 import UserDetail from '../../common/ProfileInfomation/UserDetail';
 import { useAuth } from '../../hooks';
@@ -45,7 +46,15 @@ function ProfilePage({ data }: any) {
 
   return (
     <div className="relative mr-16 bg-white md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
-      <p className="leading-8 text-gray-600 font-medium text-base">Home / Profile</p>
+      <div className="flex items-center text-gray-600 text-sm">
+        <Link href="/">
+          <p className="leading-8 underline hover:no-underline cursor-pointer">Home</p>
+        </Link>
+        <ArrowForwardIosIcon className="px-2" />
+        <Link href="/user/profile">
+          <p className="leading-8 underline hover:no-underline cursor-pointer">Profile</p>
+        </Link>
+      </div>
       <div className="relative max-w-full w-full h-[220px] max-h-[220px]">
         <Image src="/images/cover-photo4.jpg" layout="fill" objectFit="cover" />
         <div className="absolute w-[138px] h-[138px] bottom-[-66px] left-4 overflow-hidden rounded-full border-[6px] border-white">

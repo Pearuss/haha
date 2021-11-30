@@ -2,12 +2,14 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
+import Link from 'next/link';
 import useSWR from 'swr';
 import { FilterMyPosts } from '../../../common/FilterMyPosts';
 import Post from '../../../common/Post';
 import { MainLayout } from '../../../layout';
 import Pagination from '../../../common/Pagination';
 import TagSectionobile from '../../../common/TagContent/TagSectionMobile';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 interface PostItem {
   id: string;
@@ -76,7 +78,15 @@ function PostsPage() {
   return (
     <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
       <div className="relative w-full">
-        <p className="leading-8 text-gray-600 font-medium text-base">Home / My Post</p>
+        <div className="flex items-center text-gray-600 text-sm">
+          <Link href="/">
+            <p className="leading-8 underline hover:no-underline cursor-pointer">Home</p>
+          </Link>
+          <ArrowForwardIosIcon className="px-2" />
+          <Link href="/user/posts/1">
+            <p className="leading-8 underline hover:no-underline cursor-pointer">My Post</p>
+          </Link>
+        </div>
         <div className="mt-0 md:hidden sm:hidden ssm:hidden">
           <FilterMyPosts
             onClickNoFilter={onClickNoFilter}

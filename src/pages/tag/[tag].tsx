@@ -15,6 +15,7 @@ interface PostItem {
 
 const PostsTag = (data: any): ReactElement => {
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
+  const [isFollow, setIsFollow] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -37,6 +38,10 @@ const PostsTag = (data: any): ReactElement => {
       setIsShowTagMobile(false);
     });
   }, []);
+
+  const changeFollow = () => {
+    setIsFollow(!isFollow);
+  };
   return (
     <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
       <div className="flex items-center text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-6 text-blue-500 font-normal">
@@ -45,14 +50,23 @@ const PostsTag = (data: any): ReactElement => {
       </div>
       <div className="flex w-full mb-8">
         <span className="px-3 py-2 font-medium text-gray-900 ">100 Follower</span>
-        <span className="px-3 py-2 rounded-lg font-medium tracking-wider bg-blueBold text-white cursor-pointer border border-gray-400">
-          Follow
-        </span>
-        {/* <span className="px-3 py-2 rounded-lg font-medium tracking-wider text-gray-900 cursor-pointer border border-gray-400">
-          UnFollow
-        </span> */}
+        {isFollow ? (
+          <span
+            onClick={changeFollow}
+            className="px-4 py-2 rounded-lg font-medium tracking-wider bg-blueBold text-white cursor-pointer border border-gray-400"
+          >
+            Follow
+          </span>
+        ) : (
+          <span
+            onClick={changeFollow}
+            className="px-3 py-2 rounded-lg font-medium tracking-wider text-gray-900 cursor-pointer border border-gray-400"
+          >
+            Unfollow
+          </span>
+        )}
       </div>
-      {data.post?.map((post: any) => (
+      {data.post?.map((post: PostItem) => (
         <Post key={post.id} post={post} />
       ))}
       <div

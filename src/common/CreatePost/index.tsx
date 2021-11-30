@@ -3,10 +3,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/react-in-jsx-scope */
+import Link from 'next/link';
 import Switch from '@material-ui/core/Switch';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import MarkDown from '../MarkDown/MarkDown';
 
 function ModalPost({
@@ -39,7 +40,15 @@ function ModalPost({
       <div className="flex flex-row h-full bg-white rounded-tl-lg rounded-bl-lg">
         <div className="flex-1">
           <div className="flex relative w-full justify-between rounded-tl-2xl bg-white border-b-2 p-3">
-            <p className="leading-8 text-gray-700 font-medium text-base">Home/Create Post</p>
+            <div className="flex items-center text-gray-600 text-sm">
+              <Link href="/">
+                <p className="leading-8 underline hover:no-underline cursor-pointer">Home</p>
+              </Link>
+              <ArrowForwardIosIcon className="px-2" />
+              <Link href="/user/create">
+                <p className="leading-8 underline hover:no-underline cursor-pointer">Create Post</p>
+              </Link>
+            </div>
             <div className="flex items-center text-base font-medium text-gray-600">
               <Switch
                 checked={newPost.public}
