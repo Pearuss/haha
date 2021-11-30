@@ -43,6 +43,15 @@ const PostsTag = (data: any): ReactElement => {
         <TagIcon className="text-4xl" />
         <p>Tag: {router.query.tag}</p>
       </div>
+      <div className="flex w-full mb-8">
+        <span className="px-3 py-2 font-medium text-gray-900 ">100 Follower</span>
+        <span className="px-3 py-2 rounded-lg font-medium tracking-wider bg-blueBold text-white cursor-pointer border border-gray-400">
+          Follow
+        </span>
+        {/* <span className="px-3 py-2 rounded-lg font-medium tracking-wider text-gray-900 cursor-pointer border border-gray-400">
+          UnFollow
+        </span> */}
+      </div>
       {data.post?.map((post: any) => (
         <Post key={post.id} post={post} />
       ))}
