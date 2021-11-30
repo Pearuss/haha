@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 
 import Post from '../../common/Post';
-import TagSectionMobile from '../../common/TagContent/TagSection';
+import TagSectionMobile from '../../common/TagContent/TagSectionMobile';
 import TagIcon from '@mui/icons-material/Tag';
 import { MainLayout } from '../../layout';
 
@@ -69,13 +69,7 @@ const PostsTag = (data: any): ReactElement => {
       {data.post?.map((post: PostItem) => (
         <Post key={post.id} post={post} />
       ))}
-      <div
-        className={`hidden p-3 z-50 overflow-scroll md:block sm:block ssm:block fixed h-[100vh] w-[35vw] top-0 right-0 bg-white transition duration-200 ease-in-out md:w-[40vw] sm:w-[50vw] ssm:w-[70vw] transform ${
-          !isShowTagMobile ? 'translate-x-full' : ''
-        }`}
-      >
-        <TagSectionMobile />
-      </div>
+      <TagSectionMobile isShowTagMobile={isShowTagMobile} />
     </div>
   );
 };
@@ -91,7 +85,6 @@ export async function getStaticPaths() {
   }));
   return {
     paths,
-    // paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
     fallback: true,
   };
 }

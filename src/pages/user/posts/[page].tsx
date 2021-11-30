@@ -8,7 +8,7 @@ import { FilterMyPosts } from '../../../common/FilterMyPosts';
 import Post from '../../../common/Post';
 import { MainLayout } from '../../../layout';
 import Pagination from '../../../common/Pagination';
-import TagSectionobile from '../../../common/TagContent/TagSectionMobile';
+import TagSectionMobile from '../../../common/TagContent/TagSectionMobile';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 interface PostItem {
@@ -102,13 +102,7 @@ function PostsPage() {
         <p className="text-lg text-red-600">There are no posts to display !</p>
       )}
       {!filter && <Pagination totalPage={totalPage} currentPage={Number(router.query.page)} />}
-      <div
-        className={`hidden p-3 z-50 overflow-scroll md:block sm:block ssm:block fixed h-[100vh] w-[35vw] top-0 right-0 bg-white transition duration-200 ease-in-out md:w-[40vw] sm:w-[50vw] ssm:w-[50vw] transform ${
-          !isShowTagMobile ? 'translate-x-full' : ''
-        }`}
-      >
-        <TagSectionobile />
-      </div>
+      <TagSectionMobile isShowTagMobile={isShowTagMobile} />
     </div>
   );
 }
