@@ -9,17 +9,24 @@ a {
   @apply text-blue-700;
 }
 
-h1 {
+/* h1 {
   color: black;
   font-size: 3em !important;
   font-weight: bolder !important;
+} */
+
+.postContent > h1 {
+  @apply text-xl;
+  @apply text-black;
+  @apply font-bold;
+  margin-top: 30px;
 }
 
 @tailwind components;
 
-.active {
+/* .active {
   @apply underline;
-}
+} */
 li {
   @apply list-none;
 }
@@ -52,7 +59,7 @@ li {
   @apply relative;
 }
 .dropdown > a {
-  @apply py-3 px-6 xl:px-4 2xl:px-5 rounded-md relative;
+  @apply py-3 px-8 3xl:px-6  xl:px-4 2xl:px-5 rounded-md relative;
 }
 /* .dropdown-menu {
   @apply absolute top-[200px] left-[50%] ;
@@ -91,6 +98,28 @@ li {
 } */
 .userDropdown .link {
   @apply py-2 px-8 ssm:py-1 ssm:px-6;
+}
+
+.calendar {
+  @apply p-2;
+}
+
+.calendar button {
+  border-radius: 12px;
+}
+
+.calendar .react-calendar__tile--active {
+  @apply bg-blueCyanLogo;
+}
+
+.calendar .react-calendar__navigation__label__labelText {
+  @apply text-xl;
+  @apply capitalize;
+  @apply font-bold;
+}
+
+.calendar .react-calendar__navigation__arrow {
+  @apply text-xl;
 }
 
 .mentions--singleLine .mentions__control {
