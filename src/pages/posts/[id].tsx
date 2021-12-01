@@ -10,6 +10,8 @@ import PostDetail from '../../common/PostDetail';
 import { ContentIndex } from '../../common/ContentIndex';
 import { DetailPostLayout } from '../../layout';
 import { useAuth } from '../../hooks';
+import Link from 'next/link';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import CommentSection from '../../common/CommentSection/CommentSection';
 
@@ -171,7 +173,15 @@ function Index({ data }: any): ReactElement {
           isShowContentIndex == false ? 'flex-1 ml-[3vw] mr-[3vw]' : ''
         } w-full mr-[2vw] pl-2 md:w-[100%] md:mx-[3vw] md:pl-0`}
       >
-        <p className="leading-8 mb-4 text-gray-600 font-medium text-base">Home / Post</p>
+        <div className="flex items-center text-gray-600 text-sm">
+          <Link href="/">
+            <p className="leading-8 cursor-pointer">Home</p>
+          </Link>
+          <ArrowForwardIosIcon className="px-2" />
+          <Link href="#">
+            <p className="leading-8 cursor-pointer">All articles</p>
+          </Link>
+        </div>
         <PostDetail dataPostDetail={data} isReadMore={isReadMore} setIsReadMore={setIsReadMore} />
         {isLogin && (
           <div className="flex items-center justify-between py-4 mt-12 shadow-sm font-medium text-gray-700 rounded-md bg-white mb-4">

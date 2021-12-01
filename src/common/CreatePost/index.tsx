@@ -42,11 +42,11 @@ function ModalPost({
           <div className="flex relative w-full justify-between rounded-tl-2xl bg-white border-b-2 p-3">
             <div className="flex items-center text-gray-600 text-sm">
               <Link href="/">
-                <p className="leading-8 underline hover:no-underline cursor-pointer">Home</p>
+                <p className="leading-8 cursor-pointer">Home</p>
               </Link>
               <ArrowForwardIosIcon className="px-2" />
               <Link href="/user/create">
-                <p className="leading-8 underline hover:no-underline cursor-pointer">Create Post</p>
+                <p className="leading-8 cursor-pointer">Create Post</p>
               </Link>
             </div>
             <div className="flex items-center text-base font-medium text-gray-600">

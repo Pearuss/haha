@@ -45,7 +45,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactEl
           className="rounded-full"
           priority
         />
-        <span className="font-medium text-xl ml-2 text-blue-300">{dataPostDetail.author}</span>
+        <span className="font-medium text-xl ml-2 text-blueCyanLogo">{dataPostDetail.author}</span>
         <span className="text-gray-800 text-sm ml-1 mt-1">@{dataPostDetail.tags}· 21 hour</span>
       </div>
       <div className="w-full text-black font-semibold text-3xl sm:text-2xl ssm:text-xl mx-auto">
@@ -66,7 +66,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactEl
           See more
         </button>
       )}
-      <div className="flex items-center justify-evenly absolute bottom-[4%] mt - left-0 right-0 text-blue-400">
+      <div className="flex items-center justify-evenly absolute bottom-[4%] mt - left-0 right-0 text-blueCyanLogo">
         <div className="flex items-center gap-2">
           <Image src="/images/target.png" width={20} height={20} />
           <span>{dataPostDetail.inWorks}</span>

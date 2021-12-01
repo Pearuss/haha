@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 
 import CloseIcon from '@mui/icons-material/Close';
 import Image from 'next/image';

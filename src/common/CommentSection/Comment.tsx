@@ -53,7 +53,7 @@ function Comment({
       </div>
       <div className="ml-2 pl-16 py-3 w-full">
         <div className="flex justify-between ">
-          <span className="text-lg text-blue-300 font-medium">{commentContent?.username}</span>
+          <span className="text-lg text-blueCyanLogo font-medium">{commentContent?.username}</span>
           <span className="mr-4 text-sm font-medium text-gray-700">Feb 12</span>
         </div>
         <p>{parse(contentBody)}</p>
