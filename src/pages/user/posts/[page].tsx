@@ -94,7 +94,7 @@ function PostsPage() {
             setFilter={setFilter}
           />
         </div>
-        <h1 className="mb-6">Thong's Posts</h1>
+        <h1 className="text-4xl font-medium mb-6">Thong's Posts</h1>
       </div>
       {dataPosts?.length > 0 ? (
         dataPosts?.map((post: PostItem) => <Post key={post.id} post={post} />)
