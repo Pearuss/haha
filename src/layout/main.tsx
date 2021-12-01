@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../common/Footer';
 
 import Header from '../common/Header/Header';
 import TagSection from '../common/TagContent/TagSection';
@@ -12,6 +13,7 @@ export function MainLayout({ children }: LayoutProps) {
         {children}
         <TagSection />
       </div>
+      <Footer />
     </div>
   );
 }

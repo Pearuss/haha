@@ -1,5 +1,6 @@
 import React from 'react';
 import Auth from '../common/Auth/auth';
+import Footer from '../common/Footer';
 
 import Header from '../common/Header/Header';
 import { LayoutProps } from '../modals';
@@ -9,6 +10,7 @@ export function HeaderLayout({ children }: LayoutProps) {
     <Auth className="antialiased w-full">
       <Header />
       <div className="mainContent mt-[163px]">{children}</div>
+      <Footer />
     </Auth>
   );
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Auth from '../common/Auth/auth';
+import Footer from '../common/Footer';
 import Header from '../common/Header/Header';
 import TagSection from '../common/TagContent/TagSection';
 import { LayoutProps } from '../modals';
@@ -13,6 +14,7 @@ export function AdminLayout({ children }: LayoutProps) {
         {children}
         <TagSection />
       </div>
+      <Footer />
     </Auth>
   );
 }
