@@ -32,7 +32,7 @@ export default function Pagination({ totalPage, currentPage }: any): any {
           return (
             <li
               onClick={() => goOtherPage(Number(page))}
-              className="px-5 py-2 text-blueBold text-xl cursor-pointer mx-2"
+              className="px-5 py-2 text-blueCyanLogo text-xl cursor-pointer mx-2"
             >
               {page}
             </li>

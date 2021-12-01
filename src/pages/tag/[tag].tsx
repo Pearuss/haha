@@ -50,6 +50,14 @@ const PostsTag = (data: any): ReactElement => {
       </div>
       <div className="flex w-full mb-8">
         <span className="px-3 py-2 font-medium text-gray-900 ">100 Follower</span>
+<<<<<<< HEAD
+        <span className="px-3 py-2 rounded-lg font-medium tracking-wider bg-blueLogo text-white cursor-pointer border border-gray-400">
+          Follow
+        </span>
+        {/* <span className="px-3 py-2 rounded-lg font-medium tracking-wider text-gray-900 cursor-pointer border border-gray-400">
+          UnFollow
+        </span> */}
+=======
         {isFollow ? (
           <span
             onClick={changeFollow}
@@ -65,6 +73,7 @@ const PostsTag = (data: any): ReactElement => {
             Unfollow
           </span>
         )}
+>>>>>>> 54793fe1c4ff8ebe4dfa0414345401ba50220d16
       </div>
       {data.post?.map((post: PostItem) => (
         <Post key={post.id} post={post} />

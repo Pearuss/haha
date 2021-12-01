@@ -49,3 +49,7 @@ export function convertReplyTagInit(string: string, id: number) {
   const result = mention.join(' ');
   return result;
 }
+
+export function capitalizeFirstLetter(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

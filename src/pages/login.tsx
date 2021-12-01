@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import UseForm from "../hooks/useFormHook";
 
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -20,12 +20,26 @@ const schema = yup.object().shape({
 });
 
 const Login = () => {
-  const { login } = useAuth({
-    revalidateOnMount: false,
-  });
+  // const { login, profile, firstLoading } = useAuth({
+  //   revalidateOnMount: false,
+  // });
+  const { login, profile, firstLoading } = useAuth();
+  // const [isLogin, setIsLogin] = useState(false);
 
   //   const dispatch = useDispatch();
+  // console.log(isLogin);
+
   const router = useRouter();
+
+  useEffect(() => {
+    if (!firstLoading && !profile?.username) {
+      // setIsLogin(false);
+      return;
+    } else if (profile?.username) {
+      router.replace('/');
+    }
+  }, [profile, firstLoading]);
+
   const { handleSubmit, control, formState } = useForm({
     mode: 'all',
     // criteriaMode: 'firstError',

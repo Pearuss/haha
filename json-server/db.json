@@ -60,8 +60,18 @@
       }
     ]
   },
+  "menu1": [
+    {
+      "category1": [1,2,3]
+    },
+    {
+      "category1": [1,2,3]
+    },
+    {
+      "category1": [1,2,3]
+    }
+  ],
   "menu": {
-    "home": [],
     "operator": [
       {
         "id": 1,

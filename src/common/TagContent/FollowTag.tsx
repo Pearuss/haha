@@ -5,7 +5,7 @@ import Link from 'next/link';
 function FollowTag({ data, titleTagName }: any): ReactElement {
   return (
     <div className="tagContent">
-      <p className="border border-none p-3 rounded-lg w-full flex items-center justify-center bg-blue-300 text-white my-6">
+      <p className="p-3 rounded-lg w-full flex items-center justify-center border-2 border-blueCyanLogo my-6 text-blueCyanLogo">
         {titleTagName}
       </p>
       <p className="flex w-full flex-wrap">

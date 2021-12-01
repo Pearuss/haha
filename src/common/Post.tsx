@@ -9,20 +9,19 @@ function Post({ post }: any): ReactElement {
   const linkDetail = `/posts/${post.id}`;
   return (
     <div className="relative flex ssm:flex-col w-full ssm:h-auto ssm:max-h-full h-[280px] max-h-[280px] bg-white rounded-lg px-3 py-5 mb-4 cursor-pointer ssm:border ssm:border-gray-300 ssm:p-4 ssm:pb-20">
-      <div className="relative max-w-[200px] ssm:max-w-full ssm:w-full w-[200px] ssm:min-h-[200px] h-auto">
+      <div className="relative overflow-hidden max-w-[200px] ssm:max-w-full ssm:w-full w-[200px] ssm:min-h-[200px] h-auto">
         <Image
-          className="rounded-md ssm:h-full"
+          className="rounded-md overflow-hidden object-contain ssm:object-cover "
           src="/images/toc2.jpg"
           layout="fill"
-          objectFit="cover"
           priority
         />
       </div>
-      <div className="flex-1 ml-5 relative cursor-auto ssm:w-full ssm:flex ssm:items-center ssm:flex-col ssm:ml-0 text-gray-600">
+      <div className="flex-1 ml-5 relative cursor-auto ssm:w-full ssm:flex ssm:items-center ssm:flex-col ssm:ml-0 text-gray-900">
         <Link href={linkDetail} key={post.id}>
-          <h3 className="text-lg cursor-pointer text-black font-medium ssm:my-2">{post.title}</h3>
+          <h3 className="text-xl cursor-pointer text-black font-medium ssm:my-2">{post.title}</h3>
         </Link>
-        <p className="text-base pt-1 text-gray-700">{truncate(`${post.body}`, 220)}</p>
+        <p className="text-base pt-1">{truncate(`${post.body}`, 220)}</p>
 
         <div className="flex items-center absolute bottom-0 right-[2%] ssm:bottom-[-4.2rem] ssm:right-0 ssm:text-[14px]">
           <div className="flex items-center pr-6 ssm:pr-3">
