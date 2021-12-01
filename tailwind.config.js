@@ -104,6 +104,7 @@ module.exports = {
       },
       inset: {
         18: '76px',
+        '-15': '-60px',
         '-18': '-76px',
       },
       animation: {
