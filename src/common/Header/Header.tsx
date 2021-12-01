@@ -15,18 +15,18 @@ const Header = (): ReactElement => {
       'scroll',
       () => {
         const st = window.pageYOffset || document.documentElement.scrollTop;
-        if (window.scrollY == 0) {
-          header.classList.add('top-0');
-          header.classList.remove('-top-18');
-          return;
-        }
+        // if (window.scrollY == 0) {
+        //   header.classList.add('top-0');
+        //   header.classList.remove('-top-18');
+        //   return;
+        // }
 
         if (st > lastScrollTop) {
-          header.classList.add('top-0');
-          header.classList.remove('-top-18');
-        } else {
           header.classList.remove('top-0');
           header.classList.add('-top-18');
+        } else {
+          header.classList.add('top-0');
+          header.classList.remove('-top-18');
         }
         lastScrollTop = st <= 0 ? 0 : st;
       },
