@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import { capitalizeFirstLetter } from '../utilities/helper';
 
 function Menu(): ReactElement {
   const router = useRouter();
@@ -128,7 +129,7 @@ function Menu(): ReactElement {
           Object.keys(data).map((category: any) => (
             <li key={category} className="dropdown" data-dropdown>
               <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
-                {category}
+                {capitalizeFirstLetter(category)}
               </a>
 
               <div className="dropdown-menu">

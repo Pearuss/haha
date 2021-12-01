@@ -91,7 +91,7 @@
     ]
   },
   "menu": {
-    "Operator": [
+    "operator": [
       {
         "id": 1,
         "name": "Window",
@@ -108,14 +108,14 @@
         "path": "/operator/macOs"
       }
     ],
-    "Security": [
+    "security": [
       {
         "id": 1,
         "name": "Company Rules",
         "path": "/security/rules"
       }
     ],
-    "Development": [
+    "development": [
       {
         "id": 1,
         "name": "Website",
@@ -132,7 +132,7 @@
         "path": "/development/tablet"
       }
     ],
-    "CloudVirtual": [
+    "cloudVirtual": [
       {
         "id": 1,
         "name": "Google cloud",
@@ -144,7 +144,7 @@
         "path": "/cloudVirtual/storage"
       }
     ],
-    "Management": [
+    "management": [
       {
         "id": 1,
         "name": "Client",
@@ -156,7 +156,7 @@
         "path": "/management/employee"
       }
     ],
-    "Design": [
+    "design": [
       {
         "id": 1,
         "name": "Photoshop",
@@ -168,7 +168,7 @@
         "path": "/design/figma"
       }
     ],
-    "Tools": [
+    "tools": [
       {
         "id": 1,
         "name": "VS Code",
