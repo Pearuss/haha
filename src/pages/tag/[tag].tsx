@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 
 import Post from '../../common/Post';
-import TagSectionMobile from '../../common/TagContent/TagSection';
+import TagSectionMobile from '../../common/TagContent/TagSectionMobile';
 import TagIcon from '@mui/icons-material/Tag';
 import { MainLayout } from '../../layout';
 
@@ -15,6 +15,7 @@ interface PostItem {
 
 const PostsTag = (data: any): ReactElement => {
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
+  const [isFollow, setIsFollow] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -37,6 +38,10 @@ const PostsTag = (data: any): ReactElement => {
       setIsShowTagMobile(false);
     });
   }, []);
+
+  const changeFollow = () => {
+    setIsFollow(!isFollow);
+  };
   return (
     <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
       <div className="flex items-center text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-6 text-blue-500 font-normal">
@@ -45,23 +50,35 @@ const PostsTag = (data: any): ReactElement => {
       </div>
       <div className="flex w-full mb-8">
         <span className="px-3 py-2 font-medium text-gray-900 ">100 Follower</span>
+<<<<<<< HEAD
         <span className="px-3 py-2 rounded-lg font-medium tracking-wider bg-blueLogo text-white cursor-pointer border border-gray-400">
           Follow
         </span>
         {/* <span className="px-3 py-2 rounded-lg font-medium tracking-wider text-gray-900 cursor-pointer border border-gray-400">
           UnFollow
         </span> */}
+=======
+        {isFollow ? (
+          <span
+            onClick={changeFollow}
+            className="px-4 py-2 rounded-lg font-medium tracking-wider bg-blueBold text-white cursor-pointer border border-gray-400"
+          >
+            Follow
+          </span>
+        ) : (
+          <span
+            onClick={changeFollow}
+            className="px-3 py-2 rounded-lg font-medium tracking-wider text-gray-900 cursor-pointer border border-gray-400"
+          >
+            Unfollow
+          </span>
+        )}
+>>>>>>> 54793fe1c4ff8ebe4dfa0414345401ba50220d16
       </div>
-      {data.post?.map((post: any) => (
+      {data.post?.map((post: PostItem) => (
         <Post key={post.id} post={post} />
       ))}
-      <div
-        className={`hidden p-3 z-50 overflow-scroll md:block sm:block ssm:block fixed h-[100vh] w-[35vw] top-0 right-0 bg-white transition duration-200 ease-in-out md:w-[40vw] sm:w-[50vw] ssm:w-[70vw] transform ${
-          !isShowTagMobile ? 'translate-x-full' : ''
-        }`}
-      >
-        <TagSectionMobile />
-      </div>
+      <TagSectionMobile isShowTagMobile={isShowTagMobile} />
     </div>
   );
 };
@@ -77,7 +94,6 @@ export async function getStaticPaths() {
   }));
   return {
     paths,
-    // paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
     fallback: true,
   };
 }
