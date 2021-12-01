@@ -4,6 +4,9 @@ html {
 
 body {
   @apply bg-white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: none;
 }
 a {
   @apply text-blue-700;
