@@ -9,7 +9,7 @@ export function HeaderLayout({ children }: LayoutProps) {
   return (
     <Auth className="antialiased w-full">
       <Header />
-      <div className="mainContent mt-[163px]">{children}</div>
+      <div className="mainContent mt-[126px]">{children}</div>
       <Footer />
     </Auth>
   );

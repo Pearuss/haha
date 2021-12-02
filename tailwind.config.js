@@ -107,6 +107,9 @@ module.exports = {
         '-15': '-60px',
         '-18': '-76px',
       },
+      spacing: {
+        23: '92px',
+      },
       animation: {
         jelly: 'jelly 0.5s',
         transformCustom: 'all .3s cubic-bezier(.215,.61,.355,1) 0s',
