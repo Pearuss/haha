@@ -53,3 +53,7 @@ export function convertReplyTagInit(string: string, id: number) {
 export function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+export function countWord(string: string) {
+  return string.split(' ').length;
+}

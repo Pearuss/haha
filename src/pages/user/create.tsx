@@ -12,9 +12,11 @@ interface INewPost {
   status: true;
   reason: string;
   sectionNo: any;
+  partialId: any;
   tag: string[];
   mainCategory: string;
   relatedCategory: string[];
+  image: any[];
   public: boolean;
 }
 
@@ -31,14 +33,39 @@ function UserCreatePage() {
     status: true,
     reason: '',
     sectionNo: 1,
+    partialId: '',
     tag: [],
     mainCategory: '',
     relatedCategory: [],
+    image: [],
     public: true,
   });
+  console.log(newPost);
 
-  const handleSubmit = () => {
-    console.log('newPost: ', newPost);
+  const changeTitle = (e: any) => {
+    setNewPost((state: any) => ({ ...state, title: e.target.value }));
+  };
+
+  const changeShortContent = (e: any) => {
+    setNewPost((state: any) => ({ ...state, shortContent: e.target.value }));
+  };
+
+  const changeSectionNo = (value: any) => {
+    setNewPost((state: any) => ({ ...state, sectionNo: +value.value }));
+  };
+
+  const changeMainCategory = (value: any) => {
+    setNewPost((state: any) => ({ ...state, mainCategory: value.value }));
+  };
+
+  const changeRelatedCategory = (value: any) => {
+    const newrelCat = value.map((cat: any) => cat.value);
+    setNewPost((state: any) => ({ ...state, relatedCategory: newrelCat }));
+  };
+
+  const changeTag = (value: any) => {
+    const newTag = value.map((tag: any) => tag.value);
+    setNewPost((state: any) => ({ ...state, tag: newTag }));
   };
 
   const changeStatus = () => {
@@ -52,15 +79,39 @@ function UserCreatePage() {
     }));
   };
 
+  const imageHandler = (e: any) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        let newImg = [...newPost.image];
+        newImg.push(reader.result);
+        setNewPost((state: any) => ({ ...state, image: newImg }));
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+  const removeImage = (index: number) => {
+    let newImg = [...newPost.image];
+    newImg.splice(index, 1);
+    setNewPost((state: any) => ({ ...state, image: newImg }));
+  };
+
   return (
     <div className="mx-auto mt-3 h-2/3 w-full">
       <ModalPost
         newPost={newPost}
         setNewPost={setNewPost}
+        changeTitle={changeTitle}
+        changeShortContent={changeShortContent}
+        changeSectionNo={changeSectionNo}
+        changeMainCategory={changeMainCategory}
+        changeRelatedCategory={changeRelatedCategory}
+        changeTag={changeTag}
         changeStatus={changeStatus}
         changePublic={changePublic}
         catData={catData}
-        handleSubmit={handleSubmit}
+        imageHandler={imageHandler}
+        removeImage={removeImage}
         tagData={tagData?.followingTags}
       />
     </div>
