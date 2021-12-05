@@ -49,7 +49,6 @@ const PostsTag = (data: any): ReactElement => {
           Tag: {capitalizeFirstLetter(router.query.tag?.toString() || '')}
         </p>
       </div>
-      {/* <div className="text-lg ml-2">258 posts</div> */}
       <div className="flex w-full my-4">
         <button
           onClick={setIsFollow}
@@ -63,7 +62,6 @@ const PostsTag = (data: any): ReactElement => {
       </div>
       <div className="w-full flex items-center pt-8 border-b-4 border-blueCyanLogo">
         <div className="flex-1 pb-2 text-center font-semibold  text-blueCyanLogo">All Posts</div>
-        {/* <div className="flex-1 pb-2 text-center font-semibold text-gray-800">Comments</div> */}
       </div>
       {data.post?.map((post: any) => (
         <Post key={post.id} post={post} />
