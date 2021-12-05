@@ -1,8 +1,8 @@
 import React from 'react';
-import Footer from '../common/Footer';
+import Footer from '../Components/Footer';
 
-import Header from '../common/Header/Header';
-import TagSection from '../common/TagContent/TagSection';
+import Header from '../Components/Header/Header';
+import TagSection from '../Components/TagContent/TagSection';
 import { LayoutProps } from '../modals';
 
 export function DetailPostLayout({ children }: LayoutProps) {

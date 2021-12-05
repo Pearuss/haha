@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Link from 'next/link';
-import Post from '../../common/Post';
+import Post from '../../Components/Post';
 import UserDetail from '../../common/ProfileInfomation/UserDetail';
 import { useAuth } from '../../hooks';
 import { AdminLayout } from '../../layout';
-import TagSectionMobile from '../../common/TagContent/TagSectionMobile';
+import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
 
 interface PostItem {
   id: string;

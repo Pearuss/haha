@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import useSWR from 'swr';
 
-import ModalPost from '../../common/CreatePost';
+import ModalPost from '../../Components/CreatePost';
 import { HeaderLayout } from '../../layout';
 
 interface INewPost {

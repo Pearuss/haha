@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 
-import Post from '../../common/Post';
-import TagSectionMobile from '../../common/TagContent/TagSection';
+import Post from '../../Components/Post';
+import TagSectionMobile from '../../Components/TagContent/TagSection';
 
 import { MainLayout } from '../../layout';
 import { capitalizeFirstLetter } from '../../utilities/helper';

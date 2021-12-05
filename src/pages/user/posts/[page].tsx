@@ -4,11 +4,11 @@ import React, { useEffect, useState } from 'react';
 
 import Link from 'next/link';
 import useSWR from 'swr';
-import { FilterMyPosts } from '../../../common/FilterMyPosts';
-import Post from '../../../common/Post';
+import { FilterMyPosts } from '../../../Components/FilterMyPosts';
+import Post from '../../../Components/Post';
 import { MainLayout } from '../../../layout';
-import Pagination from '../../../common/Pagination';
-import TagSectionMobile from '../../../common/TagContent/TagSectionMobile';
+import Pagination from '../../../Components/Pagination';
+import TagSectionMobile from '../../../Components/TagContent/TagSectionMobile';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 interface PostItem {

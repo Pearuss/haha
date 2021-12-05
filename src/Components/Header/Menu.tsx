@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import { capitalizeFirstLetter } from '../utilities/helper';
+import { capitalizeFirstLetter } from '../../utilities/helper';
 
 function Menu(): ReactElement {
   const router = useRouter();

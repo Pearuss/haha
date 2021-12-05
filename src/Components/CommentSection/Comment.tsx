@@ -3,7 +3,7 @@ import React, { ReactElement, useState, useCallback } from 'react';
 import Image from 'next/image';
 // import FormComment from './FormComment';
 import parse from 'html-react-parser';
-import InputMention from '../InputMention/InputMention';
+import InputMention from '../../common/InputMention/InputMention';
 import { truncate } from '../../utilities/helper';
 import { useAuth } from '../../hooks';
 import { useRouter } from 'next/router';

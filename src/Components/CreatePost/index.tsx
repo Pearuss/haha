@@ -8,7 +8,7 @@ import Switch from '@material-ui/core/Switch';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import MarkDown from '../MarkDown/MarkDown';
+import MarkDown from './MarkDown';
 
 function ModalPost({
   newPost,

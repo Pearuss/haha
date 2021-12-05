@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import LoginComponent from '../common/Auth/login';
+import LoginComponent from '../Components/Auth/login';
 import ThemeWrapper from '../container/themeWrapper';
 import { useAuth } from '../hooks';
 import adminTheme from '../styles/theme/materialClient';

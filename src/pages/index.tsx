@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from 'react';
 
 // import Link from 'next/link';
-import Post from '../common/Post';
+import Post from '../Components/Post';
 import { MainLayout } from '../layout';
-import TagSectionMobile from '../common/TagContent/TagSectionMobile';
+import TagSectionMobile from '../Components/TagContent/TagSectionMobile';
 
 // import { LayoutMeta } from 'next';
 

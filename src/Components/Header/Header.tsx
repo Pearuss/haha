@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect } from 'react';
 
-import Menu from '../Menu';
+import Menu from './Menu';
 import HeaderLeft from './HeaderLeft';
 import HeaderMiddle from './HeaderMiddle';
 import HeaderRight from './HeaderRight';

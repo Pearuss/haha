@@ -2,18 +2,18 @@ import React, { ReactElement, useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 
-import TagSectionMobile from '../../common/TagContent/TagSectionMobile';
+import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CloseIcon from '@mui/icons-material/Close';
 import Image from 'next/image';
-import PostDetail from '../../common/PostDetail';
-import { ContentIndex } from '../../common/ContentIndex';
+import PostDetail from '../../Components/PostDetail/PostDetail';
+import { ContentIndex } from '../../Components/PostDetail/ContentIndex';
 import { DetailPostLayout } from '../../layout';
 import { useAuth } from '../../hooks';
 import Link from 'next/link';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-import CommentSection from '../../common/CommentSection/CommentSection';
+import CommentSection from '../../Components/CommentSection/CommentSection';
 
 function Index({ data }: any): ReactElement {
   const [isLogin, setIsLogin] = useState(false);

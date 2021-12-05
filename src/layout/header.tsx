@@ -1,8 +1,8 @@
 import React from 'react';
-import Auth from '../common/Auth/auth';
-import Footer from '../common/Footer';
+import Auth from '../Components/Auth/auth';
+import Footer from '../Components/Footer';
 
-import Header from '../common/Header/Header';
+import Header from '../Components/Header/Header';
 import { LayoutProps } from '../modals';
 
 export function HeaderLayout({ children }: LayoutProps) {

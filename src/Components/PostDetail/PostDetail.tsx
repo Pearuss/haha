@@ -1,9 +1,9 @@
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import CodeBlock from '../common/CodeBlock';
+import CodeBlock from './CodeBlock';
 import Image from 'next/image';
-import { truncateBody } from '../utilities/helper';
-import { useAuth } from '../hooks';
+import { truncateBody } from '../../utilities/helper';
+import { useAuth } from '../../hooks';
 import { useRouter } from 'next/router';
 
 function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactElement {
