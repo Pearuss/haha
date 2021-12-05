@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useRef } from 'react';
 
 import { EyeIcon, ChatIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
@@ -9,12 +9,12 @@ function Post({ post }: any): ReactElement {
   const linkDetail = `/posts/${post.id}`;
   return (
     <div className="relative flex ssm:flex-col w-full ssm:h-auto ssm:max-h-full h-[280px] max-h-[280px] bg-white rounded-lg px-3 py-5 mb-4 cursor-pointer ssm:border ssm:border-gray-300 ssm:p-4 ssm:pb-20">
-      <div className="relative overflow-hidden max-w-[200px] ssm:max-w-full ssm:w-full w-[200px] ssm:min-h-[200px] h-auto">
-        <Image
-          className="rounded-md overflow-hidden object-contain ssm:object-cover "
+      <div className="relative my-[0.4rem] overflow-hidden max-w-[200px] ssm:max-w-full ssm:w-full w-[200px] ssm:min-h-[200px] h-auto ">
+        <img
+          className="absolute inset-0 overflow-hidden rounded"
           src="/images/toc2.jpg"
-          layout="fill"
-          priority
+          // layout="fill"
+          // priority
         />
       </div>
       <div className="flex-1 ml-5 relative cursor-auto ssm:w-full ssm:flex ssm:items-center ssm:flex-col ssm:ml-0 text-gray-900">
