@@ -91,7 +91,6 @@
     ]
   },
   "menu": {
-    "home": [],
     "operator": [
       {
         "id": 1,
@@ -202,6 +201,7 @@
       "inWorks": "55",
       "comments": "35",
       "views": "61",
+      "img": "https://sadesign.vn/wp-content/uploads/2020/11/di-doc-bai-bien.jpg",
       "id": 1,
       "title": "Sunt aut facere repellat provident occaecati",
       "body": "# What is this issue?\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\n# Solutions\n```js\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\n```\n# Conclude\nSearch for resources to solve problems like stackoverflow, github,...Search for resources to solve problems like stackoverflow, github,..."
@@ -225,6 +225,7 @@
       "inWorks": "50",
       "comments": "55",
       "views": "71",
+      "img": "https://img.thuthuatphanmem.vn/uploads/2018/10/03/anh-bai-bien-dep-va-tho-mong_111547812.jpg",
       "id": 2,
       "title": "Qui est esse",
       "body": "# Heading 1"
@@ -248,6 +249,7 @@
       "inWorks": "50",
       "comments": "75",
       "views": "31",
+      "img": "https://sadesign.vn/wp-content/uploads/2020/11/di-doc-bai-bien.jpg",
       "id": 3,
       "title": "Ea molestias quasi exercitationem repellat qui ipsa sit aut",
       "body": "Et iusto sed quo iure voluptatem occaecati omnis eligendi aut ad voluptatem doloribus vel accusantium quis pariatur molestiae porro eius odio et labore et velit aut"
@@ -271,6 +273,7 @@
       "inWorks": "60",
       "comments": "22",
       "views": "27",
+      "img": "https://sadesign.vn/wp-content/uploads/2020/11/di-doc-bai-bien.jpg",
       "id": 4,
       "title": "Eum et est occaecati",
       "body": "Ullam et saepe reiciendis voluptatem adipisci sit amet autem assumenda provident rerum culpa quis hic commodi nesciunt rem tenetur doloremque ipsam iure quis sunt voluptatem rerum illo velit"
@@ -294,6 +297,7 @@
       "inWorks": "20",
       "comments": "26",
       "views": "21",
+      "img": "https://sadesign.vn/wp-content/uploads/2020/11/di-doc-bai-bien.jpg",
       "id": 5,
       "title": "Nesciunt quas odio",
       "body": "Repudiandae veniam quaerat sunt sed alias aut fugiat sit autem sed est voluptatem omnis possimus esse voluptatibus quis est aut tenetur dolor neque"
@@ -317,6 +321,7 @@
       "inWorks": "50",
       "comments": "25",
       "views": "21",
+      "img": "https://sadesign.vn/wp-content/uploads/2020/11/di-doc-bai-bien.jpg",
       "id": 6,
       "title": "Dolorem eum magni eos aperiam quia",
       "body": "Ut aspernatur corporis harum nihil quis provident sequi mollitia nobis aliquid molestiae perspiciatis et ea nemo ab reprehenderit accusantium quasvoluptate dolores velit et doloremque molestiae"
@@ -340,6 +345,7 @@
       "inWorks": "52",
       "comments": "25",
       "views": "21",
+      "img": "https://sadesign.vn/wp-content/uploads/2020/11/di-doc-bai-bien.jpg",
       "id": 7,
       "title": "Magnam facilis autem",
       "body": "Dolore placeat quibusdam ea quo vitae magni quis enim qui quis quo nemo aut saepe quidem repellat excepturi ut quia sunt ut sequi eos ea sed quas"
@@ -363,6 +369,7 @@
       "inWorks": "50",
       "comments": "25",
       "views": "21",
+      "img": "https://sadesign.vn/wp-content/uploads/2020/11/di-doc-bai-bien.jpg",
       "id": 8,
       "title": "Dolorem dolore est ipsam",
       "body": "Dignissimos aperiam dolorem qui eum facilis quibusdam animi sint suscipit qui sint possimus cum quaerat magni maiores excepturi ipsam ut commodi dolor voluptatum modi aut vitae"
@@ -386,6 +393,7 @@
       "inWorks": "50",
       "comments": "25",
       "views": "21",
+      "img": "https://sadesign.vn/wp-content/uploads/2020/11/di-doc-bai-bien.jpg",
       "id": 9,
       "title": "Nesciunt iure omnis accusantium",
       "body": "Consectetur animi nesciunt iure dolore enim quia ad veniam autem ut quam aut nobis et est aut quod aut provident voluptas autem voluptas"
@@ -409,6 +417,7 @@
       "inWorks": "56",
       "comments": "25",
       "views": "21",
+      "img": "https://sadesign.vn/wp-content/uploads/2020/11/di-doc-bai-bien.jpg",
       "id": 10,
       "title": "Optio molestias id quia eum",
       "body": "Quo et expedita modi cum officia vel magni doloribus qui repudiandae vero nisi sit quos veniam quod sed accusamus veritatis error"
@@ -432,6 +441,7 @@
       "inWorks": "50",
       "comments": "25",
       "views": "21",
+      "img": "https://sadesign.vn/wp-content/uploads/2020/11/di-doc-bai-bien.jpg",
       "id": 17,
       "title": "Nesciunt iure omnis accusantium",
       "body": "Consectetur animi nesciunt iure dolore enim quia ad veniam autem ut quam aut nobis et est aut quod aut provident voluptas autem voluptas"
@@ -455,6 +465,7 @@
       "inWorks": "50",
       "comments": "25",
       "views": "21",
+      "img": "https://sadesign.vn/wp-content/uploads/2020/11/di-doc-bai-bien.jpg",
       "id": 12,
       "title": "Nesciunt iure omnis accusantium",
       "body": "Consectetur animi nesciunt iure dolore enim quia ad veniam autem ut quam aut nobis et est aut quod aut provident voluptas autem voluptas"
@@ -478,6 +489,7 @@
       "inWorks": "50",
       "comments": "25",
       "views": "21",
+      "img": "https://sadesign.vn/wp-content/uploads/2020/11/di-doc-bai-bien.jpg",
       "id": 13,
       "title": "Nesciunt iure omnis accusantium",
       "body": "Consectetur animi nesciunt iure dolore enim quia ad veniam autem ut quam aut nobis et est aut quod aut provident voluptas autem voluptas"
@@ -521,349 +533,64 @@
   ],
   "allComments": [
     {
-      "id": "1",
-      "body": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-      "username": "Rex",
-      "userId": "5",
-      "parentId": null,
-      "postId": "1",
-      "createdAt": "2021-08-16T23: 00: 33.010+02: 00"
-    },
-    {
-      "id": "2",
-      "body": "The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-      "username": "Peter",
-      "userId": "4",
-      "parentId": null,
-      "postId": "1",
-      "createdAt": "2021-08-16T23: 00: 33.010+02: 00"
-    },
-    {
-      "id": "3",
-      "body": "Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-      "username": "Rex",
-      "userId": "5",
-      "parentId": "1",
-      "postId": "1",
-      "createdAt": "2021-08-16T23: 00: 33.010+02: 00"
-    },
-    {
-      "id": "4",
-      "body": "Web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-      "username": "Yohne",
-      "userId": "3",
-      "parentId": null,
-      "postId": "2",
-      "createdAt": "2021-08-16T23: 00: 33.010+02: 00"
-    },
-    {
-      "id": "5",
-      "body": "Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-      "username": "Yohne",
-      "userId": "3",
-      "parentId": null,
-      "postId": "2",
-      "createdAt": "2021-08-16T23: 00: 33.010+02: 00"
-    },
-    {
-      "id": "cy47e1dsa",
-      "body": "test",
-      "parentId": "1",
-      "userId": "2",
-      "username": "Paine",
-      "postId": "1",
-      "createdAt": 1637288044290,
-      "updatedAt": 1637288044290
-    },
-    {
-      "id": "g1yt9mqqd",
-      "body": "@Rex test",
-      "parentId": "1",
-      "userId": "2",
-      "username": "Paine",
-      "postId": "1",
-      "createdAt": 1637288456019,
-      "updatedAt": 1637288456019
-    },
-    {
-      "id": "xd6dxigkv",
-      "body": "@Rex test",
-      "parentId": "3",
-      "userId": "2",
-      "username": "Paine",
-      "postId": "1",
-      "createdAt": 1637288742279,
-      "updatedAt": 1637288742279
-    },
-    {
-      "id": "wya1x2qfo",
-      "body": "test",
-      "parentId": null,
-      "userId": "2",
-      "username": "Paine",
-      "postId": "1",
-      "createdAt": 1637289190400,
-      "updatedAt": 1637289190400
-    },
-    {
-      "id": "sxjm1wq5e",
-      "body": "first",
-      "parentId": null,
-      "userId": "2",
-      "username": "Paine",
-      "postId": "2",
-      "createdAt": 1637289521267,
-      "updatedAt": 1637289521267
-    },
-    {
-      "id": "ho4p6tbqh",
-      "body": "hello john",
-      "parentId": null,
-      "userId": "2",
-      "username": "Paine",
-      "postId": "2",
-      "createdAt": 1637289531764,
-      "updatedAt": 1637289531764
-    },
-    {
-      "id": "313a8evfw",
-      "body": "hello",
-      "parentId": null,
-      "userId": "2",
-      "username": "Paine",
-      "postId": "1",
-      "createdAt": 1637289570006,
-      "updatedAt": 1637289570006
-    },
-    {
-      "id": "xiiiajnxq",
-      "body": "test",
-      "parentId": null,
-      "userId": "2",
-      "username": "Paine",
-      "postId": "1",
-      "createdAt": 1637289619527,
-      "updatedAt": 1637289619527
-    },
-    {
-      "id": "0mo4vvk4j",
-      "body": "@Rex e",
-      "parentId": "1",
-      "userId": "2",
-      "username": "Paine",
-      "postId": "1",
-      "createdAt": 1637290009253,
-      "updatedAt": 1637290009253
-    },
-    {
-      "id": "gifbrusiz",
-      "body": "eee",
-      "parentId": "2",
-      "userId": "2",
-      "username": "Paine",
-      "postId": "1",
-      "createdAt": 1637290027019,
-      "updatedAt": 1637290027019
-    },
-    {
-      "id": "332bfxk8c",
-      "body": "eeeeeeeeeeeeeeeee",
-      "parentId": null,
-      "userId": "2",
-      "username": "Paine",
-      "postId": "1",
-      "createdAt": 1637290039286,
-      "updatedAt": 1637290039286
-    },
-    {
-      "id": "xcx5ec1gf",
-      "body": "<a href=\"/user/1\" style=\"color:#ADE3FF; font-weight: 500;\">@Peter</a>  alo<br/><a href=\"/user/2\" style=\"color:#ADE3FF; font-weight: 500;\">@Tony</a>  alolll",
-      "parentId": null,
-      "userId": "2",
-      "username": "Paine",
-      "postId": "1",
-      "createdAt": 1637290097120,
-      "updatedAt": 1637290097120
-    },
-    {
-      "id": "e41nbgpdn",
-      "body": "last comment",
-      "parentId": null,
-      "userId": "2",
-      "username": "Paine",
-      "postId": "1",
-      "createdAt": 1637290854030,
-      "updatedAt": 1637290854030
-    },
-    {
-      "id": "loc2ecu5l",
-      "body": "@Rex testtttttt",
-      "parentId": "1",
-      "userId": "2",
-      "username": "Paine",
-      "postId": "1",
-      "createdAt": 1637290887752,
-      "updatedAt": 1637290887752
-    },
-    {
-      "id": "yey9yu3xv",
-      "body": "@Paine alo",
-      "parentId": "1",
-      "userId": "2",
-      "username": "Paine",
-      "postId": "1",
-      "createdAt": 1637290898270,
-      "updatedAt": 1637290898270
-    },
-    {
-      "id": "j7wajyz1x",
-      "body": "test",
-      "parentId": null,
-      "userId": "2",
-      "username": "Pearuss",
-      "postId": "3",
-      "createdAt": 1637459459451,
-      "updatedAt": 1637459459451
-    },
-    {
-      "id": "rvad7rtfw",
-      "body": "<a href=\"/user/1 style=\"color:#ADE3FF; font-weight: 500;\">@Paine</a> ok bro",
-      "parentId": "1",
-      "userId": "2",
-      "username": "Pearuss",
-      "postId": "1",
-      "createdAt": 1637546883092,
-      "updatedAt": 1637546883092
-    },
-    {
-      "id": "6j9exg280",
-      "body": "<a href=\"/user/1\" style=\"color:#ADE3FF; font-weight: 500;\">@Pearuss</a> ok",
-      "parentId": "1",
-      "userId": "2",
-      "username": "Pearuss",
-      "postId": "1",
-      "createdAt": 1637546977300,
-      "updatedAt": 1637546977300
-    },
-    {
-      "id": "8iy8s77g8",
-      "body": "<a href=\"/user/1\" style=\"color:#ADE3FF; font-weight: 500;\">@Rex</a> ?? cai gi vạy ba",
-      "parentId": "1",
-      "userId": "2",
-      "username": "Pearuss",
-      "postId": "1",
-      "createdAt": 1637547149495,
-      "updatedAt": 1637547149495
-    },
-    {
-      "id": "afwwr65fb",
-      "body": "<a href=\"/user/1\" style=\"color:#ADE3FF; font-weight: 500;\">@Paine</a> what's up bro",
-      "parentId": "1",
-      "userId": "2",
-      "username": "Pearuss",
-      "postId": "1",
-      "createdAt": 1637547229543,
-      "updatedAt": 1637547229543
-    },
-    {
-      "id": "i9rdwowon",
-      "body": "<a href=\"/user/1\" style=\"color:#ADE3FF; font-weight: 500;\">@Paine</a> miccheck",
-      "parentId": "1",
-      "userId": "2",
-      "username": "Pearuss",
-      "postId": "1",
-      "createdAt": 1637547302434,
-      "updatedAt": 1637547302434
-    },
-    {
-      "id": "13p2u9n04",
-      "body": "<a href=\"/user/1\" style=\"color:#ADE3FF; font-weight: 500;\">@Paine</a> alooo",
-      "parentId": "1",
-      "userId": "2",
-      "username": "Pearuss",
-      "postId": "1",
-      "createdAt": 1637563187388,
-      "updatedAt": 1637563187388
-    },
-    {
-      "id": "pg5n9htq4",
-      "body": "<a href=\"/user/1\" style=\"color:#ADE3FF; font-weight: 500;\">@Peter</a>  hi",
+      "id": "cadoxpckb",
+      "body": "Great",
       "parentId": null,
       "userId": "2",
       "username": "Pearuss",
       "postId": "1",
-      "createdAt": 1637655932697,
-      "updatedAt": 1637655932697
+      "createdAt": 1638678889272,
+      "updatedAt": 1638678889272
     },
     {
-      "id": "bsnrwjx0b",
-      "body": "<a href=\"/user/1\" style=\"color:#ADE3FF; font-weight: 500;\">ừ</a>",
-      "parentId": "pg5n9htq4",
+      "id": "cibn7651r",
+      "body": "Alo",
+      "parentId": "cadoxpckb",
       "userId": "2",
       "username": "Pearuss",
       "postId": "1",
-      "createdAt": 1637655938517,
-      "updatedAt": 1637655938517
+      "createdAt": 1638678979336,
+      "updatedAt": 1638678979336
     },
     {
-      "id": "gipbhlqwn",
-      "body": "<a href=\"/user/1\" style=\"color:#ADE3FF; font-weight: 500;\">@Pearuss</a> a",
-      "parentId": "pg5n9htq4",
+      "id": "qa4y9ikae",
+      "body": "<a href=\"/user/1\" style=\"color:#76dce6; font-weight: 500;\">@Pearuss:</a> aloooo",
+      "parentId": "cadoxpckb",
       "userId": "2",
       "username": "Pearuss",
       "postId": "1",
-      "createdAt": 1637655943355,
-      "updatedAt": 1637655943355
+      "createdAt": 1638678988510,
+      "updatedAt": 1638678988510
     },
     {
-      "id": "eh9uwj2mu",
-      "body": "Hello guy",
+      "id": "7w6g3h5xh",
+      "body": "Perfect",
       "parentId": null,
       "userId": "2",
       "username": "Pearuss",
       "postId": "1",
-      "createdAt": 1637657908551,
-      "updatedAt": 1637657908551
+      "createdAt": 1638679551722,
+      "updatedAt": 1638679551722
     },
     {
-      "id": "qaoxzd68z",
-      "body": "<a href=\"/user/1\" style=\"color:#ADE3FF; font-weight: 500;\">Hi</a> <a href=\"/user/1\" style=\"color:#ADE3FF; font-weight: 500;\">@Peter</a>",
-      "parentId": "eh9uwj2mu",
+      "id": "jeuy3nbzz",
+      "body": "Good!",
+      "parentId": "7w6g3h5xh",
       "userId": "2",
       "username": "Pearuss",
       "postId": "1",
-      "createdAt": 1637657915583,
-      "updatedAt": 1637657915583
+      "createdAt": 1638679557885,
+      "updatedAt": 1638679557885
     },
     {
-      "id": "ylsuybjnr",
-      "body": "<a href=\"/user/1\" style=\"color:#ADE3FF; font-weight: 500;\">@Pearuss</a> yeb",
-      "parentId": "eh9uwj2mu",
+      "id": "rc1fin56p",
+      "body": "<a href=\"/user/1\" style=\"color:#76dce6; font-weight: 500;\">@Pearuss:</a> Goodd!",
+      "parentId": "7w6g3h5xh",
       "userId": "2",
       "username": "Pearuss",
       "postId": "1",
-      "createdAt": 1637657922493,
-      "updatedAt": 1637657922493
-    },
-    {
-      "id": "6lqbmy6rq",
-      "body": "<a href=\"/user/1\" style=\"color:#ADE3FF; font-weight: 500;\">@Rex</a>",
-      "parentId": "1",
-      "userId": "2",
-      "username": "Pearuss",
-      "postId": "1",
-      "createdAt": 1637658007112,
-      "updatedAt": 1637658007112
-    },
-    {
-      "id": "kvch3rask",
-      "body": "<a href=\"/user/1\" style=\"color:#ADE3FF; font-weight: 500;\">@Rex</a> alo",
-      "parentId": "1",
-      "userId": "2",
-      "username": "Pearuss",
-      "postId": "1",
-      "createdAt": 1637730147918,
-      "updatedAt": 1637730147918
+      "createdAt": 1638679567048,
+      "updatedAt": 1638679567048
     }
   ]
 }

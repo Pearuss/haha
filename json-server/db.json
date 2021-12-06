@@ -60,8 +60,18 @@
       }
     ]
   },
+  "menu1": [
+    {
+      "category1": [1,2,3]
+    },
+    {
+      "category1": [1,2,3]
+    },
+    {
+      "category1": [1,2,3]
+    }
+  ],
   "menu": {
-    "home": [],
     "operator": [
       {
         "id": 1,
@@ -189,22 +199,6 @@
           "userId": "2",
           "parentId": null,
           "createdAt": "2021-08-16T23: 00: 33.010+02: 00"
-        },
-        {
-          "id": "3",
-          "body": "First comment first child",
-          "username": "Rudolph",
-          "userId": "2",
-          "parentId": "1",
-          "createdAt": "2021-08-16T23: 00: 33.010+02: 00"
-        },
-        {
-          "id": "4",
-          "body": "Second comment second child",
-          "username": "Rudolph",
-          "userId": "2",
-          "parentId": "2",
-          "createdAt": "2021-08-16T23: 00: 33.010+02: 00"
         }
       ],
       "title": "Sunt aut facere repellat provident occaecati",
@@ -237,30 +231,6 @@
           "username": "Jack",
           "userId": "1",
           "parentId": null,
-          "createdAt": "2021-08-16T23: 00: 33.010+02: 00"
-        },
-        {
-          "id": "2",
-          "body": "Second comment",
-          "username": "Kailee",
-          "userId": "3",
-          "parentId": null,
-          "createdAt": "2021-08-16T23: 00: 33.010+02: 00"
-        },
-        {
-          "id": "3",
-          "body": "First comment first child",
-          "username": "Kailee",
-          "userId": "3",
-          "parentId": "1",
-          "createdAt": "2021-08-16T23: 00: 33.010+02: 00"
-        },
-        {
-          "id": "4",
-          "body": "Second comment second child",
-          "username": "Kailee",
-          "userId": "3",
-          "parentId": "2",
           "createdAt": "2021-08-16T23: 00: 33.010+02: 00"
         }
       ],
@@ -303,22 +273,6 @@
           "userId": "4",
           "parentId": null,
           "createdAt": "2021-08-16T23: 00: 33.010+02: 00"
-        },
-        {
-          "id": "3",
-          "body": "First comment first child",
-          "username": "Rosenbaum",
-          "userId": "4",
-          "parentId": "1",
-          "createdAt": "2021-08-16T23: 00: 33.010+02: 00"
-        },
-        {
-          "id": "4",
-          "body": "Second comment second child",
-          "username": "Rosenbaum",
-          "userId": "4",
-          "parentId": "2",
-          "createdAt": "2021-08-16T23: 00: 33.010+02: 00"
         }
       ],
       "title": "Ea molestias quasi exercitationem repellat qui ipsa sit aut",
@@ -349,16 +303,6 @@
           "id": 1,
           "name": "Rosenbaum",
           "content": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
-        },
-        {
-          "id": 2,
-          "name": "Rex",
-          "content": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
-        },
-        {
-          "id": 3,
-          "name": "Christiansen",
-          "content": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
         }
       ],
       "title": "Eum et est occaecati",
@@ -388,16 +332,6 @@
         {
           "id": 1,
           "name": "Hester",
-          "content": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
-        },
-        {
-          "id": 2,
-          "name": "Rudolph",
-          "content": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
-        },
-        {
-          "id": 3,
-          "name": "Block",
           "content": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."
         }
       ],

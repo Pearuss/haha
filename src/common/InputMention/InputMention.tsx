@@ -11,7 +11,7 @@ import { replaceTagBr, convertReplyTagInit } from '../../utilities/helper';
 
 import { APIservice } from './services';
 
-const NewPost = ({ handleSubmit, initialText, submitLabel, handleCancel }: any) => {
+const InputMention = ({ handleSubmit, initialText, submitLabel, handleCancel }: any) => {
   const [content, setContent] = useState<any>(initialText);
   const [users, setUsers] = useState<any>([]);
   const [tags, setTags] = useState<any>([]);
@@ -157,4 +157,4 @@ const NewPost = ({ handleSubmit, initialText, submitLabel, handleCancel }: any) 
   );
 };
 
-export default NewPost;
+export default InputMention;

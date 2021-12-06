@@ -3,7 +3,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import useFetch from '../../hooks/use-fetch';
 
 // import FormComment from './FormComment';
-import InputMention from '../InputMention/InputMention';
+import InputMention from '../../common/InputMention/InputMention';
 // import { getComments as getCommentsApi, createComment as createCommentApi } from './api';
 import Comment from './Comment';
 

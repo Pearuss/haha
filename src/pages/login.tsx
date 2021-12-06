@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import UseForm from "../hooks/useFormHook";
 
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import LoginComponent from '../common/Auth/login';
+import LoginComponent from '../Components/Auth/login';
 import ThemeWrapper from '../container/themeWrapper';
 import { useAuth } from '../hooks';
 import adminTheme from '../styles/theme/materialClient';
@@ -20,12 +20,26 @@ const schema = yup.object().shape({
 });
 
 const Login = () => {
-  const { login } = useAuth({
-    revalidateOnMount: false,
-  });
+  // const { login, profile, firstLoading } = useAuth({
+  //   revalidateOnMount: false,
+  // });
+  const { login, profile, firstLoading } = useAuth();
+  // const [isLogin, setIsLogin] = useState(false);
 
   //   const dispatch = useDispatch();
+  // console.log(isLogin);
+
   const router = useRouter();
+
+  useEffect(() => {
+    if (!firstLoading && !profile?.username) {
+      // setIsLogin(false);
+      return;
+    } else if (profile?.username) {
+      router.replace('/');
+    }
+  }, [profile, firstLoading]);
+
   const { handleSubmit, control, formState } = useForm({
     mode: 'all',
     // criteriaMode: 'firstError',

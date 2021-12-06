@@ -2,16 +2,18 @@ import React, { ReactElement, useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 
-import TagSectionMobile from '../../common/TagContent/TagSectionMobile';
+import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CloseIcon from '@mui/icons-material/Close';
 import Image from 'next/image';
-import PostDetail from '../../common/PostDetail';
-import { ContentIndex } from '../../common/ContentIndex';
+import PostDetail from '../../Components/PostDetail/PostDetail';
+import { ContentIndex } from '../../Components/PostDetail/ContentIndex';
 import { DetailPostLayout } from '../../layout';
 import { useAuth } from '../../hooks';
+import Link from 'next/link';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-import CommentSection from '../../common/CommentSection/CommentSection';
+import CommentSection from '../../Components/CommentSection/CommentSection';
 
 function Index({ data }: any): ReactElement {
   const [isLogin, setIsLogin] = useState(false);
@@ -171,7 +173,15 @@ function Index({ data }: any): ReactElement {
           isShowContentIndex == false ? 'flex-1 ml-[3vw] mr-[3vw]' : ''
         } w-full mr-[2vw] pl-2 md:w-[100%] md:mx-[3vw] md:pl-0`}
       >
-        <p className="leading-8 mb-4 text-gray-600 font-medium text-base">Home / Post</p>
+        <div className="flex items-center text-gray-600 text-sm">
+          <Link href="/">
+            <p className="leading-8 cursor-pointer">Home</p>
+          </Link>
+          <ArrowForwardIosIcon className="px-2" />
+          <Link href="#">
+            <p className="leading-8 cursor-pointer">All articles</p>
+          </Link>
+        </div>
         <PostDetail dataPostDetail={data} isReadMore={isReadMore} setIsReadMore={setIsReadMore} />
         {isLogin && (
           <div className="flex items-center justify-between py-4 mt-12 shadow-sm font-medium text-gray-700 rounded-md bg-white mb-4">
@@ -193,18 +203,7 @@ function Index({ data }: any): ReactElement {
           />
         )}
       </div>
-
-      {/* {isLogin &&
-        data.allComments?.map((comment: any) => (
-          <CommentSection key={comment.id} comment={comment} />
-        ))} */}
-      <div
-        className={`w-full transition duration-200 ease-in-out 3xl:max-w-[29vw] 2xl:max-w-[28vw] lg:max-w-[24vw] xl:max-w-[26vw] md:w-[35vw] md:h-[100vh] md:fixed md:top-0 md:right-0 md:z-50 md:bg-white md:px-3 md:border-gray-300 md:shadow-lg md:border-l md:overflow-scroll sm:w-[45vw] sm:h-[100vh] sm:fixed sm:top-0 sm:right-0 sm:z-50 sm:bg-white sm:px-3 sm:border-gray-300 sm:shadow-lg sm:border-l sm:overflow-scroll ssm:w-[50vw] ssm:h-[100vh] ssm:fixed ssm:top-0 ssm:right-0 ssm:z-50 ssm:bg-white ssm:px-3 ssm:border-gray-300 ssm:shadow-lg ssm:border-l ssm:overflow-scroll ${
-          isShowTagMobile ? '' : 'md:translate-x-full sm:translate-x-full ssm:translate-x-full'
-        }`}
-      >
-        <TagSectionMobile />
-      </div>
+      <TagSectionMobile isShowTagMobile={isShowTagMobile} />
       {/* cover */}
       <div className="coverTag hidden fixed z-50 top-0 left-0 w-[100vw] h-[100vh] bg-gray-600 bg-opacity-30"></div>
     </div>
