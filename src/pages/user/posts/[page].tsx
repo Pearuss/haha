@@ -80,11 +80,11 @@ function PostsPage() {
       <div className="relative w-full">
         <div className="flex items-center text-gray-600 text-sm">
           <Link href="/">
-            <p className="leading-8 underline hover:no-underline cursor-pointer">Home</p>
+            <p className="leading-8 cursor-pointer">Home</p>
           </Link>
           <ArrowForwardIosIcon className="px-2" />
           <Link href="/user/posts/1">
-            <p className="leading-8 underline hover:no-underline cursor-pointer">My Post</p>
+            <p className="leading-8 cursor-pointer">My Post</p>
           </Link>
         </div>
         <div className="mt-0 md:hidden sm:hidden ssm:hidden">

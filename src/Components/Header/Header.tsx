@@ -23,10 +23,10 @@ const Header = (): ReactElement => {
 
         if (st > lastScrollTop) {
           header.classList.remove('top-0');
-          header.classList.add('-top-18');
+          header.classList.add('-top-15');
         } else {
           header.classList.add('top-0');
-          header.classList.remove('-top-18');
+          header.classList.remove('-top-15');
         }
         lastScrollTop = st <= 0 ? 0 : st;
       },

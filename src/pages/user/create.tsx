@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import useSWR from 'swr';
 
 import ModalPost from '../../Components/CreatePost';
@@ -7,9 +7,16 @@ import { HeaderLayout } from '../../layout';
 
 interface INewPost {
   title: string;
+  shortContent: string;
   content: string;
+  status: true;
+  reason: string;
+  sectionNo: any;
+  partialId: any;
   tag: string[];
-  category: string;
+  mainCategory: string;
+  relatedCategory: string[];
+  image: any[];
   public: boolean;
 }
 
@@ -21,99 +28,90 @@ function UserCreatePage() {
 
   const [newPost, setNewPost] = useState<INewPost>({
     title: '',
+    shortContent: '',
     content: '',
+    status: true,
+    reason: '',
+    sectionNo: 1,
+    partialId: '',
     tag: [],
-    category: catData?.[0]?.name,
+    mainCategory: '',
+    relatedCategory: [],
+    image: [],
     public: true,
   });
+  console.log(newPost);
 
-  const handleUpload = () => {
-    const tagCheckbox: NodeList | any = document.querySelectorAll('.tagcheckbox');
-
-    tagCheckbox.forEach((tagItem: HTMLInputElement) => {
-      tagItem.checked = false;
-    });
-
-    setNewPost({
-      title: '',
-      content: '',
-      tag: [],
-      category: catData[0].name,
-      public: true,
-    });
+  const changeTitle = (e: any) => {
+    setNewPost((state: any) => ({ ...state, title: e.target.value }));
   };
 
-  useEffect(() => {
-    setNewPost({
-      title: '',
-      content: '',
-      tag: [],
-      category: catData?.[0]?.name,
-      public: true,
-    });
-  }, [catData]);
+  const changeShortContent = (e: any) => {
+    setNewPost((state: any) => ({ ...state, shortContent: e.target.value }));
+  };
 
-  // Select tags
-  useEffect(() => {
-    const tagE: HTMLElement | any = document.querySelector('.tag');
-    const tagSelect: HTMLElement | any = document.querySelector('.tagselect');
-    const tagCheckbox: NodeList | any = document.querySelectorAll('.tagcheckbox');
-    tagE.style.display = 'none';
+  const changeSectionNo = (value: any) => {
+    setNewPost((state: any) => ({ ...state, sectionNo: +value.value }));
+  };
 
-    tagSelect.addEventListener('click', () => {
-      if (tagE.style.display === 'none') {
-        tagE.style.display = 'flex';
-      } else {
-        tagE.style.display = 'none';
+  const changeMainCategory = (value: any) => {
+    setNewPost((state: any) => ({ ...state, mainCategory: value.value }));
+  };
+
+  const changeRelatedCategory = (value: any) => {
+    const newrelCat = value.map((cat: any) => cat.value);
+    setNewPost((state: any) => ({ ...state, relatedCategory: newrelCat }));
+  };
+
+  const changeTag = (value: any) => {
+    const newTag = value.map((tag: any) => tag.value);
+    setNewPost((state: any) => ({ ...state, tag: newTag }));
+  };
+
+  const changeStatus = () => {
+    setNewPost((state: any) => ({ ...state, status: !newPost.status }));
+  };
+
+  const changePublic = () => {
+    setNewPost((state: any) => ({
+      ...state,
+      public: !state.public,
+    }));
+  };
+
+  const imageHandler = (e: any) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        let newImg = [...newPost.image];
+        newImg.push(reader.result);
+        setNewPost((state: any) => ({ ...state, image: newImg }));
       }
-    });
-
-    tagCheckbox.forEach((tagItem: HTMLInputElement) => {
-      tagItem.addEventListener('click', () => {
-        if (tagItem.checked) {
-          setNewPost((state) => {
-            const newTag = state.tag.slice();
-            newTag.push(tagItem.name);
-
-            return {
-              ...state,
-              tag: newTag,
-            };
-          });
-        } else {
-          setNewPost((state) => {
-            const newTag: string[] = state.tag.slice();
-            const index: number = newTag.indexOf(tagItem.name);
-
-            newTag.splice(index, 1);
-
-            return {
-              ...state,
-              tag: newTag,
-            };
-          });
-        }
-      });
-    });
-  }, []);
-
-  // Select category
-  useEffect(() => {
-    const categoryE: HTMLElement | any = document.querySelector('.category');
-
-    categoryE.addEventListener('change', () => {
-      setNewPost((state) => ({ ...state, category: categoryE.value }));
-    });
-  }, []);
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+  const removeImage = (index: number) => {
+    let newImg = [...newPost.image];
+    newImg.splice(index, 1);
+    setNewPost((state: any) => ({ ...state, image: newImg }));
+  };
 
   return (
-    <div className="mx-auto mt-3 w-full">
-      {/* <p className="leading-8 text-gray-600 font-medium text-base">Home / Create Post</p> */}
+    <div className="mx-auto mt-3 h-2/3 w-full">
       <ModalPost
         newPost={newPost}
         setNewPost={setNewPost}
+        changeTitle={changeTitle}
+        changeShortContent={changeShortContent}
+        changeSectionNo={changeSectionNo}
+        changeMainCategory={changeMainCategory}
+        changeRelatedCategory={changeRelatedCategory}
+        changeTag={changeTag}
+        changeStatus={changeStatus}
+        changePublic={changePublic}
         catData={catData}
-        handleUpload={handleUpload}
+        imageHandler={imageHandler}
+        removeImage={removeImage}
         tagData={tagData?.followingTags}
       />
     </div>
