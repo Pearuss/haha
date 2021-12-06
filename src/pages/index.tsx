@@ -121,8 +121,9 @@ export const getStaticProps = async () => {
         comments: post.comments,
         tags: post.tags,
         author: post.author,
+        img: post.img
       })),
     },
-    revalidate: 5,
+    revalidate: 1,
   };
 };

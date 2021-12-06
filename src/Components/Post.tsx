@@ -1,7 +1,7 @@
 import React, { ReactElement, useRef } from 'react';
 
 import { EyeIcon, ChatIcon } from '@heroicons/react/outline';
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 import { truncate } from '../utilities/helper';
 
@@ -12,10 +12,12 @@ function Post({ post }: any): ReactElement {
       <div className="relative my-[0.4rem] overflow-hidden max-w-[200px] ssm:max-w-full ssm:w-full w-[200px] ssm:min-h-[200px] h-auto ">
         <img
           className="absolute inset-0 overflow-hidden rounded"
-          src="/images/toc2.jpg"
+          // src="https://tranhuuthien.com/wp-content/uploads/2021/08/kieu-toc-dap-xu-nam-7.png"
+          src={post.img}
           // layout="fill"
           // priority
         />
+
       </div>
       <div className="flex-1 ml-5 relative cursor-auto ssm:w-full ssm:flex ssm:items-center ssm:flex-col ssm:ml-0 text-gray-900">
         <Link href={linkDetail} key={post.id}>
