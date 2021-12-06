@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from 'react';
+import React, { ReactElement } from 'react';
 
 import { EyeIcon, ChatIcon } from '@heroicons/react/outline';
 // import Image from 'next/image';
