@@ -32,7 +32,6 @@ const Category = ({ data }: any): ReactElement => {
       setIsShowTagMobile(false);
     });
   }, []);
-  console.log(router.query);
 
   return (
     <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
