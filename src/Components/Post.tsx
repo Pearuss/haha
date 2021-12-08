@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef } from 'react';
+import React, { ReactElement } from 'react';
 
 import { EyeIcon, ChatIcon } from '@heroicons/react/outline';
 // import Image from 'next/image';
@@ -17,7 +17,6 @@ function Post({ post }: any): ReactElement {
           // layout="fill"
           // priority
         />
-
       </div>
       <div className="flex-1 ml-5 relative cursor-auto ssm:w-full ssm:flex ssm:items-center ssm:flex-col ssm:ml-0 text-gray-900">
         <Link href={linkDetail} key={post.id}>
