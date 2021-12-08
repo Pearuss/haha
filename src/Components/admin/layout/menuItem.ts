@@ -14,7 +14,7 @@ const items: MenuItemType[] = [
   {
     title: 'Manage User',
     icon: { name: 'people-outline' },
-    link: { href: '/adminpanel/user' },
+    link: { href: '/adminpanel/customer' },
   },
   {
     title: 'Manage Post',
