@@ -85,6 +85,10 @@ module.exports = {
         blueLogo: '#0D55FF',
         blueTag: '#76dce6',
         blueBold: '#0D55FF',
+        textAdmin: '#222b45',
+        titleAdmin: '#EDF1F7',
+        grayBorder: '#C4C4C4',
+        blueAdmin: '#3366ff',
       },
       keyframes: {
         jelly: {

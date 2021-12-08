@@ -5,9 +5,10 @@ import PostList from '../../../Components/admin/components/PostList';
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import AdvancedSearch from '../../../Components/admin/components/AdvancedSearch';
 
-function AllPost(): ReactElement {
+function AllPost({ data }: any): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
+  console.log(data);
+  
   return (
     <LayoutAdminPage title="Home">
       <HeaderAdmin
@@ -30,17 +31,31 @@ function AllPost(): ReactElement {
           <span>Ngày duyệt</span>
           <span>Trạng thái</span>
         </div>
-        <PostList />
-        <PostList />
-        <PostList />
-        <PostList />
-        <PostList />
-        <PostList />
-        <PostList />
-        <PostList />
+        {data?.map((post: any) => (
+          <PostList key={post.id} data={post} />
+        ))}
       </div>
     </LayoutAdminPage>
   );
 }
 
 export default AllPost;
+
+export const getStaticProps = async () => {
+  const res = await fetch('http://localhost:3001/posts');
+  const posts = await res.json();
+  
+  return {
+    props: {
+      data: posts.map((post: any) => ({
+        id: post.id,
+        title: post.title,
+        body: post.body,
+        tags: post.tags,
+        author: post.author,
+        img: post.img,
+      })),
+    },
+    revalidate: 1,
+  };
+};
