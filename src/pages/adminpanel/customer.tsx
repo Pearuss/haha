@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useMemo, useState } from 'react';
 import LayoutAdminPage from '../../Components/admin/layout';
 import Checkbox from '@mui/material/Checkbox';
-import CustumerItem from '../../Components/admin/common/CustomerItem';
+import CustumerItem from '../../Components/admin/components/CustomerItem';
 import HeaderAdmin from '../../Components/admin/components/HeaderAdmin';
 import DialogDelete from '../../Components/admin/common/dialogDelete';
 
@@ -83,7 +83,7 @@ function Cpanel(): ReactElement {
   };
 
   return (
-    <LayoutAdminPage title="Home">
+    <LayoutAdminPage title="Customer">
       <HeaderAdmin
         titlePage="Khách hàng"
         subTitlePage="Tài khoản đăng kí khách hàng 6"

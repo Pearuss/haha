@@ -3,7 +3,7 @@ import LayoutAdminPage from '../../Components/admin/layout';
 import Checkbox from '@mui/material/Checkbox';
 import HeaderAdmin from '../../Components/admin/components/HeaderAdmin';
 import DialogDelete from '../../Components/admin/common/dialogDelete';
-import MemberItem from '../../Components/admin/common/MemberItem';
+import MemberItem from '../../Components/admin/components/MemberItem';
 
 function Cpanel(): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -80,7 +80,7 @@ function Cpanel(): ReactElement {
   };
 
   return (
-    <LayoutAdminPage title="Home">
+    <LayoutAdminPage title="Member">
       <HeaderAdmin
         titlePage="Members Admin"
         subTitlePage="Danh sách quản trị viên"

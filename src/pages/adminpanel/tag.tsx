@@ -3,7 +3,7 @@ import LayoutAdminPage from '../../Components/admin/layout';
 import Checkbox from '@mui/material/Checkbox';
 import HeaderAdmin from '../../Components/admin/components/HeaderAdmin';
 import AdvancedSearch from '../../Components/admin/components/AdvancedSearch';
-import TagItem from '../../Components/admin/common/TagItem';
+import TagItem from '../../Components/admin/components/TagItem';
 import DialogDelete from '../../Components/admin/common/dialogDelete';
 
 function Tag(): ReactElement {
@@ -78,7 +78,7 @@ function Tag(): ReactElement {
   };
 
   return (
-    <LayoutAdminPage title="Home">
+    <LayoutAdminPage title="HashTag">
       <HeaderAdmin titlePage="Hashtag" subTitlePage="Total 12" searchPlaceholder="Search tag..." />
       <AdvancedSearch />
       <div className="bg-white rounded p-4 px-6">

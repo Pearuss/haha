@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useMemo, useState } from 'react';
 import LayoutAdminPage from '../../../Components/admin/layout';
 import Checkbox from '@mui/material/Checkbox';
-import CategoryItem from '../../../Components/admin/common/CategoryItem';
+import CategoryItem from '../../../Components/admin/components/CategoryItem';
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import DialogDelete from '../../../Components/admin/common/dialogDelete';
 
@@ -77,7 +77,7 @@ function Category(): ReactElement {
   };
 
   return (
-    <LayoutAdminPage title="Home">
+    <LayoutAdminPage title="Category">
       <HeaderAdmin
         titlePage="Category"
         subTitlePage="Total 12"
