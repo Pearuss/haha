@@ -2,24 +2,26 @@ import React, { ReactElement } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
 
-interface Props {}
-
-function AdminList({}: Props): ReactElement {
+function MemberItem({ member, handleCheckItemClick }: any): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
   return (
     <div className="grid grid-cols-7 bg-white hover:bg- px-3 py-1 font-medium items-center">
       <span className="flex items-center">
         <span className="flex-1">
-          <Checkbox {...label} />
+          <Checkbox
+            {...label}
+            checked={member.selected}
+            onClick={() => handleCheckItemClick(member)}
+          />
         </span>
-        <span className="flex-1">1</span>
+        <span className="flex-1">{member.id}</span>
       </span>
-      <span className="col-span-2">duc12a1cauxe0825@gmail.com</span>
-      <span>Lê Huỳnh Đức</span>
-      <span>Admin</span>
-      <span>25/08/200 08:25</span>
+      <span className="col-span-2">{member.email}</span>
+      <span>{member.name}</span>
+      <span>{member.authorization}</span>
+      <span>{member.createAt}</span>
       <span className="flex items-center">
-        <button className="mr-auto">Active</button>
+        <button className="mr-auto">{member.status}</button>
         <button className="flex-1 ml-6">
           <Image src="/images/edit.png" width={20} height={20} />
         </button>
@@ -28,4 +30,4 @@ function AdminList({}: Props): ReactElement {
   );
 }
 
-export default AdminList;
+export default MemberItem;

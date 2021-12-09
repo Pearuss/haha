@@ -2,35 +2,37 @@ import React, { ReactElement, useEffect, useMemo, useState } from 'react';
 import LayoutAdminPage from '../../Components/admin/layout';
 import Checkbox from '@mui/material/Checkbox';
 import HeaderAdmin from '../../Components/admin/components/HeaderAdmin';
-import AdvancedSearch from '../../Components/admin/components/AdvancedSearch';
-import TagItem from '../../Components/admin/common/TagItem';
 import DialogDelete from '../../Components/admin/common/dialogDelete';
+import MemberItem from '../../Components/admin/common/MemberItem';
 
-function Tag(): ReactElement {
+function Cpanel(): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-  const tagFake = [
+  const memberFake = [
     {
       id: '1',
-      name: 'ReactJS',
+      email: 'duc12a1cauxe0825@gmail.com',
+      name: 'Diem',
+      authorization: 'Admin',
       createAt: '25/08/200 08:25',
-      description: 'Tag Description',
       status: 'active',
       selected: false,
     },
     {
       id: '2',
-      name: 'ReactJS',
+      email: 'duc12a1cauxe0825@gmail.com',
+      name: 'Diem',
+      authorization: 'Admin',
       createAt: '25/08/200 08:25',
-      description: 'Tag Description',
       status: 'active',
       selected: false,
     },
     {
       id: '3',
+      email: 'duc12a1cauxe0825@gmail.com',
       name: 'ReactJS',
+      authorization: 'Admin',
       createAt: '25/08/200 08:25',
-      description: 'Tag Description',
       status: 'active',
       selected: false,
     },
@@ -38,35 +40,35 @@ function Tag(): ReactElement {
 
   const [openDialog, setOpenDialog] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
-  const [dataTags, setDataTags] = useState(tagFake);
+  const [dataMembers, setDataMembers] = useState(memberFake);
 
-  const hasSelectedTag = useMemo(() => {
-    return dataTags.find((tag) => tag.selected === true);
-  }, [dataTags]);
+  const hasSelectedMember = useMemo(() => {
+    return dataMembers.find((member) => member.selected === true);
+  }, [dataMembers]);
 
   useEffect(() => {
-    const isSelectedAll = dataTags.find((tag) => tag.selected === false);
+    const isSelectedAll = dataMembers.find((member) => member.selected === false);
     if (typeof isSelectedAll === 'undefined') setSelectAll(true);
     else setSelectAll(false);
-  }, [dataTags]);
+  }, [dataMembers]);
 
   const handleSelectAllClick = () => {
-    const newDataTags = [...dataTags].map((tag) => ({ ...tag, selected: !selectAll }));
+    const newDataMembers = [...dataMembers].map((member) => ({ ...member, selected: !selectAll }));
     setSelectAll(!selectAll);
-    setDataTags(newDataTags);
+    setDataMembers(newDataMembers);
   };
 
   const handleDeleteClick = () => {
-    const dataSelected = dataTags.filter((tag) => tag.selected === true);
+    const dataSelected = dataMembers.filter((member) => member.selected === true);
     console.log(dataSelected);
     handleClose();
   };
 
-  const handleCheckItemClick = (tag: any) => {
-    const index = dataTags.indexOf(tag);
-    const newDataTags = [...dataTags];
-    newDataTags.splice(index, 1, { ...tag, selected: !tag.selected });
-    setDataTags(newDataTags);
+  const handleCheckItemClick = (member: any) => {
+    const index = dataMembers.indexOf(member);
+    const newDataMembers = [...dataMembers];
+    newDataMembers.splice(index, 1, { ...member, selected: !member.selected });
+    setDataMembers(newDataMembers);
   };
 
   const handleClickOpen = () => {
@@ -79,37 +81,42 @@ function Tag(): ReactElement {
 
   return (
     <LayoutAdminPage title="Home">
-      <HeaderAdmin titlePage="Hashtag" subTitlePage="Total 12" searchPlaceholder="Search tag..." />
-      <AdvancedSearch />
-      <div className="bg-white rounded p-4 px-6">
+      <HeaderAdmin
+        titlePage="Members Admin"
+        subTitlePage="Danh sách quản trị viên"
+        searchPlaceholder="Email quản trị viên..."
+      />
+
+      <div className="bg-white rounded h-full p-4 px-6">
         <div className="flex justify-between pb-4 mb-4 border-b-2 border-gray-600">
-          <h4 className="">Hashtag list</h4>
+          <h4 className="">Member list</h4>
           <button
-            disabled={typeof hasSelectedTag === 'undefined' ? true : false}
+            disabled={typeof hasSelectedMember === 'undefined' ? true : false}
             className="px-4 py-2 border border-gray-300 cursor-pointer rounded hover:bg-gray-200"
             onClick={handleClickOpen}
           >
             Delete
           </button>
-        </div>
-        <div className="grid grid-cols-6 bg-titleAdmin px-3 py-1 font-medium items-center">
+        </div>{' '}
+        <div className="grid grid-cols-7 bg-titleAdmin px-3 py-1 font-medium items-center">
           <span className="flex items-center">
             <span className="flex-1">
               <Checkbox {...label} checked={selectAll} onChange={handleSelectAllClick} />
             </span>
-            <span className="flex-1">STT</span>
+            <span className="flex-1">Mã</span>
           </span>
-          <span>Tag Name</span>
+          <span className="col-span-2">Email</span>
+          <span>Họ tên</span>
+          <span>Quyền</span>
           <span>Ngày tạo</span>
-          <span className="col-span-2">Mô tả</span>
           <span>Trạng thái</span>
         </div>
-        {dataTags.map((tag) => (
-          <TagItem key={tag.id} tag={tag} handleCheckItemClick={handleCheckItemClick} />
+        {dataMembers.map((member) => (
+          <MemberItem key={member.id} member={member} handleCheckItemClick={handleCheckItemClick} />
         ))}
         <DialogDelete
-          label="Do you want to remove the tag?"
-          subContnet="Please consider this carefully, deleted tags cannot be recovered."
+          label="Do you want to remove the member?"
+          subContnet="Please consider this carefully, deleted members cannot be recovered."
           openDialog={openDialog}
           handleClose={handleClose}
           handleDeleteClick={handleDeleteClick}
@@ -119,4 +126,4 @@ function Tag(): ReactElement {
   );
 }
 
-export default Tag;
+export default Cpanel;

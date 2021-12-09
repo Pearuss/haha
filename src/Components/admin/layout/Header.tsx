@@ -93,7 +93,7 @@ const Header: React.FC<HeaderProps> = (props) => {
                   placeholder="Themes"
                   value={themeOptions().find((item) => item.value === props.theme.value)}
                   options={themeOptions()}
-                  onChange={({ value }: { value: DefaultTheme['name'] }) => props.theme.set(value)}
+                  onChange={({ value }: any) => props.theme.set(value)}
                 />
               ),
             },

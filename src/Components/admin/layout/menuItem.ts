@@ -32,7 +32,7 @@ const items: MenuItemType[] = [
     children: [
       {
         title: 'Operator',
-        link: { href: '/adminpanel/category' },
+        link: { href: '/adminpanel/category/operator' },
       },
       {
         title: 'Security',
@@ -63,7 +63,7 @@ const items: MenuItemType[] = [
   {
     title: 'Manage Member',
     icon: { name: 'person-outline' },
-    link: { href: '/adminpanel/cpanel' },
+    link: { href: '/adminpanel/member' },
   },
   {
     title: 'System Setting',
