@@ -1,16 +1,16 @@
 import React, { ReactElement } from 'react';
 import LayoutAdminPage from '../../../Components/admin/layout';
 import Checkbox from '@mui/material/Checkbox';
-import PostList from '../../../Components/admin/components/PostList';
+import PostItem from '../../../Components/admin/components/PostItem';
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import AdvancedSearch from '../../../Components/admin/components/AdvancedSearch';
 
 function AllPost({ data }: any): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
   console.log(data);
-  
+
   return (
-    <LayoutAdminPage title="Home">
+    <LayoutAdminPage title="Post">
       <HeaderAdmin
         titlePage="Blogs"
         subTitlePage="Danh sách bài viết 20"
@@ -32,7 +32,7 @@ function AllPost({ data }: any): ReactElement {
           <span>Trạng thái</span>
         </div>
         {data?.map((post: any) => (
-          <PostList key={post.id} data={post} />
+          <PostItem key={post.id} data={post} />
         ))}
       </div>
     </LayoutAdminPage>
@@ -44,7 +44,7 @@ export default AllPost;
 export const getStaticProps = async () => {
   const res = await fetch('http://localhost:3001/posts');
   const posts = await res.json();
-  
+
   return {
     props: {
       data: posts.map((post: any) => ({

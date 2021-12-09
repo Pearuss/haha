@@ -1,20 +1,19 @@
 import React, { ReactElement, useEffect, useMemo, useState } from 'react';
-import LayoutAdminPage from '../../Components/admin/layout';
+import LayoutAdminPage from '../../../Components/admin/layout';
 import Checkbox from '@mui/material/Checkbox';
-import HeaderAdmin from '../../Components/admin/components/HeaderAdmin';
-import AdvancedSearch from '../../Components/admin/components/AdvancedSearch';
-import TagItem from '../../Components/admin/components/TagItem';
-import DialogDelete from '../../Components/admin/common/dialogDelete';
+import CategoryItem from '../../../Components/admin/components/CategoryItem';
+import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
+import DialogDelete from '../../../Components/admin/common/dialogDelete';
 
-function Tag(): ReactElement {
+function Category(): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-  const tagFake = [
+  const catFake = [
     {
       id: '1',
       name: 'ReactJS',
       createAt: '25/08/200 08:25',
-      description: 'Tag Description',
+      description: 'Cat Description',
       status: 'active',
       selected: false,
     },
@@ -22,7 +21,7 @@ function Tag(): ReactElement {
       id: '2',
       name: 'ReactJS',
       createAt: '25/08/200 08:25',
-      description: 'Tag Description',
+      description: 'Cat Description',
       status: 'active',
       selected: false,
     },
@@ -30,7 +29,7 @@ function Tag(): ReactElement {
       id: '3',
       name: 'ReactJS',
       createAt: '25/08/200 08:25',
-      description: 'Tag Description',
+      description: 'Cat Description',
       status: 'active',
       selected: false,
     },
@@ -38,35 +37,35 @@ function Tag(): ReactElement {
 
   const [openDialog, setOpenDialog] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
-  const [dataTags, setDataTags] = useState(tagFake);
+  const [dataCats, setDataCats] = useState(catFake);
 
-  const hasSelectedTag = useMemo(() => {
-    return dataTags.find((tag) => tag.selected === true);
-  }, [dataTags]);
+  const hasSelectedCat = useMemo(() => {
+    return dataCats.find((cat) => cat.selected === true);
+  }, [dataCats]);
 
   useEffect(() => {
-    const isSelectedAll = dataTags.find((tag) => tag.selected === false);
+    const isSelectedAll = dataCats.find((cat) => cat.selected === false);
     if (typeof isSelectedAll === 'undefined') setSelectAll(true);
     else setSelectAll(false);
-  }, [dataTags]);
+  }, [dataCats]);
 
   const handleSelectAllClick = () => {
-    const newDataTags = [...dataTags].map((tag) => ({ ...tag, selected: !selectAll }));
+    const newDataCats = [...dataCats].map((cat) => ({ ...cat, selected: !selectAll }));
     setSelectAll(!selectAll);
-    setDataTags(newDataTags);
+    setDataCats(newDataCats);
   };
 
   const handleDeleteClick = () => {
-    const dataSelected = dataTags.filter((tag) => tag.selected === true);
+    const dataSelected = dataCats.filter((cat) => cat.selected === true);
     console.log(dataSelected);
     handleClose();
   };
 
-  const handleCheckItemClick = (tag: any) => {
-    const index = dataTags.indexOf(tag);
-    const newDataTags = [...dataTags];
-    newDataTags.splice(index, 1, { ...tag, selected: !tag.selected });
-    setDataTags(newDataTags);
+  const handleCheckItemClick = (cat: any) => {
+    const index = dataCats.indexOf(cat);
+    const newDataCats = [...dataCats];
+    newDataCats.splice(index, 1, { ...cat, selected: !cat.selected });
+    setDataCats(newDataCats);
   };
 
   const handleClickOpen = () => {
@@ -78,14 +77,18 @@ function Tag(): ReactElement {
   };
 
   return (
-    <LayoutAdminPage title="HashTag">
-      <HeaderAdmin titlePage="Hashtag" subTitlePage="Total 12" searchPlaceholder="Search tag..." />
-      <AdvancedSearch />
+    <LayoutAdminPage title="Category">
+      <HeaderAdmin
+        titlePage="Category"
+        subTitlePage="Total 12"
+        searchPlaceholder="Search category..."
+      />
+
       <div className="bg-white rounded p-4 px-6">
         <div className="flex justify-between pb-4 mb-4 border-b-2 border-gray-600">
-          <h4 className="">Hashtag list</h4>
+          <h4 className="">Category list</h4>
           <button
-            disabled={typeof hasSelectedTag === 'undefined' ? true : false}
+            disabled={typeof hasSelectedCat === 'undefined' ? true : false}
             className="px-4 py-2 border border-gray-300 cursor-pointer rounded hover:bg-gray-200"
             onClick={handleClickOpen}
           >
@@ -99,17 +102,17 @@ function Tag(): ReactElement {
             </span>
             <span className="flex-1">STT</span>
           </span>
-          <span>Tag Name</span>
+          <span>Category Name</span>
           <span>Ngày tạo</span>
           <span className="col-span-2">Mô tả</span>
           <span>Trạng thái</span>
         </div>
-        {dataTags.map((tag) => (
-          <TagItem key={tag.id} tag={tag} handleCheckItemClick={handleCheckItemClick} />
+        {dataCats.map((cat) => (
+          <CategoryItem key={cat.id} cat={cat} handleCheckItemClick={handleCheckItemClick} />
         ))}
         <DialogDelete
-          label="Do you want to remove the tag?"
-          subContnet="Please consider this carefully, deleted tags cannot be recovered."
+          label="Do you want to remove the category?"
+          subContnet="Please consider this carefully, deleted categorys cannot be recovered."
           openDialog={openDialog}
           handleClose={handleClose}
           handleDeleteClick={handleDeleteClick}
@@ -119,4 +122,4 @@ function Tag(): ReactElement {
   );
 }
 
-export default Tag;
+export default Category;

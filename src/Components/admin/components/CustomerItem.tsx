@@ -2,24 +2,26 @@ import React, { ReactElement } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
 
-interface Props {}
-
-function ClientList({}: Props): ReactElement {
+function CustomerItem({ customer, handleCheckItemClick }: any): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
   return (
     <div className="grid grid-cols-7 bg-white hover:bg- px-3 py-1 font-medium items-center">
       <span className="flex items-center">
         <span className="flex-1">
-          <Checkbox {...label} />
+          <Checkbox
+            {...label}
+            checked={customer.selected}
+            onClick={() => handleCheckItemClick(customer)}
+          />
         </span>
-        <span className="flex-1">1</span>
+        <span className="flex-1">{customer.id}</span>
       </span>
-      <span className="col-span-2">duc12a1cauxe0825@gmail.com</span>
-      <span>Lê Huỳnh Đức</span>
-      <span>0989275134</span>
-      <span>25/08/200 08:25</span>
+      <span className="col-span-2">{customer.email}</span>
+      <span>{customer.name}</span>
+      <span>{customer.phone}</span>
+      <span>{customer.createAt}</span>
       <span className="flex items-center">
-        <button className="mr-auto">Active</button>
+        <button className="mr-auto">{customer.status}</button>
         <button className="flex-1 ml-6">
           <Image src="/images/edit.png" width={20} height={20} />
         </button>
@@ -28,4 +30,4 @@ function ClientList({}: Props): ReactElement {
   );
 }
 
-export default ClientList;
+export default CustomerItem;
