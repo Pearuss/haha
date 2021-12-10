@@ -214,7 +214,7 @@ Index.Layout = DetailPostLayout;
 export default Index;
 
 export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:3001/posts?_limit=5');
+  const res = await fetch('http://localhost:3001/posts?_limit=200');
   const posts = await res.json();
 
   const paths = posts?.data?.map((post: any) => ({
@@ -223,20 +223,20 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true,
+    fallback: 'blocking',
   };
 };
 
 export const getStaticProps = async (context: any) => {
   const { id } = context?.params;
   if (!id) return { notFound: true };
-  const res = await fetch(`http://localhost:3001/posts/${id}?_limit=5`);
+  const res = await fetch(`http://localhost:3001/posts/${id}?_limit=200`);
   const posts = await res.json();
 
   return {
     props: {
       data: posts,
     },
-    revalidate: 5,
+    revalidate: 1,
   };
 };

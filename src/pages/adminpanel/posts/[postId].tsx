@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import LayoutAdminPage from '../../../Components/admin/layout';
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 
@@ -7,51 +7,65 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import MarkDown from '../../../Components/CreatePost/MarkDown';
+import useFetch from '../../../hooks/use-fetch';
 
-function EditPost(): ReactElement {
+function EditPost({ data }: any): ReactElement {
   const [value, setValue] = React.useState<Date | null>(null);
 
-  const contentBody =
-    '# What is this issue?\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\n# Solutions\n```js\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\n```\n# Conclude\nSearch for resources to solve problems like stackoverflow, github,...Search for resources to solve problems like stackoverflow, github,...';
+  const [newTitle, setNewTitle] = useState(data?.title || '');
+  // const [newMainContent, setNewMainContent] = useState(data.body);
+  // const titleRef = useRef(data.title);
+
+  const updatePostHandler = () => {
+    // const newMainContent = mainContentRef.current.value;
+    const postData = { ...data, title: newTitle };
+
+    useFetch(`http://localhost:3001/posts/${data.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(postData),
+    });
+  };
 
   return (
     <LayoutAdminPage title="Update Post">
       <HeaderAdmin
-        titlePage="Blogs"
-        subTitlePage="Danh sách bài viết 20"
-        searchPlaceholder="Tên bài viết..."
+        titlePage="Article"
+        subTitlePage="Total number of articles 20"
+        searchPlaceholder="Article title..."
       />
       <div className="py-4 w-full">
-        <h5 className="pb-4 mb-4 border-b-2 border-gray-600">Nội dung bài viết</h5>
-        <div className="flex flex-col items-center w-2/3 mx-auto">
+        <h5 className="pb-4 mb-4 border-b-2 border-gray-600">Article content</h5>
+        <div className="flex flex-col items-center w-[50vw] mx-auto">
           <div className="flex items-center w-full mt-8">
-            <span className="w-[10%] flex font-medium text-gray-600 justify-start ">Title*</span>
-            <input className="flex-1 py-3 px-4 outline-none rounded ml-8 max-w-[90%]" type="text" />
+            <span className="w-40 flex font-medium text-gray-600 justify-end">Title*</span>
+            <input
+              onChange={(e) => setNewTitle(e.target.value)}
+              value={newTitle}
+              className="w-full py-3 px-4 outline-none rounded ml-8"
+              type="text"
+            />
           </div>
           <div className="flex items-start w-full mt-8">
-            <span className="w-[10%] flex font-medium text-gray-600 justify-start ">
-              Short content*
-            </span>
-            <textarea className="flex-1 py-3 px-4 outline-none rounded ml-8 max-w-[90%]" />
+            <span className="w-40 flex font-medium text-gray-600 justify-end">Short content*</span>
+            <textarea className="w-full py-2 px-4 outline-none resize-none rounded ml-8" />
           </div>
           <div className="flex items-start w-full mt-8">
-            <span className="w-[10%] flex font-medium text-gray-600 justify-start ">
-              Main content*
-            </span>
-            <div className="flex-1 outline-none rounded ml-8 h-full max-w-[90%]">
-              <MarkDown content={contentBody} setNewPost={() => {}} />
+            <span className="w-40 flex font-medium text-gray-600 justify-end">Main content*</span>
+            <div className="outline-none rounded ml-8 h-full w-[796px]">
+              {/* <textarea className="w-full py-2 px-4 outline-none rounded ml-8 h-72" /> */}
+              <MarkDown content={data?.body} setNewPost={() => {}} />
             </div>
           </div>
           <div className="flex items-center w-full mt-8">
-            <span className="w-[10%] flex font-medium text-gray-600 justify-start ">Picture*</span>
-            <input className="flex-1 py-3 px-4 outline-none rounded ml-8" type="text" />
+            <span className="w-40 flex font-medium text-gray-600 justify-end ">Picture*</span>
+            <input className="w-full py-2 px-4 outline-none rounded ml-8" type="text" />
           </div>
         </div>
-        <h5 className="pb-4 my-4">Tuỳ chỉnh bài viết</h5>
+        <h5 className="pb-4 my-4">Customize Posts</h5>
         <div className="flex flex-col items-center w-[50vw] mx-auto">
           <div className="flex items-center w-full mt-8 ml-[-120px]">
             <span className="w-48 flex font-medium text-gray-600 justify-end">
-              Ngày đóng bài viết
+              Post closing date
             </span>
             <div className="ml-8">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -67,15 +81,21 @@ function EditPost(): ReactElement {
             </div>
           </div>
           <div className="flex items-center w-full mt-8">
-            <span className="w-40 flex font-medium text-gray-600 justify-end ">
-              Trạng thái bài viết
-            </span>
-            <div className="w-full ml-8">Đang xem</div>
+            <span className="w-40 flex font-medium text-gray-600 justify-end ">Status</span>
+            <div className="w-full ml-8">Preview</div>
           </div>
           <div className="flex items-center w-full mt-8">
-            <span className="w-40 flex font-medium text-gray-600 justify-end ">Số lần sửa</span>
+            <span className="w-40 flex font-medium text-gray-600 justify-end outline-none ">
+              Number of edits
+            </span>
             <input className="w-full ml-8 py-2 px-4 rounded" type="text" />
           </div>
+          <button
+            onClick={updatePostHandler}
+            className="ml-auto py-2 px-6 rounded bg-white text-gray-600 font-medium tracking-wide  mt-8"
+          >
+            Confirm
+          </button>
         </div>
       </div>
     </LayoutAdminPage>
@@ -83,3 +103,31 @@ function EditPost(): ReactElement {
 }
 
 export default EditPost;
+
+export const getStaticPaths = async () => {
+  const res = await fetch('http://localhost:3001/posts?_limit=200');
+  const posts = await res.json();
+
+  const paths = posts?.data?.map((post: any) => ({
+    params: { postId: post.id.toString() },
+  }));
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+};
+
+export const getStaticProps = async (context: any) => {
+  const { postId } = context?.params;
+  if (!postId) return { notFound: true };
+  const res = await fetch(`http://localhost:3001/posts/${postId}?_limit=200`);
+  const posts = await res.json();
+
+  return {
+    props: {
+      data: posts,
+    },
+    revalidate: 1,
+  };
+};

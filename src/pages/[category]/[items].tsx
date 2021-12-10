@@ -100,6 +100,6 @@ export const getStaticProps = async () => {
         author: post.author,
       })),
     },
-    revalidate: 5,
+    revalidate: 1,
   };
 };
