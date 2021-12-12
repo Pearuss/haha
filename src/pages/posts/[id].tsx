@@ -139,7 +139,7 @@ function Index({ data }: any): ReactElement {
   }, []);
 
   return (
-    <div className="relative flex md:mr-0 sm:mr-0">
+    <div className="relative flex flex-1 md:mr-0 sm:mr-0">
       {isShowContentIndex && (
         <div className="mr-4 sm:mr-8 ssm:mr-12">
           <div
@@ -171,7 +171,7 @@ function Index({ data }: any): ReactElement {
       <div
         className={`${
           isShowContentIndex == false ? 'flex-1 ml-[3vw] mr-[3vw]' : ''
-        } w-full mr-[2vw] pl-2 md:w-[100%] md:mx-[3vw] md:pl-0`}
+        } flex-1 w-full mr-[2vw] pl-2 md:w-[100%] md:mx-[3vw] md:pl-0`}
       >
         <div className="flex items-center text-gray-600 text-sm">
           <Link href="/">

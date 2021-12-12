@@ -154,7 +154,7 @@ function Menu(): ReactElement {
           </div>
         </div>
         <li
-          className={`btnShowTag w-full lg:hidden text-left py-4 px-16 lg:px-10 ssm:px-10 border-b border-gray-300 cursor-pointer ssm:text-xs`}
+          className={`btnShowTag w-full lg:hidden text-left py-4 px-14 lg:px-10 ssm:px-8 border-b border-gray-300 cursor-pointer ssm:text-xs`}
         >
           Tag Section
         </li>
