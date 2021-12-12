@@ -44,10 +44,10 @@ function HomePage({ data }: any) {
       {/* <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-6 text-black font-normal">
         Create diagrams online realtime collaboration!
       </p> */}
-      <div className="relative w-full h-44 bg-white p-4 rounded-md shadow-md">
-        <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-6 text-black font-normal cursor-pointer">
+      <div className="relative w-full h-44 bg-white p-4 pt-0 rounded-md shadow-md shaw">
+        <div className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-6 text-black font-normal cursor-pointer mt-[-9px]">
           Sunt aut facere repellat provident occaecati
-        </p>
+        </div>
         <div className="text-sm">
           Quia et suscipit suscipit recusandae consequuntur consequuntur consequuntur consequuntur
           ....

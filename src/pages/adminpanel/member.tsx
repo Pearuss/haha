@@ -82,14 +82,14 @@ function Cpanel(): ReactElement {
   return (
     <LayoutAdminPage title="Member">
       <HeaderAdmin
-        titlePage="Members Admin"
-        subTitlePage="Danh sách quản trị viên"
-        searchPlaceholder="Email quản trị viên..."
+        titlePage="Administrator"
+        subTitlePage="List of administrators"
+        searchPlaceholder="Admin email..."
       />
 
       <div className="bg-white rounded h-full p-4 px-6">
         <div className="flex justify-between pb-4 mb-4 border-b-2 border-gray-600">
-          <h4 className="">Member list</h4>
+          <h4 className="">Admin list</h4>
           <button
             disabled={typeof hasSelectedMember === 'undefined' ? true : false}
             className="px-4 py-2 border border-gray-300 cursor-pointer rounded hover:bg-gray-200"
@@ -103,13 +103,13 @@ function Cpanel(): ReactElement {
             <span className="flex-1">
               <Checkbox {...label} checked={selectAll} onChange={handleSelectAllClick} />
             </span>
-            <span className="flex-1">Mã</span>
+            <span className="flex-1">STT</span>
           </span>
           <span className="col-span-2">Email</span>
-          <span>Họ tên</span>
-          <span>Quyền</span>
-          <span>Ngày tạo</span>
-          <span>Trạng thái</span>
+          <span>Full name</span>
+          <span>Permission</span>
+          <span>Date created</span>
+          <span>Status</span>
         </div>
         {dataMembers.map((member) => (
           <MemberItem key={member.id} member={member} handleCheckItemClick={handleCheckItemClick} />

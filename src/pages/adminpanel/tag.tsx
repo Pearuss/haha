@@ -100,9 +100,9 @@ function Tag(): ReactElement {
             <span className="flex-1">STT</span>
           </span>
           <span>Tag Name</span>
-          <span>Ngày tạo</span>
-          <span className="col-span-2">Mô tả</span>
-          <span>Trạng thái</span>
+          <span>Date created</span>
+          <span className="col-span-2">Description</span>
+          <span>Status</span>
         </div>
         {dataTags.map((tag) => (
           <TagItem key={tag.id} tag={tag} handleCheckItemClick={handleCheckItemClick} />
