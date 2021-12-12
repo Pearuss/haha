@@ -76,7 +76,7 @@ const Header: React.FC<HeaderProps> = (props) => {
             },
             {
               content: (
-                <Link href="/adminpanel/dashboard">
+                <Link href="/">
                   <div className="relative items-center cursor-pointer max-w-[150px] w-[150px] md:h-[38px] md:mt-1 sm:mt-[5px] sm:h-[35px] sm:ml-[-4rem] ssm:h-[32px] ssm:ml-[-5rem] h-[45px] max-h-[35px]">
                     <Image src="/logo.svg" layout="fill" priority />
                   </div>

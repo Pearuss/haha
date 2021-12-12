@@ -16,7 +16,7 @@ function AllPost({ data }: any): ReactElement {
         searchPlaceholder="Article title..."
       />
       <AdvancedSearch />
-      <div className="bg-white rounded p-4 px-6">
+      <div className="bg-white rounded p-4 px-6 min-w-[1167px]">
         <h4 className="pb-4 mb-4 border-b-2 border-gray-600">All article</h4>
         <div className="grid grid-cols-8 bg-titleAdmin px-3 py-1 font-medium items-center">
           <span className="flex items-center">

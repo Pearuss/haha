@@ -36,7 +36,10 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactEl
   }, [profile]);
   return (
     <div className="relative bg-white rounded-lg shadow-md px-4 pt-2 py-16 mb-8 text-gray-600  h-auto">
-      <div className="flex items-center">
+      <div className="w-full text-black font-semibold text-3xl sm:text-2xl ssm:text-xl pl-2 py-4 mx-auto">
+        {dataPostDetail.title}
+      </div>
+      <div className="flex items-center pl-2">
         <Image
           src="/images/toc2.jpg"
           width={48}
@@ -48,9 +51,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactEl
         <span className="font-medium text-xl ml-2 text-blueCyanLogo">{dataPostDetail.author}</span>
         <span className="text-gray-800 text-sm ml-1 mt-1">@{dataPostDetail.tags}· 21 hour</span>
       </div>
-      <div className="w-full text-black font-semibold text-3xl sm:text-2xl ssm:text-xl mx-auto">
-        {dataPostDetail.title}
-      </div>
+
       {/* <div className="mx-2">{dataPostDetail.body}</div> */}
       <div className="postContent mx-2 mb-4 mt-5 h-auto">
         <ReactMarkdown components={CodeBlock} children={contentBody} />

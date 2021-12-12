@@ -1,14 +1,17 @@
 import React from 'react';
+import HeaderAdmin from '../../Components/admin/components/HeaderAdmin';
 // import Header from '../../Components/admin/common/Header';
 import LayoutAdmin from '../../Components/admin/layout/index';
 
 function Dashboard() {
   return (
-    <div>
-      <LayoutAdmin title={'Home'}>
-        <div className="">Dashboard</div>
-      </LayoutAdmin>
-    </div>
+    <LayoutAdmin title={'Home'}>
+      <HeaderAdmin
+        titlePage="Dashboard"
+        subTitlePage=""
+        searchPlaceholder="Email..."
+      />
+    </LayoutAdmin>
   );
 }
 

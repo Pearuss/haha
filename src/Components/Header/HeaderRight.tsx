@@ -69,6 +69,9 @@ function HeaderRight(): ReactElement {
               <Link href="/user/posts/1">
                 <a className="link ">My posts</a>
               </Link>
+              <Link href="/adminpanel/dashboard">
+                <a className="link ">Moderator</a>
+              </Link>
               <div className="link  hover:rounded-full" onClick={logoutHandler} aria-hidden="true">
                 Log out
               </div>

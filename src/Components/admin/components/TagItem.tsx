@@ -18,7 +18,7 @@ function TagList({ tag, handleCheckItemClick }: any): ReactElement {
       <span className="flex items-center">
         <button className="mr-auto">{tag.status}</button>
         <button className="flex-1 ml-6">
-          <Image src="/images/eye.png" width={20} height={20} />
+          <Image src="/images/edit.png" width={20} height={20} />
         </button>
       </span>
     </div>

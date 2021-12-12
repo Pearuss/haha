@@ -14,7 +14,7 @@ function Category(): ReactElement {
       name: 'ReactJS',
       createAt: '25/08/200 08:25',
       description: 'Cat Description',
-      status: 'active',
+      status: 'Activated',
       selected: false,
     },
     {
@@ -22,7 +22,7 @@ function Category(): ReactElement {
       name: 'ReactJS',
       createAt: '25/08/200 08:25',
       description: 'Cat Description',
-      status: 'active',
+      status: 'Activated',
       selected: false,
     },
     {
@@ -30,7 +30,7 @@ function Category(): ReactElement {
       name: 'ReactJS',
       createAt: '25/08/200 08:25',
       description: 'Cat Description',
-      status: 'active',
+      status: 'Activated',
       selected: false,
     },
   ];
@@ -84,7 +84,7 @@ function Category(): ReactElement {
         searchPlaceholder="Search category..."
       />
 
-      <div className="bg-white rounded p-4 px-6">
+      <div className="bg-white rounded p-4 px-6 min-w-[1167px]">
         <div className="flex justify-between pb-4 mb-4 border-b-2 border-gray-600">
           <h4 className="">Category list</h4>
           <button

@@ -4,10 +4,10 @@ import { SearchIcon } from '@heroicons/react/solid';
 
 function HeaderAdmin( { titlePage, subTitlePage, searchPlaceholder}: any): ReactElement {
   return (
-    <div className="flex items-center mb-4 ">
+    <div className="flex items-center mb-4 min-w-[1167px]">
       <h2 className="text-textAdmin">{titlePage}</h2>
       <span className="text-sm mt-3 ml-2">{subTitlePage}</span>
-      <div className="flex bg-white items-center border-2 ml-auto  rounded-full text-blueCyanLogo">
+      <div className="flex bg-white items-center border-2 ml-auto  rounded-full text-gray-600">
         <input
           type="text"
           placeholder={searchPlaceholder}

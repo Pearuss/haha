@@ -68,7 +68,7 @@ const items: MenuItemType[] = [
   {
     title: 'System Setting',
     icon: { name: 'settings-outline' },
-    link: { href: '/adminpanel/setting' },
+    link: { href: '/adminpanel/system' },
   },
 ];
 

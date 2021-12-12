@@ -87,7 +87,7 @@ function Cpanel(): ReactElement {
         searchPlaceholder="Admin email..."
       />
 
-      <div className="bg-white rounded h-full p-4 px-6">
+      <div className="bg-white rounded h-full p-4 px-6 min-w-[1167px]">
         <div className="flex justify-between pb-4 mb-4 border-b-2 border-gray-600">
           <h4 className="">Admin list</h4>
           <button
