@@ -31,32 +31,12 @@ const items: MenuItemType[] = [
     icon: { name: 'folder-outline' },
     children: [
       {
-        title: 'Operator',
-        link: { href: '/adminpanel/category/operator' },
+        title: 'Create Category',
+        link: { href: '/adminpanel/category/create' },
       },
       {
-        title: 'Security',
+        title: 'List Category',
         link: { href: '/adminpanel/category/security' },
-      },
-      {
-        title: 'Development',
-        link: { href: '/adminpanel/category/development' },
-      },
-      {
-        title: 'CloudVirtual',
-        link: { href: '/adminpanel/category/cloudVirtual' },
-      },
-      {
-        title: 'Management',
-        link: { href: '/adminpanel/category/management' },
-      },
-      {
-        title: 'Design',
-        link: { href: '/adminpanel/category/design' },
-      },
-      {
-        title: 'Tool',
-        link: { href: '/adminpanel/category/tool' },
       },
     ],
   },
