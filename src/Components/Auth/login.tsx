@@ -5,12 +5,19 @@ import Link from 'next/link';
 import { Controller } from 'react-hook-form';
 import ButtonLoading from '../../common/ButtonLoading';
 
-
 // // eslint-disable-next-line react/jsx-props-no-spreading
 // /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable */
 
-function login({ submit, errorForm, handleSubmit, control, formState, isLoading }: any) {
+function login({
+  submit,
+  errorForm,
+  handleSubmit,
+  handleLoginSSO,
+  control,
+  formState,
+  isLoading,
+}: any) {
   const { errors } = formState;
   return (
     <div
@@ -112,8 +119,9 @@ function login({ submit, errorForm, handleSubmit, control, formState, isLoading 
             </Link>
           </p>
           <button
+            onClick={handleLoginSSO}
             type="button"
-            className="bg-lightGray text-grayText w-full mx-auto rounded-full font-medium py-3 px-3 mt-12"
+            className="bg-blueAdmin text-white w-full mx-auto rounded-full font-medium py-3 px-3 mt-12"
           >
             Login with Gate
           </button>

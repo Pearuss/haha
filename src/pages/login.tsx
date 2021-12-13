@@ -65,6 +65,12 @@ const Login = () => {
   //     }
   //   }, []);
 
+  const handleLoginSSO = () => {
+    router.push(
+      'https://sso.hybrid-technologies.co.jp/auth/realms/eas/protocol/openid-connect/auth?response_type=code&redirect_uri=http://localhost:9500/loginsso/&client_id=skh-dev&scope=openid%20profile'
+    );
+  };
+
   const submit = async (data: any, event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -117,6 +123,7 @@ const Login = () => {
       <LoginComponent
         submit={submit}
         handleSubmit={handleSubmit}
+        handleLoginSSO={handleLoginSSO}
         control={control}
         formState={formState}
         errorForm={errorFormLogin}
