@@ -22,10 +22,12 @@ function HeaderRight(): ReactElement {
       setIsLogin(true);
     }
   }, [profile, firstLoading]);
+  
 
   const logoutHandler = useCallback(async () => {
     try {
       await logout();
+      localStorage.removeItem('isView')
       router.push('/');
       if (router.pathname === '/') {
         Swal.fire('Logout success!');

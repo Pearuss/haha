@@ -91,6 +91,7 @@ export const getStaticProps = async () => {
         views: post.views,
         comments: post.comments,
         tags: post.tags,
+        img: post.img,
         author: post.author,
       })),
     },

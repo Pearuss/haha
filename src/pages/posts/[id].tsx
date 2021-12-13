@@ -173,7 +173,7 @@ function Index({ data }: any): ReactElement {
           isShowContentIndex == false ? 'flex-1 ml-[3vw] mr-[3vw]' : ''
         } flex-1 w-full mr-[2vw] pl-2 md:w-[100%] md:mx-[3vw] md:pl-0`}
       >
-        <div className="flex items-center text-gray-600 text-sm">
+        <div className="flex items-center text-gray-600 text-sm mt-[-12px]">
           <Link href="/">
             <p className="leading-8 cursor-pointer">Home</p>
           </Link>

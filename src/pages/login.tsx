@@ -75,6 +75,7 @@ const Login = () => {
     try {
       setIsLoadingForm(true);
       await login(userData);
+      localStorage.setItem('isView', 'true');
       setIsLoadingForm(false);
       router.push('/');
     } catch (error) {

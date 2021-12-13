@@ -8,9 +8,17 @@ import { useRouter } from 'next/router';
 
 function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactElement {
   const { profile, firstLoading } = useAuth();
+  // const [isViewer, setIsViewer] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
   const router = useRouter();
 
-  const [isLogin, setIsLogin] = useState(false);
+  // useEffect(() => {
+  //   if (localStorage.getItem('isView') && localStorage.getItem('isView') === 'true') {
+  //     setIsViewer(true);
+  //   } else {
+  //     setIsViewer(false);
+  //   }
+  // }, []);
 
   let contentBody =
     isReadMore && !isLogin

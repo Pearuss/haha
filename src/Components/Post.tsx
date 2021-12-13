@@ -7,11 +7,12 @@ import { truncate } from '../utilities/helper';
 
 function Post({ post }: any): ReactElement {
   const linkDetail = `/posts/${post.id}`;
+  
   return (
     <div className="relative flex ssm:flex-col w-full  ssm:max-h-full h-[210px] xl:h-[230px] lg:h-[310px] md:h-[240px] sm:h-[280px] max-h-[310px] ssm:h-auto bg-white rounded-lg px-3 py-5 mb-4 cursor-pointer ssm:border ssm:border-gray-300 ssm:p-4 ssm:pb-20">
       <div className="relative my-[0.4rem] overflow-hidden max-w-[200px] ssm:max-w-full ssm:w-full w-[200px] ssm:min-h-[200px] h-auto ">
         <img
-          className="absolute inset-0 overflow-hidden rounded"
+          className="absolute inset-0 overflow-hidden rounded-sm"
           // src="https://tranhuuthien.com/wp-content/uploads/2021/08/kieu-toc-dap-xu-nam-7.png"
           src={post.img}
           // layout="fill"
