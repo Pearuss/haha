@@ -17,14 +17,23 @@ const items: MenuItemType[] = [
     link: { href: '/adminpanel/customer' },
   },
   {
-    title: 'Manage Post',
+    title: 'Manage Article',
     icon: { name: 'edit-2-outline' },
-    link: { href: '/adminpanel/posts' },
+    link: { href: '/adminpanel/articles' },
   },
   {
     title: 'Manage Tag',
     icon: { name: 'pricetags-outline' },
-    link: { href: '/adminpanel/tag' },
+    children: [
+      {
+        title: 'Create Tag',
+        link: { href: '/adminpanel/tag/create' },
+      },
+      {
+        title: 'List Tag',
+        link: { href: '/adminpanel/tag' },
+      },
+    ],
   },
   {
     title: 'Manage Category',
@@ -36,7 +45,7 @@ const items: MenuItemType[] = [
       },
       {
         title: 'List Category',
-        link: { href: '/adminpanel/category/security' },
+        link: { href: '/adminpanel/category' },
       },
     ],
   },
@@ -48,7 +57,7 @@ const items: MenuItemType[] = [
   {
     title: 'System Setting',
     icon: { name: 'settings-outline' },
-    link: { href: '/adminpanel/setting' },
+    link: { href: '/adminpanel/system' },
   },
 ];
 

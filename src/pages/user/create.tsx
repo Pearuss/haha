@@ -40,7 +40,6 @@ function UserCreatePage() {
     image: [],
     public: true,
   });
-  console.log(newPost);
 
   const changeTitle = (e: any) => {
     setNewPost((state: any) => ({ ...state, title: e.target.value }));

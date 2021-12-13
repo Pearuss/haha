@@ -80,7 +80,7 @@ PostsTag.Layout = MainLayout;
 export default PostsTag;
 
 export async function getStaticPaths() {
-  const res = await fetch('http://localhost:3001/posts?_limit=5');
+  const res = await fetch('http://localhost:3001/posts?_limit=300');
   const posts = await res.json();
 
   const paths = posts?.data?.map((post: any) => ({

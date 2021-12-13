@@ -35,7 +35,7 @@ function PostList({ data }: any): ReactElement {
       <span>{data.author}</span>
       <span>25/08/200 08:25</span>
       <span className="flex items-center">
-        <button className="mr-auto">Active</button>
+        <button className="mr-auto">Activated</button>
         <Link href={linkDetail}>
           <button className="flex-1 ml-6">
             <Image src="/images/edit.png" width={20} height={20} />

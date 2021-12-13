@@ -10,6 +10,7 @@ export default function Index() {
   const logoutHandler = useCallback(async () => {
     try {
       await logout();
+      localStorage.removeItem('isView');
       router.push('/login');
       //   if (router.pathname === '/') {
       //     Swal.fire('Logout success!');

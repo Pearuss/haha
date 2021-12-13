@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect, Fragment } from 'react';
-import { DefaultTheme, ThemeProvider } from 'styled-components';
+import React, { useState, useRef, Fragment } from 'react';
+import { ThemeProvider } from 'styled-components';
 import themes from './themes';
 import {
   Layout,
@@ -22,17 +22,16 @@ import Auth from '../../Auth/auth';
 import SEO, { SEOProps } from './SEO';
 // import Footer from '../../Footer';
 
-const getDefaultTheme = (): DefaultTheme['name'] => {
-  if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-    return localStorage.getItem('theme') as DefaultTheme['name'];
-  } else {
-    const hours = new Date().getHours();
-    return hours > 6 && hours < 19 ? 'default' : 'dark';
-  }
-};
+// const getDefaultTheme = (): DefaultTheme['name'] => {
+//   if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+//     return localStorage.getItem('theme') as DefaultTheme['name'];
+//   } else {
+//     const hours = new Date().getHours();
+//     return hours > 6 && hours < 19 ? 'default' : 'dark';
+//   }
+// };
 
 const LayoutPage: React.FC<SEOProps> = ({ children, ...rest }) => {
-  const [theme, setTheme] = useState<DefaultTheme['name']>('default');
   const [dir, setDir] = useState<'ltr' | 'rtl'>('ltr');
   const sidebarRef = useRef<SidebarRefObject>(null);
   const router = useRouter();
@@ -44,18 +43,6 @@ const LayoutPage: React.FC<SEOProps> = ({ children, ...rest }) => {
     setSeeHeader(state !== 'compacted');
   };
 
-  const changeTheme = (newTheme: DefaultTheme['name']) => {
-    setTheme(newTheme);
-    typeof localStorage !== 'undefined' && localStorage.setItem('theme', newTheme);
-  };
-
-  useEffect(() => {
-    const localTheme = getDefaultTheme();
-    if (localTheme !== theme && theme === 'default') {
-      setTheme(localTheme);
-    }
-  }, []);
-
   const changeDir = () => {
     const newDir = dir === 'ltr' ? 'rtl' : 'ltr';
     setDir(newDir);
@@ -66,7 +53,7 @@ const LayoutPage: React.FC<SEOProps> = ({ children, ...rest }) => {
   return (
     <Auth className="antialiased w-full">
       <SEO {...rest} />
-      <ThemeProvider theme={themes(theme, dir)}>
+      <ThemeProvider theme={themes('default', dir)}>
         <Fragment>
           <SimpleLayout />
           <Layout evaIcons={icons} dir={dir} className={!authLayout ? 'auth-layout' : ''}>
@@ -74,7 +61,6 @@ const LayoutPage: React.FC<SEOProps> = ({ children, ...rest }) => {
               <Header
                 dir={dir}
                 changeDir={changeDir}
-                theme={{ set: changeTheme, value: theme }}
                 toggleSidebar={() => sidebarRef.current?.toggle()}
               />
             )}

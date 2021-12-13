@@ -4,6 +4,7 @@ import Checkbox from '@mui/material/Checkbox';
 import HeaderAdmin from '../../Components/admin/components/HeaderAdmin';
 import DialogDelete from '../../Components/admin/common/dialogDelete';
 import MemberItem from '../../Components/admin/components/MemberItem';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function Cpanel(): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -87,14 +88,15 @@ function Cpanel(): ReactElement {
         searchPlaceholder="Admin email..."
       />
 
-      <div className="bg-white rounded h-full p-4 px-6">
+      <div className="bg-white rounded h-full p-4 px-6 min-w-[1167px]">
         <div className="flex justify-between pb-4 mb-4 border-b-2 border-gray-600">
           <h4 className="">Admin list</h4>
           <button
             disabled={typeof hasSelectedMember === 'undefined' ? true : false}
-            className="px-4 py-2 border border-gray-300 cursor-pointer rounded hover:bg-gray-200"
+            className="flex items-center px-4 py-2 border border-gray-300 cursor-pointer rounded hover:bg-gray-200"
             onClick={handleClickOpen}
           >
+            <DeleteIcon />
             Delete
           </button>
         </div>{' '}

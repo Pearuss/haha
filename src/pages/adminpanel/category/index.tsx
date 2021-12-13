@@ -4,6 +4,9 @@ import Checkbox from '@mui/material/Checkbox';
 import CategoryItem from '../../../Components/admin/components/CategoryItem';
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import DialogDelete from '../../../Components/admin/common/dialogDelete';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { useRouter } from 'next/router';
 
 function Category(): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -14,7 +17,7 @@ function Category(): ReactElement {
       name: 'ReactJS',
       createAt: '25/08/200 08:25',
       description: 'Cat Description',
-      status: 'active',
+      status: 'Activated',
       selected: false,
     },
     {
@@ -22,7 +25,7 @@ function Category(): ReactElement {
       name: 'ReactJS',
       createAt: '25/08/200 08:25',
       description: 'Cat Description',
-      status: 'active',
+      status: 'Activated',
       selected: false,
     },
     {
@@ -30,7 +33,7 @@ function Category(): ReactElement {
       name: 'ReactJS',
       createAt: '25/08/200 08:25',
       description: 'Cat Description',
-      status: 'active',
+      status: 'Activated',
       selected: false,
     },
   ];
@@ -38,6 +41,8 @@ function Category(): ReactElement {
   const [openDialog, setOpenDialog] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
   const [dataCats, setDataCats] = useState(catFake);
+
+  const router = useRouter();
 
   const hasSelectedCat = useMemo(() => {
     return dataCats.find((cat) => cat.selected === true);
@@ -76,6 +81,10 @@ function Category(): ReactElement {
     setOpenDialog(false);
   };
 
+  const handleClickAdd = () => {
+    router.push('/adminpanel/category/create');
+  };
+
   return (
     <LayoutAdminPage title="Category">
       <HeaderAdmin
@@ -84,16 +93,26 @@ function Category(): ReactElement {
         searchPlaceholder="Search category..."
       />
 
-      <div className="bg-white rounded p-4 px-6">
+      <div className="bg-white rounded p-4 px-6 min-w-[1167px]">
         <div className="flex justify-between pb-4 mb-4 border-b-2 border-gray-600">
           <h4 className="">Category list</h4>
-          <button
-            disabled={typeof hasSelectedCat === 'undefined' ? true : false}
-            className="px-4 py-2 border border-gray-300 cursor-pointer rounded hover:bg-gray-200"
-            onClick={handleClickOpen}
-          >
-            Delete
-          </button>
+          <div className="flex items-center">
+            <button
+              className="flex items-center mr-2 px-4 py-2 border border-gray-300 cursor-pointer rounded hover:bg-gray-200"
+              onClick={handleClickAdd}
+            >
+              <AddCircleIcon />
+              Add
+            </button>
+            <button
+              disabled={typeof hasSelectedCat === 'undefined' ? true : false}
+              className="flex items-center px-4 py-2 border border-gray-300 cursor-pointer rounded hover:bg-gray-200"
+              onClick={handleClickOpen}
+            >
+              <DeleteIcon />
+              Delete
+            </button>
+          </div>
         </div>
         <div className="grid grid-cols-6 bg-titleAdmin px-3 py-1 font-medium items-center">
           <span className="flex items-center">
