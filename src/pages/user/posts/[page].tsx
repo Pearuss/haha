@@ -35,6 +35,7 @@ function PostsPage() {
 
   const [filter, setFilter] = useState(false);
   const totalPage = Math.ceil(Number(data?.pagination._totalRow) / 5);
+  const currentPage = Number(router.query.page);
 
   useEffect(() => {
     setDataPosts(data?.data);
@@ -75,6 +76,22 @@ function PostsPage() {
     setDataPosts(dataAll?.filter((post: any) => post.tags === tagName));
   };
 
+  const goOtherPage = (page: number) => {
+    router.push(`/user/posts/${page}`);
+  };
+
+  const goNextPage = () => {
+    if (currentPage < totalPage) {
+      router.push(`/user/posts/${currentPage + 1}`);
+    }
+  };
+
+  const goPrevPage = () => {
+    if (currentPage > 1) {
+      router.push(`/user/posts/${currentPage - 1}`);
+    }
+  };
+
   return (
     <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
       <div className="relative w-full">
@@ -101,7 +118,15 @@ function PostsPage() {
       ) : (
         <p className="text-lg text-red-600">There are no posts to display !</p>
       )}
-      {!filter && <Pagination totalPage={totalPage} currentPage={Number(router.query.page)} />}
+      {!filter && (
+        <Pagination
+          totalPage={totalPage}
+          currentPage={Number(router.query.page)}
+          goOtherPage={goOtherPage}
+          goNextPage={goNextPage}
+          goPrevPage={goPrevPage}
+        />
+      )}
       <TagSectionMobile isShowTagMobile={isShowTagMobile} />
     </div>
   );
