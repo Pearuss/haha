@@ -783,6 +783,26 @@
       "postId": "5",
       "createdAt": 1639299443686,
       "updatedAt": 1639299443686
+    },
+    {
+      "id": "mmfnf5ijp",
+      "body": "Test comment",
+      "parentId": null,
+      "userId": "2",
+      "username": "Pearuss",
+      "postId": "1",
+      "createdAt": 1639473266780,
+      "updatedAt": 1639473266780
+    },
+    {
+      "id": "xq51sf070",
+      "body": "Test comment 2",
+      "parentId": "mmfnf5ijp",
+      "userId": "2",
+      "username": "Pearuss",
+      "postId": "1",
+      "createdAt": 1639473277403,
+      "updatedAt": 1639473277403
     }
   ]
 }

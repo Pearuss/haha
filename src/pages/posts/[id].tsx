@@ -41,9 +41,9 @@ function Index({ data }: any): ReactElement {
   }, [isShowTopicMobile]);
 
   useEffect(() => {
-    if (!firstLoading && !profile?.username) {
+    if (!firstLoading && !profile?.username && !localStorage.getItem('tokenSso')) {
       setIsLogin(false);
-    } else if (profile?.username) {
+    } else if (profile?.username || localStorage.getItem('tokenSso')) {
       setIsLogin(true);
     }
   }, [profile, firstLoading]);
