@@ -4,6 +4,8 @@ import Checkbox from '@mui/material/Checkbox';
 import CategoryItem from '../../../Components/admin/components/CategoryItem';
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import DialogDelete from '../../../Components/admin/common/dialogDelete';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 function Category(): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -12,25 +14,25 @@ function Category(): ReactElement {
     {
       id: '1',
       name: 'ReactJS',
-      createAt: '25/08/200 08:25',
+      createAt: '25/08/2000',
       description: 'Cat Description',
-      status: 'Activated',
+      status: true,
       selected: false,
     },
     {
       id: '2',
       name: 'ReactJS',
-      createAt: '25/08/200 08:25',
+      createAt: '25/08/2000',
       description: 'Cat Description',
-      status: 'Activated',
+      status: true,
       selected: false,
     },
     {
       id: '3',
       name: 'ReactJS',
-      createAt: '25/08/200 08:25',
+      createAt: '25/08/2000',
       description: 'Cat Description',
-      status: 'Activated',
+      status: true,
       selected: false,
     },
   ];
@@ -38,6 +40,8 @@ function Category(): ReactElement {
   const [openDialog, setOpenDialog] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
   const [dataCats, setDataCats] = useState(catFake);
+
+  const router = useRouter();
 
   const hasSelectedCat = useMemo(() => {
     return dataCats.find((cat) => cat.selected === true);
@@ -76,36 +80,43 @@ function Category(): ReactElement {
     setOpenDialog(false);
   };
 
+  const handleClickAdd = () => {
+    router.push('/adminpanel/category/create');
+  };
+
   return (
     <LayoutAdminPage title="Category">
       <HeaderAdmin
-        titlePage="Category"
-        subTitlePage="Total 12"
+        titlePage="Category Management"
+        subTitlePage=""
         searchPlaceholder="Search category..."
       />
 
       <div className="bg-white rounded p-4 px-6 min-w-[1167px]">
-        <div className="flex justify-between pb-4 mb-4 border-b-2 border-gray-600">
-          <h4 className="">Category list</h4>
-          <button
-            disabled={typeof hasSelectedCat === 'undefined' ? true : false}
-            className="px-4 py-2 border border-gray-300 cursor-pointer rounded hover:bg-gray-200"
-            onClick={handleClickOpen}
-          >
-            Delete
-          </button>
+        <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
+          <h4>All category</h4>
+          <span className="text-sm mt-2 ml-2">(3)</span>
+          <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
+            <button onClick={handleClickAdd}>
+              <Image src="/images/plus.png" width={19} height={19} />
+            </button>
+            <button
+              onClick={handleClickOpen}
+              disabled={typeof hasSelectedCat === 'undefined' ? true : false}
+            >
+              <Image src="/images/delete.png" width={20} height={20} />
+            </button>
+          </div>
         </div>
-        <div className="grid grid-cols-6 bg-titleAdmin px-3 py-1 font-medium items-center">
+        <div className="grid grid-cols-4 bg-titleAdmin px-3 py-1 font-medium items-center">
           <span className="flex items-center">
             <span className="flex-1">
               <Checkbox {...label} checked={selectAll} onChange={handleSelectAllClick} />
             </span>
-            <span className="flex-1">STT</span>
           </span>
           <span>Category Name</span>
-          <span>Ngày tạo</span>
-          <span className="col-span-2">Mô tả</span>
-          <span>Trạng thái</span>
+          <span>Date created</span>
+          <span>Status</span>
         </div>
         {dataCats.map((cat) => (
           <CategoryItem key={cat.id} cat={cat} handleCheckItemClick={handleCheckItemClick} />

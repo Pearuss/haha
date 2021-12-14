@@ -4,6 +4,7 @@ import Checkbox from '@mui/material/Checkbox';
 import HeaderAdmin from '../../Components/admin/components/HeaderAdmin';
 import DialogDelete from '../../Components/admin/common/dialogDelete';
 import MemberItem from '../../Components/admin/components/MemberItem';
+import Image from 'next/image';
 
 function Cpanel(): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -12,27 +13,27 @@ function Cpanel(): ReactElement {
     {
       id: '1',
       email: 'duc12a1cauxe0825@gmail.com',
-      name: 'Diem',
+      name: 'Minnas Cover',
       authorization: 'Admin',
-      createAt: '25/08/200 08:25',
+      createAt: '25/08/2000',
       status: 'active',
       selected: false,
     },
     {
       id: '2',
       email: 'duc12a1cauxe0825@gmail.com',
-      name: 'Diem',
+      name: 'Minnas Cover',
       authorization: 'Admin',
-      createAt: '25/08/200 08:25',
+      createAt: '25/08/2000',
       status: 'active',
       selected: false,
     },
     {
       id: '3',
       email: 'duc12a1cauxe0825@gmail.com',
-      name: 'ReactJS',
+      name: 'Paine Hunter',
       authorization: 'Admin',
-      createAt: '25/08/200 08:25',
+      createAt: '25/08/2000',
       status: 'active',
       selected: false,
     },
@@ -81,33 +82,34 @@ function Cpanel(): ReactElement {
 
   return (
     <LayoutAdminPage title="Member">
-      <HeaderAdmin
-        titlePage="Administrator"
-        subTitlePage="List of administrators"
-        searchPlaceholder="Admin email..."
-      />
+      <HeaderAdmin titlePage="Administrator" subTitlePage="" searchPlaceholder="Admin email..." />
 
       <div className="bg-white rounded h-full p-4 px-6 min-w-[1167px]">
-        <div className="flex justify-between pb-4 mb-4 border-b-2 border-gray-600">
-          <h4 className="">Admin list</h4>
-          <button
-            disabled={typeof hasSelectedMember === 'undefined' ? true : false}
-            className="px-4 py-2 border border-gray-300 cursor-pointer rounded hover:bg-gray-200"
-            onClick={handleClickOpen}
-          >
-            Delete
-          </button>
-        </div>{' '}
-        <div className="grid grid-cols-7 bg-titleAdmin px-3 py-1 font-medium items-center">
+        <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
+          <h4>All user</h4>
+          <span className="text-sm mt-2 ml-2">(3)</span>
+          <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
+            <button>
+              <Image src="/images/add-user.png" width={19} height={19} />
+            </button>
+            <button
+              onClick={handleClickOpen}
+              disabled={typeof hasSelectedMember === 'undefined' ? true : false}
+            >
+              <Image src="/images/delete.png" width={20} height={20} />
+            </button>
+          </div>
+        </div>
+        <div className="grid grid-cols-6 bg-titleAdmin px-3 py-1 font-medium items-center">
           <span className="flex items-center">
             <span className="flex-1">
               <Checkbox {...label} checked={selectAll} onChange={handleSelectAllClick} />
             </span>
-            <span className="flex-1">STT</span>
           </span>
-          <span className="col-span-2">Email</span>
-          <span>Full name</span>
-          <span>Permission</span>
+          <span className="ml-[-42%]">Email</span>
+          <span>Username</span>
+          {/* <span>Permission</span> */}
+          <span>Mode</span>
           <span>Date created</span>
           <span>Status</span>
         </div>

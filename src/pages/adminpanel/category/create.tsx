@@ -22,7 +22,7 @@ function CreateCategory(): ReactElement {
               type="text"
             />
           </div>
-          <div className="flex items-center w-full mt-8">
+          {/* <div className="flex items-center w-full mt-8">
             <span className="w-40 flex font-medium text-gray-600 justify-end">Description*</span>
             <input
               //   onChange={(e) => setNewTitle(e.target.value)}
@@ -30,7 +30,7 @@ function CreateCategory(): ReactElement {
               className="w-full py-3 px-4 outline-none rounded ml-8"
               type="text"
             />
-          </div>
+          </div> */}
           <button
             // onClick={updatePostHandler}
             className="ml-auto py-2 px-6 rounded bg-white text-gray-600 font-medium tracking-wide  mt-8"

@@ -1,15 +1,11 @@
-import React, { ReactElement } from 'react'
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 
-interface Props {
-    
+export default function LoginSSOPage() {
+  const router = useRouter();
+  useEffect(() => {
+    console.log(router.query);
+    // router.push('/');
+  });
+  return <div />;
 }
-
-function loginsso({}: Props): ReactElement {
-    return (
-        <div>
-            dasdas
-        </div>
-    )
-}
-
-export default loginsso

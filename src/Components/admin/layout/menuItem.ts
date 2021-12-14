@@ -14,56 +14,45 @@ const items: MenuItemType[] = [
   {
     title: 'Manage User',
     icon: { name: 'people-outline' },
-    link: { href: '/adminpanel/customer' },
+    link: { href: '/adminpanel/user' },
   },
   {
-    title: 'Manage Post',
+    title: 'Manage Article',
     icon: { name: 'edit-2-outline' },
-    link: { href: '/adminpanel/posts' },
+    link: { href: '/adminpanel/articles' },
   },
   {
     title: 'Manage Tag',
     icon: { name: 'pricetags-outline' },
-    link: { href: '/adminpanel/tag' },
+    children: [
+      {
+        title: 'Create Tag',
+        link: { href: '/adminpanel/tag/create' },
+      },
+      {
+        title: 'List Tag',
+        link: { href: '/adminpanel/tag' },
+      },
+    ],
   },
   {
     title: 'Manage Category',
     icon: { name: 'folder-outline' },
     children: [
       {
-        title: 'Operator',
-        link: { href: '/adminpanel/category/operator' },
+        title: 'Create Category',
+        link: { href: '/adminpanel/category/create' },
       },
       {
-        title: 'Security',
-        link: { href: '/adminpanel/category/security' },
-      },
-      {
-        title: 'Development',
-        link: { href: '/adminpanel/category/development' },
-      },
-      {
-        title: 'CloudVirtual',
-        link: { href: '/adminpanel/category/cloudVirtual' },
-      },
-      {
-        title: 'Management',
-        link: { href: '/adminpanel/category/management' },
-      },
-      {
-        title: 'Design',
-        link: { href: '/adminpanel/category/design' },
-      },
-      {
-        title: 'Tool',
-        link: { href: '/adminpanel/category/tool' },
+        title: 'List Category',
+        link: { href: '/adminpanel/category' },
       },
     ],
   },
   {
-    title: 'Manage Member',
+    title: 'Manage Admin',
     icon: { name: 'person-outline' },
-    link: { href: '/adminpanel/member' },
+    link: { href: '/adminpanel/admin' },
   },
   {
     title: 'System Setting',

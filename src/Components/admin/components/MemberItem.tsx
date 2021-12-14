@@ -5,7 +5,7 @@ import Image from 'next/image';
 function MemberItem({ member, handleCheckItemClick }: any): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
   return (
-    <div className="grid grid-cols-7 bg-white hover:bg- px-3 py-1 font-medium items-center">
+    <div className="grid grid-cols-6 bg-white hover:bg- px-3 py-1 font-medium items-center">
       <span className="flex items-center">
         <span className="flex-1">
           <Checkbox
@@ -14,14 +14,16 @@ function MemberItem({ member, handleCheckItemClick }: any): ReactElement {
             onClick={() => handleCheckItemClick(member)}
           />
         </span>
-        <span className="flex-1">{member.id}</span>
       </span>
-      <span className="col-span-2">{member.email}</span>
+      <span className="ml-[-42%]">{member.email}</span>
       <span>{member.name}</span>
-      <span>{member.authorization}</span>
+      {/* <span>{member.authorization}</span> */}
+      <span>All category</span>
       <span>{member.createAt}</span>
       <span className="flex items-center">
-        <button className="mr-auto">{member.status}</button>
+        <span>
+          <Image src="/images/check1.png" width={20} height={20} />
+        </span>
         <button className="flex-1 ml-6">
           <Image src="/images/edit.png" width={20} height={20} />
         </button>
