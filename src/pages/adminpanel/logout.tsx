@@ -11,6 +11,9 @@ export default function Index() {
     try {
       await logout();
       localStorage.removeItem('isView');
+      if (localStorage.getItem('tokenSso')) {
+        localStorage.removeItem('tokenSso');
+      }
       router.push('/login');
       //   if (router.pathname === '/') {
       //     Swal.fire('Logout success!');

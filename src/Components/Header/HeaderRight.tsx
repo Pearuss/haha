@@ -16,18 +16,20 @@ function HeaderRight(): ReactElement {
   const [showSearchInput, setShowSearchInput] = useToggle(false);
 
   useEffect(() => {
-    if (!firstLoading && !profile?.username) {
+    if (!firstLoading && !profile?.username && !localStorage.getItem('tokenSso')) {
       setIsLogin(false);
-    } else if (profile?.username) {
+    } else if (profile?.username || localStorage.getItem('tokenSso')) {
       setIsLogin(true);
     }
   }, [profile, firstLoading]);
-  
 
   const logoutHandler = useCallback(async () => {
     try {
       await logout();
-      localStorage.removeItem('isView')
+      localStorage.removeItem('isView');
+      if (localStorage.getItem('tokenSso')) {
+        localStorage.removeItem('tokenSso');
+      }
       router.push('/');
       if (router.pathname === '/') {
         Swal.fire('Logout success!');

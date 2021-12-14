@@ -26,10 +26,10 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactEl
       : truncateBody(`${dataPostDetail.body}`, 20000).toString(); // see full content
 
   useEffect(() => {
-    if (!firstLoading && !profile?.username) {
+    if (!firstLoading && !profile?.username && !localStorage.getItem('tokenSso')) {
       setIsLogin(false);
       setIsReadMore(true);
-    } else if (profile?.username) {
+    } else if (profile?.username || localStorage.getItem('tokenSso')) {
       setIsReadMore(false);
       setIsLogin(true);
     }

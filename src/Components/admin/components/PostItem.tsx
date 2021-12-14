@@ -6,7 +6,6 @@ import { truncate } from '../../../utilities/helper';
 
 function PostList({ post, handleCheckItemClick }: any): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-  // const linkDetail = `/adminpanel/posts/${post?.id}`;
 
   return (
     <div className="grid grid-cols-8 gap-1 bg-white hover:bg- px-3 py-1 font-medium items-center">

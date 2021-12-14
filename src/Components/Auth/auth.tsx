@@ -7,6 +7,7 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
 function Auth({ children }: any) {
+  let tokenSso: any = false;
   const router = useRouter();
   const { profile, firstLoading } = useAuth();
 
@@ -16,12 +17,15 @@ function Auth({ children }: any) {
   };
 
   useEffect(() => {
-    if (!firstLoading && !profile?.username) {
+    if (localStorage.getItem('tokenSso')) {
+      tokenSso = localStorage.getItem('tokenSso');
+    }
+    if (!firstLoading && !profile?.username && !tokenSso) {
       router.replace('/login');
     }
   }, [router, profile, firstLoading]);
 
-  if (!profile?.username)
+  if (!profile?.username && tokenSso)
     return (
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme: any) => theme.zIndex.drawer + 1 }}

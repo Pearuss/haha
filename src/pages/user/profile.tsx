@@ -5,7 +5,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Link from 'next/link';
 import Post from '../../Components/Post';
 import UserDetail from '../../common/ProfileInfomation/UserDetail';
-import { useAuth } from '../../hooks';
+// import { useAuth } from '../../hooks';
 import { AdminLayout } from '../../layout';
 import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
 
@@ -17,7 +17,7 @@ interface PostItem {
 }
 
 function ProfilePage({ data }: any) {
-  const { profile } = useAuth();
+  // const { profile } = useAuth();
 
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
@@ -66,7 +66,7 @@ function ProfilePage({ data }: any) {
           />
         </div>
       </div>
-      <UserDetail data={profile} />
+      <UserDetail />
       {data?.map((post: PostItem) => (
         <Post key={post.id} post={post} />
       ))}
