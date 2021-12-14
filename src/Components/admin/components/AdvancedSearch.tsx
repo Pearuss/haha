@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 function AdvancedSearch(): ReactElement {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
   return (
-    <div className="bg-white rounded h-200px p-4 px-6 mb-4 min-w-[1167px] ">
+    <div className="bg-white rounded h-200px p-4 px-6 mb-4">
       <h4 className="pb-4 mb-4 border-b-2 border-gray-500">Advanced search</h4>
       <div className="flex items-center gap-10">
         <div className="flex flex-col">

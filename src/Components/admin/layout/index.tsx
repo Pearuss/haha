@@ -56,7 +56,11 @@ const LayoutPage: React.FC<SEOProps> = ({ children, ...rest }) => {
       <ThemeProvider theme={themes('default', dir)}>
         <Fragment>
           <SimpleLayout />
-          <Layout evaIcons={icons} dir={dir} className={!authLayout ? 'auth-layout' : ''}>
+          <Layout
+            evaIcons={icons}
+            dir={dir}
+            className={!authLayout ? 'auth-layout w-full' : 'w-full'}
+          >
             {!authLayout && (
               <Header
                 dir={dir}
@@ -64,7 +68,7 @@ const LayoutPage: React.FC<SEOProps> = ({ children, ...rest }) => {
                 toggleSidebar={() => sidebarRef.current?.toggle()}
               />
             )}
-            <LayoutContainer>
+            <LayoutContainer className="w-full">
               {!authLayout && (
                 <Sidebar
                   getState={getState}
@@ -106,9 +110,11 @@ const LayoutPage: React.FC<SEOProps> = ({ children, ...rest }) => {
                   </SidebarBody>
                 </Sidebar>
               )}
-              <LayoutContent className="overflow-y-scroll">
+              <LayoutContent className="flex flex-1">
                 <LayoutColumns>
-                  <LayoutColumn className="main-content">{children}</LayoutColumn>
+                  <LayoutColumn className="main-content max-full max-w-full">
+                    {children}
+                  </LayoutColumn>
                 </LayoutColumns>
                 {/* {!authLayout && <Footer />} */}
               </LayoutContent>

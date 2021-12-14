@@ -13,7 +13,7 @@ function AllPost({ data }: any): ReactElement {
     <LayoutAdminPage title="Post">
       <HeaderAdmin titlePage="Article" subTitlePage="" searchPlaceholder="Article title..." />
       <AdvancedSearch />
-      <div className="bg-white rounded p-4 px-6 min-w-[1167px]">
+      <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All article</h4>
           <span className="text-sm mt-2 ml-2">(20)</span>

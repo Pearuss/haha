@@ -33,7 +33,7 @@ function EditPost({ data }: any): ReactElement {
         subTitlePage="Total number of articles 20"
         searchPlaceholder="Article title..."
       />
-      <div className="py-4 w-full min-w-[1167px]">
+      <div className="py-4 w-full">
         <h5 className="pb-4 mb-4 border-b-2 border-gray-600">Article content</h5>
         <div className="flex flex-col items-center w-[50vw] mx-auto">
           <div className="flex items-center w-full mt-8">
