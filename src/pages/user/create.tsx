@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
 import React, { useEffect, useState } from 'react';
 import useSWR from 'swr';
-import ImageSearchIcon from '@mui/icons-material/ImageSearch';
 import ModalPost from '../../Components/CreatePost';
 import { HeaderLayout } from '../../layout';
 

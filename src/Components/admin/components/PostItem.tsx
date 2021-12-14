@@ -1,12 +1,11 @@
 import React, { ReactElement } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
-import Link from 'next/link';
 import { truncate } from '../../../utilities/helper';
 
 function PostList({ data }: any): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-  const linkDetail = `/adminpanel/posts/${data.id}`;
+  // const linkDetail = `/adminpanel/posts/${data.id}`;
 
   return (
     <div className="grid grid-cols-8 gap-1 bg-white hover:bg- px-3 py-1 font-medium items-center">

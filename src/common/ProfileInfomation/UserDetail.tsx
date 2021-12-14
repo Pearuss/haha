@@ -4,7 +4,7 @@ import LocalFireDepartmentOutlinedIcon from '@mui/icons-material/LocalFireDepart
 import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
 import PhoneIphoneOutlinedIcon from '@mui/icons-material/PhoneIphoneOutlined';
 
-function UserDetail({ data }: any): ReactElement {
+function UserDetail(): ReactElement {
   return (
     <div className="relative w-full h-max bg-gray-100 mb-4 ">
       <button
@@ -22,7 +22,7 @@ function UserDetail({ data }: any): ReactElement {
         </div>
         <div className="flex items-center text-gray-900 pt-2">
           <MailOutlineOutlinedIcon />
-          <span className="pl-4">{data?.username}</span>
+          <span className="pl-4">Pearuss</span>
         </div>
         <div className="flex items-center text-gray-900 pt-2">
           <PhoneIphoneOutlinedIcon />

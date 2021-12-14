@@ -121,7 +121,7 @@ function login({
           <button
             onClick={handleLoginSSO}
             type="button"
-            className="bg-blueAdmin text-white w-full mx-auto rounded-full font-medium py-3 px-3 mt-12"
+            className="bg-lightGray text-grayText w-full mx-auto rounded-full font-medium py-3 px-3 mt-12"
           >
             Login with Gate
           </button>
