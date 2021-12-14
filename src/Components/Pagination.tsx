@@ -1,27 +1,14 @@
-import { useRouter } from 'next/router';
 import React from 'react';
 import { paging } from '../utilities/helper';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-export default function Pagination({ totalPage, currentPage }: any): any {
-  const router = useRouter();
-
-  const goOtherPage = (page: number) => {
-    router.push(`/user/posts/${page}`);
-  };
-
-  const goNextPage = () => {
-    if (currentPage < totalPage) {
-      router.push(`/user/posts/${currentPage + 1}`);
-    }
-  };
-
-  const goPrevPage = () => {
-    if (currentPage > 1) {
-      router.push(`/user/posts/${currentPage - 1}`);
-    }
-  };
-
+export default function Pagination({
+  totalPage,
+  currentPage,
+  goOtherPage,
+  goNextPage,
+  goPrevPage,
+}: any): any {
   return (
     <ul className="flex justify-center mt-5 mb-5">
       <li onClick={goPrevPage} className={`prevPage px-4 py-2 cursor-pointer`}>
