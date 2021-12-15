@@ -27,11 +27,19 @@ function CustomerItem(props: any): ReactElement {
       <span>{customer.name}</span>
       <span>{customer.phone}</span>
       <span>{customer.createAt}</span>
-      <div className="flex items-center gap-[36%] pr-4">
+      <span className="flex items-center gap-[24%] mr-2">
         {customer.status ? (
-          <Image src="/images/check1.png" width={20} height={20} />
+          <Tooltip title="Status">
+            <IconButton>
+              <Image src="/images/check1.png" width={20} height={20} />
+            </IconButton>
+          </Tooltip>
         ) : (
-          <Image src="/images/cross.png" width={20} height={20} />
+          <Tooltip title="Status">
+            <IconButton>
+              <Image src="/images/cross.png" width={20} height={20} />
+            </IconButton>
+          </Tooltip>
         )}
         <Tooltip title="Edit">
           <IconButton
@@ -44,16 +52,11 @@ function CustomerItem(props: any): ReactElement {
           </IconButton>
         </Tooltip>
         <Tooltip title="Notification">
-          <IconButton>
-            <Image
-              onClick={setShowDialogSendMessage}
-              src="/images/send-mail.png"
-              width={21}
-              height={21}
-            />
+          <IconButton onClick={setShowDialogSendMessage}>
+            <Image src="/images/send-mail.png" width={21} height={21} />
           </IconButton>
         </Tooltip>
-      </div>
+      </span>
       {showDialogSendMessage && <DialogSendMessage />}
     </div>
   );

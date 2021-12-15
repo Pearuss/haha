@@ -18,7 +18,7 @@ function CategoryItem(props: any): ReactElement {
       <span>{cat.name}</span>
       <span>{cat.createAt}</span>
       <span>3000</span>
-      <span className="flex items-center gap-[50%]">
+      <span className="flex items-center gap-[45%]">
         <span>
           <Image src="/images/check1.png" width={20} height={20} />
         </span>

@@ -18,7 +18,7 @@ function TagList(props: any): ReactElement {
       <span>{tag.name}</span>
       <span>{tag.createAt}</span>
       <span>2000</span>
-      <span className="flex items-center gap-[50%]">
+      <span className="flex items-center gap-[45%]">
         <span>
           <Image src="/images/check1.png" width={20} height={20} />
         </span>

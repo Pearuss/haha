@@ -1,15 +1,18 @@
 import React, { ReactElement, useEffect, useMemo, useState } from 'react';
-import LayoutAdminPage from '../../Components/admin/layout';
+import LayoutAdminPage from '../../../Components/admin/layout';
 import Checkbox from '@mui/material/Checkbox';
-import HeaderAdmin from '../../Components/admin/components/HeaderAdmin';
-import DialogDelete from '../../Components/admin/common/dialogDelete';
-import MemberItem from '../../Components/admin/components/MemberItem';
+import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
+import DialogDelete from '../../../Components/admin/common/dialogDelete';
+import MemberItem from '../../../Components/admin/components/MemberItem';
 import Image from 'next/image';
-import Popup from '../../Components/admin/common/popUp';
-import FormUpdateAdmin from '../../Components/admin/components/FormUpdateAdmin';
+import Popup from '../../../Components/admin/common/popUp';
+import FormUpdateAdmin from '../../../Components/admin/components/FormUpdateAdmin';
+import { useRouter } from 'next/router';
 
 function Cpanel(): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+  const router = useRouter();
 
   const memberFake = [
     {
@@ -84,6 +87,10 @@ function Cpanel(): ReactElement {
     setOpenDialog(false);
   };
 
+  const handleClickAdd = () => {
+    router.push('/adminpanel/admin/create');
+  };
+
   const handleUpdateClick = () => {
     console.log('updated');
   };
@@ -97,7 +104,7 @@ function Cpanel(): ReactElement {
           <h4>All user</h4>
           <span className="text-sm mt-2 ml-2">(3)</span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
-            <button>
+            <button onClick={handleClickAdd}>
               <Image src="/images/add-user.png" width={19} height={19} />
             </button>
             <button

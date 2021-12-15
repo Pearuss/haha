@@ -15,7 +15,7 @@ interface INewPost {
   tag: string[];
   mainCategory: string;
   relatedCategory: string[];
-  image: any[];
+  image: string;
   public: boolean;
 }
 
@@ -36,7 +36,7 @@ function UserCreatePage() {
     tag: [],
     mainCategory: '',
     relatedCategory: [],
-    image: [],
+    image: '',
     public: true,
   });
 
@@ -125,17 +125,13 @@ function UserCreatePage() {
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
-        let newImg = [...newPost.image];
-        newImg.push(reader.result);
-        setNewPost((state: any) => ({ ...state, image: newImg }));
+        setNewPost((state: any) => ({ ...state, image: reader.result }));
       }
     };
     reader.readAsDataURL(e.target.files[0]);
   };
-  const removeImage = (index: number) => {
-    let newImg = [...newPost.image];
-    newImg.splice(index, 1);
-    setNewPost((state: any) => ({ ...state, image: newImg }));
+  const removeImage = () => {
+    setNewPost((state: any) => ({ ...state, image: '' }));
   };
 
   return (

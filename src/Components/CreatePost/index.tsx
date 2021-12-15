@@ -247,18 +247,17 @@ function ModalPost({
               <div className="pb-1">
                 <p className="w-23 font-medium mr-8 lg:mr-1">Image:</p>
                 <div className="flex flex-wrap gap-2 w-full">
-                  {newPost.image.map((img: any, index: number) => (
-                    <div
-                      key={index}
-                      className="relative flex-1 min-w-[49%] md:min-w-[30%]  h-auto max-h-[300] p-1 mt-4  rounded border border-gray-300"
-                    >
-                      <img src={img} alt="" className="overflow-hidden rounded" />
+                  {newPost.image ? (
+                    <div className="relative flex-1 min-w-[49%] md:min-w-[30%]  h-auto max-h-[300] p-1 mt-4  rounded border border-gray-300">
+                      <img src={newPost.image} alt="" className="overflow-hidden rounded" />
                       <CloseIcon
-                        onClick={() => removeImage(index)}
+                        onClick={() => removeImage()}
                         className="absolute -top-2 -right-2 bg-gray-300 cursor-pointer rounded-full"
                       />
                     </div>
-                  ))}
+                  ) : (
+                    ''
+                  )}
                   <input
                     type="file"
                     accept="image/*"
