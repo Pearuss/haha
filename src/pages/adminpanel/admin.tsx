@@ -84,7 +84,7 @@ function Cpanel(): ReactElement {
     <LayoutAdminPage title="Member">
       <HeaderAdmin titlePage="Administrator" subTitlePage="" searchPlaceholder="Admin email..." />
 
-      <div className="bg-white rounded h-full p-4 px-6 min-w-[1167px]">
+      <div className="bg-white rounded h-full p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All user</h4>
           <span className="text-sm mt-2 ml-2">(3)</span>

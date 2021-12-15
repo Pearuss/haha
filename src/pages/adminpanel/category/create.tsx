@@ -5,12 +5,8 @@ import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 function CreateCategory(): ReactElement {
   return (
     <LayoutAdminPage title={'Home'}>
-      <HeaderAdmin
-        titlePage="Create a Category"
-        subTitlePage=""
-        searchPlaceholder="Category..."
-      />
-      <div className="py-4 w-full min-w-[1167px]">
+      <HeaderAdmin titlePage="Create a Category" subTitlePage="" searchPlaceholder="Category..." />
+      <div className="py-4 w-full">
         <h5 className="pb-4 mb-4 border-b-2 border-gray-600">Category information</h5>
         <div className="flex flex-col items-center w-[50vw] mx-auto">
           <div className="flex items-center w-full mt-8">
@@ -37,7 +33,6 @@ function CreateCategory(): ReactElement {
           >
             Confirm
           </button>
-          
         </div>
       </div>
     </LayoutAdminPage>
