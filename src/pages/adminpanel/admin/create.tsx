@@ -63,11 +63,11 @@ function CreateCategory(): ReactElement {
         <h5 className="pb-4 mb-4 border-b-2 border-gray-600">Administrator information</h5>
         <div className="flex flex-col items-center w-[50vw] mx-auto">
           <div className="flex items-center w-full mt-8">
-            <span className="w-40 flex font-medium text-gray-600 justify-end">Name*</span>
+            <span className="w-40 flex font-medium text-gray-600 justify-end">UserName*</span>
             <input className="w-full py-3 px-4 outline-none rounded ml-8" type="text" />
           </div>
           <div className="flex items-center w-full mt-8">
-            <span className="w-40 flex font-medium text-gray-600 justify-end">User Name*</span>
+            <span className="w-40 flex font-medium text-gray-600 justify-end">Email*</span>
             <input className="w-full py-3 px-4 outline-none rounded ml-8" type="text" />
           </div>
           <div className="flex items-center w-full mt-8">
