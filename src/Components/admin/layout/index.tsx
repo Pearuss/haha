@@ -1,6 +1,9 @@
-import React, { useState, useRef, Fragment } from 'react';
-import { ThemeProvider } from 'styled-components';
-import themes from './themes';
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useState, useRef } from 'react';
+
+import icons from '@paljs/icons';
+import { Button } from '@paljs/ui/Button';
+import { EvaIcon } from '@paljs/ui/Icon';
 import {
   Layout,
   LayoutContent,
@@ -8,18 +11,18 @@ import {
   LayoutColumns,
   LayoutColumn,
 } from '@paljs/ui/Layout';
-import icons from '@paljs/icons';
-import { SidebarBody, SidebarRefObject, Sidebar } from '@paljs/ui/Sidebar';
-import Header from './Header';
-import SimpleLayout from './SimpleLayout';
-import { useRouter } from 'next/router';
-import { EvaIcon } from '@paljs/ui/Icon';
-import { Button } from '@paljs/ui/Button';
 import { Menu, MenuRefObject } from '@paljs/ui/Menu';
+import { SidebarBody, SidebarRefObject, Sidebar } from '@paljs/ui/Sidebar';
 import Link from 'next/link';
-import menuItems from './menuItem';
+import { useRouter } from 'next/router';
+import { ThemeProvider } from 'styled-components';
+
 import Auth from '../../Auth/auth';
+import Header from './Header';
+import menuItems from './menuItem';
 import SEO, { SEOProps } from './SEO';
+import SimpleLayout from './SimpleLayout';
+import themes from './themes';
 // import Footer from '../../Footer';
 
 // const getDefaultTheme = (): DefaultTheme['name'] => {
@@ -54,7 +57,7 @@ const LayoutPage: React.FC<SEOProps> = ({ children, ...rest }) => {
     <Auth className="antialiased w-full">
       <SEO {...rest} />
       <ThemeProvider theme={themes('default', dir)}>
-        <Fragment>
+        <>
           <SimpleLayout />
           <Layout
             evaIcons={icons}
@@ -120,7 +123,7 @@ const LayoutPage: React.FC<SEOProps> = ({ children, ...rest }) => {
               </LayoutContent>
             </LayoutContainer>
           </Layout>
-        </Fragment>
+        </>
       </ThemeProvider>
     </Auth>
   );

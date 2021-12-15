@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import _ from 'lodash';

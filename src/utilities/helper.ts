@@ -1,11 +1,14 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-plusplus */
+/* eslint-disable eqeqeq */
 import { indexOf } from 'lodash';
 
 export function truncate(string: string, n: number) {
-  return string?.length > n ? string.substr(0, n - 1) + '...' : string;
+  return string?.length > n ? `${string.substr(0, n - 1)}...` : string;
 }
 
 export function truncateBody(string: string, n: number) {
-  return string?.length > n ? string.substr(0, indexOf(string, '#', 2)) + ' ...' : string;
+  return string?.length > n ? `${string.substr(0, indexOf(string, '#', 2))} ...` : string;
 }
 
 export function replaceTagBr(string: string) {
@@ -13,14 +16,14 @@ export function replaceTagBr(string: string) {
 }
 
 export function paging(currentPage: number, totalPage: number) {
-  var current = currentPage,
-    last = totalPage,
-    delta = 2,
-    left = current - delta,
-    right = current + delta + 1,
-    range = [],
-    rangeWithDots = [],
-    l;
+  const current = currentPage;
+  const last = totalPage;
+  const delta = 2;
+  const left = current - delta;
+  const right = current + delta + 1;
+  const range = [];
+  const rangeWithDots = [];
+  let l;
 
   for (let i = 1; i <= last; i++) {
     if (i == 1 || i == last || (i >= left && i < right)) {
@@ -28,7 +31,7 @@ export function paging(currentPage: number, totalPage: number) {
     }
   }
 
-  for (let i of range) {
+  for (const i of range) {
     if (l) {
       if (i - l === 2) {
         rangeWithDots.push(l + 1);

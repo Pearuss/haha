@@ -1,19 +1,25 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable eqeqeq */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable @typescript-eslint/no-loop-func */
+/* eslint-disable no-plusplus */
 import React, { ReactElement, useEffect, useState } from 'react';
 
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import CloseIcon from '@mui/icons-material/Close';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import CloseIcon from '@mui/icons-material/Close';
-import Image from 'next/image';
-import PostDetail from '../../Components/PostDetail/PostDetail';
-import { ContentIndex } from '../../Components/PostDetail/ContentIndex';
-import { DetailPostLayout } from '../../layout';
-import { useAuth } from '../../hooks';
-import Link from 'next/link';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
 import CommentSection from '../../Components/CommentSection/CommentSection';
+import { ContentIndex } from '../../Components/PostDetail/ContentIndex';
+import PostDetail from '../../Components/PostDetail/PostDetail';
+import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
+import { useAuth } from '../../hooks';
+import { DetailPostLayout } from '../../layout';
 
 function Index({ data }: any): ReactElement {
   const [isLogin, setIsLogin] = useState(false);
@@ -66,11 +72,13 @@ function Index({ data }: any): ReactElement {
       }
 
       contentIndexE.innerHTML = contentIndexE == null ? '' : html;
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }, [isReadMore]);
 
   useEffect(() => {
-    const focusHeading: any = document.querySelectorAll(`.headingContent`);
+    const focusHeading: any = document.querySelectorAll('.headingContent');
     const headingE: any = document.getElementsByTagName('h1');
 
     for (let i = 0; i < focusHeading.length; i++) {
@@ -127,7 +135,7 @@ function Index({ data }: any): ReactElement {
       menuMobile.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full'
+        'ssm:-translate-x-full',
       );
       menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -205,7 +213,7 @@ function Index({ data }: any): ReactElement {
       </div>
       <TagSectionMobile isShowTagMobile={isShowTagMobile} />
       {/* cover */}
-      <div className="coverTag hidden fixed z-50 top-0 left-0 w-[100vw] h-[100vh] bg-gray-600 bg-opacity-30"></div>
+      <div className="coverTag hidden fixed z-50 top-0 left-0 w-[100vw] h-[100vh] bg-gray-600 bg-opacity-30" />
     </div>
   );
 }

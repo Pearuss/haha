@@ -1,5 +1,9 @@
-import { Button, Checkbox, DialogActions, TextField } from '@mui/material';
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
+import {
+  Button, Checkbox, DialogActions, TextField,
+} from '@mui/material';
 
 export default function FormUpdateUser(props: any) {
   const { setOpenPopup, handleUpdateClick, user } = props;

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 import { useRouter } from 'next/router';
 
 import { useAuth } from '../../hooks';
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
 
 function Auth({ children }: any) {
   let tokenSso: any = false;
@@ -25,7 +25,7 @@ function Auth({ children }: any) {
     }
   }, [router, profile, firstLoading]);
 
-  if (!profile?.username && tokenSso)
+  if (!profile?.username && tokenSso) {
     return (
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme: any) => theme.zIndex.drawer + 1 }}
@@ -35,6 +35,7 @@ function Auth({ children }: any) {
         <CircularProgress color="inherit" />
       </Backdrop>
     );
+  }
 
   return <div className="bg-white">{children}</div>;
 }

@@ -1,21 +1,27 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { ReactElement } from 'react';
+
 // import Link from 'next/link';
 // import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import TextField from '@mui/material/TextField';
-import MarkDown from '../../../Components/CreatePost/MarkDown';
 import Select from 'react-select';
+import useSWR from 'swr';
+
+import MarkDown from '../../../Components/CreatePost/MarkDown';
 // import Checkbox from '@mui/material/Checkbox';
 import { HeaderLayout } from '../../../layout';
 import { truncate } from '../../../utilities/helper';
-import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
-import useSWR from 'swr';
-
 
 function EditPost({ data }: any): ReactElement {
   const { data: tagData }: any = useSWR('http://localhost:3001/tags');
   const { data: catData }: any = useSWR('http://localhost:3001/category');
 
-  const tagOptions: any[] = tagData?.followingTags.map((tag: any) => ({ value: tag.name, label: tag.name }));
+  const tagOptions: any[] = tagData?.followingTags.map((tag: any) => ({
+    value: tag.name,
+    label: tag.name,
+  }));
   const catOptions: any[] = catData?.map((tag: any) => ({ value: tag.name, label: tag.name }));
 
   return (
@@ -65,7 +71,7 @@ function EditPost({ data }: any): ReactElement {
                     // className={`basic-single mb-1 ${
                     //   isErrorCategory ? 'border border-darkRed rounded-md' : ''
                     // }`}
-                    className={`basic-single mb-1`}
+                    className="basic-single mb-1"
                     classNamePrefix="select"
                     placeholder="Main category"
                     name="mainCategory"
@@ -83,36 +89,24 @@ function EditPost({ data }: any): ReactElement {
                   />
                 </div>
               </div>
-              <div className={`flex border-b border-gray-300 pb-1`}>
+              <div className="flex border-b border-gray-300 pb-1">
                 <p className="w-23 font-medium mr-8 lg:mr-1">Tag:</p>
                 <Select
                   //   className={`basic-multi-select ${
                   //     isErrorTag ? 'border border-darkRed rounded-md' : ''
                   //   }`}
-                  className={`basic-multi-select `}
+                  className="basic-multi-select "
                   isMulti
                   classNamePrefix="select"
                   placeholder="Choose tag"
                   name="relatedCategory"
-                    options={tagOptions}
+                  options={tagOptions}
                   //   onChange={changeTag}
                 />
               </div>
               <div className="pb-1">
                 <p className="w-23 font-medium mr-8 mt-3 lg:mr-1">Image:</p>
                 <div className="flex flex-wrap gap-2 w-full">
-                  {/* {newPost.image.map((img: any, index: number) => (
-                    <div
-                      key={index}
-                      className="relative flex-1 min-w-[49%] md:min-w-[30%]  h-auto max-h-[300] p-1 mt-4  rounded border border-gray-300"
-                    >
-                      <img src={img} alt="" className="overflow-hidden rounded" />
-                      <CloseIcon
-                        onClick={() => removeImage(index)}
-                        className="absolute -top-2 -right-2 bg-gray-300 cursor-pointer rounded-full"
-                      />
-                    </div>
-                  ))} */}
                   <input
                     type="file"
                     accept="image/*"

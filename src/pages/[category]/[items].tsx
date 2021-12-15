@@ -1,10 +1,11 @@
-import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
+
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import Post from '../../Components/Post';
 import TagSectionMobile from '../../Components/TagContent/TagSection';
 import { MainLayout } from '../../layout';
-import Image from 'next/image';
 import { capitalizeFirstLetter } from '../../utilities/helper';
 
 const Category = ({ data }: any): ReactElement => {
@@ -22,7 +23,7 @@ const Category = ({ data }: any): ReactElement => {
       menuMobile.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full'
+        'ssm:-translate-x-full',
       );
       menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -38,7 +39,10 @@ const Category = ({ data }: any): ReactElement => {
       <div className="flex items-center ">
         <Image src="/images/category.png" width={40} height={40} />
         <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-1 text-black font-normal ml-[1vw]">
-          Category: {capitalizeFirstLetter(router.query.category?.toString() || '')}/
+          Category:
+          {' '}
+          {capitalizeFirstLetter(router.query.category?.toString() || '')}
+          /
           {capitalizeFirstLetter(router.query.items?.toString() || '')}
         </p>
       </div>
@@ -76,12 +80,10 @@ export default Category;
 //     fallback: true,
 //   };
 // }
-export const getStaticPaths = async () => {
-  return {
-    paths: [], //indicates that no page needs be created at build time
-    fallback: 'blocking', //indicates the type of fallback
-  };
-};
+export const getStaticPaths = async () => ({
+  paths: [], // indicates that no page needs be created at build time
+  fallback: 'blocking', // indicates the type of fallback
+});
 
 export const getStaticProps = async () => {
   const res = await fetch('http://localhost:3001/posts');

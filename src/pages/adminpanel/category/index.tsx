@@ -1,13 +1,19 @@
-import React, { ReactElement, useEffect, useMemo, useState } from 'react';
-import LayoutAdminPage from '../../../Components/admin/layout';
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/button-has-type */
+import React, {
+  ReactElement, useEffect, useMemo, useState,
+} from 'react';
+
 import Checkbox from '@mui/material/Checkbox';
-import CategoryItem from '../../../Components/admin/components/CategoryItem';
-import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
-import DialogDelete from '../../../Components/admin/common/dialogDelete';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import FormUpdateCategory from '../../../Components/admin/components/FormUpdateCategory';
+
+import DialogDelete from '../../../Components/admin/common/dialogDelete';
 import Popup from '../../../Components/admin/common/popUp';
+import CategoryItem from '../../../Components/admin/components/CategoryItem';
+import FormUpdateCategory from '../../../Components/admin/components/FormUpdateCategory';
+import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
+import LayoutAdminPage from '../../../Components/admin/layout';
 
 function Category(): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -47,9 +53,7 @@ function Category(): ReactElement {
 
   const router = useRouter();
 
-  const hasSelectedCat = useMemo(() => {
-    return dataCats.find((cat) => cat.selected === true);
-  }, [dataCats]);
+  const hasSelectedCat = useMemo(() => dataCats.find((cat) => cat.selected === true), [dataCats]);
 
   useEffect(() => {
     const isSelectedAll = dataCats.find((cat) => cat.selected === false);
@@ -61,12 +65,6 @@ function Category(): ReactElement {
     const newDataCats = [...dataCats].map((cat) => ({ ...cat, selected: !selectAll }));
     setSelectAll(!selectAll);
     setDataCats(newDataCats);
-  };
-
-  const handleDeleteClick = () => {
-    const dataSelected = dataCats.filter((cat) => cat.selected === true);
-    console.log(dataSelected);
-    handleClose();
   };
 
   const handleCheckItemClick = (cat: any) => {
@@ -82,6 +80,12 @@ function Category(): ReactElement {
 
   const handleClose = () => {
     setOpenDialog(false);
+  };
+
+  const handleDeleteClick = () => {
+    const dataSelected = dataCats.filter((cat) => cat.selected === true);
+    console.log(dataSelected);
+    handleClose();
   };
 
   const handleClickAdd = () => {
@@ -108,10 +112,7 @@ function Category(): ReactElement {
             <button onClick={handleClickAdd}>
               <Image src="/images/plus.png" width={19} height={19} />
             </button>
-            <button
-              onClick={handleClickOpen}
-              disabled={typeof hasSelectedCat === 'undefined' ? true : false}
-            >
+            <button onClick={handleClickOpen} disabled={typeof hasSelectedCat === 'undefined'}>
               <Image src="/images/delete.png" width={20} height={20} />
             </button>
           </div>

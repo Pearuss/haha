@@ -1,26 +1,38 @@
 {
-  "parser": "babel-eslint",
-  "extends": ["airbnb", "plugin:node/recommended", "plugin:security/recommended", "prettier"],
-  "env": {
-    "node": true,
-    "commonjs": true,
-    "es6": true
+  "plugins": ["@typescript-eslint"],
+  "extends": ["airbnb-typescript"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
   },
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
-  },
-  "plugins": ["prettier"],
   "rules": {
-    "prettier/prettier": "error",
-    "node/exports-style": ["error", "module.exports"],
-    "node/file-extension-in-import": ["error", "always"],
-    "node/prefer-global/buffer": ["error", "always"],
-    "node/prefer-global/console": ["error", "always"],
-    "node/prefer-global/process": ["error", "always"],
-    "node/prefer-global/url-search-params": ["error", "always"],
-    "node/prefer-global/url": ["error", "always"],
-    "node/prefer-promises/dns": "error",
-    "node/prefer-promises/fs": "error"
+    "react/destructuring-assignment": "off", // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
+    "jsx-a11y/anchor-is-valid": "off", // Next.js use his own internal link system
+    "react/require-default-props": "off", // Allow non-defined react props as undefined
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal"],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ]
   }
 }

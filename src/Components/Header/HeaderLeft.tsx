@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { ReactElement } from 'react';
 
 import Image from 'next/image';

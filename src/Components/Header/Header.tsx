@@ -1,9 +1,9 @@
 import React, { ReactElement, useEffect } from 'react';
 
-import Menu from './Menu';
 import HeaderLeft from './HeaderLeft';
 import HeaderMiddle from './HeaderMiddle';
 import HeaderRight from './HeaderRight';
+import Menu from './Menu';
 
 // interface Props {}
 
@@ -25,7 +25,7 @@ const Header = (): ReactElement => {
         }
         lastScrollTop = st <= 0 ? 0 : st;
       },
-      false
+      false,
     );
   }, []);
 

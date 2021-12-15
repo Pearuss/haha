@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from 'react';
 
 // import Link from 'next/link';
-import Post from '../Components/Post';
-import { MainLayout } from '../layout';
-import TagSectionMobile from '../Components/TagContent/TagSectionMobile';
-import { truncate } from '../utilities/helper';
 import Link from 'next/link';
+
+import Post from '../Components/Post';
+import TagSectionMobile from '../Components/TagContent/TagSectionMobile';
+import { MainLayout } from '../layout';
+import { truncate } from '../utilities/helper';
 
 // import { LayoutMeta } from 'next';
 
@@ -30,7 +31,7 @@ function HomePage({ data }: any) {
       menuMobile.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full'
+        'ssm:-translate-x-full',
       );
       menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -43,20 +44,20 @@ function HomePage({ data }: any) {
 
   return (
     <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
-      {/* <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-6 text-black font-normal">
-        Create diagrams online realtime collaboration!
-      </p> */}
       <div className="relative w-full h-44 bg-white p-4 pt-0 rounded-md shadow-sm ssm:h-auto ssm:min-h-[250px] sm:min-h-[210px]">
         <Link href={`/posts/${data[0].id}`}>
           <div className="text-[44px] 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[30px] sm:text-[28px] ssm:text-2xl pb-6 text-black font-normal cursor-pointer mt-[-9px]">
-          {data[0].title}
+            {data[0].title}
           </div>
         </Link>
         <div className="text-sm">{truncate(`${data[0].body}`, 220)}</div>
 
         <div className="absolute bottom-1 right-4 pb-2 text-xs">
           <span>
-            {data[0].tags} - {data[0].author}
+            {data[0].tags}
+            {' '}
+            -
+            {data[0].author}
           </span>
           <span className="ml-3">|</span>
           <span className="ml-3">12 Feb 2020 </span>
@@ -72,7 +73,10 @@ function HomePage({ data }: any) {
 
             <div className="absolute bottom-1 right-4 pb-2 text-xs">
               <span>
-                {data[1].tags} - {data[1].author}
+                {data[1].tags}
+                {' '}
+                -
+                {data[1].author}
               </span>
               <span className="ml-3">|</span>
               <span className="ml-3">12 Feb 2020 </span>
@@ -86,7 +90,10 @@ function HomePage({ data }: any) {
 
             <div className="absolute bottom-1 right-4 text-gray-700 pb-2 text-xs">
               <span>
-                {data[2].tags} - {data[2].author}
+                {data[2].tags}
+                {' '}
+                -
+                {data[2].author}
               </span>
               <span className="ml-3">|</span>
               <span className="ml-3">12 Feb 2020 </span>
@@ -100,7 +107,10 @@ function HomePage({ data }: any) {
 
             <div className="absolute bottom-1 right-4 text-gray-700 pb-2 text-xs">
               <span>
-                {data[3].tags} - {data[3].author}
+                {data[3].tags}
+                {' '}
+                -
+                {data[3].author}
               </span>
               <span className="ml-3">|</span>
               <span className="ml-3">12 Feb 2020 </span>

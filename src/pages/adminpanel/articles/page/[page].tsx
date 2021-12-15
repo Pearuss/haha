@@ -1,13 +1,21 @@
-import React, { ReactElement, useEffect, useMemo, useState } from 'react';
-import LayoutAdminPage from '../../../../Components/admin/layout';
+/* eslint-disable no-plusplus */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/button-has-type */
+/* eslint-disable no-underscore-dangle */
+import React, {
+  ReactElement, useEffect, useMemo, useState,
+} from 'react';
+
 import Checkbox from '@mui/material/Checkbox';
-import PostItem from '../../../../Components/admin/components/PostItem';
-import HeaderAdmin from '../../../../Components/admin/components/HeaderAdmin';
-import AdvancedSearch from '../../../../Components/admin/components/AdvancedSearch';
-import Pagination from '../../../../Components/Pagination';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+
 import DialogDelete from '../../../../Components/admin/common/dialogDelete';
+import AdvancedSearch from '../../../../Components/admin/components/AdvancedSearch';
+import HeaderAdmin from '../../../../Components/admin/components/HeaderAdmin';
+import PostItem from '../../../../Components/admin/components/PostItem';
+import LayoutAdminPage from '../../../../Components/admin/layout';
+import Pagination from '../../../../Components/Pagination';
 
 function AllPost({ data }: any): ReactElement {
   const router = useRouter();
@@ -27,9 +35,10 @@ function AllPost({ data }: any): ReactElement {
 
   const handleClickExport = () => {};
 
-  const hasSelectedTag = useMemo(() => {
-    return dataPosts?.find((post: any) => post.selected === true);
-  }, [dataPosts]);
+  const hasSelectedTag = useMemo(
+    () => dataPosts?.find((post: any) => post.selected === true),
+    [dataPosts],
+  );
 
   useEffect(() => {
     const isSelectedAll = dataPosts?.find((post: any) => post.selected === false);
@@ -41,12 +50,6 @@ function AllPost({ data }: any): ReactElement {
     const newDataTags = [...dataPosts].map((post: any) => ({ ...post, selected: !selectAll }));
     setSelectAll(!selectAll);
     setDataPosts(newDataTags);
-  };
-
-  const handleDeleteClick = () => {
-    const dataSelected = dataPosts.filter((post: any) => post.selected === true);
-    console.log(dataSelected);
-    handleClose();
   };
 
   const handleCheckItemClick = (tag: any) => {
@@ -63,6 +66,12 @@ function AllPost({ data }: any): ReactElement {
 
   const handleClose = () => {
     setOpenDialog(false);
+  };
+
+  const handleDeleteClick = () => {
+    const dataSelected = dataPosts.filter((post: any) => post.selected === true);
+    console.log(dataSelected);
+    handleClose();
   };
 
   const goOtherPage = (page: number) => {
@@ -83,12 +92,20 @@ function AllPost({ data }: any): ReactElement {
 
   return (
     <LayoutAdminPage title="Article">
-      <HeaderAdmin titlePage="Article Management" subTitlePage="" searchPlaceholder="Article title..." />
+      <HeaderAdmin
+        titlePage="Article Management"
+        subTitlePage=""
+        searchPlaceholder="Article title..."
+      />
       <AdvancedSearch />
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All articles</h4>
-          <span className="text-sm mt-2 ml-2">({data?.pagination._totalRow})</span>
+          <span className="text-sm mt-2 ml-2">
+            (
+            {data?.pagination._totalRow}
+            )
+          </span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <button onClick={handleClickExport}>
               <Image src="/images/share.png" width={20} height={20} />
@@ -142,7 +159,7 @@ export async function getStaticPaths() {
   const { pagination } = await res.json();
   const totalPage = Math.ceil(pagination._totalRow / 5);
 
-  let paths = [];
+  const paths = [];
   for (let i = 1; i <= totalPage; i++) {
     paths.push({ params: { page: `${i}` } });
   }

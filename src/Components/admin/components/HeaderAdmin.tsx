@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+
 import { SearchIcon } from '@heroicons/react/solid';
 
 function HeaderAdmin({ titlePage, subTitlePage, searchPlaceholder }: any): ReactElement {

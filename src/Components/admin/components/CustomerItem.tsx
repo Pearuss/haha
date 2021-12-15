@@ -1,15 +1,20 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { ReactElement } from 'react';
+
 import Checkbox from '@mui/material/Checkbox';
-import DialogSendMessage from '../common/dialogSendMessage';
-import Image from 'next/image';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import Image from 'next/image';
+
 import useToggle from '../../../hooks/use-toggle';
+import DialogSendMessage from '../common/dialogSendMessage';
 
 function CustomerItem(props: any): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-  const { customer, handleCheckItemClick, setOpenPopup, setUserSelected } = props;
+  const {
+    customer, handleCheckItemClick, setOpenPopup, setUserSelected,
+  } = props;
 
   const [showDialogSendMessage, setShowDialogSendMessage] = useToggle(false);
   return (

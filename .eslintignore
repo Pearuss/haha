@@ -1,4 +1,6 @@
 node_modules
+json-server
+public
 dist
 next.config.js
 postcss.config.js

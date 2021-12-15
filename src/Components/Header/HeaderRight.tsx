@@ -1,12 +1,15 @@
-import React, { ReactElement, useCallback, useEffect, useState } from 'react';
+/* eslint-disable max-len */
+import React, {
+  ReactElement, useCallback, useEffect, useState,
+} from 'react';
 
 import { UserCircleIcon, MenuIcon, SearchIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
-import useToggle from '../../hooks/use-toggle';
 
 import { useAuth } from '../../hooks';
+import useToggle from '../../hooks/use-toggle';
 
 function HeaderRight(): ReactElement {
   const router = useRouter();
@@ -83,7 +86,7 @@ function HeaderRight(): ReactElement {
           </div>
         </div>
       ) : (
-        <Link href={'/login'}>
+        <Link href="/login">
           <div className="userDropdown ssm:mr-[-1.2rem]" data-dropdown-user>
             <div
               className="flex items-center gap-1 px-3 py-[6px] text-sm xl:py-1 xl:px-2 lg:py-1 lg:px-2 sm:text-xs md:py-1 md:px-2 ssm:text-[10px] ssm:px-1 ssm:py-1"
@@ -117,7 +120,7 @@ function HeaderRight(): ReactElement {
               <Link href="/user/admin">
                 <a className="link ">Moderator</a>
               </Link>
-            )} 
+            )}
               <div className="link  hover:rounded-full" onClick={logoutHandler} aria-hidden="true">
                 Log out
               </div>

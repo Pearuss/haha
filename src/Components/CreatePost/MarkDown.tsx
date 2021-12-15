@@ -9,7 +9,7 @@ import ReactCodeMirror from '@uiw/react-markdown-editor/cjs/components/CodeMirro
 
 const MarkdownEditor = dynamic<any>(
   () => import('@uiw/react-markdown-editor').then((mod) => mod.default),
-  { ssr: false }
+  { ssr: false },
 );
 
 function HomePage({ content, setNewPost }: any) {

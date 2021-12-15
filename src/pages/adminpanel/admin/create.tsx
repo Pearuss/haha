@@ -1,8 +1,12 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable react/button-has-type */
 import React, { ReactElement } from 'react';
-import LayoutAdminPage from '../../../Components/admin/layout';
-import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
+
 import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { Theme, useTheme } from '@mui/material/styles';
+
+import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
+import LayoutAdminPage from '../../../Components/admin/layout';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -46,14 +50,11 @@ function CreateCategory(): ReactElement {
     const {
       target: { value },
     } = event;
-    setCatName(
-      // On autofill we get a the stringified value.
-      typeof value === 'string' ? value.split(',') : value
-    );
+    setCatName(typeof value === 'string' ? value.split(',') : value);
   };
 
   return (
-    <LayoutAdminPage title={'Home'}>
+    <LayoutAdminPage title="Home">
       <HeaderAdmin
         titlePage="Create a Administrator"
         subTitlePage=""
@@ -63,11 +64,11 @@ function CreateCategory(): ReactElement {
         <h5 className="pb-4 mb-4 border-b-2 border-gray-600">Administrator information</h5>
         <div className="flex flex-col items-center w-[50vw] mx-auto">
           <div className="flex items-center w-full mt-8">
-            <span className="w-40 flex font-medium text-gray-600 justify-end">Name*</span>
+            <span className="w-40 flex font-medium text-gray-600 justify-end">UserName*</span>
             <input className="w-full py-3 px-4 outline-none rounded ml-8" type="text" />
           </div>
           <div className="flex items-center w-full mt-8">
-            <span className="w-40 flex font-medium text-gray-600 justify-end">User Name*</span>
+            <span className="w-40 flex font-medium text-gray-600 justify-end">Email*</span>
             <input className="w-full py-3 px-4 outline-none rounded ml-8" type="text" />
           </div>
           <div className="flex items-center w-full mt-8">

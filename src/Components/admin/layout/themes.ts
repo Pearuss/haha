@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { createTheme } from '@paljs/theme';
 import { DefaultTheme } from 'styled-components';
 

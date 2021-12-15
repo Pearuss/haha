@@ -1,12 +1,18 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/button-has-type */
+/* eslint-disable import/order */
 import React, { ReactElement, useState, useCallback } from 'react';
 
-import Image from 'next/image';
-// import FormComment from './FormComment';
 import parse from 'html-react-parser';
-import InputMention from '../../common/InputMention/InputMention';
-import { truncate } from '../../utilities/helper';
-import { useAuth } from '../../hooks';
+import Image from 'next/image';
+
+// import FormComment from './FormComment';
 import { useRouter } from 'next/router';
+
+import InputMention from '../../common/InputMention/InputMention';
+import { useAuth } from '../../hooks';
+import { truncate } from '../../utilities/helper';
 
 function Comment({
   commentContent,
@@ -19,19 +25,18 @@ function Comment({
   const { profile } = useAuth();
   const router = useRouter();
 
-  const isReplying =
-    activeComment && activeComment.type === 'replying' && activeComment.id === commentContent.id;
+  const isReplying = activeComment && activeComment.type === 'replying' && activeComment.id === commentContent.id;
 
-  const replyId = parentId ? parentId : commentContent.id;
+  const replyId = parentId || commentContent.id;
 
   const [isReadMore, setIsReadMore] = useState(true);
 
-  let contentBody = isReadMore
+  const contentBody = isReadMore
     ? truncate(`${commentContent?.body}`, 210).toString() // max content length is 210
     : truncate(`${commentContent?.body}`, 20000).toString(); // see full content
 
   const ReadMoreHandler = useCallback(() => {
-    if (profile?.message == 'You need to login to access') {
+    if (profile?.message === 'You need to login to access') {
       router.replace('/login');
     } else if (profile?.username) {
       setIsReadMore(false);
@@ -82,12 +87,10 @@ function Comment({
             <Image src="/images/reply.png" width={20} height={20} />
             <span
               className="pl-3 font-medium"
-              onClick={() =>
-                setActiveComment({
-                  id: commentContent.id,
-                  type: 'replying',
-                })
-              }
+              onClick={() => setActiveComment({
+                id: commentContent.id,
+                type: 'replying',
+              })}
             >
               Reply
             </span>
@@ -104,19 +107,17 @@ function Comment({
             //     ? ''
             //     : `${parse('<p class="text-darkRed">@${commentContent.username}</p>')} `
             // }`}
-            handleSubmit={(text: any) =>
-              addComment(
-                // `${parentId == null ? '' : `@${commentContent.username}`} ${text}`,
-                text,
-                replyId
-              )
-            }
+            handleSubmit={(text: any) => addComment(
+              // `${parentId == null ? '' : `@${commentContent.username}`} ${text}`,
+              text,
+              replyId,
+            )}
             handleCancel={() => setActiveComment(null)}
           />
         )}
         {replies.length > 0 && (
           <div className={replies}>
-            <div className="w-full border-b border-gray-200 pt-4"></div>
+            <div className="w-full border-b border-gray-200 pt-4" />
             {replies?.map((reply: any) => (
               <Comment
                 commentContent={reply}
