@@ -42,7 +42,6 @@ function UserCreatePage() {
     image: '',
     public: true,
   });
-<<<<<<< HEAD
 
   useEffect(() => {
     const button = document.createElement('button');
@@ -85,8 +84,6 @@ function UserCreatePage() {
     e.preventDefault();
     document.getElementById('uploadImgMD')?.click();
   }
-=======
->>>>>>> 9e15705fb2c8095645c18ac212cfeaa505cbe17b
 
   const changeTitle = (e: any) => {
     setNewPost((state: any) => ({ ...state, title: e.target.value }));
