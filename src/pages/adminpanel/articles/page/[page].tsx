@@ -131,13 +131,16 @@ function AllPost({ data }: any): ReactElement {
           handleClose={handleClose}
           handleDeleteClick={handleDeleteClick}
         />
-        <Pagination
-          totalPage={totalPage}
-          currentPage={Number(router.query.page)}
-          goOtherPage={goOtherPage}
-          goNextPage={goNextPage}
-          goPrevPage={goPrevPage}
-        />
+        <div className="flex justify-between">
+          <div className="flex items-center text-sm mt-3 ml-2">{`Total number of articles ${data?.pagination._totalRow}`}</div>
+          <Pagination
+            totalPage={totalPage}
+            currentPage={Number(router.query.page)}
+            goOtherPage={goOtherPage}
+            goNextPage={goNextPage}
+            goPrevPage={goPrevPage}
+          />
+        </div>
       </div>
     </LayoutAdminPage>
   );

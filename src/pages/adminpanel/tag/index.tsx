@@ -6,6 +6,8 @@ import TagItem from '../../../Components/admin/components/TagItem';
 import DialogDelete from '../../../Components/admin/common/dialogDelete';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import Popup from '../../../Components/admin/common/popUp';
+import FormUpdateTag from '../../../Components/admin/components/FormUpdateTag';
 
 function Tag(): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -38,8 +40,10 @@ function Tag(): ReactElement {
   ];
 
   const [openDialog, setOpenDialog] = useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
   const [dataTags, setDataTags] = useState(tagFake);
+  const [tagSelected, setTagSelected] = useState();
 
   const router = useRouter();
 
@@ -84,6 +88,10 @@ function Tag(): ReactElement {
     router.push('/adminpanel/tag/create');
   };
 
+  const handleUpdateClick = () => {
+    console.log('updated');
+  };
+
   return (
     <LayoutAdminPage title="HashTag">
       <HeaderAdmin titlePage="Hashtag" subTitlePage="Total 12" searchPlaceholder="Search tag..." />
@@ -114,7 +122,13 @@ function Tag(): ReactElement {
           <span>Status</span>
         </div>
         {dataTags.map((tag) => (
-          <TagItem key={tag.id} tag={tag} handleCheckItemClick={handleCheckItemClick} />
+          <TagItem
+            setOpenPopup={setOpenPopup}
+            setTagSelected={setTagSelected}
+            key={tag.id}
+            tag={tag}
+            handleCheckItemClick={handleCheckItemClick}
+          />
         ))}
         <DialogDelete
           label="Do you want to remove the tag?"
@@ -124,6 +138,13 @@ function Tag(): ReactElement {
           handleDeleteClick={handleDeleteClick}
         />
       </div>
+      <Popup title="Update Tag" openPopup={openPopup}>
+        <FormUpdateTag
+          tag={tagSelected}
+          setOpenPopup={setOpenPopup}
+          handleUpdateClick={handleUpdateClick}
+        />
+      </Popup>
     </LayoutAdminPage>
   );
 }

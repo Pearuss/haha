@@ -5,6 +5,8 @@ import CustomerItem from '../../Components/admin/components/CustomerItem';
 import HeaderAdmin from '../../Components/admin/components/HeaderAdmin';
 import DialogDelete from '../../Components/admin/common/dialogDelete';
 import Image from 'next/image';
+import Popup from '../../Components/admin/common/popUp';
+import FormUpdateUser from '../../Components/admin/components/FormUpdateUser';
 
 function Cpanel(): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -40,8 +42,10 @@ function Cpanel(): ReactElement {
   ];
 
   const [openDialog, setOpenDialog] = useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
   const [dataCustomers, setDataCustomers] = useState(customerFake);
+  const [userSelected, setUserSelected] = useState();
 
   const hasSelectedCustomer = useMemo(() => {
     return dataCustomers.find((customer) => customer.selected === true);
@@ -83,6 +87,10 @@ function Cpanel(): ReactElement {
     setOpenDialog(false);
   };
 
+  const handleUpdateClick = () => {
+    console.log('updated');
+  };
+
   return (
     <LayoutAdminPage title="Customer">
       <HeaderAdmin titlePage="User Management" subTitlePage="" searchPlaceholder="Email user..." />
@@ -117,6 +125,8 @@ function Cpanel(): ReactElement {
             key={customer.id}
             customer={customer}
             handleCheckItemClick={handleCheckItemClick}
+            setOpenPopup={setOpenPopup}
+            setUserSelected={setUserSelected}
           />
         ))}
         <DialogDelete
@@ -127,6 +137,13 @@ function Cpanel(): ReactElement {
           handleDeleteClick={handleDeleteClick}
         />
       </div>
+      <Popup title="Update user" openPopup={openPopup}>
+        <FormUpdateUser
+          user={userSelected}
+          setOpenPopup={setOpenPopup}
+          handleUpdateClick={handleUpdateClick}
+        />
+      </Popup>
     </LayoutAdminPage>
   );
 }

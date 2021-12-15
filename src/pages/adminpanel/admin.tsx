@@ -5,6 +5,8 @@ import HeaderAdmin from '../../Components/admin/components/HeaderAdmin';
 import DialogDelete from '../../Components/admin/common/dialogDelete';
 import MemberItem from '../../Components/admin/components/MemberItem';
 import Image from 'next/image';
+import Popup from '../../Components/admin/common/popUp';
+import FormUpdateAdmin from '../../Components/admin/components/FormUpdateAdmin';
 
 function Cpanel(): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -40,8 +42,10 @@ function Cpanel(): ReactElement {
   ];
 
   const [openDialog, setOpenDialog] = useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
   const [dataMembers, setDataMembers] = useState(memberFake);
+  const [adminSelected, setAdminSelected] = useState();
 
   const hasSelectedMember = useMemo(() => {
     return dataMembers.find((member) => member.selected === true);
@@ -80,6 +84,10 @@ function Cpanel(): ReactElement {
     setOpenDialog(false);
   };
 
+  const handleUpdateClick = () => {
+    console.log('updated');
+  };
+
   return (
     <LayoutAdminPage title="Member">
       <HeaderAdmin titlePage="Administrator" subTitlePage="" searchPlaceholder="Admin email..." />
@@ -114,7 +122,13 @@ function Cpanel(): ReactElement {
           <span>Status</span>
         </div>
         {dataMembers.map((member) => (
-          <MemberItem key={member.id} member={member} handleCheckItemClick={handleCheckItemClick} />
+          <MemberItem
+            setOpenPopup={setOpenPopup}
+            setAdminSelected={setAdminSelected}
+            key={member.id}
+            member={member}
+            handleCheckItemClick={handleCheckItemClick}
+          />
         ))}
         <DialogDelete
           label="Do you want to remove the member?"
@@ -124,6 +138,13 @@ function Cpanel(): ReactElement {
           handleDeleteClick={handleDeleteClick}
         />
       </div>
+      <Popup title="Update Admin" openPopup={openPopup}>
+        <FormUpdateAdmin
+          admin={adminSelected}
+          setOpenPopup={setOpenPopup}
+          handleUpdateClick={handleUpdateClick}
+        />
+      </Popup>
     </LayoutAdminPage>
   );
 }

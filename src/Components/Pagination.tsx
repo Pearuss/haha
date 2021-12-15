@@ -10,7 +10,7 @@ export default function Pagination({
   goPrevPage,
 }: any): any {
   return (
-    <ul className="flex justify-center mt-5 mb-5">
+    <ul className="flex text-base justify-center mt-5 mb-5">
       <li onClick={goPrevPage} className={`prevPage px-4 py-2 cursor-pointer`}>
         <ArrowBackIosNewIcon />
       </li>
@@ -19,17 +19,14 @@ export default function Pagination({
           return (
             <li
               onClick={() => goOtherPage(Number(page))}
-              className="px-5 py-2 text-blueCyanLogo text-xl cursor-pointer mx-2"
+              className="px-4 py-2 text-blueCyanLogo cursor-pointer"
             >
               {page}
             </li>
           );
         else
           return (
-            <li
-              onClick={() => goOtherPage(Number(page))}
-              className="px-4 py-2 text-xl cursor-pointer mx-2"
-            >
+            <li onClick={() => goOtherPage(Number(page))} className="px-4 py-2 cursor-pointer mx-2">
               {page}
             </li>
           );

@@ -1,9 +1,13 @@
 import React, { ReactElement } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
+import { IconButton, Tooltip } from '@mui/material';
 
-function MemberItem({ member, handleCheckItemClick }: any): ReactElement {
+function MemberItem(props: any): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+  const { member, handleCheckItemClick, setOpenPopup, setAdminSelected } = props;
+
   return (
     <div className="grid grid-cols-6 bg-white hover:bg- px-3 py-1 font-medium items-center">
       <span className="flex items-center">
@@ -24,9 +28,16 @@ function MemberItem({ member, handleCheckItemClick }: any): ReactElement {
         <span>
           <Image src="/images/check1.png" width={20} height={20} />
         </span>
-        <button className="flex-1 ml-6">
-          <Image src="/images/edit.png" width={20} height={20} />
-        </button>
+        <Tooltip title="Edit">
+          <IconButton
+            onClick={() => {
+              setOpenPopup(true);
+              setAdminSelected(member);
+            }}
+          >
+            <Image src="/images/edit.png" width={20} height={20} />
+          </IconButton>
+        </Tooltip>
       </span>
     </div>
   );

@@ -6,6 +6,8 @@ import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import DialogDelete from '../../../Components/admin/common/dialogDelete';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import FormUpdateCategory from '../../../Components/admin/components/FormUpdateCategory';
+import Popup from '../../../Components/admin/common/popUp';
 
 function Category(): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -38,8 +40,10 @@ function Category(): ReactElement {
   ];
 
   const [openDialog, setOpenDialog] = useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
   const [dataCats, setDataCats] = useState(catFake);
+  const [categorySelected, setCategorySelected] = useState();
 
   const router = useRouter();
 
@@ -84,6 +88,10 @@ function Category(): ReactElement {
     router.push('/adminpanel/category/create');
   };
 
+  const handleUpdateClick = () => {
+    console.log('updated');
+  };
+
   return (
     <LayoutAdminPage title="Category">
       <HeaderAdmin
@@ -119,7 +127,13 @@ function Category(): ReactElement {
           <span>Status</span>
         </div>
         {dataCats.map((cat) => (
-          <CategoryItem key={cat.id} cat={cat} handleCheckItemClick={handleCheckItemClick} />
+          <CategoryItem
+            setOpenPopup={setOpenPopup}
+            setCategorySelected={setCategorySelected}
+            key={cat.id}
+            cat={cat}
+            handleCheckItemClick={handleCheckItemClick}
+          />
         ))}
         <DialogDelete
           label="Do you want to remove the category?"
@@ -129,6 +143,13 @@ function Category(): ReactElement {
           handleDeleteClick={handleDeleteClick}
         />
       </div>
+      <Popup title="Update Category" openPopup={openPopup}>
+        <FormUpdateCategory
+          category={categorySelected}
+          setOpenPopup={setOpenPopup}
+          handleUpdateClick={handleUpdateClick}
+        />
+      </Popup>
     </LayoutAdminPage>
   );
 }

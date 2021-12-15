@@ -1,9 +1,13 @@
 import React, { ReactElement } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
+import { IconButton, Tooltip } from '@mui/material';
 
-function TagList({ tag, handleCheckItemClick }: any): ReactElement {
+function TagList(props: any): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+  const { tag, handleCheckItemClick, setOpenPopup, setTagSelected } = props;
+
   return (
     <div className="grid grid-cols-4 bg-white hover:bg- px-3 py-1 font-medium items-center">
       <span className="flex items-center">
@@ -20,9 +24,16 @@ function TagList({ tag, handleCheckItemClick }: any): ReactElement {
         <span>
           <Image src="/images/eye.png" width={20} height={20} />
         </span>
-        <span>
-          <Image src="/images/edit.png" width={20} height={20} />
-        </span>
+        <Tooltip title="Edit">
+          <IconButton
+            onClick={() => {
+              setOpenPopup(true);
+              setTagSelected(tag);
+            }}
+          >
+            <Image src="/images/edit.png" width={20} height={20} />
+          </IconButton>
+        </Tooltip>
       </span>
     </div>
   );
