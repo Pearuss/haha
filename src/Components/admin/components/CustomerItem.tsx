@@ -36,10 +36,10 @@ function CustomerItem(props: any): ReactElement {
           </Tooltip>
         ) : (
           <Tooltip title="Status">
-          <IconButton>
-            <Image src="/images/cross.png" width={20} height={20} />
-          </IconButton>
-        </Tooltip>
+            <IconButton>
+              <Image src="/images/cross.png" width={20} height={20} />
+            </IconButton>
+          </Tooltip>
         )}
         <Tooltip title="Edit">
           <IconButton
