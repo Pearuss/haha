@@ -14,7 +14,7 @@ function Tag(): ReactElement {
     {
       id: '1',
       name: 'ReactJS',
-      createAt: '25/08/200 08:25',
+      createAt: '25/08/2000',
       description: 'Tag Description',
       status: 'Activated',
       selected: false,
@@ -22,7 +22,7 @@ function Tag(): ReactElement {
     {
       id: '2',
       name: 'ReactJS',
-      createAt: '25/08/200 08:25',
+      createAt: '25/08/2000',
       description: 'Tag Description',
       status: 'Activated',
       selected: false,
@@ -30,7 +30,7 @@ function Tag(): ReactElement {
     {
       id: '3',
       name: 'ReactJS',
-      createAt: '25/08/200 08:25',
+      createAt: '25/08/2000',
       description: 'Tag Description',
       status: 'Activated',
       selected: false,
@@ -103,7 +103,7 @@ function Tag(): ReactElement {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-4 bg-titleAdmin px-3 py-1 font-medium items-center">
+        <div className="grid grid-cols-5 bg-titleAdmin px-3 py-1 font-medium items-center">
           <span className="flex items-center">
             <span className="flex-1">
               <Checkbox {...label} checked={selectAll} onChange={handleSelectAllClick} />
@@ -111,6 +111,7 @@ function Tag(): ReactElement {
           </span>
           <span>Tag Name</span>
           <span>Date created</span>
+          <span>Total tag</span>
           <span>Status</span>
         </div>
         {dataTags.map((tag) => (

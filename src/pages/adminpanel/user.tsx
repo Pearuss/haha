@@ -4,6 +4,7 @@ import Checkbox from '@mui/material/Checkbox';
 import CustomerItem from '../../Components/admin/components/CustomerItem';
 import HeaderAdmin from '../../Components/admin/components/HeaderAdmin';
 import DialogDelete from '../../Components/admin/common/dialogDelete';
+
 import Image from 'next/image';
 
 function Cpanel(): ReactElement {
