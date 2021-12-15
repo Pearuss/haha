@@ -27,7 +27,7 @@ function CustomerItem(props: any): ReactElement {
       <span>{customer.name}</span>
       <span>{customer.phone}</span>
       <span>{customer.createAt}</span>
-      <span className="flex items-center gap-[8px] pr-4">
+      <div className="flex items-center gap-[36%] pr-4">
         {customer.status ? (
           <Image src="/images/check1.png" width={20} height={20} />
         ) : (
@@ -53,7 +53,7 @@ function CustomerItem(props: any): ReactElement {
             />
           </IconButton>
         </Tooltip>
-      </span>
+      </div>
       {showDialogSendMessage && <DialogSendMessage />}
     </div>
   );
