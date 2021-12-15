@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { truncateBody } from '../../utilities/helper';
 import { useAuth } from '../../hooks';
 import { useRouter } from 'next/router';
+import Link from 'next/link'
 
 function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactElement {
   const { profile, firstLoading } = useAuth();
@@ -57,7 +58,12 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactEl
           priority
         />
         <span className="font-medium text-xl ml-2 text-blueCyanLogo">{dataPostDetail.author}</span>
-        <span className="text-gray-800 text-sm ml-1 mt-1">@{dataPostDetail.tags}· 21 hour</span>
+        <span className="text-gray-500 text-sm ml-1 mt-1">@{dataPostDetail.tags}· 21 hour</span>
+        <Link href={`/posts/edit/${dataPostDetail.id}`}>
+          <span className="mt-1 ml-2">
+            <Image src="/images/pencil.png" width={12} height={12} />
+          </span>
+        </Link>
       </div>
 
       {/* <div className="mx-2">{dataPostDetail.body}</div> */}
