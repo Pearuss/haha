@@ -1,0 +1,214 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: none;
+}
+a {
+  @apply text-blue-700;
+}
+
+/* h1 {
+  color: black;
+  font-size: 3em !important;
+  font-weight: bolder !important;
+} */
+.markdownCustomWidth > * {
+  @apply w-full h-full;
+}
+.postContent > h1 {
+  @apply text-xl;
+  @apply text-black;
+  @apply font-bold;
+  margin-top: 30px;
+}
+
+@tailwind components;
+
+/* .active {
+  @apply underline;
+} */
+li {
+  @apply list-none;
+}
+.mainContent {
+  @apply flex mx-[calc(3vw+0.5rem)] lg:mx-[calc(1.5vw+0.5rem)] py-8 min-h-[calc(100vh-171px)];
+}
+
+.mainDetailContent {
+  @apply flex mx-[calc(1vw+0.5rem)] lg:mx-[calc(0.5vw+0.5rem)] py-8 min-h-[calc(100vh-100px)];
+}
+/* .mainContent > * {
+  @apply flex-1;
+} */
+
+.tagContent {
+  @apply mb-4 mt-2 w-full font-medium;
+}
+.tagContent div {
+  @apply inline-block border border-blueCyanLogo px-4 lg:px-2 lg:py-1 py-2  font-medium rounded-xl ml-4  cursor-pointer hover:bg-blueCyanLogo active:animate-jelly mb-4;
+}
+.tagContent > p {
+  @apply mb-2;
+}
+
+.parentDropdown {
+  @apply w-max flex gap-1 mx-auto border border-blue-200 bg-blue-200 rounded-full;
+}
+
+.dropdown {
+  @apply relative;
+}
+.dropdown > a {
+  @apply py-3 px-8 3xl:px-6  xl:px-4 2xl:px-5 rounded-md relative;
+}
+/* .dropdown-menu {
+  @apply absolute top-[200px] left-[50%] ;
+} */
+/* .homeClass {
+  @apply border-none;
+} */
+.menuConfig > li {
+  @apply py-4 scale-105;
+}
+
+.dropdown-menu {
+  @apply absolute left-2 top-[calc(100%+1px)] bg-white z-40 pl-6 pr-12 py-4 rounded-md pointer-events-none translate-y-20 shadow-md w-[12vw]
+  2xl:w-[13vw] xl:w-[15vw] lg:w-[21vw] md:w-[22vw] sm:w-[23vw] ssm:w-[32vw] lg:left-[10%] md:left-[10%] sm:left-[10%] md:p-4 sm:py-2 sm:px-[2px] ssm:py-2 ssm:px-0 md:top-full sm:top-full ssm:top-full opacity-0 animate-transformCustom transition-all;
+}
+.dropdown-menu a {
+  @apply py-2 px-4 2xl:px-2 xl:px-2  md:px-1 sm:px-1 ssm:text-xs;
+}
+.dropdown.activeClass > a + .dropdown-menu {
+  @apply opacity-100 translate-y-0 pointer-events-auto;
+}
+/* .dropdown.activeClass .dropdown-menu a {
+  @apply hover:bg-gray-300 hover:rounded-md;
+} */
+.userDropdown {
+  @apply flex gap-2 items-center border-2 rounded-3xl relative cursor-pointer;
+}
+.userDropdown-menu {
+  @apply absolute right-[10%] top-[calc(100%+0.8rem)] bg-white z-40 py-4 rounded-md pointer-events-none translate-y-20 opacity-0 shadow-md w-[9vw] ssm:w-[26vw] sm:w-[22vw] md:w-[20vw] lg:w-[16vw] xl:w-[13vw] 2xl:w-[11vw] ssm:text-xs sm:text-sm animate-transformCustom transition-all;
+}
+.userDropdown.activeClass .userDropdown-menu {
+  @apply opacity-100 translate-y-0 pointer-events-auto;
+}
+/* .userDropdown.activeClass .userDropdown-menu a {
+  @apply hover:bg-gray-300 hover:rounded-full;
+} */
+.userDropdown .link {
+  @apply py-2 px-8 ssm:py-1 ssm:px-6;
+}
+
+.calendar {
+  @apply p-2;
+}
+
+.calendar button {
+  border-radius: 12px;
+}
+
+.calendar .react-calendar__tile--active {
+  @apply bg-blueCyanLogo;
+}
+
+.calendar .react-calendar__navigation__label__labelText {
+  @apply text-xl;
+  @apply capitalize;
+  @apply font-bold;
+}
+
+.calendar .react-calendar__navigation__arrow {
+  @apply text-xl;
+}
+
+.mentions--singleLine .mentions__control {
+  display: inline-block;
+}
+.mentions--singleLine .mentions__higlighter {
+  padding: 1px;
+  border: 2px inset transparent;
+}
+.mentions--singleLine .mentions__input {
+  padding: 5px;
+  border: 2px inset;
+}
+
+.mentions--multiLine .mentions__control {
+  font-family: monospace;
+  font-size: 11pt;
+  /* border: 1px solid silver; */
+  border: 1px solid transparent;
+}
+.mentions--multiLine .mentions__highlighter {
+  padding: 9px;
+}
+.mentions--multiLine .mentions__input {
+  padding: 9px;
+  min-height: 63px;
+  outline: 0;
+  border: 0;
+}
+
+.mentions__suggestions__list {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  font-size: 10pt;
+}
+
+.mentions__suggestions__item {
+  padding: 5px 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.mentions__suggestions__item--focused {
+  background-color: #cee4e5;
+}
+
+.mentions__mention {
+  background-color: #cee4e5;
+}
+
+.heading-active {
+  color: #76dce6;
+  text-decoration: underline;
+  pointer-events: none;
+}
+
+.headingContent {
+  overflow-y: scroll;
+}
+
+.btnLoadMore {
+  cursor: pointer;
+}
+
+.btnLoadMore.disable {
+  cursor: context-menu;
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.btnPrevPage.disable {
+  cursor: context-menu;
+  opacity: 0.7;
+  text-decoration: none;
+}
+.contentIndex li {
+  @apply pb-2;
+}
+
+@tailwind utilities;
+@tailwind base;
+@tailwind components;
+
+@layer utilities {
+  .changePlaceholder::placeholder {
+    @apply mx-auto text-sm;
+  }
+}

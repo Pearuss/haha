@@ -1,0 +1,63 @@
+{
+  "tags": {
+    "followingTags": [
+      {
+        "id": 1,
+        "path": "/blazor",
+        "name": "Blazor"
+      },
+      {
+        "id": 2,
+        "path": "/scrum",
+        "name": "Scrum"
+      },
+      {
+        "id": 3,
+        "path": "/tomcat",
+        "name": "Tomcat"
+      },
+      {
+        "id": 4,
+        "path": "/stripe",
+        "name": "Stripe"
+      },
+      {
+        "id": 5,
+        "path": "/visualStudioCode",
+        "name": "VisualStudioCode"
+      },
+      {
+        "id": 6,
+        "path": "/wifi",
+        "name": "Wifi"
+      }
+    ],
+    "tagsCloud": [
+      {
+        "id": 1,
+        "path": "/react",
+        "name": "ReactJs"
+      },
+      {
+        "id": 2,
+        "path": "/next",
+        "name": "NextJs"
+      },
+      {
+        "id": 3,
+        "path": "/java",
+        "name": "Java"
+      },
+      {
+        "id": 4,
+        "path": "/laravel",
+        "name": "Laravel"
+      },
+      {
+        "id": 5,
+        "path": "/visualStudioCode",
+        "name": "VisualStudioCode"
+      }
+    ]
+  }
+}
