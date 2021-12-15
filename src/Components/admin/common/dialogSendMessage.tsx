@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -9,9 +10,9 @@ import TextField from '@mui/material/TextField';
 export default function AlertDialog() {
   const [open, setOpen] = React.useState(true);
 
-//   const handleClickOpen = () => {
-//     setOpen(true);
-//   };
+  //   const handleClickOpen = () => {
+  //     setOpen(true);
+  //   };
 
   const handleClose = () => {
     setOpen(false);
@@ -19,9 +20,6 @@ export default function AlertDialog() {
 
   return (
     <div>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Open alert dialog
-      </Button> */}
       <Dialog
         open={open}
         onClose={handleClose}
