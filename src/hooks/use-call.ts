@@ -5,10 +5,11 @@ const DEFAULT_OPTIONS = {
 };
 
 export default function useCall(url: string, options = {}, dependencies = []) {
-  return useAsync(() => {
-    return fetch(url, { ...DEFAULT_OPTIONS, ...options }).then((res) => {
+  return useAsync(
+    () => fetch(url, { ...DEFAULT_OPTIONS, ...options }).then((res) => {
       if (res.ok) return res.json();
       return res.json().then((json) => Promise.reject(json));
-    });
-  }, dependencies);
+    }),
+    dependencies,
+  );
 }

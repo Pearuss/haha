@@ -1,12 +1,14 @@
+/* eslint-disable react/no-unused-prop-types */
 import React from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+
 // import { DefaultTheme } from 'styled-components';
-import { LayoutHeader } from '@paljs/ui/Layout';
 import { Actions } from '@paljs/ui/Actions';
 import ContextMenu from '@paljs/ui/ContextMenu';
+import { LayoutHeader } from '@paljs/ui/Layout';
 import User from '@paljs/ui/User';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 interface HeaderProps {
   toggleSidebar: () => void;

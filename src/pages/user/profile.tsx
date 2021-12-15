@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-import Image from 'next/image';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Image from 'next/image';
 import Link from 'next/link';
-import Post from '../../Components/Post';
+
 import UserDetail from '../../common/ProfileInfomation/UserDetail';
+import Post from '../../Components/Post';
 // import { useAuth } from '../../hooks';
-import { AdminLayout } from '../../layout';
 import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
+import { AdminLayout } from '../../layout';
 
 interface PostItem {
   id: string;
@@ -31,7 +32,7 @@ function ProfilePage({ data }: any) {
       menuMobile.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full'
+        'ssm:-translate-x-full',
       );
       menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });

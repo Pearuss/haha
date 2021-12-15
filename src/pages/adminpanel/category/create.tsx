@@ -1,10 +1,12 @@
+/* eslint-disable react/button-has-type */
 import React, { ReactElement } from 'react';
-import LayoutAdminPage from '../../../Components/admin/layout';
+
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
+import LayoutAdminPage from '../../../Components/admin/layout';
 
 function CreateCategory(): ReactElement {
   return (
-    <LayoutAdminPage title={'Home'}>
+    <LayoutAdminPage title="Home">
       <HeaderAdmin titlePage="Create a Category" subTitlePage="" searchPlaceholder="Category..." />
       <div className="py-4 w-full">
         <h5 className="pb-4 mb-4 border-b-2 border-gray-600">Category information</h5>

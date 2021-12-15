@@ -1,7 +1,7 @@
 import React from 'react';
 
-import useSWR from 'swr';
 import Calendar from 'react-calendar';
+import useSWR from 'swr';
 import 'react-calendar/dist/Calendar.css';
 
 import FollowTag from './FollowTag';

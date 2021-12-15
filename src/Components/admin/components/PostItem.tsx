@@ -1,6 +1,10 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { ReactElement } from 'react';
+
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
+
 // import Link from 'next/link';
 import { truncate } from '../../../utilities/helper';
 

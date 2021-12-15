@@ -1,13 +1,19 @@
-import React, { ReactElement, useEffect, useMemo, useState } from 'react';
-import LayoutAdminPage from '../../Components/admin/layout';
-import Checkbox from '@mui/material/Checkbox';
-import CustomerItem from '../../Components/admin/components/CustomerItem';
-import HeaderAdmin from '../../Components/admin/components/HeaderAdmin';
-import DialogDelete from '../../Components/admin/common/dialogDelete';
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/button-has-type */
+/* eslint-disable max-len */
+import React, {
+  ReactElement, useEffect, useMemo, useState,
+} from 'react';
 
+import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
+
+import DialogDelete from '../../Components/admin/common/dialogDelete';
 import Popup from '../../Components/admin/common/popUp';
+import CustomerItem from '../../Components/admin/components/CustomerItem';
 import FormUpdateUser from '../../Components/admin/components/FormUpdateUser';
+import HeaderAdmin from '../../Components/admin/components/HeaderAdmin';
+import LayoutAdminPage from '../../Components/admin/layout';
 
 function Cpanel(): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -48,9 +54,10 @@ function Cpanel(): ReactElement {
   const [dataCustomers, setDataCustomers] = useState(customerFake);
   const [userSelected, setUserSelected] = useState();
 
-  const hasSelectedCustomer = useMemo(() => {
-    return dataCustomers.find((customer) => customer.selected === true);
-  }, [dataCustomers]);
+  const hasSelectedCustomer = useMemo(
+    () => dataCustomers.find((customer) => customer.selected === true),
+    [dataCustomers],
+  );
 
   useEffect(() => {
     const isSelectedAll = dataCustomers.find((customer) => customer.selected === false);
@@ -65,12 +72,6 @@ function Cpanel(): ReactElement {
     }));
     setSelectAll(!selectAll);
     setDataCustomers(newDataCustomers);
-  };
-
-  const handleDeleteClick = () => {
-    const dataSelected = dataCustomers.filter((customer) => customer.selected === true);
-    console.log(dataSelected);
-    handleClose();
   };
 
   const handleCheckItemClick = (customer: any) => {
@@ -88,6 +89,12 @@ function Cpanel(): ReactElement {
     setOpenDialog(false);
   };
 
+  const handleDeleteClick = () => {
+    const dataSelected = dataCustomers.filter((customer) => customer.selected === true);
+    console.log(dataSelected);
+    handleClose();
+  };
+
   const handleUpdateClick = () => {
     console.log('updated');
   };
@@ -102,7 +109,7 @@ function Cpanel(): ReactElement {
           <button
             className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer"
             onClick={handleClickOpen}
-            disabled={typeof hasSelectedCustomer === 'undefined' ? true : false}
+            disabled={typeof hasSelectedCustomer === 'undefined'}
           >
             {/* <Image src="/images/share.png" width={20} height={20} /> */}
             <Image src="/images/delete.png" width={20} height={20} />

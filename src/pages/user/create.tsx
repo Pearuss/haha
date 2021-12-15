@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable no-param-reassign */
 import React, { useEffect, useState } from 'react';
+
 import useSWR from 'swr';
+
 import ModalPost from '../../Components/CreatePost';
 import { HeaderLayout } from '../../layout';
 
@@ -67,15 +70,13 @@ function UserCreatePage() {
     }, 1000);
   }, []);
 
-  //Append link image inside markdown
+  // Append link image inside markdown
   function handleUploadImgMD(e: any) {
     console.log(e.target.files[0]);
 
     setNewPost((state: any) => ({
       ...state,
-      content:
-        state.content +
-        '![](https://media.geeksforgeeks.org/wp-content/uploads/20190702142251/Screenshot-4051.png)',
+      content: `${state.content}![](https://media.geeksforgeeks.org/wp-content/uploads/20190702142251/Screenshot-4051.png)`,
     }));
   }
 

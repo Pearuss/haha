@@ -1,8 +1,12 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable react/button-has-type */
 import React, { ReactElement } from 'react';
-import LayoutAdminPage from '../../../Components/admin/layout';
-import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
+
 import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { Theme, useTheme } from '@mui/material/styles';
+
+import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
+import LayoutAdminPage from '../../../Components/admin/layout';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -46,14 +50,11 @@ function CreateCategory(): ReactElement {
     const {
       target: { value },
     } = event;
-    setCatName(
-      // On autofill we get a the stringified value.
-      typeof value === 'string' ? value.split(',') : value
-    );
+    setCatName(typeof value === 'string' ? value.split(',') : value);
   };
 
   return (
-    <LayoutAdminPage title={'Home'}>
+    <LayoutAdminPage title="Home">
       <HeaderAdmin
         titlePage="Create a Administrator"
         subTitlePage=""

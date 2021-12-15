@@ -1,13 +1,19 @@
-import React, { ReactElement, useEffect, useMemo, useState } from 'react';
-import LayoutAdminPage from '../../../Components/admin/layout';
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/button-has-type */
+import React, {
+  ReactElement, useEffect, useMemo, useState,
+} from 'react';
+
 import Checkbox from '@mui/material/Checkbox';
-import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
-import DialogDelete from '../../../Components/admin/common/dialogDelete';
-import MemberItem from '../../../Components/admin/components/MemberItem';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+
+import DialogDelete from '../../../Components/admin/common/dialogDelete';
 import Popup from '../../../Components/admin/common/popUp';
 import FormUpdateAdmin from '../../../Components/admin/components/FormUpdateAdmin';
-import { useRouter } from 'next/router';
+import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
+import MemberItem from '../../../Components/admin/components/MemberItem';
+import LayoutAdminPage from '../../../Components/admin/layout';
 
 function Cpanel(): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -50,9 +56,10 @@ function Cpanel(): ReactElement {
   const [dataMembers, setDataMembers] = useState(memberFake);
   const [adminSelected, setAdminSelected] = useState();
 
-  const hasSelectedMember = useMemo(() => {
-    return dataMembers.find((member) => member.selected === true);
-  }, [dataMembers]);
+  const hasSelectedMember = useMemo(
+    () => dataMembers.find((member) => member.selected === true),
+    [dataMembers],
+  );
 
   useEffect(() => {
     const isSelectedAll = dataMembers.find((member) => member.selected === false);
@@ -64,12 +71,6 @@ function Cpanel(): ReactElement {
     const newDataMembers = [...dataMembers].map((member) => ({ ...member, selected: !selectAll }));
     setSelectAll(!selectAll);
     setDataMembers(newDataMembers);
-  };
-
-  const handleDeleteClick = () => {
-    const dataSelected = dataMembers.filter((member) => member.selected === true);
-    console.log(dataSelected);
-    handleClose();
   };
 
   const handleCheckItemClick = (member: any) => {
@@ -85,6 +86,12 @@ function Cpanel(): ReactElement {
 
   const handleClose = () => {
     setOpenDialog(false);
+  };
+
+  const handleDeleteClick = () => {
+    const dataSelected = dataMembers.filter((member) => member.selected === true);
+    console.log(dataSelected);
+    handleClose();
   };
 
   const handleClickAdd = () => {
@@ -107,10 +114,7 @@ function Cpanel(): ReactElement {
             <button onClick={handleClickAdd}>
               <Image src="/images/add-user.png" width={19} height={19} />
             </button>
-            <button
-              onClick={handleClickOpen}
-              disabled={typeof hasSelectedMember === 'undefined' ? true : false}
-            >
+            <button onClick={handleClickOpen} disabled={typeof hasSelectedMember === 'undefined'}>
               <Image src="/images/delete.png" width={20} height={20} />
             </button>
           </div>

@@ -1,9 +1,16 @@
+/* eslint-disable react/no-danger */
+/* eslint-disable react/default-props-match-prop-types */
 import React from 'react';
+
 import Head from 'next/head';
 
 const SEO: React.FC<SEOProps> = ({ description, keywords, title }) => (
   <Head>
-    <title>{title} | SK Admin</title>
+    <title>
+      {title}
+      {' '}
+      | SK Admin
+    </title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords?.join(', ')} />
     <meta property="og:type" content="website" />
@@ -19,7 +26,7 @@ const SEO: React.FC<SEOProps> = ({ description, keywords, title }) => (
     <meta name="twitter:image" content="" />
     <meta property="og:image" content="" />
     <link rel="shortcut icon" href="/images/favicon.ico" />
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171177495-4"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171177495-4" />
     <script
       dangerouslySetInnerHTML={{
         __html: `

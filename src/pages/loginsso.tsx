@@ -1,5 +1,6 @@
-import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
+
+import { useRouter } from 'next/router';
 
 export default function LoginSSOPage() {
   const router = useRouter();

@@ -1,5 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable no-sequences */
 import React, { useCallback, useEffect } from 'react';
+
 import { useRouter } from 'next/router';
+
 import { useAuth } from '../../hooks';
 // import Swal from 'sweetalert2';
 
@@ -25,6 +29,6 @@ export default function Index() {
   useEffect(() => {
     logoutHandler();
   }),
-    [];
+  [];
   return <div />;
 }

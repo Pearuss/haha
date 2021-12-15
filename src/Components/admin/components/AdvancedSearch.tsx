@@ -1,10 +1,12 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { ReactElement } from 'react';
 
-import TextField from '@mui/material/TextField';
-import DateRangePicker, { DateRange } from '@mui/lab/DateRangePicker';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import DateRangePicker, { DateRange } from '@mui/lab/DateRangePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 function AdvancedSearch(): ReactElement {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
@@ -31,11 +33,11 @@ function AdvancedSearch(): ReactElement {
                 setValue(newValue);
               }}
               renderInput={(startProps: any, endProps: any) => (
-                <React.Fragment>
+                <>
                   <TextField {...startProps} size="small" />
                   <Box sx={{ mx: 2 }}> to </Box>
                   <TextField {...endProps} size="small" />
-                </React.Fragment>
+                </>
               )}
             />
           </LocalizationProvider>

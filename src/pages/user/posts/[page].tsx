@@ -1,15 +1,17 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/no-unescaped-entities */
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-import Link from 'next/link';
-import useSWR from 'swr';
-import { FilterMyPosts } from '../../../Components/FilterMyPosts';
-import Post from '../../../Components/Post';
-import { MainLayout } from '../../../layout';
-import Pagination from '../../../Components/Pagination';
-import TagSectionMobile from '../../../Components/TagContent/TagSectionMobile';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import useSWR from 'swr';
+
+import { FilterMyPosts } from '../../../Components/FilterMyPosts';
+import Pagination from '../../../Components/Pagination';
+import Post from '../../../Components/Post';
+import TagSectionMobile from '../../../Components/TagContent/TagSectionMobile';
+import { MainLayout } from '../../../layout';
 
 interface PostItem {
   id: string;
@@ -27,7 +29,7 @@ function PostsPage() {
     revalidateOnFocus: false,
   });
 
-  const { data: dataAll }: any = useSWR(`http://localhost:3001/posts`, {
+  const { data: dataAll }: any = useSWR('http://localhost:3001/posts', {
     revalidateOnFocus: false,
   });
 
@@ -43,7 +45,7 @@ function PostsPage() {
 
   useEffect(() => {
     if (Number(router.query.page) < 1) {
-      router.push(`/user/posts/1`);
+      router.push('/user/posts/1');
     }
   }, [router.query.page]);
 
@@ -57,7 +59,7 @@ function PostsPage() {
       menuMobile.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full'
+        'ssm:-translate-x-full',
       );
       menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });

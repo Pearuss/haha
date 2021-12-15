@@ -1,13 +1,19 @@
-import React, { ReactElement, useEffect, useMemo, useState } from 'react';
-import LayoutAdminPage from '../../../Components/admin/layout';
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/button-has-type */
+import React, {
+  ReactElement, useEffect, useMemo, useState,
+} from 'react';
+
 import Checkbox from '@mui/material/Checkbox';
-import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
-import TagItem from '../../../Components/admin/components/TagItem';
-import DialogDelete from '../../../Components/admin/common/dialogDelete';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+
+import DialogDelete from '../../../Components/admin/common/dialogDelete';
 import Popup from '../../../Components/admin/common/popUp';
 import FormUpdateTag from '../../../Components/admin/components/FormUpdateTag';
+import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
+import TagItem from '../../../Components/admin/components/TagItem';
+import LayoutAdminPage from '../../../Components/admin/layout';
 
 function Tag(): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -47,9 +53,7 @@ function Tag(): ReactElement {
 
   const router = useRouter();
 
-  const hasSelectedTag = useMemo(() => {
-    return dataTags.find((tag) => tag.selected === true);
-  }, [dataTags]);
+  const hasSelectedTag = useMemo(() => dataTags.find((tag) => tag.selected === true), [dataTags]);
 
   useEffect(() => {
     const isSelectedAll = dataTags.find((tag) => tag.selected === false);
@@ -61,12 +65,6 @@ function Tag(): ReactElement {
     const newDataTags = [...dataTags].map((tag) => ({ ...tag, selected: !selectAll }));
     setSelectAll(!selectAll);
     setDataTags(newDataTags);
-  };
-
-  const handleDeleteClick = () => {
-    const dataSelected = dataTags.filter((tag) => tag.selected === true);
-    console.log(dataSelected);
-    handleClose();
   };
 
   const handleCheckItemClick = (tag: any) => {
@@ -82,6 +80,12 @@ function Tag(): ReactElement {
 
   const handleClose = () => {
     setOpenDialog(false);
+  };
+
+  const handleDeleteClick = () => {
+    const dataSelected = dataTags.filter((tag) => tag.selected === true);
+    console.log(dataSelected);
+    handleClose();
   };
 
   const handleClickAdd = () => {
@@ -103,10 +107,7 @@ function Tag(): ReactElement {
             <button onClick={handleClickAdd}>
               <Image src="/images/plus.png" width={19} height={19} />
             </button>
-            <button
-              onClick={handleClickOpen}
-              disabled={typeof hasSelectedTag === 'undefined' ? true : false}
-            >
+            <button onClick={handleClickOpen} disabled={typeof hasSelectedTag === 'undefined'}>
               <Image src="/images/delete.png" width={20} height={20} />
             </button>
           </div>

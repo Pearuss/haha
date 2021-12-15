@@ -11,7 +11,10 @@ function FollowTag({ data, titleTagName }: any): ReactElement {
       <p className="flex w-full flex-wrap">
         {data?.map((tag: any) => (
           <Link href={`/tag${tag.path}`} key={tag.id}>
-            <div className="">#{tag.name}</div>
+            <div className="">
+              #
+              {tag.name}
+            </div>
           </Link>
         ))}
       </p>

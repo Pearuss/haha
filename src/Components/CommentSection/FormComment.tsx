@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 import React, { ReactElement, useState } from 'react';
 
 export default function FormComment({
@@ -22,7 +23,7 @@ export default function FormComment({
         onChange={(e) => setText(e.target.value)}
         className="w-full min-h-[4vh] h-20 p-3 overflow-y-hidden border-none focus:outline-none resize-none"
         placeholder="Start typing ..."
-      ></textarea>
+      />
       <div className="w-full flex items-center justify-end text-gray-700 ">
         <button className="py-2 px-4 font-medium pr-6  rounded-md" onClick={handleCancel}>
           Cancel

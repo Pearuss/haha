@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable array-callback-return */
 /* eslint-disable @typescript-eslint/no-use-before-define */
@@ -7,11 +8,13 @@
 import { useEffect, useState, useRef } from 'react';
 
 import { MentionsInput, Mention } from 'react-mentions';
-import { replaceTagBr, convertReplyTagInit } from '../../utilities/helper';
 
+import { replaceTagBr, convertReplyTagInit } from '../../utilities/helper';
 import { APIservice } from './services';
 
-const InputMention = ({ handleSubmit, initialText, submitLabel, handleCancel }: any) => {
+const InputMention = ({
+  handleSubmit, initialText, submitLabel, handleCancel,
+}: any) => {
   const [content, setContent] = useState<any>(initialText);
   const [users, setUsers] = useState<any>([]);
   const [tags, setTags] = useState<any>([]);

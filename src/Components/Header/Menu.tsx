@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+
 import { capitalizeFirstLetter } from '../../utilities/helper';
 
 function Menu(): ReactElement {
@@ -27,13 +28,13 @@ function Menu(): ReactElement {
         'lg:-translate-x-full',
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full'
+        'ssm:-translate-x-full',
       );
       menuMobile.classList.add(
         'lg:translate-x-0',
         'md:translate-x-0',
         'sm:translate-x-0',
-        'ssm:translate-x-0'
+        'ssm:translate-x-0',
       );
       cover.classList.remove('hidden');
     });
@@ -43,13 +44,13 @@ function Menu(): ReactElement {
         'lg:-translate-x-full',
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full'
+        'ssm:-translate-x-full',
       );
       menuMobile.classList.remove(
         'lg:translate-x-0',
         'md:translate-x-0',
         'sm:translate-x-0',
-        'ssm:translate-x-0'
+        'ssm:translate-x-0',
       );
       cover.classList.add('hidden');
     });
@@ -59,13 +60,13 @@ function Menu(): ReactElement {
         'lg:-translate-x-full',
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full'
+        'ssm:-translate-x-full',
       );
       menuMobile.classList.remove(
         'lg:translate-x-0',
         'md:translate-x-0',
         'sm:translate-x-0',
-        'ssm:translate-x-0'
+        'ssm:translate-x-0',
       );
       cover.classList.add('hidden');
     });
@@ -115,7 +116,7 @@ function Menu(): ReactElement {
   return (
     <>
       {/* cover */}
-      <div className="cover hidden absolute top-0 left-0 w-[100vw] h-[100vh] bg-gray-600 bg-opacity-30 z-40"></div>
+      <div className="cover hidden absolute top-0 left-0 w-[100vw] h-[100vh] bg-gray-600 bg-opacity-30 z-40" />
 
       {/* Desktop menu */}
       <div className="menuConfig w-max text-black font-normal flex gap-10 3xl:gap-9 2xl:gap-7 xl:gap-2  lg:gap-0 mx-auto rounded-2xl lg:hidden md:hidden sm:hidden ssm:hidden">
@@ -124,9 +125,9 @@ function Menu(): ReactElement {
             <a data-dropdown-button>Home</a>
           </Link>
         </li>
-        {typeof data === 'object' &&
-          data !== null &&
-          Object.keys(data).map((category: any) => (
+        {typeof data === 'object'
+          && data !== null
+          && Object.keys(data).map((category: any) => (
             <li key={category} className="dropdown" data-dropdown>
               <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
                 {capitalizeFirstLetter(category)}
@@ -153,9 +154,7 @@ function Menu(): ReactElement {
             <Image src="/logo.svg" layout="fill" priority />
           </div>
         </div>
-        <li
-          className={`btnShowTag w-full lg:hidden text-left py-4 px-14 lg:px-10 ssm:px-8 border-b border-gray-300 cursor-pointer ssm:text-xs`}
-        >
+        <li className="btnShowTag w-full lg:hidden text-left py-4 px-14 lg:px-10 ssm:px-8 border-b border-gray-300 cursor-pointer ssm:text-xs">
           Tag Section
         </li>
         <li
@@ -170,9 +169,9 @@ function Menu(): ReactElement {
             </a>
           </Link>
         </li>
-        {typeof data === 'object' &&
-          data !== null &&
-          Object.keys(data).map((category: any) => (
+        {typeof data === 'object'
+          && data !== null
+          && Object.keys(data).map((category: any) => (
             <li
               key={category}
               className={`${

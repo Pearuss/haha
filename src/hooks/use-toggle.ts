@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 import { useState } from 'react';
 
 export default function useToggle(defaultValue: any) {

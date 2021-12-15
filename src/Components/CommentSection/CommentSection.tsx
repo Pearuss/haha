@@ -1,9 +1,12 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable import/order */
 import React, { ReactElement, useEffect, useState } from 'react';
+
 // import useCall from '../../hooks/use-call';
+import InputMention from '../../common/InputMention/InputMention';
 import useFetch from '../../hooks/use-fetch';
 
 // import FormComment from './FormComment';
-import InputMention from '../../common/InputMention/InputMention';
 // import { getComments as getCommentsApi, createComment as createCommentApi } from './api';
 import Comment from './Comment';
 
@@ -20,12 +23,11 @@ function CommentSection({ showForm, postId }: any): ReactElement {
   // console.log(value);
 
   const rootComments = backendComments?.filter(
-    (backendComment) => backendComment.parentId === null
+    (backendComment) => backendComment.parentId === null,
   );
-  const getReplies = (commentId: any) =>
-    backendComments
-      ?.filter((backendComment) => backendComment.parentId === commentId)
-      .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+  const getReplies = (commentId: any) => backendComments
+    ?.filter((backendComment) => backendComment.parentId === commentId)
+    .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
 
   const addComment = (text: any, parentId: any) => {
     // createCommentApi(text, parentId).then((comment) => {
@@ -35,7 +37,7 @@ function CommentSection({ showForm, postId }: any): ReactElement {
     if (typeof parentId === 'undefined') {
       parentId = null;
     }
-    useFetch(`http://localhost:3001/allComments`, {
+    useFetch('http://localhost:3001/allComments', {
       method: 'POST',
       body: JSON.stringify({
         id: Math.random().toString(36).substr(2, 9),
@@ -43,7 +45,7 @@ function CommentSection({ showForm, postId }: any): ReactElement {
         parentId,
         userId: '2',
         username: 'Pearuss',
-        postId: postId,
+        postId,
       }),
     }).then((comment) => {
       setBackendComments([comment, ...backendComments]);
@@ -54,19 +56,17 @@ function CommentSection({ showForm, postId }: any): ReactElement {
   return (
     <div className="w-full relative mb-2">
       {showForm && <InputMention handleSubmit={addComment} initialText="" submitLabel="Comment" />}
-      {rootComments.map((rootComment) => {
-        return (
-          <Comment
-            key={rootComment.id}
-            userId={rootComment.userId}
-            commentContent={rootComment}
-            replies={getReplies(rootComment.id)}
-            activeComment={activeComment}
-            addComment={addComment}
-            setActiveComment={setActiveComment}
-          />
-        );
-      })}
+      {rootComments.map((rootComment) => (
+        <Comment
+          key={rootComment.id}
+          userId={rootComment.userId}
+          commentContent={rootComment}
+          replies={getReplies(rootComment.id)}
+          activeComment={activeComment}
+          addComment={addComment}
+          setActiveComment={setActiveComment}
+        />
+      ))}
       {/* <div className="w-full border-b border-gray-200"></div> */}
     </div>
   );

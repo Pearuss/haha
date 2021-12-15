@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+
+import {
+  FormControl, InputLabel, MenuItem, Select,
+} from '@material-ui/core';
+
 import HeaderAdmin from '../../Components/admin/components/HeaderAdmin';
 // import Header from '../../Components/admin/common/Header';
 import LayoutAdmin from '../../Components/admin/layout/index';
-import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 
 function Dashboard() {
   const [status, setStatus] = useState(10);
@@ -11,7 +15,7 @@ function Dashboard() {
     setStatus(event.target.value);
   };
   return (
-    <LayoutAdmin title={'Home'}>
+    <LayoutAdmin title="Home">
       <HeaderAdmin
         titlePage="Website maintenance"
         subTitlePage="Cannot access from the user"

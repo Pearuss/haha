@@ -1,6 +1,6 @@
 import React from 'react';
-import Footer from '../Components/Footer';
 
+import Footer from '../Components/Footer';
 import Header from '../Components/Header/Header';
 import TagSection from '../Components/TagContent/TagSection';
 import { LayoutProps } from '../modals';

@@ -1,12 +1,16 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { ReactElement } from 'react';
+
+import { IconButton, Tooltip } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
-import { IconButton, Tooltip } from '@mui/material';
 
 function MemberItem(props: any): ReactElement {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-  const { member, handleCheckItemClick, setOpenPopup, setAdminSelected } = props;
+  const {
+    member, handleCheckItemClick, setOpenPopup, setAdminSelected,
+  } = props;
 
   return (
     <div className="grid grid-cols-6 bg-white hover:bg- px-3 py-1 font-medium items-center">

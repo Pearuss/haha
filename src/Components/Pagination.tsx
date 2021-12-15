@@ -1,7 +1,12 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
-import { paging } from '../utilities/helper';
+
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
+import { paging } from '../utilities/helper';
+
 export default function Pagination({
   totalPage,
   currentPage,
@@ -11,11 +16,11 @@ export default function Pagination({
 }: any): any {
   return (
     <ul className="flex text-base justify-center mt-5 mb-5">
-      <li onClick={goPrevPage} className={`prevPage px-4 py-2 cursor-pointer`}>
+      <li onClick={goPrevPage} className="prevPage px-4 py-2 cursor-pointer">
         <ArrowBackIosNewIcon />
       </li>
       {paging(currentPage, totalPage).map((page) => {
-        if (page === currentPage)
+        if (page === currentPage) {
           return (
             <li
               onClick={() => goOtherPage(Number(page))}
@@ -24,12 +29,12 @@ export default function Pagination({
               {page}
             </li>
           );
-        else
-          return (
-            <li onClick={() => goOtherPage(Number(page))} className="px-4 py-2 cursor-pointer mx-2">
-              {page}
-            </li>
-          );
+        }
+        return (
+          <li onClick={() => goOtherPage(Number(page))} className="px-4 py-2 cursor-pointer mx-2">
+            {page}
+          </li>
+        );
       })}
       <li onClick={goNextPage} className="px-4 py-2 cursor-pointer">
         <ArrowForwardIosIcon />

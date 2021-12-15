@@ -56,7 +56,7 @@ export default function FormUpdateAdmin(props: any) {
     } = event;
     setCatName(
       // On autofill we get a the stringified value.
-      typeof value === 'string' ? value.split(',') : value
+      typeof value === 'string' ? value.split(',') : value,
     );
   };
   return (

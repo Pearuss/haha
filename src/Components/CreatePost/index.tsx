@@ -1,18 +1,23 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable @typescript-eslint/indent */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/react-in-jsx-scope */
 import { useState } from 'react';
-import Link from 'next/link';
+
 import Switch from '@material-ui/core/Switch';
-import Checkbox from '@mui/material/Checkbox';
-import { useRouter } from 'next/router';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import MarkDown from './MarkDown';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CloseIcon from '@mui/icons-material/Close';
+import Checkbox from '@mui/material/Checkbox';
+import TextField from '@mui/material/TextField';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Select from 'react-select';
+
+import { countWord } from '../../utilities/helper';
 import {
   postSchema,
   postTitleSchema,
@@ -20,8 +25,7 @@ import {
   postTagSchema,
   postCategorySchema,
 } from '../../validation/createPost';
-import { countWord } from '../../utilities/helper';
-import TextField from '@mui/material/TextField';
+import MarkDown from './MarkDown';
 
 function ModalPost({
   newPost,
@@ -78,7 +82,7 @@ function ModalPost({
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
-    let formData = {
+    const formData = {
       title: newPost.title,
       shortContent: countWord(newPost.shortContent),
       content: countWord(newPost.content),
@@ -91,25 +95,25 @@ function ModalPost({
     if (isValid) {
       console.log('formData', newPost);
     } else {
-      let formTitle = {
+      const formTitle = {
         title: newPost.title,
       };
       const isValidTitle = await postTitleSchema.isValid(formTitle);
       setIsErrorTitle(!isValidTitle);
 
-      let formShortContent = {
+      const formShortContent = {
         shortContent: countWord(newPost.shortContent),
       };
       const isValidShortContent = await postShortContentSchema.isValid(formShortContent);
       setIsErrorShortContent(!isValidShortContent);
 
-      let formTag = {
+      const formTag = {
         tag: newPost.tag,
       };
       const isValidTag = await postTagSchema.isValid(formTag);
       setIsErrorTag(!isValidTag);
 
-      let formCategory = {
+      const formCategory = {
         mainCategory: newPost.mainCategory,
       };
       const isValidCat = await postCategorySchema.isValid(formCategory);
@@ -230,7 +234,7 @@ function ModalPost({
                   />
                 </div>
               </div>
-              <div className={`flex border-b border-gray-300 pb-1`}>
+              <div className="flex border-b border-gray-300 pb-1">
                 <p className="w-23 font-medium mr-8 lg:mr-1">Tag:</p>
                 <Select
                   className={`basic-multi-select ${

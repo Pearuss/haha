@@ -1,4 +1,6 @@
+/* eslint-disable react/button-has-type */
 import React, { useEffect, useState } from 'react';
+
 import useSWR from 'swr';
 
 export function FilterMyPosts({ onClickNoFilter, onClickFilter, setFilter }: any) {

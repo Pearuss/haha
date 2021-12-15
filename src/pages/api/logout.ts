@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import Cookies from 'cookies';
 import httpProxy from 'http-proxy';
 import type { NextApiRequest, NextApiResponse } from 'next';

@@ -10,7 +10,7 @@ export function ContentIndex() {
       </div>
       <div className="text-gray-700 pb-3 text-2xl font-semibold">Topic</div>
       <div className="flex flex-col ">
-        <ul className="contentIndex w-full"></ul>
+        <ul className="contentIndex w-full" />
       </div>
     </div>
   );
