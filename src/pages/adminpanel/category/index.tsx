@@ -116,7 +116,7 @@ function Category(): ReactElement {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-4 bg-titleAdmin px-3 py-1 font-medium items-center">
+        <div className="grid grid-cols-5 bg-titleAdmin px-3 py-1 font-medium items-center">
           <span className="flex items-center">
             <span className="flex-1">
               <Checkbox {...label} checked={selectAll} onChange={handleSelectAllClick} />
@@ -124,6 +124,7 @@ function Category(): ReactElement {
           </span>
           <span>Category Name</span>
           <span>Date created</span>
+          <span>Total category</span>
           <span>Status</span>
         </div>
         {dataCats.map((cat) => (

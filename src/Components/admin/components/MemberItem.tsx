@@ -24,7 +24,7 @@ function MemberItem(props: any): ReactElement {
       {/* <span>{member.authorization}</span> */}
       <span>All category</span>
       <span>{member.createAt}</span>
-      <span className="flex items-center">
+      <span className="flex items-center gap-[45%]">
         <span>
           <Image src="/images/check1.png" width={20} height={20} />
         </span>

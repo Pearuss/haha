@@ -9,7 +9,7 @@ function CategoryItem(props: any): ReactElement {
   const { cat, handleCheckItemClick, setOpenPopup, setCategorySelected } = props;
 
   return (
-    <div className="grid grid-cols-4 bg-white hover:bg- px-3 py-1 font-medium items-center">
+    <div className="grid grid-cols-5 bg-white hover:bg- px-3 py-1 font-medium items-center">
       <span className="flex items-center">
         <span className="flex-1">
           <Checkbox {...label} checked={cat.selected} onClick={() => handleCheckItemClick(cat)} />
@@ -17,12 +17,10 @@ function CategoryItem(props: any): ReactElement {
       </span>
       <span>{cat.name}</span>
       <span>{cat.createAt}</span>
-      <span className="flex items-center gap-[32%]">
+      <span>3000</span>
+      <span className="flex items-center gap-[50%]">
         <span>
           <Image src="/images/check1.png" width={20} height={20} />
-        </span>
-        <span>
-          <Image src="/images/eye.png" width={20} height={20} />
         </span>
         <Tooltip title="Edit">
           <IconButton

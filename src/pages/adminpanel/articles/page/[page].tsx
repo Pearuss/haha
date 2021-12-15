@@ -4,7 +4,6 @@ import Checkbox from '@mui/material/Checkbox';
 import PostItem from '../../../../Components/admin/components/PostItem';
 import HeaderAdmin from '../../../../Components/admin/components/HeaderAdmin';
 import AdvancedSearch from '../../../../Components/admin/components/AdvancedSearch';
-import UpgradeIcon from '@mui/icons-material/Upgrade';
 import Pagination from '../../../../Components/Pagination';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
@@ -84,28 +83,18 @@ function AllPost({ data }: any): ReactElement {
 
   return (
     <LayoutAdminPage title="Article">
-      <HeaderAdmin
-        titlePage="Article"
-        subTitlePage={`Total number of articles ${data?.pagination._totalRow}`}
-        searchPlaceholder="Article title..."
-      />
+      <HeaderAdmin titlePage="Article Management" subTitlePage="" searchPlaceholder="Article title..." />
       <AdvancedSearch />
       <div className="bg-white rounded p-4 px-6">
-        <div className="flex justify-between pb-4 mb-4 border-b-2 border-gray-600">
-          <h4>All article</h4>
-          <div className="flex gap-4 ml-auto">
-            <button>
+        <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
+          <h4>All articles</h4>
+          <span className="text-sm mt-2 ml-2">({data?.pagination._totalRow})</span>
+          <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
+            <button onClick={handleClickExport}>
               <Image src="/images/share.png" width={20} height={20} />
             </button>
             <button>
               <Image onClick={handleClickOpen} src="/images/delete.png" width={20} height={20} />
-            </button>
-            <button
-              className="flex items-center mr-2 px-4 py-2 border border-gray-300 cursor-pointer rounded hover:bg-gray-200"
-              onClick={handleClickExport}
-            >
-              <UpgradeIcon />
-              Export
             </button>
           </div>
         </div>
@@ -114,12 +103,12 @@ function AllPost({ data }: any): ReactElement {
             <span className="flex-1">
               <Checkbox {...label} checked={selectAll} onChange={handleSelectAllClick} />
             </span>
-            <span className="flex-1">STT</span>
           </span>
-          <span className="col-span-4">Title</span>
+          <span className="col-span-3 ml-[-12%]">Title</span>
+          <span>Public at</span>
           <span>Author</span>
-          <span>Approval date</span>
           <span>Status</span>
+          <span>Statistics</span>
         </div>
         {dataPosts?.map((post: any) => (
           <PostItem key={post.id} post={post} handleCheckItemClick={handleCheckItemClick} />
