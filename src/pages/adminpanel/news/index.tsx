@@ -3,23 +3,15 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 
-import DialogDelete from '../../../../Components/admin/common/dialogDelete';
-import AdvancedSearch from '../../../../Components/admin/components/AdvancedSearch';
-import HeaderAdmin from '../../../../Components/admin/components/HeaderAdmin';
-import PostItem from '../../../../Components/admin/components/PostItem';
-import LayoutAdminPage from '../../../../Components/admin/layout';
-import Pagination from '../../../../Components/Pagination';
+import PostItem from '../../../Components/admin/components/PostItem';
+import DialogDelete from '../../../Components/admin/common/dialogDelete';
+import AdvancedSearch from '../../../Components/admin/components/AdvancedSearch';
+import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
+import LayoutAdminPage from '../../../Components/admin/layout';
 
-function AllPost({ data }: any) {
-  const router = useRouter();
-
+function News({ data }: any) {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
-  const totalPage = Math.ceil(Number(data?.pagination._totalRow) / 5);
-  const currentPage = Number(router.query.page);
-
   const [dataPosts, setDataPosts] = useState<any>([]);
   const [selectAll, setSelectAll] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
@@ -68,41 +60,24 @@ function AllPost({ data }: any) {
     console.log(dataSelected);
     handleClose();
   };
-
-  const goOtherPage = (page: number) => {
-    router.push(`/adminpanel/articles/page/${page}`);
-  };
-
-  const goNextPage = () => {
-    if (currentPage < totalPage) {
-      router.push(`/adminpanel/articles/page/${currentPage + 1}`);
-    }
-  };
-
-  const goPrevPage = () => {
-    if (currentPage > 1) {
-      router.push(`/adminpanel/articles/page/${currentPage - 1}`);
-    }
-  };
-
   return (
-    <LayoutAdminPage title="Article">
+    <LayoutAdminPage title="News">
       <HeaderAdmin
-        titlePage="Article Management"
+        titlePage="News Management"
         subTitlePage=""
         searchPlaceholder="Article title..."
       />
       <AdvancedSearch />
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
-          <h4>All articles</h4>
-          <span className="text-sm mt-2 ml-2">({data?.pagination._totalRow})</span>
+          <h4>All news</h4>
+          <span className="text-sm mt-2 ml-2">(4)</span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
-            <button onClick={handleClickExport}>
+            <button type="button">
               <Image src="/images/share.png" width={20} height={20} />
             </button>
-            <button>
-              <Image onClick={handleClickOpen} src="/images/delete.png" width={20} height={20} />
+            <button type="button">
+              <Image src="/images/delete.png" width={20} height={20} />
             </button>
           </div>
         </div>
@@ -128,38 +103,15 @@ function AllPost({ data }: any) {
           handleClose={handleClose}
           handleDeleteClick={handleDeleteClick}
         />
-        <div className="flex justify-between">
-          <div className="flex items-center text-sm mt-3 ml-2">{`Total number of articles ${data?.pagination._totalRow}`}</div>
-          <Pagination
-            totalPage={totalPage}
-            currentPage={Number(router.query.page)}
-            goOtherPage={goOtherPage}
-            goNextPage={goNextPage}
-            goPrevPage={goPrevPage}
-          />
-        </div>
       </div>
     </LayoutAdminPage>
   );
 }
 
-export default AllPost;
+export default News;
 
-export async function getStaticPaths() {
-  const res = await fetch('http://localhost:3001/posts?_page=1&_limit=300');
-  const { pagination } = await res.json();
-  const totalPage = Math.ceil(pagination._totalRow / 5);
-
-  const paths = [];
-  for (let i = 1; i <= totalPage; i++) {
-    paths.push({ params: { page: `${i}` } });
-  }
-
-  return { paths, fallback: false };
-}
-
-export const getStaticProps = async ({ params }: any) => {
-  const res = await fetch(`http://localhost:3001/posts?_page=${params.page}&_limit=300`);
+export const getStaticProps = async () => {
+  const res = await fetch('http://localhost:3001/posts?_limit=4');
   const posts = await res.json();
 
   return {

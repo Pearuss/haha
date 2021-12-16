@@ -116,7 +116,7 @@ function Tag() {
               <Checkbox {...label} checked={selectAll} onChange={handleSelectAllClick} />
             </span>
           </span>
-          <span>Tag Name</span>
+          <span className="ml-[-50%]">Tag Name</span>
           <span>Date created</span>
           <span>Total tag</span>
           <span>Status</span>

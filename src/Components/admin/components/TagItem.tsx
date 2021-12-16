@@ -19,7 +19,7 @@ function TagList(props: any) {
           <Checkbox {...label} checked={tag.selected} onClick={() => handleCheckItemClick(tag)} />
         </span>
       </span>
-      <span>{tag.name}</span>
+      <span className="ml-[-50%]">{tag.name}</span>
       <span>{tag.createAt}</span>
       <span>2000</span>
       <span className="flex items-center gap-[45%]">

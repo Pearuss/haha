@@ -4,6 +4,7 @@ import React from 'react';
 
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
+import Link from 'next/link';
 
 // import Link from 'next/link';
 import { truncate } from '../../../utilities/helper';
@@ -29,7 +30,9 @@ function PostList({ post, handleCheckItemClick }: any) {
         </div>
         <div className="flex flex-col mt-[-5px] mb-auto">
           <h6 className="text-textAdmin text-base">{truncate(`${post.title}`, 55)}</h6>
-          <span className="text-sm">{truncate(`${post.body}`, 20)}</span>
+          <Link href={`/posts/${post.id}`}>
+            <span className="text-sm cursor-pointer">#slug_article</span>
+          </Link>
         </div>
       </span>
       <span>25/08/2000</span>
