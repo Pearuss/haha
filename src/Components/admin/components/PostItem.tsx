@@ -1,6 +1,6 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
@@ -8,7 +8,7 @@ import Image from 'next/image';
 // import Link from 'next/link';
 import { truncate } from '../../../utilities/helper';
 
-function PostList({ post, handleCheckItemClick }: any): ReactElement {
+function PostList({ post, handleCheckItemClick }: any) {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
   return (

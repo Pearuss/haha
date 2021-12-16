@@ -1,4 +1,5 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+/* eslint-disable react/jsx-one-expression-per-line */
+import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -8,7 +9,7 @@ import TagSectionMobile from '../../Components/TagContent/TagSection';
 import { MainLayout } from '../../layout';
 import { capitalizeFirstLetter } from '../../utilities/helper';
 
-const Category = ({ data }: any): ReactElement => {
+function Category({ data }: any) {
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
   const router = useRouter();
@@ -33,16 +34,12 @@ const Category = ({ data }: any): ReactElement => {
       setIsShowTagMobile(false);
     });
   }, []);
-
   return (
     <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
       <div className="flex items-center ">
         <Image src="/images/category.png" width={40} height={40} />
         <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-1 text-black font-normal ml-[1vw]">
-          Category:
-          {' '}
-          {capitalizeFirstLetter(router.query.category?.toString() || '')}
-          /
+          Category: {capitalizeFirstLetter(router.query.category?.toString() || '')}/
           {capitalizeFirstLetter(router.query.items?.toString() || '')}
         </p>
       </div>
@@ -63,7 +60,7 @@ const Category = ({ data }: any): ReactElement => {
       </div>
     </div>
   );
-};
+}
 Category.Layout = MainLayout;
 export default Category;
 

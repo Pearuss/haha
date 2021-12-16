@@ -1,13 +1,11 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import HeaderLeft from './HeaderLeft';
 import HeaderMiddle from './HeaderMiddle';
 import HeaderRight from './HeaderRight';
 import Menu from './Menu';
 
-// interface Props {}
-
-const Header = (): ReactElement => {
+function Header() {
   useEffect(() => {
     const header: any = document.querySelector('.header');
     let lastScrollTop = 0;
@@ -39,6 +37,6 @@ const Header = (): ReactElement => {
       <Menu />
     </div>
   );
-};
+}
 
 export default Header;

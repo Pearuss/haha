@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import CloseIcon from '@mui/icons-material/Close';
 import Image from 'next/image';
@@ -8,7 +8,8 @@ import useSWR from 'swr';
 
 import { capitalizeFirstLetter } from '../../utilities/helper';
 
-function Menu(): ReactElement {
+/* eslint-disable */
+function Menu() {
   const router = useRouter();
   // const [category, setCategory] = useState<any[]>([])
   // if(data) {
@@ -28,13 +29,13 @@ function Menu(): ReactElement {
         'lg:-translate-x-full',
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full',
+        'ssm:-translate-x-full'
       );
       menuMobile.classList.add(
         'lg:translate-x-0',
         'md:translate-x-0',
         'sm:translate-x-0',
-        'ssm:translate-x-0',
+        'ssm:translate-x-0'
       );
       cover.classList.remove('hidden');
     });
@@ -44,13 +45,13 @@ function Menu(): ReactElement {
         'lg:-translate-x-full',
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full',
+        'ssm:-translate-x-full'
       );
       menuMobile.classList.remove(
         'lg:translate-x-0',
         'md:translate-x-0',
         'sm:translate-x-0',
-        'ssm:translate-x-0',
+        'ssm:translate-x-0'
       );
       cover.classList.add('hidden');
     });
@@ -60,13 +61,13 @@ function Menu(): ReactElement {
         'lg:-translate-x-full',
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full',
+        'ssm:-translate-x-full'
       );
       menuMobile.classList.remove(
         'lg:translate-x-0',
         'md:translate-x-0',
         'sm:translate-x-0',
-        'ssm:translate-x-0',
+        'ssm:translate-x-0'
       );
       cover.classList.add('hidden');
     });
@@ -125,9 +126,9 @@ function Menu(): ReactElement {
             <a data-dropdown-button>Home</a>
           </Link>
         </li>
-        {typeof data === 'object'
-          && data !== null
-          && Object.keys(data).map((category: any) => (
+        {typeof data === 'object' &&
+          data !== null &&
+          Object.keys(data).map((category: any) => (
             <li key={category} className="dropdown" data-dropdown>
               <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
                 {capitalizeFirstLetter(category)}
@@ -169,9 +170,9 @@ function Menu(): ReactElement {
             </a>
           </Link>
         </li>
-        {typeof data === 'object'
-          && data !== null
-          && Object.keys(data).map((category: any) => (
+        {typeof data === 'object' &&
+          data !== null &&
+          Object.keys(data).map((category: any) => (
             <li
               key={category}
               className={`${

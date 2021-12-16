@@ -803,6 +803,36 @@
       "postId": "1",
       "createdAt": 1639473277403,
       "updatedAt": 1639473277403
+    },
+    {
+      "id": "75dq7e2f9",
+      "body": "Test comment",
+      "parentId": null,
+      "userId": "2",
+      "username": "Pearuss",
+      "postId": "1",
+      "createdAt": 1639621872222,
+      "updatedAt": 1639621872222
+    },
+    {
+      "id": "y8wz7mqd5",
+      "body": "Test 2",
+      "parentId": "75dq7e2f9",
+      "userId": "2",
+      "username": "Pearuss",
+      "postId": "1",
+      "createdAt": 1639621882228,
+      "updatedAt": 1639621882228
+    },
+    {
+      "id": "ms767mott",
+      "body": "<a href=\"/user/1\" style=\"color:#76dce6; font-weight: 500;\">@Pearuss:</a> Test 3",
+      "parentId": "75dq7e2f9",
+      "userId": "2",
+      "username": "Pearuss",
+      "postId": "1",
+      "createdAt": 1639621893134,
+      "updatedAt": 1639621893134
     }
   ]
 }

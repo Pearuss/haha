@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 
-function UserInfo(): ReactElement {
+function UserInfo() {
   return (
     <div className="info-user">
       <div className="image">

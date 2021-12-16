@@ -1,5 +1,5 @@
-/* eslint-disable react/button-has-type */
-import React, { ReactElement, useEffect, useState } from 'react';
+/* eslint-disable */
+import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -10,14 +10,7 @@ import useToggle from '../../hooks/use-toggle';
 import { MainLayout } from '../../layout';
 import { capitalizeFirstLetter } from '../../utilities/helper';
 
-// interface PostItem {
-//   id: string;
-//   title: string;
-//   img: string;
-//   body: string;
-// }
-
-const PostsTag = (data: any): ReactElement => {
+function PostsTag(data: any) {
   const [isFollow, setIsFollow] = useToggle(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
   const router = useRouter();
@@ -32,7 +25,7 @@ const PostsTag = (data: any): ReactElement => {
       menuMobile.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full',
+        'ssm:-translate-x-full'
       );
       menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -47,9 +40,7 @@ const PostsTag = (data: any): ReactElement => {
       <div className="flex items-center ">
         <Image src="/images/hashtag1.png" width={40} height={40} />
         <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl text-black font-normal ml-[1vw]">
-          Tag:
-          {' '}
-          {capitalizeFirstLetter(router.query.tag?.toString() || '')}
+          Tag: {capitalizeFirstLetter(router.query.tag?.toString() || '')}
         </p>
       </div>
       <div className="flex w-full my-4">
@@ -78,7 +69,7 @@ const PostsTag = (data: any): ReactElement => {
       </div>
     </div>
   );
-};
+}
 PostsTag.Layout = MainLayout;
 export default PostsTag;
 

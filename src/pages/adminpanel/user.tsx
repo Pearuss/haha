@@ -1,9 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/button-has-type */
 /* eslint-disable max-len */
-import React, {
-  ReactElement, useEffect, useMemo, useState,
-} from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
@@ -15,7 +13,7 @@ import FormUpdateUser from '../../Components/admin/components/FormUpdateUser';
 import HeaderAdmin from '../../Components/admin/components/HeaderAdmin';
 import LayoutAdminPage from '../../Components/admin/layout';
 
-function Cpanel(): ReactElement {
+function Cpanel() {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
   const customerFake = [

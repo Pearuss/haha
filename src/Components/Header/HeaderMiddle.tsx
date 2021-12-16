@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 import { SearchIcon } from '@heroicons/react/solid';
 
-function HeaderMiddle(): ReactElement {
+function HeaderMiddle() {
   return (
     <div className="flex items-center border-2 md:border-0 sm:border-0 sm:shadow-none md:shadow-none shadow-sm rounded-full text-blueCyanLogo ssm:hidden">
       <input

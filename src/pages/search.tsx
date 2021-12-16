@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 // interface Props {}
 
-function Index(): ReactElement {
+function Index() {
   return <div>search</div>;
 }
 

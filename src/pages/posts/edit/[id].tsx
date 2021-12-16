@@ -1,6 +1,6 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 // import Link from 'next/link';
 // import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -14,7 +14,7 @@ import MarkDown from '../../../Components/CreatePost/MarkDown';
 import { HeaderLayout } from '../../../layout';
 import { truncate } from '../../../utilities/helper';
 
-function EditPost({ data }: any): ReactElement {
+function EditPost({ data }: any) {
   const { data: tagData }: any = useSWR('http://localhost:3001/tags');
   const { data: catData }: any = useSWR('http://localhost:3001/category');
 

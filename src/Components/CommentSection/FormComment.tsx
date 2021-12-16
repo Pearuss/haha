@@ -1,12 +1,12 @@
 /* eslint-disable react/button-has-type */
-import React, { ReactElement, useState } from 'react';
+import React, { useState } from 'react';
 
 export default function FormComment({
   handleSubmit,
   submitLabel,
   handleCancel,
   initialText = '',
-}: any): ReactElement {
+}: any) {
   const [text, setText] = useState(initialText);
   const isTextareaDisabled = text.trim().length === 0;
   const onSubmit = (event: any) => {

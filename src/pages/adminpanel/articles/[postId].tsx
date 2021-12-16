@@ -1,6 +1,6 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { ReactElement, useState } from 'react';
+import React, { useState } from 'react';
 
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import DatePicker from '@mui/lab/DatePicker';
@@ -12,7 +12,7 @@ import LayoutAdminPage from '../../../Components/admin/layout';
 import MarkDown from '../../../Components/CreatePost/MarkDown';
 import useFetch from '../../../hooks/use-fetch';
 
-function EditPost({ data }: any): ReactElement {
+function EditPost({ data }: any) {
   const [value, setValue] = React.useState<Date | null>(null);
 
   const [newTitle, setNewTitle] = useState(data?.title || '');

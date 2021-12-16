@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 import {
   Button,
@@ -10,12 +10,8 @@ import {
 } from '@mui/material';
 
 function DialogDelete({
-  label,
-  subContnet,
-  openDialog,
-  handleClose,
-  handleDeleteClick,
-}: any): ReactElement {
+  label, subContnet, openDialog, handleClose, handleDeleteClick,
+}: any) {
   return (
     <Dialog
       open={openDialog}

@@ -1,8 +1,5 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/button-has-type */
-import React, {
-  ReactElement, useEffect, useMemo, useState,
-} from 'react';
+/* eslint-disable */
+import React, { useEffect, useMemo, useState } from 'react';
 
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
@@ -15,7 +12,7 @@ import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import MemberItem from '../../../Components/admin/components/MemberItem';
 import LayoutAdminPage from '../../../Components/admin/layout';
 
-function Cpanel(): ReactElement {
+function Cpanel() {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
   const router = useRouter();
@@ -58,7 +55,7 @@ function Cpanel(): ReactElement {
 
   const hasSelectedMember = useMemo(
     () => dataMembers.find((member) => member.selected === true),
-    [dataMembers],
+    [dataMembers]
   );
 
   useEffect(() => {

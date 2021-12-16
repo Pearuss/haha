@@ -1,11 +1,5 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable eqeqeq */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable no-restricted-globals */
-/* eslint-disable @typescript-eslint/no-loop-func */
-/* eslint-disable no-plusplus */
-import React, { ReactElement, useEffect, useState } from 'react';
+/* eslint-disable */
+import React, { useEffect, useState } from 'react';
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CloseIcon from '@mui/icons-material/Close';
@@ -21,7 +15,7 @@ import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
 import { useAuth } from '../../hooks';
 import { DetailPostLayout } from '../../layout';
 
-function Index({ data }: any): ReactElement {
+function Index({ data }: any) {
   const [isLogin, setIsLogin] = useState(false);
   const [showFormComment, setShowFormComment] = useState(false);
   const [isShowContentIndex, setIsShowContentIndex] = useState(true);
@@ -135,7 +129,7 @@ function Index({ data }: any): ReactElement {
       menuMobile.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full',
+        'ssm:-translate-x-full'
       );
       menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });

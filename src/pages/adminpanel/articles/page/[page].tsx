@@ -1,10 +1,5 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/button-has-type */
-/* eslint-disable no-underscore-dangle */
-import React, {
-  ReactElement, useEffect, useMemo, useState,
-} from 'react';
+/* eslint-disable */
+import React, { useEffect, useMemo, useState } from 'react';
 
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
@@ -17,7 +12,7 @@ import PostItem from '../../../../Components/admin/components/PostItem';
 import LayoutAdminPage from '../../../../Components/admin/layout';
 import Pagination from '../../../../Components/Pagination';
 
-function AllPost({ data }: any): ReactElement {
+function AllPost({ data }: any) {
   const router = useRouter();
 
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -37,7 +32,7 @@ function AllPost({ data }: any): ReactElement {
 
   const hasSelectedTag = useMemo(
     () => dataPosts?.find((post: any) => post.selected === true),
-    [dataPosts],
+    [dataPosts]
   );
 
   useEffect(() => {
@@ -101,11 +96,7 @@ function AllPost({ data }: any): ReactElement {
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All articles</h4>
-          <span className="text-sm mt-2 ml-2">
-            (
-            {data?.pagination._totalRow}
-            )
-          </span>
+          <span className="text-sm mt-2 ml-2">({data?.pagination._totalRow})</span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <button onClick={handleClickExport}>
               <Image src="/images/share.png" width={20} height={20} />
