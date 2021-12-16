@@ -260,7 +260,11 @@ function ModalPost({
                       />
                     </div>
                   ) : (
-                    ''
+                    <div className="label cursor-pointer opacity-60 hover:opacity-40 w-24 h-24 pt-4">
+                      <label className="image-upload imgUpload" htmlFor="inputImg">
+                        <AddCircleOutlineRoundedIcon className="w-full h-auto text-center cursor-pointer" />
+                      </label>
+                    </div>
                   )}
                   <input
                     type="file"
@@ -270,11 +274,6 @@ function ModalPost({
                     className="hidden"
                     onChange={imageHandler}
                   />
-                  <div className="label cursor-pointer opacity-60 hover:opacity-40 w-24 h-24 pt-4">
-                    <label className="image-upload imgUpload" htmlFor="inputImg">
-                      <AddCircleOutlineRoundedIcon className="w-full h-auto text-center cursor-pointer" />
-                    </label>
-                  </div>
                 </div>
               </div>
             </div>
@@ -289,7 +288,7 @@ function ModalPost({
                 type="submit"
                 className="w-[30%] p-3 rounded bg-blue-300 hover:bg-blue-400  text-white font-bold tracking-wider active:animate-jelly"
               >
-                Upload
+                Save
               </button>
             </div>
           </div>
