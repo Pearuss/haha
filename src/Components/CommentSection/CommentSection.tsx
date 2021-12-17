@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/order */
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // import useCall from '../../hooks/use-call';
 import InputMention from '../../common/InputMention/InputMention';
@@ -10,7 +10,7 @@ import useFetch from '../../hooks/use-fetch';
 // import { getComments as getCommentsApi, createComment as createCommentApi } from './api';
 import Comment from './Comment';
 
-function CommentSection({ showForm, postId }: any): ReactElement {
+function CommentSection({ showForm, postId }: any) {
   const [backendComments, setBackendComments] = useState<any[]>([]);
   const [activeComment, setActiveComment] = useState(null);
 

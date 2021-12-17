@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 import { EyeIcon, ChatIcon } from '@heroicons/react/outline';
 // import Image from 'next/image';
@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 import { truncate } from '../utilities/helper';
 
-function Post({ post }: any): ReactElement {
+function Post({ post }: any) {
   const linkDetail = `/posts/${post.id}`;
 
   return (

@@ -1,10 +1,10 @@
 /* eslint-disable react/button-has-type */
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import LayoutAdminPage from '../../../Components/admin/layout';
 
-function CreateTag(): ReactElement {
+function CreateTag() {
   return (
     <LayoutAdminPage title="Home">
       <HeaderAdmin titlePage="Create a tag" subTitlePage="" searchPlaceholder="Tag..." />

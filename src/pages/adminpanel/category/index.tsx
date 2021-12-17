@@ -1,8 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/button-has-type */
-import React, {
-  ReactElement, useEffect, useMemo, useState,
-} from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
@@ -15,7 +13,7 @@ import FormUpdateCategory from '../../../Components/admin/components/FormUpdateC
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import LayoutAdminPage from '../../../Components/admin/layout';
 
-function Category(): ReactElement {
+function Category() {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
   const catFake = [

@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/comma-dangle */
 /* eslint-disable react/react-in-jsx-scope */
 import { useEffect, useState } from 'react';
-// import UseForm from "../hooks/useFormHook";
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
@@ -67,7 +67,7 @@ const Login = () => {
 
   const handleLoginSSO = () => {
     router.push(
-      'https://sso.hybrid-technologies.co.jp/auth/realms/eas/protocol/openid-connect/auth?response_type=code&redirect_uri=http://localhost:9500/loginsso/&client_id=skh-dev&scope=openid%20profile',
+      'https://sso.hybrid-technologies.co.jp/auth/realms/eas/protocol/openid-connect/auth?response_type=code&redirect_uri=http://localhost:9500/loginsso/&client_id=skh-dev&scope=openid%20profile'
     );
   };
 
@@ -134,5 +134,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// export default withAuthentication(WithFormProvider);

@@ -1,7 +1,5 @@
-/* eslint-disable react/no-children-prop */
-import React, {
-  ReactElement, useCallback, useEffect, useState,
-} from 'react';
+/* eslint-disable */
+import React, { useCallback, useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,7 +10,7 @@ import { useAuth } from '../../hooks';
 import { truncateBody } from '../../utilities/helper';
 import CodeBlock from './CodeBlock';
 
-function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactElement {
+function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   const { profile, firstLoading } = useAuth();
   // const [isViewer, setIsViewer] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
@@ -26,9 +24,10 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactEl
   //   }
   // }, []);
 
-  const contentBody = isReadMore && !isLogin
-    ? truncateBody(`${dataPostDetail.body}`, 580).toString() // max content length is 580
-    : truncateBody(`${dataPostDetail.body}`, 20000).toString(); // see full content
+  const contentBody =
+    isReadMore && !isLogin
+      ? truncateBody(`${dataPostDetail.body}`, 580).toString() // max content length is 580
+      : truncateBody(`${dataPostDetail.body}`, 20000).toString(); // see full content
 
   useEffect(() => {
     if (!firstLoading && !profile?.username && !localStorage.getItem('tokenSso')) {
@@ -62,11 +61,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any): ReactEl
           priority
         />
         <span className="font-medium text-xl ml-2 text-blueCyanLogo">{dataPostDetail.author}</span>
-        <span className="text-gray-500 text-sm ml-1 mt-1">
-          @
-          {dataPostDetail.tags}
-          · 21 hour
-        </span>
+        <span className="text-gray-500 text-sm ml-1 mt-1">@{dataPostDetail.tags}· 21 hour</span>
         <Link href={`/posts/edit/${dataPostDetail.id}`}>
           <span className="mt-1 ml-2">
             <Image src="/images/pencil.png" width={12} height={12} />

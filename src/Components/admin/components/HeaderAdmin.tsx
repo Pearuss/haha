@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 import { SearchIcon } from '@heroicons/react/solid';
 
-function HeaderAdmin({ titlePage, subTitlePage, searchPlaceholder }: any): ReactElement {
+function HeaderAdmin({ titlePage, subTitlePage, searchPlaceholder }: any) {
   return (
     <div className="flex items-center mb-4">
       <h2 className="text-textAdmin">{titlePage}</h2>

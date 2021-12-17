@@ -1,7 +1,5 @@
 /* eslint-disable max-len */
-import React, {
-  ReactElement, useCallback, useEffect, useState,
-} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { UserCircleIcon, MenuIcon, SearchIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
@@ -11,7 +9,7 @@ import Swal from 'sweetalert2';
 import { useAuth } from '../../hooks';
 import useToggle from '../../hooks/use-toggle';
 
-function HeaderRight(): ReactElement {
+function HeaderRight() {
   const router = useRouter();
   const { logout, profile, firstLoading } = useAuth();
 

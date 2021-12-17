@@ -1,8 +1,10 @@
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable operator-linebreak */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/button-has-type */
 /* eslint-disable import/order */
-import React, { ReactElement, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import parse from 'html-react-parser';
 import Image from 'next/image';
@@ -21,11 +23,12 @@ function Comment({
   setActiveComment,
   addComment,
   parentId = null,
-}: any): ReactElement {
+}: any) {
   const { profile } = useAuth();
   const router = useRouter();
 
-  const isReplying = activeComment && activeComment.type === 'replying' && activeComment.id === commentContent.id;
+  const isReplying =
+    activeComment && activeComment.type === 'replying' && activeComment.id === commentContent.id;
 
   const replyId = parentId || commentContent.id;
 
@@ -87,10 +90,11 @@ function Comment({
             <Image src="/images/reply.png" width={20} height={20} />
             <span
               className="pl-3 font-medium"
-              onClick={() => setActiveComment({
-                id: commentContent.id,
-                type: 'replying',
-              })}
+              onClick={() =>
+                setActiveComment({
+                  id: commentContent.id,
+                  type: 'replying',
+                })}
             >
               Reply
             </span>
@@ -107,11 +111,12 @@ function Comment({
             //     ? ''
             //     : `${parse('<p class="text-darkRed">@${commentContent.username}</p>')} `
             // }`}
-            handleSubmit={(text: any) => addComment(
-              // `${parentId == null ? '' : `@${commentContent.username}`} ${text}`,
-              text,
-              replyId,
-            )}
+            handleSubmit={(text: any) =>
+              addComment(
+                // `${parentId == null ? '' : `@${commentContent.username}`} ${text}`,
+                text,
+                replyId,
+              )}
             handleCancel={() => setActiveComment(null)}
           />
         )}

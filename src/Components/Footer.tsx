@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 // interface Props {}
 
-const Footer = (): ReactElement => (
+const Footer = () => (
   <div className="text-sm text-center mb-[10px] px-[10px]">
     Copyright © Hybrid Technologies Co., Ltd. All rights reserved.
   </div>

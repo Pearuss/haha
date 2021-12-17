@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 
-function admin(): ReactElement {
+function admin() {
   return <div>admin page</div>;
 }
 
