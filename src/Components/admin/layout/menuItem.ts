@@ -19,7 +19,16 @@ const items: MenuItemType[] = [
   {
     title: 'Manage Article',
     icon: { name: 'edit-2-outline' },
-    link: { href: '/adminpanel/articles/page/1' },
+    children: [
+      {
+        title: 'News',
+        link: { href: '/adminpanel/news' },
+      },
+      {
+        title: "User's Article",
+        link: { href: '/adminpanel/articles/page/1' },
+      },
+    ],
   },
   {
     title: 'Manage Tag',
