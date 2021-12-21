@@ -57,6 +57,7 @@ function HomePage({ data }: any) {
             {data[0].tags}
             {' '}
             -
+            {' '}
             {data[0].author}
           </span>
           <span className="ml-3">|</span>

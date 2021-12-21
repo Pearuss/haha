@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
 
-import PostItem from '../../../Components/admin/components/PostItem';
+import NewItem from '../../../Components/admin/components/NewItem';
 import DialogDelete from '../../../Components/admin/common/dialogDelete';
 import AdvancedSearch from '../../../Components/admin/components/AdvancedSearch';
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
@@ -76,7 +76,7 @@ function News({ data }: any) {
             <button type="button">
               <Image src="/images/share.png" width={20} height={20} />
             </button>
-            <button type="button">
+            <button type="button" onClick={handleClickOpen}>
               <Image src="/images/delete.png" width={20} height={20} />
             </button>
           </div>
@@ -93,9 +93,9 @@ function News({ data }: any) {
           <span>Status</span>
           <span>Statistics</span>
         </div>
-        {dataPosts?.map((post: any) => (
-          <PostItem key={post.id} post={post} handleCheckItemClick={handleCheckItemClick} />
-        ))}
+        {dataPosts?.map((_new: any) => {
+          return <NewItem key={_new.id} _new={_new} handleCheckItemClick={handleCheckItemClick} />;
+        })}
         <DialogDelete
           label="Do you want to remove the article?"
           subContnet="Please consider this carefully, deleted articles cannot be recovered."
@@ -112,11 +112,11 @@ export default News;
 
 export const getStaticProps = async () => {
   const res = await fetch('http://localhost:3001/posts?_limit=4');
-  const posts = await res.json();
+  const news = await res.json();
 
   return {
     props: {
-      data: posts,
+      data: news,
     },
     revalidate: 1,
   };
