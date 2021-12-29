@@ -41,7 +41,7 @@ function Post({ article }: any) {
           {formatDate(new Date(article?.publishedAt))}
         </p>
         <p className="absolute bottom-0 ssm:bottom-[-4.2rem] ssm:left-0 ssm:text-sm ">
-          {article?.mainCategory.name}
+          {article?.mainCategory?.name}
           {' '}
           -
           {' '}

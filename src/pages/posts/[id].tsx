@@ -22,7 +22,6 @@ function Index({ data }: any) {
   const [isReadMore, setIsReadMore] = useState(true);
   const [isShowTopicMobile, setIsShowTopicMobile] = useState(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
-  console.log(data);
 
   const { profile, firstLoading } = useAuth();
   const router = useRouter();
@@ -238,7 +237,7 @@ export const getStaticProps = async (context: any) => {
 
   return {
     props: {
-      data: data.data,
+      data: data,
     },
     revalidate: 1,
   };
