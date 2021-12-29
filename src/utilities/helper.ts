@@ -61,3 +61,25 @@ export function capitalizeFirstLetter(string: string) {
 export function countWord(string: string) {
   return string.split(' ').length;
 }
+
+export function formatDate(dateObj: Date): string {
+  const monthNames = [
+    'Jan',
+    'Feb',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  const month = monthNames[dateObj.getMonth()];
+  const day = String(dateObj.getDate()).padStart(2, '0');
+  const year = dateObj.getFullYear();
+  const output = `${month} ${day} ${year}`;
+  return output;
+}

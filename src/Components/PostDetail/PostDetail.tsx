@@ -15,6 +15,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   // const [isViewer, setIsViewer] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const router = useRouter();
+  console.log('dataPostDetail', dataPostDetail);
 
   // useEffect(() => {
   //   if (localStorage.getItem('isView') && localStorage.getItem('isView') === 'true') {
@@ -26,8 +27,8 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
 
   const contentBody =
     isReadMore && !isLogin
-      ? truncateBody(`${dataPostDetail.body}`, 580).toString() // max content length is 580
-      : truncateBody(`${dataPostDetail.body}`, 20000).toString(); // see full content
+      ? truncateBody(`${dataPostDetail.content}`, 580).toString() // max content length is 580
+      : truncateBody(`${dataPostDetail.content}`, 20000).toString(); // see full content
 
   useEffect(() => {
     if (!firstLoading && !profile?.username && !localStorage.getItem('tokenSso')) {
@@ -46,6 +47,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
       router.replace('/login');
     }
   }, [profile]);
+
   return (
     <div className="relative bg-white rounded-lg shadow-md px-4 pt-2 py-16 mb-8 text-gray-600  h-auto">
       <div className="w-full text-black font-semibold text-3xl sm:text-2xl ssm:text-xl pl-2 py-4 mx-auto">
@@ -69,11 +71,10 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
         </Link>
       </div>
 
-      {/* <div className="mx-2">{dataPostDetail.body}</div> */}
       <div className="postContent mx-2 mb-4 mt-5 h-auto">
         <ReactMarkdown components={CodeBlock} children={contentBody} />
       </div>
-      {dataPostDetail.body.length > 580 && (
+      {dataPostDetail?.content?.length > 580 && (
         <button
           onClick={ReadMoreHandler}
           type="button"

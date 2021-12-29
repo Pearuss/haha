@@ -22,6 +22,7 @@ function Index({ data }: any) {
   const [isReadMore, setIsReadMore] = useState(true);
   const [isShowTopicMobile, setIsShowTopicMobile] = useState(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
+  console.log(data);
 
   const { profile, firstLoading } = useAuth();
   const router = useRouter();
@@ -216,7 +217,7 @@ Index.Layout = DetailPostLayout;
 export default Index;
 
 export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:3001/posts?_limit=200');
+  const res = await fetch('http://localhost:3100/api/v1/user/article/full-list');
   const posts = await res.json();
 
   const paths = posts?.data?.map((post: any) => ({
@@ -232,12 +233,12 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context: any) => {
   const { id } = context?.params;
   if (!id) return { notFound: true };
-  const res = await fetch(`http://localhost:3001/posts/${id}?_limit=200`);
-  const posts = await res.json();
+  const res = await fetch(`http://localhost:3100/api/v1/user/article/${id}/detail`);
+  const data: any = await res.json();
 
   return {
     props: {
-      data: posts,
+      data: data.data,
     },
     revalidate: 1,
   };
