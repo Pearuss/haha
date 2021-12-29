@@ -41,9 +41,9 @@ function Index({ data }: any) {
   }, [isShowTopicMobile]);
 
   useEffect(() => {
-    if (!firstLoading && !profile?.username && !localStorage.getItem('tokenSso')) {
+    if (!firstLoading && !profile?.data && !localStorage.getItem('tokenSso')) {
       setIsLogin(false);
-    } else if (profile?.username || localStorage.getItem('tokenSso')) {
+    } else if (profile?.data || localStorage.getItem('tokenSso')) {
       setIsLogin(true);
     }
   }, [profile, firstLoading]);
@@ -234,6 +234,7 @@ export const getStaticProps = async (context: any) => {
   if (!id) return { notFound: true };
   const res = await fetch(`http://localhost:3001/posts/${id}?_limit=200`);
   const posts = await res.json();
+  console.log(posts);
 
   return {
     props: {

@@ -15,36 +15,6 @@
         "id": 3,
         "path": "/JavaScript",
         "name": "JavaScript"
-      },
-      {
-        "id": 4,
-        "path": "/CPP",
-        "name": "CPP"
-      },
-      {
-        "id": 5,
-        "path": "/GoLang",
-        "name": "GoLang"
-      },
-      {
-        "id": 6,
-        "path": "/postCSS",
-        "name": "PostCSS"
-      },
-      {
-        "id": 7,
-        "path": "/solidity",
-        "name": "Solidity"
-      },
-      {
-        "id": 8,
-        "path": "/rush",
-        "name": "Rush"
-      },
-      {
-        "id": 9,
-        "path": "/php",
-        "name": "PHP"
       }
     ],
     "tagsCloud": [
@@ -132,7 +102,7 @@
         "path": "/development/tablet"
       }
     ],
-    "cloudVirtual": [
+    "cloud Virtual": [
       {
         "id": 1,
         "name": "Google cloud",
@@ -833,6 +803,16 @@
       "postId": "1",
       "createdAt": 1639621893134,
       "updatedAt": 1639621893134
+    },
+    {
+      "id": "f92dqbuny",
+      "body": "test",
+      "parentId": null,
+      "userId": "2",
+      "username": "Pearuss",
+      "postId": "1",
+      "createdAt": 1640583351043,
+      "updatedAt": 1640583351043
     }
   ]
 }

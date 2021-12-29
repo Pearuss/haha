@@ -2,9 +2,9 @@
   "name": "next-js-ts",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next dev -p 9500",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 9500",
+    "start": "next start",
     "build-stats": "ANALYZE=true npm run build",
     "export": "next export -o dist",
     "build-prod": "run-s clean build export",

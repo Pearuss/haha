@@ -16,7 +16,7 @@ function Menu() {
   //   setCategory(Object.keys(data));
   // }
 
-  const { data } = useSWR('http://localhost:3001/menu', { revalidateOnFocus: false });
+  const { data } = useSWR('http://localhost:3100/api/v1/category', { revalidateOnFocus: false });
 
   useEffect(() => {
     const btnMenuMobile = document.querySelector('.btnMenuMobile');
@@ -126,9 +126,9 @@ function Menu() {
             <a data-dropdown-button>Home</a>
           </Link>
         </li>
-        {typeof data === 'object' &&
-          data !== null &&
-          Object.keys(data).map((category: any) => (
+        {typeof data?.data === 'object' &&
+          data.data !== null &&
+          Object.keys(data.data).map((category: any) => (
             <li key={category} className="dropdown" data-dropdown>
               <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
                 {capitalizeFirstLetter(category)}
@@ -136,8 +136,8 @@ function Menu() {
 
               <div className="dropdown-menu">
                 <div className="flex flex-col gap-1">
-                  {data[category].map((result: any) => (
-                    <Link href={result.path} key={result.id}>
+                  {data.data[category]?.map((result: any) => (
+                    <Link href={result.slug} key={result.id}>
                       <a className="link">{result.name}</a>
                     </Link>
                   ))}
@@ -170,9 +170,9 @@ function Menu() {
             </a>
           </Link>
         </li>
-        {typeof data === 'object' &&
-          data !== null &&
-          Object.keys(data).map((category: any) => (
+        {typeof data?.data === 'object' &&
+          data.data !== null &&
+          Object.keys(data.data).map((category: any) => (
             <li
               key={category}
               className={`${
@@ -186,8 +186,8 @@ function Menu() {
 
               <div className="dropdown-menu">
                 <div className="flex flex-col gap-1">
-                  {data[category].map((result: any) => (
-                    <Link href={result.path} key={result.id}>
+                  {data.data[category]?.map((result: any) => (
+                    <Link href={result.slug} key={result.id}>
                       <a className="link">{result.name}</a>
                     </Link>
                   ))}

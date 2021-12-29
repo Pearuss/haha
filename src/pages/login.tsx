@@ -33,9 +33,9 @@ const Login = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!firstLoading && !profile?.username) {
+    if (!firstLoading && !profile?.data) {
       // setIsLogin(false);
-    } else if (profile?.username) {
+    } else if (profile?.data) {
       router.replace('/');
     }
   }, [profile, firstLoading]);
@@ -73,14 +73,9 @@ const Login = () => {
 
   const submit = async (data: any, event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const userData = {
-      username: data.email,
-      password: data.password,
-    };
     try {
       setIsLoadingForm(true);
-      await login(userData);
+      await login(data);
       localStorage.setItem('isView', 'true');
       setIsLoadingForm(false);
       router.push('/');
