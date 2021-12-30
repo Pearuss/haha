@@ -95,29 +95,26 @@ function ModalPost({
       image: newPost.image,
     };
     const isValid = await postSchema.isValid(formData);
-    console.log(isValid);
 
     if (isValid) {
-      const { value }: any = useFetch('http://localhost:3000/api/v1/user/article', {
+      const { message: value }: any = await useFetch('http://localhost:9500/api/v1/user/article', {
         method: 'POST',
         body: JSON.stringify({
           article: {
-            partialId: null,
-            sectionNo: null,
-            title: 'User Article demo9',
-            slug: 'frontend-article',
-            shortContent: 'Sunt aut facere repellat provident occaecati 7',
-            content:
-              '# What is this issue?\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\n# Solutions\n```js\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\n```\n# Conclude\nSearch for resources to solve problems like stackoverflow, github,...Search for resources to solve problems like stackoverflow, github,...',
+            partialId: newPost.partialId === 0 ? null : newPost.partialId,
+            sectionNo: newPost.partialId === 0 ? null : newPost.sectionNo,
+            title: newPost.title,
+            shortContent: newPost.shortContent,
+            content: newPost.content,
             thumbnail: null,
             status: 1,
-            mainCatId: 11,
+            mainCatId: newPost.mainCategory,
           },
-          tagIds: [1, 2, 3],
-          categoryIds: [11, 12],
+          tagIds: newPost.tag,
+          categoryIds: newPost.relatedCategory,
         }),
       });
-      console.log(value);
+      if (value === 200) router.push('/');
     } else {
       const formTitle = {
         title: newPost.title,

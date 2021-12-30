@@ -16,7 +16,7 @@ interface INewPost {
   sectionNo: number;
   partialId: number;
   tag: string[];
-  mainCategory: string;
+  mainCategory: number;
   relatedCategory: string[];
   image: string;
   public: boolean;
@@ -39,7 +39,7 @@ function UserCreatePage() {
     sectionNo: 1,
     partialId: 0,
     tag: [],
-    mainCategory: '',
+    mainCategory: 1,
     relatedCategory: [],
     image: '',
     public: true,
