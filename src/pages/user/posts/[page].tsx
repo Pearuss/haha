@@ -5,12 +5,13 @@ import React, { useEffect, useState } from 'react';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
+// import useSWR from 'swr';
 
-import { FilterMyPosts } from '../../../Components/FilterMyPosts';
-import Pagination from '../../../Components/Pagination';
+// import { FilterMyPosts } from '../../../Components/FilterMyPosts';
+// import Pagination from '../../../Components/Pagination';
 import Post from '../../../Components/Post';
 import TagSectionMobile from '../../../Components/TagContent/TagSectionMobile';
+import useCall from '../../../hooks/use-call';
 import { MainLayout } from '../../../layout';
 
 interface PostItem {
@@ -25,23 +26,28 @@ function PostsPage() {
 
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
-  const { data }: any = useSWR(`http://localhost:3001/posts?_page=${router.query.page}&_limit=5`, {
-    revalidateOnFocus: false,
-  });
+  // const page = router.query.page as never;
 
-  const { data: dataAll }: any = useSWR('http://localhost:3001/posts', {
-    revalidateOnFocus: false,
-  });
+  const { value: articles }: any = useCall('/api/v1/user/article/my-articles', {}, []);
+  console.log(articles);
 
-  const [dataPosts, setDataPosts] = useState<PostItem[]>([]);
+  // const { data }: any = useSWR(`http://localhost:3001/posts?_page=${router.query.page}&_limit=5`, {
+  //   revalidateOnFocus: false,
+  // });
 
-  const [filter, setFilter] = useState(false);
-  const totalPage = Math.ceil(Number(data?.pagination._totalRow) / 5);
-  const currentPage = Number(router.query.page);
+  // const { data: dataAll }: any = useSWR('http://localhost:3001/posts', {
+  //   revalidateOnFocus: false,
+  // });
 
-  useEffect(() => {
-    setDataPosts(data?.data);
-  }, [data]);
+  // const [dataPosts, setDataPosts] = useState<PostItem[]>([]);
+
+  // const [filter, setFilter] = useState(false);
+  // const totalPage = Math.ceil(Number(data?.pagination._totalRow) / 5);
+  // const currentPage = Number(router.query.page);
+
+  // useEffect(() => {
+  //   setDataPosts(data?.data);
+  // }, [data]);
 
   useEffect(() => {
     if (Number(router.query.page) < 1) {
@@ -70,32 +76,32 @@ function PostsPage() {
     });
   }, []);
 
-  const onClickNoFilter = () => {
-    setDataPosts(dataAll);
-  };
+  // const onClickNoFilter = () => {
+  //   setDataPosts(dataAll);
+  // };
 
-  const onClickFilter = (tagName: any) => {
-    setDataPosts(dataAll?.filter((post: any) => post.tags === tagName));
-  };
+  // const onClickFilter = (tagName: any) => {
+  //   setDataPosts(dataAll?.filter((post: any) => post.tags === tagName));
+  // };
 
-  const goOtherPage = (page: number) => {
-    router.push(`/user/posts/${page}`);
-  };
+  // const goOtherPage = (page: number) => {
+  //   router.push(`/user/posts/${page}`);
+  // };
 
-  const goNextPage = () => {
-    if (currentPage < totalPage) {
-      router.push(`/user/posts/${currentPage + 1}`);
-    }
-  };
+  // const goNextPage = () => {
+  //   if (currentPage < totalPage) {
+  //     router.push(`/user/posts/${currentPage + 1}`);
+  //   }
+  // };
 
-  const goPrevPage = () => {
-    if (currentPage > 1) {
-      router.push(`/user/posts/${currentPage - 1}`);
-    }
-  };
+  // const goPrevPage = () => {
+  //   if (currentPage > 1) {
+  //     router.push(`/user/posts/${currentPage - 1}`);
+  //   }
+  // };
 
   return (
-    <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
+    <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw] flex-1">
       <div className="relative w-full">
         <div className="flex items-center text-gray-600 text-sm">
           <Link href="/">
@@ -106,29 +112,33 @@ function PostsPage() {
             <p className="leading-8 cursor-pointer">My Post</p>
           </Link>
         </div>
-        <div className="mt-0 md:hidden sm:hidden ssm:hidden">
+        {/* <div className="mt-0 md:hidden sm:hidden ssm:hidden">
           <FilterMyPosts
             onClickNoFilter={onClickNoFilter}
             onClickFilter={onClickFilter}
             setFilter={setFilter}
           />
-        </div>
+        </div> */}
         <h1 className="text-4xl font-medium mb-6">Thong's Posts</h1>
       </div>
-      {dataPosts?.length > 0 ? (
-        dataPosts?.map((post: PostItem) => <Post key={post.id} post={post} />)
-      ) : (
-        <p className="text-lg text-red-600">There are no posts to display !</p>
-      )}
-      {!filter && (
-        <Pagination
-          totalPage={totalPage}
-          currentPage={Number(router.query.page)}
-          goOtherPage={goOtherPage}
-          goNextPage={goNextPage}
-          goPrevPage={goPrevPage}
-        />
-      )}
+      {articles?.data.map((article: PostItem) => (
+        <Post key={article.id} article={article} />
+      ))}
+
+      {/* {dataPosts?.length > 0 ? (
+      //   dataPosts?.map((post: PostItem) => <Post key={post.id} post={post} />)
+      // ) : (
+      //   <p className="text-lg text-red-600">There are no posts to display !</p>
+      // )}
+      // {!filter && (
+      //   <Pagination
+      //     totalPage={totalPage}
+      //     currentPage={Number(router.query.page)}
+      //     goOtherPage={goOtherPage}
+      //     goNextPage={goNextPage}
+      //     goPrevPage={goPrevPage}
+      //   />
+      // )} */}
       <TagSectionMobile isShowTagMobile={isShowTagMobile} />
     </div>
   );
@@ -137,3 +147,38 @@ function PostsPage() {
 PostsPage.Layout = MainLayout;
 
 export default PostsPage;
+
+// export const getStaticPaths = async () => {
+//   const res = await fetch('http://localhost:3000/api/v1/user/article/my-articles');
+//   const articles = await res.json();
+
+//   // console.log(articles);
+
+//   const paths = articles?.data?.map((article: any) => ({
+//     params: { page: article.id.toString() },
+//   }));
+//   // const paths = {
+//   //   params: { page: "2" },
+//   // };
+
+//   return {
+//     paths,
+//     fallback: 'blocking',
+//   };
+// };
+
+// export const getStaticProps = async (context: any) => {
+//   const { page } = context?.params;
+//   console.log(page);
+
+//   // if (!page) return { notFound: true };
+//   // const res = await fetch(`http://localhost:3100/api/v1/user/article/${page}/detail`);
+//   // const articles = await res.json();
+
+//   return {
+//     props: {
+//       articles: [],
+//       // articles: articles.data,
+//     },
+//   };
+// };

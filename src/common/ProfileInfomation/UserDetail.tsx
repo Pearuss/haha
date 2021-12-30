@@ -5,16 +5,14 @@ import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
 import PhoneIphoneOutlinedIcon from '@mui/icons-material/PhoneIphoneOutlined';
 
 import { useAuth } from '../../hooks';
-import useCall from '../../hooks/use-call';
 import ProfileModal from '../dialogEditProfile';
 
-function UserDetail({ userId }: any) {
+function UserDetail({ data, userId }: any) {
   const { profile } = useAuth();
 
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [isOwner, setIsOwner] = useState(false);
-  const { value }: any = useCall(`http://localhost:3100/api/v1/user/${userId}`, {}, [userId]);
-
+  // const userId = data?.data.userId;
   useEffect(() => {
     if (profile && userId && profile.data.userId.toString() === userId.toString()) {
       setIsOwner(true);
@@ -37,10 +35,8 @@ function UserDetail({ userId }: any) {
 
       <div className="pt-[4.4rem] pl-6">
         <div className="font-semibold text-xl text-blueCyanLogo pb-2">
-          {value?.data.firstName}
-          {' '}
-          {value?.data.lastName}
-          {' '}
+          {data?.data.firstName}
+          {data?.data.lastName}
           - Fresher
         </div>
         <div className="font-medium text-gray-900">Hybrid Technologies Vietnam</div>
@@ -50,7 +46,7 @@ function UserDetail({ userId }: any) {
         </div>
         <div className="flex items-center text-gray-900 pt-2">
           <MailOutlineOutlinedIcon />
-          <span className="pl-4">{value?.data.email}</span>
+          <span className="pl-4">{data?.data.email}</span>
         </div>
         <div className="flex items-center text-gray-900 pt-2">
           <PhoneIphoneOutlinedIcon />

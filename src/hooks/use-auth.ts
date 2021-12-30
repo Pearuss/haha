@@ -9,7 +9,7 @@ export function useAuth(option?: Partial<PublicConfiguration>) {
     data: profile,
     error,
     mutate,
-  } = useSWR('http://localhost:3000/api/v1/user/profile', {
+  } = useSWR('/api/v1/user/profile', {
     dedupingInterval: 60 * 60 * 1000, // 1h
     revalidateOnFocus: false,
     ...option,

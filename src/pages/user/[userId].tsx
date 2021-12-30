@@ -9,6 +9,7 @@ import UserDetail from '../../common/ProfileInfomation/UserDetail';
 import Post from '../../Components/Post';
 // import { useAuth } from '../../hooks';
 import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
+import useCall from '../../hooks/use-call';
 import { AdminLayout } from '../../layout';
 
 // interface PostItem {
@@ -18,37 +19,21 @@ import { AdminLayout } from '../../layout';
 //   body: string;
 // }
 
-const fakeOnePost = {
-  userId: 1,
-  tags: 'ReactJS',
-  author: 'Pearuss',
-  authorInfo: [
-    {
-      id: 1,
-      name: 'Pearuss',
-      organization: 'Hybrid Technologies Viet Nam',
-      department: 'Internal System',
-      title: 'Developer',
-      address: 'HAN',
-      email: 'test@gmail.com',
-    },
-  ],
-  likes: 100,
-  inWorks: 5,
-  comments: 35,
-  views: 61,
-  img: 'https://sadesign.vn/wp-content/uploads/2020/11/di-doc-bai-bien.jpg',
-  id: 1,
-  title: 'Sunt aut facere repellat provident occaecati 7',
-  body: '# What is this issue?\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\n# Solutions\n```js\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\n```\n# Conclude\nSearch for resources to solve problems like stackoverflow, github,...Search for resources to solve problems like stackoverflow, github,...',
-};
-
 function ProfilePage() {
   // const { profile } = useAuth();
   const router = useRouter();
   const userId = router.query.userId as never;
+  const { value: articles }: any = useCall(
+    `http://localhost:3100/api/v1/user/article/${userId}`,
+    {},
+    [userId],
+  );
+  const { value: profile }: any = useCall(`http://localhost:3100/api/v1/user/${userId}`, {}, [
+    userId,
+  ]);
 
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
+  console.log(articles);
 
   //   const [userProfile, setUserProfile] = useState();
   //   console.log(userProfile);
@@ -85,8 +70,8 @@ function ProfilePage() {
   }, []);
 
   return (
-    <div className="relative mr-16 bg-white md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
-      <div className="flex items-center text-gray-600 text-sm">
+    <div className="relative mr-16 bg-white md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw] flex-1 mt-[-10px]">
+      <div className="flex items-center text-gray-600 text-sm ">
         <Link href="/">
           <p className="leading-8 cursor-pointer">Home</p>
         </Link>
@@ -108,11 +93,10 @@ function ProfilePage() {
           />
         </div>
       </div>
-      <UserDetail userId={userId} />
-      {/* {data?.map((post: PostItem) => (
-        <Post key={post.id} post={post} />
-      ))} */}
-      <Post key={fakeOnePost.id} post={fakeOnePost} />
+      <UserDetail data={profile} userId={userId} />
+      {articles?.data.map((article: any) => (
+        <Post key={article.id} article={article} />
+      ))}
       <TagSectionMobile isShowTagMobile={isShowTagMobile} />
     </div>
   );
