@@ -4,7 +4,7 @@ import Auth from '../Components/Auth/auth';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header/Header';
 import TagSection from '../Components/TagContent/TagSection';
-import { LayoutProps } from '../modals';
+import { LayoutProps } from '../models';
 
 export function AdminLayout({ children }: LayoutProps) {
   return (

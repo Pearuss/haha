@@ -13,8 +13,8 @@ interface INewPost {
   content: string;
   status: true;
   reason: string;
-  sectionNo: any;
-  partialId: any;
+  sectionNo: number;
+  partialId: number;
   tag: string[];
   mainCategory: string;
   relatedCategory: string[];
@@ -23,8 +23,10 @@ interface INewPost {
 }
 
 function UserCreatePage() {
-  const { data: tagData }: any = useSWR('http://localhost:3001/tags', { revalidateOnFocus: false });
-  const { data: catData }: any = useSWR('http://localhost:3001/category', {
+  const { data: tagData }: any = useSWR('http://localhost:3100/api/v1/tags', {
+    revalidateOnFocus: false,
+  });
+  const { data: catData }: any = useSWR('http://localhost:3100/api/v1/category/get-full', {
     revalidateOnFocus: false,
   });
 
@@ -35,7 +37,7 @@ function UserCreatePage() {
     status: true,
     reason: '',
     sectionNo: 1,
-    partialId: '',
+    partialId: 0,
     tag: [],
     mainCategory: '',
     relatedCategory: [],
@@ -44,10 +46,11 @@ function UserCreatePage() {
   });
 
   useEffect(() => {
-    const button = document.createElement('button');
+    try {
+      const button = document.createElement('button');
 
-    button.className = 'btnUpLoadMD';
-    button.innerHTML = `
+      button.className = 'btnUpLoadMD';
+      button.innerHTML = `
       <svg
         className="block MuiSvgIcon-root MuiSvgIcon-fontSizeMedium  css-w2bhrx"
         focusable="false"
@@ -61,13 +64,16 @@ function UserCreatePage() {
       </svg>
   `;
 
-    setTimeout(() => {
-      const md = document.querySelectorAll('.md-editor .md-editor-toolbar');
+      setTimeout(() => {
+        const md = document.querySelectorAll('.md-editor .md-editor-toolbar');
 
-      md[1].appendChild(button);
-      const btnUpLoadMD: any = document.querySelector('.btnUpLoadMD');
-      btnUpLoadMD.onclick = openBrowseImg;
-    }, 1000);
+        md[1]?.appendChild(button);
+        const btnUpLoadMD: any = document.querySelector('.btnUpLoadMD');
+        btnUpLoadMD.onclick = openBrowseImg;
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   // Append link image inside markdown
@@ -106,6 +112,10 @@ function UserCreatePage() {
     setNewPost((state: any) => ({ ...state, relatedCategory: newrelCat }));
   };
 
+  const changePartialId = (value: any) => {
+    setNewPost((state: any) => ({ ...state, partialId: value.value }));
+  };
+
   const changeTag = (value: any) => {
     const newTag = value.map((tag: any) => tag.value);
     setNewPost((state: any) => ({ ...state, tag: newTag }));
@@ -123,7 +133,9 @@ function UserCreatePage() {
   };
 
   const imageHandler = (e: any) => {
+    console.log(1);
     const reader = new FileReader();
+
     reader.onload = () => {
       if (reader.readyState === 2) {
         setNewPost((state: any) => ({ ...state, image: reader.result }));
@@ -145,13 +157,14 @@ function UserCreatePage() {
         changeSectionNo={changeSectionNo}
         changeMainCategory={changeMainCategory}
         changeRelatedCategory={changeRelatedCategory}
+        changePartialId={changePartialId}
         changeTag={changeTag}
         changeStatus={changeStatus}
         changePublic={changePublic}
-        catData={catData}
+        catData={catData?.data}
         imageHandler={imageHandler}
         removeImage={removeImage}
-        tagData={tagData?.followingTags}
+        tagData={tagData?.data}
       />
       <input
         type="file"
@@ -167,19 +180,3 @@ function UserCreatePage() {
 UserCreatePage.Layout = HeaderLayout;
 
 export default UserCreatePage;
-
-export const getStaticProps = async () => {
-  const resTag = await fetch('http://localhost:3001/tags');
-  const tags = await resTag.json();
-  const tagData = tags.followingTags;
-
-  const resCat = await fetch('http://localhost:3001/category');
-  const catData = await resCat.json();
-
-  return {
-    props: {
-      tagData,
-      catData,
-    },
-  };
-};

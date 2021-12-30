@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable @typescript-eslint/no-shadow */
@@ -17,6 +18,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Select from 'react-select';
 
+import useFetch from '../../hooks/use-fetch';
 import { countWord } from '../../utilities/helper';
 import {
   postSchema,
@@ -35,6 +37,7 @@ function ModalPost({
   changeSectionNo,
   changeMainCategory,
   changeRelatedCategory,
+  changePartialId,
   changeTag,
   catData,
   tagData,
@@ -50,6 +53,7 @@ function ModalPost({
   changeSectionNo: any;
   changeMainCategory: any;
   changeRelatedCategory: any;
+  changePartialId: any;
   changeTag: any;
   catData: any;
   tagData: any;
@@ -69,8 +73,8 @@ function ModalPost({
   const [isErrorTag, setIsErrorTag] = useState(false);
   const [isErrorCategory, setIsErrorCategory] = useState(false);
 
-  const tagOptions: any[] = tagData?.map((tag: any) => ({ value: tag.name, label: tag.name }));
-  const catOptions: any[] = catData?.map((tag: any) => ({ value: tag.name, label: tag.name }));
+  const tagOptions: any[] = tagData?.map((tag: any) => ({ value: tag.id, label: tag.name }));
+  const catOptions: any[] = catData?.map((cat: any) => ({ value: cat.id, label: cat.name }));
   const sectionNoOptions: any = [
     { value: '1', label: '1' },
     { value: '2', label: '2' },
@@ -85,15 +89,35 @@ function ModalPost({
     const formData = {
       title: newPost.title,
       shortContent: countWord(newPost.shortContent),
-      content: countWord(newPost.content),
+      // content: countWord(newPost.content),
       tag: newPost.tag,
       mainCategory: newPost.mainCategory,
       image: newPost.image,
     };
     const isValid = await postSchema.isValid(formData);
+    console.log(isValid);
 
     if (isValid) {
-      console.log('formData', newPost);
+      const { value }: any = useFetch('http://localhost:3000/api/v1/user/article', {
+        method: 'POST',
+        body: JSON.stringify({
+          article: {
+            partialId: null,
+            sectionNo: null,
+            title: 'User Article demo9',
+            slug: 'frontend-article',
+            shortContent: 'Sunt aut facere repellat provident occaecati 7',
+            content:
+              '# What is this issue?\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\nCreate a function that calculates the sum of two natural numbers\n# Solutions\n```js\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\nconst sum = (a, b) => {\n     return a + b);\n}\nconsole.log(sum(5,6));\n```\n# Conclude\nSearch for resources to solve problems like stackoverflow, github,...Search for resources to solve problems like stackoverflow, github,...',
+            thumbnail: null,
+            status: 1,
+            mainCatId: 11,
+          },
+          tagIds: [1, 2, 3],
+          categoryIds: [11, 12],
+        }),
+      });
+      console.log(value);
     } else {
       const formTitle = {
         title: newPost.title,
@@ -200,14 +224,15 @@ function ModalPost({
               </div>
               <div className="flex mb-3 border-b border-gray-300 pb-1">
                 <p className="w-23 font-medium mr-8 lg:mr-1">Partial Id:</p>
-                <TextField
-                  id="outlined-multiline-flexible"
-                  className="w-full"
-                  minRows={1}
+                <Select
+                  className={`basic-single mb-1 ${
+                    isErrorCategory ? 'border border-darkRed rounded-md' : ''
+                  }`}
+                  classNamePrefix="select"
                   placeholder="Enter Article of User"
-                  multiline
-                  onChange={() => console.log(1)}
-                  value={newPost.partialId}
+                  name="partialId"
+                  options={catOptions}
+                  onChange={changePartialId}
                 />
               </div>
               <div className="flex mb-3 border-b border-gray-300 pb-1">
