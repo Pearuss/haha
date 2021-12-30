@@ -10,6 +10,6 @@ export const authApi = {
     return axiosAuth.post('/logout');
   },
   getProfile() {
-    return axiosAuth.get('/profile');
+    return axiosAuth.get('/user/1');
   },
 };

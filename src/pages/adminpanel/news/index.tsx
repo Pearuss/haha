@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
@@ -20,12 +20,12 @@ function News({ data }: any) {
     setDataPosts(data?.data?.map((post: any) => ({ ...post, selected: false })));
   }, [data]);
 
-  // const handleClickExport = () => {};
+  const handleClickExport = () => {};
 
-  // const hasSelectedTag = useMemo(
-  //   () => dataPosts?.find((post: any) => post.selected === true),
-  //   [dataPosts]
-  // );
+  const hasSelectedTag = useMemo(
+    () => dataPosts?.find((post: any) => post.selected === true),
+    [dataPosts]
+  );
 
   useEffect(() => {
     const isSelectedAll = dataPosts?.find((post: any) => post.selected === false);
@@ -46,10 +46,10 @@ function News({ data }: any) {
     setDataPosts(newDataTags);
   };
 
-  // const handleClickOpen = () => {
-  //   if (!hasSelectedTag) return;
-  //   setOpenDialog(true);
-  // };
+  const handleClickOpen = () => {
+    if (!hasSelectedTag) return;
+    setOpenDialog(true);
+  };
 
   const handleClose = () => {
     setOpenDialog(false);

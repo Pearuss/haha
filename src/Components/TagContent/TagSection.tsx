@@ -9,7 +9,12 @@ import FollowTag from './FollowTag';
 
 function TagSection() {
   // const { data, error, mutate, inValidating } = useSWR('/tags', { revalidateOnFocus: false });
-  const { data } = useSWR('http://localhost:3001/tags', { revalidateOnFocus: false });
+  const { data: allTag } = useSWR('http://localhost:3100/api/v1/tags', {
+    revalidateOnFocus: false,
+  });
+  const { data: followTags } = useSWR('/api/v1/following-tag/get-full', {
+    revalidateOnFocus: false,
+  });
 
   return (
     <div
@@ -23,8 +28,8 @@ function TagSection() {
         onChange={() => {}}
         value={new Date()}
       />
-      <FollowTag data={data?.followingTags} titleTagName="Following Tags" />
-      <FollowTag data={data?.tagsCloud} titleTagName="Tags Cloud" />
+      <FollowTag data={followTags?.data} titleTagName="Following Tags" />
+      <FollowTag data={allTag?.data} titleTagName="Tags Cloud" />
     </div>
   );
 }

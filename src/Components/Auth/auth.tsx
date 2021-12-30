@@ -20,12 +20,12 @@ function Auth({ children }: any) {
     if (localStorage.getItem('tokenSso')) {
       tokenSso = localStorage.getItem('tokenSso');
     }
-    if (!firstLoading && !profile?.username && !tokenSso) {
+    if (!firstLoading && !profile?.data && !tokenSso) {
       router.replace('/login');
     }
   }, [router, profile, firstLoading]);
 
-  if (!profile?.username && tokenSso) {
+  if (!profile?.data && tokenSso) {
     return (
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme: any) => theme.zIndex.drawer + 1 }}

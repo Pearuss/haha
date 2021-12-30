@@ -41,7 +41,7 @@ function Comment({
   const ReadMoreHandler = useCallback(() => {
     if (profile?.message === 'You need to login to access') {
       router.replace('/login');
-    } else if (profile?.username) {
+    } else if (profile?.data) {
       setIsReadMore(false);
     } else {
       router.replace('/login');

@@ -41,9 +41,9 @@ function Index({ data }: any) {
   }, [isShowTopicMobile]);
 
   useEffect(() => {
-    if (!firstLoading && !profile?.username && !localStorage.getItem('tokenSso')) {
+    if (!firstLoading && !profile?.data && !localStorage.getItem('tokenSso')) {
       setIsLogin(false);
-    } else if (profile?.username || localStorage.getItem('tokenSso')) {
+    } else if (profile?.data || localStorage.getItem('tokenSso')) {
       setIsLogin(true);
     }
   }, [profile, firstLoading]);

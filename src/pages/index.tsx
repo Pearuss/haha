@@ -141,5 +141,6 @@ export const getStaticProps = async () => {
       articles: articles.data,
       news,
     },
+    revalidate: 1,
   };
 };

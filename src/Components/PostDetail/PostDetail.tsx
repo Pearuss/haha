@@ -32,10 +32,10 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
       : truncateBody(`${article.content}`, 20000).toString(); // see full content
 
   useEffect(() => {
-    if (!firstLoading && !profile?.username && !localStorage.getItem('tokenSso')) {
+    if (!firstLoading && !profile?.data && !localStorage.getItem('tokenSso')) {
       setIsLogin(false);
       setIsReadMore(true);
-    } else if (profile?.username || localStorage.getItem('tokenSso')) {
+    } else if (profile?.data || localStorage.getItem('tokenSso')) {
       setIsReadMore(false);
       setIsLogin(true);
     }
