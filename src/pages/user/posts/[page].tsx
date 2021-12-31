@@ -29,7 +29,7 @@ function PostsPage() {
   // const page = router.query.page as never;
 
   const { value: articles }: any = useCall('/api/v1/user/article/my-articles', {}, []);
-  console.log(articles);
+  console.log(articles?.data[0]?.author?.firstName);
 
   // const { data }: any = useSWR(`http://localhost:3001/posts?_page=${router.query.page}&_limit=5`, {
   //   revalidateOnFocus: false,
@@ -119,7 +119,7 @@ function PostsPage() {
             setFilter={setFilter}
           />
         </div> */}
-        <h1 className="text-4xl font-medium mb-6">Thong's Posts</h1>
+        <h1 className="text-4xl font-medium mb-6">{`${articles?.data[0]?.author?.firstName}'s Posts`}</h1>
       </div>
       {articles?.data.map((article: PostItem) => (
         <Post key={article.id} article={article} />

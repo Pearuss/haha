@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -41,6 +42,7 @@ function ModalPost({
   changeTag,
   catData,
   tagData,
+  myArticle,
   changeStatus,
   changePublic,
   imageHandler,
@@ -57,6 +59,7 @@ function ModalPost({
   changeTag: any;
   catData: any;
   tagData: any;
+  myArticle: any;
   changeStatus: any;
   changePublic: any;
   imageHandler: any;
@@ -75,6 +78,10 @@ function ModalPost({
 
   const tagOptions: any[] = tagData?.map((tag: any) => ({ value: tag.id, label: tag.name }));
   const catOptions: any[] = catData?.map((cat: any) => ({ value: cat.id, label: cat.name }));
+  const partialOption: any[] = myArticle?.map((article: any) => ({
+    value: article.id,
+    label: article.title,
+  }));
   const sectionNoOptions: any = [
     { value: '1', label: '1' },
     { value: '2', label: '2' },
@@ -228,7 +235,7 @@ function ModalPost({
                   classNamePrefix="select"
                   placeholder="Enter Article of User"
                   name="partialId"
-                  options={catOptions}
+                  options={partialOption}
                   onChange={changePartialId}
                 />
               </div>

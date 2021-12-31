@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 import ModalPost from '../../Components/CreatePost';
+import useCall from '../../hooks/use-call';
 import { HeaderLayout } from '../../layout';
 
 interface INewPost {
@@ -29,6 +30,7 @@ function UserCreatePage() {
   const { data: catData }: any = useSWR('http://localhost:3100/api/v1/category/get-full', {
     revalidateOnFocus: false,
   });
+  const { value: myArticle }: any = useCall('/api/v1/user/article/my-articles', {}, []);
 
   const [newPost, setNewPost] = useState<INewPost>({
     title: '',
@@ -162,6 +164,7 @@ function UserCreatePage() {
         changeStatus={changeStatus}
         changePublic={changePublic}
         catData={catData?.data}
+        myArticle={myArticle?.data}
         imageHandler={imageHandler}
         removeImage={removeImage}
         tagData={tagData?.data}
