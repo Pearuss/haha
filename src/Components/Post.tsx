@@ -5,9 +5,10 @@ import { EyeIcon, ChatIcon } from '@heroicons/react/outline';
 // import Image from 'next/image';
 import Link from 'next/link';
 
+import { Article } from '../models';
 import { truncate, formatDate } from '../utilities/helper';
 
-function Post({ article }: any) {
+function Post({ article }: { article: Article }) {
   const linkDetail = `/posts/${article?.id}`;
 
   return (
@@ -45,7 +46,7 @@ function Post({ article }: any) {
           {' '}
           -
           {' '}
-          {`${article?.author.firstName} ${article?.author.lastName}`}
+          {`${article?.author?.firstName} ${article?.author?.lastName}`}
         </p>
       </div>
     </div>

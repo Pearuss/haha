@@ -8,18 +8,17 @@ import UserDetail from '../../common/ProfileInfomation/UserDetail';
 import Post from '../../Components/Post';
 // import { useAuth } from '../../hooks';
 import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
+import useCall from '../../hooks/use-call';
 import { AdminLayout } from '../../layout';
+import { Article } from '../../models';
 
-interface PostItem {
-  id: string;
-  title: string;
-  img: string;
-  body: string;
-}
-
-function ProfilePage({ data }: any) {
+function ProfilePage() {
   // const { profile } = useAuth();
-
+  const { value: articles }: { value: Article[] | any } = useCall(
+    '/api/v1/user/article/my-articles',
+    {},
+    [],
+  );
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
   useEffect(() => {
@@ -68,8 +67,8 @@ function ProfilePage({ data }: any) {
         </div>
       </div>
       <UserDetail />
-      {data?.map((post: PostItem) => (
-        <Post key={post.id} post={post} />
+      {articles?.map((article: Article) => (
+        <Post key={article.id} article={article} />
       ))}
       <TagSectionMobile isShowTagMobile={isShowTagMobile} />
     </div>
@@ -79,23 +78,23 @@ function ProfilePage({ data }: any) {
 ProfilePage.Layout = AdminLayout;
 export default ProfilePage;
 
-export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:3001/posts');
-  const posts = await res.json();
+// export const getStaticProps = async () => {
+//   const res = await fetch('http://localhost:3001/posts');
+//   const posts = await res.json();
 
-  return {
-    props: {
-      data: posts.map((post: any) => ({
-        id: post.id,
-        title: post.title,
-        body: post.body,
-        views: post.views,
-        comments: post.comments,
-        tags: post.tags,
-        img: post.img,
-        author: post.author,
-      })),
-    },
-    revalidate: 1,
-  };
-};
+//   return {
+//     props: {
+//       data: posts.map((post: any) => ({
+//         id: post.id,
+//         title: post.title,
+//         body: post.body,
+//         views: post.views,
+//         comments: post.comments,
+//         tags: post.tags,
+//         img: post.img,
+//         author: post.author,
+//       })),
+//     },
+//     revalidate: 1,
+//   };
+// };

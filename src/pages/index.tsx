@@ -7,18 +7,11 @@ import Link from 'next/link';
 import Post from '../Components/Post';
 import TagSectionMobile from '../Components/TagContent/TagSectionMobile';
 import { MainLayout } from '../layout';
+import { Article } from '../models';
 import { truncate } from '../utilities/helper';
-
 // import { LayoutMeta } from 'next';
 
-// interface PostItem {
-//   id: string;
-//   title: string;
-//   img: string;
-//   body: string;
-// }
-
-function HomePage({ articles, news }: any) {
+function HomePage({ articles, news }: { articles: Article[]; news: any }) {
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
   useEffect(() => {
@@ -118,7 +111,7 @@ function HomePage({ articles, news }: any) {
           </div>
         </div>
       </div>
-      {articles.map((article: any) => (
+      {articles.map((article: Article) => (
         <Post key={article.id} article={article} />
       ))}
       <TagSectionMobile isShowTagMobile={isShowTagMobile} />
