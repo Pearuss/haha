@@ -90,7 +90,7 @@ function ModalPost({
     { value: '5', label: '5' },
     { value: '6', label: '6' },
   ];
-
+  // Submit handle
   const onSubmit = async (e: any) => {
     e.preventDefault();
     const formData = {
