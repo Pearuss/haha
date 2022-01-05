@@ -11,7 +11,7 @@ function TagSection() {
     revalidateOnFocus: false,
   });
   const { data: followTags } = useSWR('/api/v1/following-tag/get-full', {
-    revalidateOnFocus: false,
+    revalidateOnFocus: true,
   });
 
   return (

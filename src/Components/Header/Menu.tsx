@@ -132,7 +132,7 @@ function Menu() {
 
               <div className="dropdown-menu">
                 <div className="flex flex-col gap-1">
-                  {data.data[category]?.map((result: Category) => (
+                  {data?.data[category]?.map((result: Category) => (
                     <Link href={result.slug} key={result.id}>
                       <a className="link">{result.name}</a>
                     </Link>
@@ -182,7 +182,7 @@ function Menu() {
 
               <div className="dropdown-menu">
                 <div className="flex flex-col gap-1">
-                  {data.data[category]?.map((result: Category) => (
+                  {data?.data[category]?.map((result: Category) => (
                     <Link href={result.slug} key={result.id}>
                       <a className="link">{result.name}</a>
                     </Link>

@@ -22,7 +22,6 @@ function CommentSection({ showForm, postId }: any) {
       (data: Record<string, IComment[]>) => {
         if (data?.data) {
           setBackendComments(data.data);
-          alert('a');
         }
       },
     );
