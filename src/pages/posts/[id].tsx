@@ -187,7 +187,7 @@ function Index({ data }: any) {
         <PostDetail dataPostDetail={data} isReadMore={isReadMore} setIsReadMore={setIsReadMore} />
         {isLogin && (
           <div className="flex items-center justify-between py-4 mt-12 shadow-sm font-medium text-gray-700 rounded-md bg-white mb-4">
-            <div className="text-lg">Comments (20)</div>
+            <div className="text-lg">Comments</div>
             <button
               onClick={toggleFormComment}
               className="flex items-center py-[0.35rem] px-3 rounded-md border border-blue-600 text-blue-600"
@@ -199,7 +199,7 @@ function Index({ data }: any) {
         )}
         {isLogin && (
           <CommentSection
-            postId={postId}
+            postId={data.data.id}
             showForm={showFormComment}
             setShowFormComment={setShowFormComment}
           />

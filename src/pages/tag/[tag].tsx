@@ -9,11 +9,24 @@ import TagSectionMobile from '../../Components/TagContent/TagSection';
 import useToggle from '../../hooks/use-toggle';
 import { MainLayout } from '../../layout';
 import { capitalizeFirstLetter } from '../../utilities/helper';
+import useSWR from 'swr';
+import { Tag } from '../../modals';
 
 function PostsTag(data: any) {
   const [isFollow, setIsFollow] = useToggle(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
   const router = useRouter();
+
+  const { data: followTags } = useSWR('/api/v1/following-tag/get-full', {
+    revalidateOnFocus: false,
+  });
+
+  console.log(router.query.tag);
+  useEffect(() => {
+    followTags?.data.some((tag: Tag) => tag.slug == `/${router.query.tag}`)
+      ? setIsFollow(true)
+      : setIsFollow(false);
+  }, [router, followTags]);
 
   useEffect(() => {
     const btnShowTag = document.querySelector('.btnShowTag');

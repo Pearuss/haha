@@ -3,14 +3,21 @@ import React from 'react';
 
 import Link from 'next/link';
 
-function FollowTag({ data, titleTagName }: any) {
+import { Tag } from '../../modals';
+
+interface FollowTagProp {
+  data: Tag[];
+  titleTagName: string;
+}
+
+function FollowTag({ data, titleTagName }: FollowTagProp) {
   return (
     <div className="tagContent">
       <p className="p-3 rounded-lg w-full flex items-center justify-center border-2 border-blueCyanLogo my-6 text-blueCyanLogo">
         {titleTagName}
       </p>
       <p className="flex w-full flex-wrap">
-        {data?.map((tag: any) => (
+        {data?.map((tag: Tag) => (
           <Link href={`/tag${tag.slug}`} key={tag.id}>
             <div className="">#{tag.name}</div>
           </Link>

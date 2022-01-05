@@ -6,16 +6,12 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
+import { Category } from '../../modals';
 import { capitalizeFirstLetter } from '../../utilities/helper';
 
 /* eslint-disable */
 function Menu() {
   const router = useRouter();
-  // const [category, setCategory] = useState<any[]>([])
-  // if(data) {
-  //   setCategory(Object.keys(data));
-  // }
-
   const { data } = useSWR('http://localhost:3100/api/v1/category', { revalidateOnFocus: false });
 
   useEffect(() => {
@@ -128,7 +124,7 @@ function Menu() {
         </li>
         {typeof data?.data === 'object' &&
           data.data !== null &&
-          Object.keys(data.data).map((category: any) => (
+          Object.keys(data.data).map((category: string) => (
             <li key={category} className="dropdown" data-dropdown>
               <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
                 {capitalizeFirstLetter(category)}
@@ -136,7 +132,7 @@ function Menu() {
 
               <div className="dropdown-menu">
                 <div className="flex flex-col gap-1">
-                  {data.data[category]?.map((result: any) => (
+                  {data.data[category]?.map((result: Category) => (
                     <Link href={result.slug} key={result.id}>
                       <a className="link">{result.name}</a>
                     </Link>
@@ -172,7 +168,7 @@ function Menu() {
         </li>
         {typeof data?.data === 'object' &&
           data.data !== null &&
-          Object.keys(data.data).map((category: any) => (
+          Object.keys(data.data).map((category: string) => (
             <li
               key={category}
               className={`${
@@ -186,7 +182,7 @@ function Menu() {
 
               <div className="dropdown-menu">
                 <div className="flex flex-col gap-1">
-                  {data.data[category]?.map((result: any) => (
+                  {data.data[category]?.map((result: Category) => (
                     <Link href={result.slug} key={result.id}>
                       <a className="link">{result.name}</a>
                     </Link>

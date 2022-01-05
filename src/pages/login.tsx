@@ -10,6 +10,7 @@ import * as yup from 'yup';
 import LoginComponent from '../Components/Auth/login';
 import ThemeWrapper from '../container/themeWrapper';
 import { useAuth } from '../hooks';
+import { LoginPayLoad } from '../modals';
 import adminTheme from '../styles/theme/materialClient';
 
 // import Swal from "sweetalert2";
@@ -41,8 +42,9 @@ const Login = () => {
   }, [profile, firstLoading]);
 
   const { handleSubmit, control, formState } = useForm({
-    mode: 'all',
-    // criteriaMode: 'firstError',
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
+    criteriaMode: 'firstError',
     shouldFocusError: false,
     resolver: yupResolver(schema),
   });
@@ -71,8 +73,9 @@ const Login = () => {
     );
   };
 
-  const submit = async (data: any, event: React.FormEvent<HTMLFormElement>) => {
+  const submit = async (data: LoginPayLoad, event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     try {
       setIsLoadingForm(true);
       await login(data);

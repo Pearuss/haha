@@ -14,7 +14,8 @@ import { useRouter } from 'next/router';
 
 import InputMention from '../../common/InputMention/InputMention';
 import { useAuth } from '../../hooks';
-import { truncate } from '../../utilities/helper';
+import { formatDate, truncate } from '../../utilities/helper';
+import { IComment } from '../../modals';
 
 function Comment({
   commentContent,
@@ -35,8 +36,8 @@ function Comment({
   const [isReadMore, setIsReadMore] = useState(true);
 
   const contentBody = isReadMore
-    ? truncate(`${commentContent?.body}`, 210).toString() // max content length is 210
-    : truncate(`${commentContent?.body}`, 20000).toString(); // see full content
+    ? truncate(`${commentContent?.comment}`, 210).toString() // max content length is 210
+    : truncate(`${commentContent?.comment}`, 20000).toString(); // see full content
 
   const ReadMoreHandler = useCallback(() => {
     if (profile?.message === 'You need to login to access') {
@@ -61,12 +62,16 @@ function Comment({
       </div>
       <div className="ml-2 pl-16 py-3 w-full">
         <div className="flex justify-between ">
-          <span className="text-lg text-blueCyanLogo font-medium">{commentContent?.username}</span>
-          <span className="mr-4 text-sm font-medium text-gray-700">Feb 12</span>
+          <span className="text-lg text-blueCyanLogo font-medium">
+            {commentContent?.user?.firstName}
+          </span>
+          <span className="mr-4 text-sm font-medium text-gray-700">
+            {formatDate(new Date(commentContent?.createdAt))}
+          </span>
         </div>
         <p>{parse(contentBody)}</p>
         {/* <p>{commentContent?.body}</p> */}
-        {commentContent?.body.length > 210 && (
+        {commentContent?.comment.length > 210 && (
           <button
             className={`mt-2 font-serif font-medium cursor-pointer ${isReadMore ? '' : 'hidden'}`}
             onClick={ReadMoreHandler}
@@ -79,12 +84,14 @@ function Comment({
           <div className="flex items-center mr-6">
             <span className="flex items-center mr-4">
               <Image src="/images/star.png" width={20} height={20} />
-              <span className="pl-3 font-medium">12</span>
+              <span className="pl-3 font-medium">
+                {commentContent?.liked === 0 ? null : commentContent.liked}
+              </span>
             </span>
-            <span className="flex items-center">
+            {/* <span className="flex items-center">
               <Image src="/images/smile.png" width={20} height={20} />
               <span className="pl-3 font-medium">12</span>
-            </span>
+            </span> */}
           </div>
           <div className="flex items-center mr-6">
             <Image src="/images/reply.png" width={20} height={20} />
@@ -104,14 +111,14 @@ function Comment({
         {isReplying && (
           <InputMention
             submitLabel="Reply"
-            initialText={`${parentId == null ? '' : `@${commentContent.username}: `}`}
+            initialText={`${parentId === 0 ? '' : `@${commentContent?.user.firstName}: `}`}
             commentContent={commentContent}
             // initialText={`${
             //   parentId == null
             //     ? ''
             //     : `${parse('<p class="text-darkRed">@${commentContent.username}</p>')} `
             // }`}
-            handleSubmit={(text: any) =>
+            handleSubmit={(text: string) =>
               addComment(
                 // `${parentId == null ? '' : `@${commentContent.username}`} ${text}`,
                 text,
@@ -123,7 +130,7 @@ function Comment({
         {replies.length > 0 && (
           <div className={replies}>
             <div className="w-full border-b border-gray-200 pt-4" />
-            {replies?.map((reply: any) => (
+            {replies?.map((reply: IComment) => (
               <Comment
                 commentContent={reply}
                 key={reply.id}
