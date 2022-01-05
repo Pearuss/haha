@@ -111,9 +111,12 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
           </div>
         </div>
       </div>
-      {articles.map((article: Article) => (
-        <Post key={article.id} article={article} />
-      ))}
+      {articles
+        .slice(0)
+        .reverse()
+        .map((article: Article) => (
+          <Post key={article.id} article={article} />
+        ))}
       <TagSectionMobile isShowTagMobile={isShowTagMobile} />
     </div>
   );

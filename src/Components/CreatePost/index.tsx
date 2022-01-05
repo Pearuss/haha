@@ -18,6 +18,7 @@ import TextField from '@mui/material/TextField';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Select from 'react-select';
+import Swal from 'sweetalert2';
 
 import useFetch from '../../hooks/use-fetch';
 import {
@@ -130,7 +131,12 @@ function ModalPost({
           categoryIds: newPost.relatedCategory,
         }),
       });
-      if (value === 200) router.push('/');
+      if (value === 200) {
+        Swal.fire('Article saved success.');
+        setTimeout(() => {
+          router.push('/');
+        }, 1000);
+      }
     } else {
       const formTitle = {
         title: newPost.title,
