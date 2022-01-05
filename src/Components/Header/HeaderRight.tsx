@@ -65,7 +65,7 @@ function HeaderRight() {
           </div>
           <div className={`userDropdown-menu ${isLogin ? '' : 'hidden'}`}>
             <div className="flex flex-col gap-1">
-              <Link href={`/user/${profile.data?.userId}`}>
+              <Link href={`/user/${profile?.data.userId}`}>
                 <a className="link ">Profile</a>
               </Link>
               <Link href="/user/create">

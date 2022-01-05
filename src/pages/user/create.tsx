@@ -13,7 +13,7 @@ function UserCreatePage() {
   const { data: tagData }: any = useSWR('http://localhost:3100/api/v1/tags', {
     revalidateOnFocus: false,
   });
-  const { data: catData }: any = useSWR('http://localhost:3100/api/v1/category/get-full', {
+  const { data: catData }: any = useSWR('http://localhost:3100/api/v1/category/menu', {
     revalidateOnFocus: false,
   });
   const { value: myArticle }: any = useCall('/api/v1/user/article/my-articles', {}, []);

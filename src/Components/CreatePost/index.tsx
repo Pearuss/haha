@@ -54,17 +54,17 @@ function ModalPost({
 }: {
   newPost: INewPost;
   setNewPost: Function;
-  changeTitle: ChangeEventHandler<HTMLInputElement> | undefined;
-  changeShortContent: ChangeEventHandler<HTMLInputElement> | undefined;
-  changeSectionNo: ChangeEventHandler<HTMLInputElement> | undefined;
-  changeMainCategory: ChangeEventHandler<HTMLInputElement> | undefined;
-  changeRelatedCategory: ChangeEventHandler<HTMLInputElement> | undefined;
-  changePartialId: ChangeEventHandler<HTMLInputElement> | undefined;
-  changeTag: ChangeEventHandler<HTMLInputElement> | undefined;
+  changeTitle: any;
+  changeShortContent: any;
+  changeSectionNo: any;
+  changeMainCategory: any;
+  changeRelatedCategory: any;
+  changePartialId: any;
+  changeTag: any;
   catData: Category[];
   tagData: Tag[];
   myArticle: Article[];
-  changeStatus: ChangeEventHandler<HTMLInputElement> | undefined;
+  changeStatus: any;
   changePublic: ChangeEventHandler<HTMLInputElement> | undefined;
   imageHandler: Function | any;
   removeImage: Function;
