@@ -26,7 +26,7 @@ function Index({ data }: any) {
   const { profile, firstLoading } = useAuth();
   const router = useRouter();
 
-  const postId = router.query.id;
+  // const postId = router.query.id;
 
   if (router.isFallback) {
     return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>;

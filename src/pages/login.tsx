@@ -10,7 +10,7 @@ import * as yup from 'yup';
 import LoginComponent from '../Components/Auth/login';
 import ThemeWrapper from '../container/themeWrapper';
 import { useAuth } from '../hooks';
-import { LoginPayLoad } from '../modals';
+import { LoginPayLoad } from '../models';
 import adminTheme from '../styles/theme/materialClient';
 
 // import Swal from "sweetalert2";

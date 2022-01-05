@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
-import { Category } from '../../modals';
+import { Category } from '../../models';
 import { capitalizeFirstLetter } from '../../utilities/helper';
 
 /* eslint-disable */

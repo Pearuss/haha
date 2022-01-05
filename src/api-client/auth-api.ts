@@ -1,4 +1,4 @@
-import { LoginPayLoad } from '../modals';
+import { LoginPayLoad } from '../models';
 import axiosAuth from './axios-auth';
 
 export const authApi = {

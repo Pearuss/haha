@@ -15,7 +15,7 @@ import { useRouter } from 'next/router';
 import InputMention from '../../common/InputMention/InputMention';
 import { useAuth } from '../../hooks';
 import { formatDate, truncate } from '../../utilities/helper';
-import { IComment } from '../../modals';
+import { IComment } from '../../models';
 
 function Comment({
   commentContent,

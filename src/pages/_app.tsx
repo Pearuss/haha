@@ -6,7 +6,7 @@ import { SWRConfig } from 'swr';
 
 import useFetch from '../hooks/use-fetch';
 import { EmptyLayout } from '../layout';
-import { AppPropsWithLayout } from '../modals';
+import { AppPropsWithLayout } from '../models';
 
 import 'nprogress/nprogress.css';
 import NProgress from 'nprogress';

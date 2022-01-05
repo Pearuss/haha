@@ -3,7 +3,7 @@ import React from 'react';
 
 import Link from 'next/link';
 
-import { Tag } from '../../modals';
+import { Tag } from '../../models';
 
 interface FollowTagProp {
   data: Tag[];

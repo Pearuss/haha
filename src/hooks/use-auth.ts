@@ -2,7 +2,7 @@ import useSWR from 'swr';
 import { PublicConfiguration } from 'swr/dist/types';
 
 import { authApi } from '../api-client/auth-api';
-import { LoginPayLoad } from '../modals';
+import { LoginPayLoad } from '../models';
 
 export function useAuth(option?: Partial<PublicConfiguration>) {
   const {

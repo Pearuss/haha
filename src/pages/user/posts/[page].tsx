@@ -13,13 +13,7 @@ import Post from '../../../Components/Post';
 import TagSectionMobile from '../../../Components/TagContent/TagSectionMobile';
 import useCall from '../../../hooks/use-call';
 import { MainLayout } from '../../../layout';
-
-interface PostItem {
-  id: string;
-  title: string;
-  img: string;
-  body: string;
-}
+import { Article } from '../../../models';
 
 function PostsPage() {
   const router = useRouter();
@@ -28,8 +22,11 @@ function PostsPage() {
 
   // const page = router.query.page as never;
 
-  const { value: articles }: any = useCall('/api/v1/user/article/my-articles', {}, []);
-  console.log(articles);
+  const { value: articles }: { value: Article[] | any } = useCall(
+    '/api/v1/user/article/my-articles',
+    {},
+    [],
+  );
 
   // const { data }: any = useSWR(`http://localhost:3001/posts?_page=${router.query.page}&_limit=5`, {
   //   revalidateOnFocus: false,
@@ -57,21 +54,21 @@ function PostsPage() {
 
   useEffect(() => {
     const btnShowTag = document.querySelector('.btnShowTag');
-    const menuMobile: any = document.querySelector('.menuMobile');
-    const cover: any = document.querySelector('.cover');
+    const menuMobile: HTMLElement | null = document.querySelector('.menuMobile');
+    const cover: HTMLElement | null = document.querySelector('.cover');
 
     btnShowTag?.addEventListener('click', () => {
       setIsShowTagMobile(true);
-      menuMobile.classList.add(
+      menuMobile?.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
         'ssm:-translate-x-full',
       );
-      menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
+      menuMobile?.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
 
-    cover.addEventListener('click', () => {
-      cover.classList.add('hidden');
+    cover?.addEventListener('click', () => {
+      cover?.classList.add('hidden');
       setIsShowTagMobile(false);
     });
   }, []);
@@ -119,9 +116,9 @@ function PostsPage() {
             setFilter={setFilter}
           />
         </div> */}
-        <h1 className="text-4xl font-medium mb-6">Thong's Posts</h1>
+        <h1 className="text-4xl font-medium mb-6">{`${articles?.data[0]?.author?.firstName}'s Posts`}</h1>
       </div>
-      {articles?.data.map((article: PostItem) => (
+      {articles?.data.map((article: Article) => (
         <Post key={article.id} article={article} />
       ))}
 

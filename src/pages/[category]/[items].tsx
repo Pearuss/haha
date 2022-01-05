@@ -35,7 +35,7 @@ function Category({ data }: any) {
     });
   }, []);
   return (
-    <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
+    <div className="flex-1 mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
       <div className="flex items-center ">
         <Image src="/images/category.png" width={40} height={40} />
         <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-1 text-black font-normal ml-[1vw]">
@@ -49,7 +49,7 @@ function Category({ data }: any) {
         {/* <div className="flex-1 pb-2 text-center font-semibold text-gray-800">Comments</div> */}
       </div>
       {data?.map((post: any) => (
-        <Post key={post.id} post={post} />
+        <Post key={post.id} article={post} />
       ))}
       <div
         className={`hidden p-3 z-50 overflow-scroll md:block sm:block ssm:block fixed h-[100vh] w-[35vw] top-0 right-0 bg-white transition duration-200 ease-in-out md:w-[40vw] sm:w-[50vw] ssm:w-[70vw] transform ${

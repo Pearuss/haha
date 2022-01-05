@@ -4,32 +4,33 @@ import React, { useEffect, useState } from 'react';
 
 import InputMention from '../../common/InputMention/InputMention';
 import useFetch from '../../hooks/use-fetch';
-import { IComment } from '../../modals';
+import { IComment } from '../../models';
 
 import Comment from './Comment';
 
-interface CommentSectionProps {
-  showForm: boolean;
-  postId: number;
-}
+// interface CommentSectionProps {
+//   showForm: any;
+//   postId: number;
+// }
 
-function CommentSection({ showForm, postId }: CommentSectionProps) {
+function CommentSection({ showForm, postId }: any) {
   const [backendComments, setBackendComments] = useState<any[]>([]);
   const [activeComment, setActiveComment] = useState(null);
 
   useEffect(() => {
-    if (postId) {
-      useFetch(`http://localhost:3100/api/v1/comment/${postId}`).then(
-        (data: Record<string, IComment[]>) => {
+    useFetch(`http://localhost:3100/api/v1/comment/${postId}`).then(
+      (data: Record<string, IComment[]>) => {
+        if (data?.data) {
           setBackendComments(data.data);
-        },
-      );
-    }
+          alert('a');
+        }
+      },
+    );
   }, [postId]);
+
   const rootComments = backendComments?.filter(
-    (backendComment) => backendComment.parentId.toString() === 0,
+    (backendComment) => backendComment.parentId.toString() === '0',
   );
-  console.log(rootComments);
   const getReplies = (commentId: number) => backendComments
     ?.filter((backendComment) => backendComment.parentId.toString() === commentId)
     .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());

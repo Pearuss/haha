@@ -11,19 +11,14 @@ import Post from '../../Components/Post';
 import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
 import useCall from '../../hooks/use-call';
 import { AdminLayout } from '../../layout';
-
-// interface PostItem {
-//   id: string;
-//   title: string;
-//   img: string;
-//   body: string;
-// }
+import { Article } from '../../models';
 
 function ProfilePage() {
   // const { profile } = useAuth();
   const router = useRouter();
   const userId = router.query.userId as never;
-  const { value: articles }: any = useCall(
+
+  const { value: articles }: { value: Article[] | any } = useCall(
     `http://localhost:3100/api/v1/user/article/${userId}`,
     {},
     [userId],
@@ -33,7 +28,6 @@ function ProfilePage() {
   ]);
 
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
-  console.log(articles);
 
   //   const [userProfile, setUserProfile] = useState();
   //   console.log(userProfile);
@@ -50,21 +44,21 @@ function ProfilePage() {
 
   useEffect(() => {
     const btnShowTag = document.querySelector('.btnShowTag');
-    const menuMobile: any = document.querySelector('.menuMobile');
-    const cover: any = document.querySelector('.cover');
+    const menuMobile: HTMLElement | null = document.querySelector('.menuMobile');
+    const cover: HTMLElement | null = document.querySelector('.cover');
 
     btnShowTag?.addEventListener('click', () => {
       setIsShowTagMobile(true);
-      menuMobile.classList.add(
+      menuMobile?.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
         'ssm:-translate-x-full',
       );
-      menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
+      menuMobile?.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
 
-    cover.addEventListener('click', () => {
-      cover.classList.add('hidden');
+    cover?.addEventListener('click', () => {
+      cover?.classList.add('hidden');
       setIsShowTagMobile(false);
     });
   }, []);
@@ -104,24 +98,3 @@ function ProfilePage() {
 
 ProfilePage.Layout = AdminLayout;
 export default ProfilePage;
-
-// export const getStaticProps = async () => {
-//   const res = await fetch('http://localhost:3001/posts');
-//   const posts = await res.json();
-
-//   return {
-//     props: {
-//       data: posts.map((post: any) => ({
-//         id: post.id,
-//         title: post.title,
-//         body: post.body,
-//         views: post.views,
-//         comments: post.comments,
-//         tags: post.tags,
-//         img: post.img,
-//         author: post.author,
-//       })),
-//     },
-//     revalidate: 1,
-//   };
-// };

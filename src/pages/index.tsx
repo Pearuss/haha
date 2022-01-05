@@ -7,37 +7,30 @@ import Link from 'next/link';
 import Post from '../Components/Post';
 import TagSectionMobile from '../Components/TagContent/TagSectionMobile';
 import { MainLayout } from '../layout';
+import { Article } from '../models';
 import { truncate } from '../utilities/helper';
-
 // import { LayoutMeta } from 'next';
 
-// interface PostItem {
-//   id: string;
-//   title: string;
-//   img: string;
-//   body: string;
-// }
-
-function HomePage({ articles, news }: any) {
+function HomePage({ articles, news }: { articles: Article[]; news: any }) {
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
   useEffect(() => {
     const btnShowTag = document.querySelector('.btnShowTag');
-    const menuMobile: any = document.querySelector('.menuMobile');
-    const cover: any = document.querySelector('.cover');
+    const menuMobile: HTMLElement | null = document.querySelector('.menuMobile');
+    const cover: HTMLElement | null = document.querySelector('.cover');
 
     btnShowTag?.addEventListener('click', () => {
       setIsShowTagMobile(true);
-      menuMobile.classList.add(
+      menuMobile?.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
         'ssm:-translate-x-full',
       );
-      menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
+      menuMobile?.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
 
-    cover.addEventListener('click', () => {
-      cover.classList.add('hidden');
+    cover?.addEventListener('click', () => {
+      cover?.classList.add('hidden');
       setIsShowTagMobile(false);
     });
   }, []);
@@ -118,7 +111,7 @@ function HomePage({ articles, news }: any) {
           </div>
         </div>
       </div>
-      {articles.map((article: any) => (
+      {articles.map((article: Article) => (
         <Post key={article.id} article={article} />
       ))}
       <TagSectionMobile isShowTagMobile={isShowTagMobile} />
