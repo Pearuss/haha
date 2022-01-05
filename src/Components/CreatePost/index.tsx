@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable @typescript-eslint/no-shadow */
@@ -5,7 +7,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/react-in-jsx-scope */
-import { useState } from 'react';
+import { ChangeEventHandler, FormEvent, useState } from 'react';
 
 import Switch from '@material-ui/core/Switch';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
@@ -17,6 +19,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Select from 'react-select';
 
+import useFetch from '../../hooks/use-fetch';
+import {
+ Article, Category, INewPost, Tag,
+} from '../../models';
 import { countWord } from '../../utilities/helper';
 import {
   postSchema,
@@ -35,28 +41,32 @@ function ModalPost({
   changeSectionNo,
   changeMainCategory,
   changeRelatedCategory,
+  changePartialId,
   changeTag,
   catData,
   tagData,
+  myArticle,
   changeStatus,
   changePublic,
   imageHandler,
   removeImage,
 }: {
-  newPost: any;
-  setNewPost: any;
+  newPost: INewPost;
+  setNewPost: Function;
   changeTitle: any;
   changeShortContent: any;
   changeSectionNo: any;
   changeMainCategory: any;
   changeRelatedCategory: any;
+  changePartialId: any;
   changeTag: any;
-  catData: any;
-  tagData: any;
+  catData: Category[];
+  tagData: Tag[];
+  myArticle: Article[];
   changeStatus: any;
-  changePublic: any;
-  imageHandler: any;
-  removeImage: any;
+  changePublic: ChangeEventHandler<HTMLInputElement> | undefined;
+  imageHandler: Function | any;
+  removeImage: Function;
 }): JSX.Element {
   const router = useRouter();
 
@@ -69,9 +79,19 @@ function ModalPost({
   const [isErrorTag, setIsErrorTag] = useState(false);
   const [isErrorCategory, setIsErrorCategory] = useState(false);
 
-  const tagOptions: any[] = tagData?.map((tag: any) => ({ value: tag.name, label: tag.name }));
-  const catOptions: any[] = catData?.map((tag: any) => ({ value: tag.name, label: tag.name }));
-  const sectionNoOptions: any = [
+  const tagOptions: { value: string; label: string }[] = tagData?.map((tag: any) => ({
+    value: tag.id,
+    label: tag.name,
+  }));
+  const catOptions: { value: string; label: string }[] = catData?.map((cat: any) => ({
+    value: cat.id,
+    label: cat.name,
+  }));
+  const partialOption: { value: string; label: string }[] = myArticle?.map((article: any) => ({
+    value: article.id,
+    label: article.title,
+  }));
+  const sectionNoOptions: { value: string; label: string }[] = [
     { value: '1', label: '1' },
     { value: '2', label: '2' },
     { value: '3', label: '3' },
@@ -79,13 +99,13 @@ function ModalPost({
     { value: '5', label: '5' },
     { value: '6', label: '6' },
   ];
-
-  const onSubmit = async (e: any) => {
+  // Submit handle
+  const onSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     const formData = {
       title: newPost.title,
       shortContent: countWord(newPost.shortContent),
-      content: countWord(newPost.content),
+      // content: countWord(newPost.content),
       tag: newPost.tag,
       mainCategory: newPost.mainCategory,
       image: newPost.image,
@@ -93,7 +113,24 @@ function ModalPost({
     const isValid = await postSchema.isValid(formData);
 
     if (isValid) {
-      console.log('formData', newPost);
+      const { message: value }: any = await useFetch('http://localhost:9500/api/v1/user/article', {
+        method: 'POST',
+        body: JSON.stringify({
+          article: {
+            partialId: newPost.partialId === 0 ? null : newPost.partialId,
+            sectionNo: newPost.partialId === 0 ? null : newPost.sectionNo,
+            title: newPost.title,
+            shortContent: newPost.shortContent,
+            content: newPost.content,
+            thumbnail: null,
+            status: 1,
+            mainCatId: newPost.mainCategory,
+          },
+          tagIds: newPost.tag,
+          categoryIds: newPost.relatedCategory,
+        }),
+      });
+      if (value === 200) router.push('/');
     } else {
       const formTitle = {
         title: newPost.title,
@@ -200,14 +237,15 @@ function ModalPost({
               </div>
               <div className="flex mb-3 border-b border-gray-300 pb-1">
                 <p className="w-23 font-medium mr-8 lg:mr-1">Partial Id:</p>
-                <TextField
-                  id="outlined-multiline-flexible"
-                  className="w-full"
-                  minRows={1}
+                <Select
+                  className={`basic-single mb-1 ${
+                    isErrorCategory ? 'border border-darkRed rounded-md' : ''
+                  }`}
+                  classNamePrefix="select"
                   placeholder="Enter Article of User"
-                  multiline
-                  onChange={() => console.log(1)}
-                  value={newPost.partialId}
+                  name="partialId"
+                  options={partialOption}
+                  onChange={changePartialId}
                 />
               </div>
               <div className="flex mb-3 border-b border-gray-300 pb-1">

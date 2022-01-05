@@ -9,11 +9,24 @@ import TagSectionMobile from '../../Components/TagContent/TagSection';
 import useToggle from '../../hooks/use-toggle';
 import { MainLayout } from '../../layout';
 import { capitalizeFirstLetter } from '../../utilities/helper';
+import useSWR from 'swr';
+import { Tag } from '../../models';
 
 function PostsTag(data: any) {
   const [isFollow, setIsFollow] = useToggle(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
   const router = useRouter();
+
+  const { data: followTags } = useSWR('/api/v1/following-tag/get-full', {
+    revalidateOnFocus: false,
+  });
+
+  console.log(router.query.tag);
+  useEffect(() => {
+    followTags?.data.some((tag: Tag) => tag.slug == `/${router.query.tag}`)
+      ? setIsFollow(true)
+      : setIsFollow(false);
+  }, [router, followTags]);
 
   useEffect(() => {
     const btnShowTag = document.querySelector('.btnShowTag');
@@ -58,7 +71,7 @@ function PostsTag(data: any) {
         <div className="flex-1 pb-2 text-center font-semibold  text-blueCyanLogo">All Posts</div>
       </div>
       {data.post?.map((post: any) => (
-        <Post key={post.id} post={post} />
+        <Post key={post.id} article={post} />
       ))}
       <div
         className={`hidden p-3 z-50 overflow-scroll md:block sm:block ssm:block fixed h-[100vh] w-[35vw] top-0 right-0 bg-white transition duration-200 ease-in-out md:w-[40vw] sm:w-[50vw] ssm:w-[70vw] transform ${

@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import ReactMarkdown from 'react-markdown';
 
 import { useAuth } from '../../hooks';
-import { truncateBody } from '../../utilities/helper';
+import { truncateBody, timeAgo } from '../../utilities/helper';
 import CodeBlock from './CodeBlock';
 
 function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
@@ -15,6 +15,8 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   // const [isViewer, setIsViewer] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const router = useRouter();
+  const article = dataPostDetail.data;
+  console.log('article', article);
 
   // useEffect(() => {
   //   if (localStorage.getItem('isView') && localStorage.getItem('isView') === 'true') {
@@ -26,14 +28,14 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
 
   const contentBody =
     isReadMore && !isLogin
-      ? truncateBody(`${dataPostDetail.body}`, 580).toString() // max content length is 580
-      : truncateBody(`${dataPostDetail.body}`, 20000).toString(); // see full content
+      ? truncateBody(`${article.content}`, 580).toString() // max content length is 580
+      : truncateBody(`${article.content}`, 20000).toString(); // see full content
 
   useEffect(() => {
-    if (!firstLoading && !profile?.username && !localStorage.getItem('tokenSso')) {
+    if (!firstLoading && !profile?.data && !localStorage.getItem('tokenSso')) {
       setIsLogin(false);
       setIsReadMore(true);
-    } else if (profile?.username || localStorage.getItem('tokenSso')) {
+    } else if (profile?.data || localStorage.getItem('tokenSso')) {
       setIsReadMore(false);
       setIsLogin(true);
     }
@@ -46,6 +48,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
       router.replace('/login');
     }
   }, [profile]);
+
   return (
     <div className="relative bg-white rounded-lg shadow-md px-4 pt-2 py-16 mb-8 text-gray-600  h-auto">
       <div className="w-full text-black font-semibold text-3xl sm:text-2xl ssm:text-xl pl-2 py-4 mx-auto">
@@ -60,20 +63,23 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
           className="rounded-full"
           priority
         />
-        <span className="font-medium text-xl ml-2 text-blueCyanLogo">{dataPostDetail.author}</span>
-        <span className="text-gray-500 text-sm ml-1 mt-1">@{dataPostDetail.tags}· 21 hour</span>
-        <Link href={`/posts/edit/${dataPostDetail.id}`}>
+        <span className="font-medium text-xl ml-2 text-blueCyanLogo">
+          {`${article.author.firstName} ${article.author.lastName}`}
+        </span>
+        <span className="text-gray-500 text-sm ml-1 mt-1">
+          @{`${article.mainCategory.name}· ${timeAgo(new Date(article?.publishedAt))}`}
+        </span>
+        <Link href={`/posts/edit/${article.id}`}>
           <span className="mt-1 ml-2">
             <Image src="/images/pencil.png" width={12} height={12} />
           </span>
         </Link>
       </div>
 
-      {/* <div className="mx-2">{dataPostDetail.body}</div> */}
       <div className="postContent mx-2 mb-4 mt-5 h-auto">
         <ReactMarkdown components={CodeBlock} children={contentBody} />
       </div>
-      {dataPostDetail.body.length > 580 && (
+      {dataPostDetail?.content?.length > 580 && (
         <button
           onClick={ReadMoreHandler}
           type="button"

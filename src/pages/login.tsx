@@ -10,6 +10,7 @@ import * as yup from 'yup';
 import LoginComponent from '../Components/Auth/login';
 import ThemeWrapper from '../container/themeWrapper';
 import { useAuth } from '../hooks';
+import { LoginPayLoad } from '../models';
 import adminTheme from '../styles/theme/materialClient';
 
 // import Swal from "sweetalert2";
@@ -33,16 +34,17 @@ const Login = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!firstLoading && !profile?.username) {
+    if (!firstLoading && !profile?.data) {
       // setIsLogin(false);
-    } else if (profile?.username) {
+    } else if (profile?.data) {
       router.replace('/');
     }
   }, [profile, firstLoading]);
 
   const { handleSubmit, control, formState } = useForm({
-    mode: 'all',
-    // criteriaMode: 'firstError',
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
+    criteriaMode: 'firstError',
     shouldFocusError: false,
     resolver: yupResolver(schema),
   });
@@ -71,16 +73,12 @@ const Login = () => {
     );
   };
 
-  const submit = async (data: any, event: React.FormEvent<HTMLFormElement>) => {
+  const submit = async (data: LoginPayLoad, event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const userData = {
-      username: data.email,
-      password: data.password,
-    };
     try {
       setIsLoadingForm(true);
-      await login(userData);
+      await login(data);
       localStorage.setItem('isView', 'true');
       setIsLoadingForm(false);
       router.push('/');

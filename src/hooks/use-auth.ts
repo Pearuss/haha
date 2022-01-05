@@ -2,14 +2,14 @@ import useSWR from 'swr';
 import { PublicConfiguration } from 'swr/dist/types';
 
 import { authApi } from '../api-client/auth-api';
-import { LoginPayLoad } from '../modals';
+import { LoginPayLoad } from '../models';
 
 export function useAuth(option?: Partial<PublicConfiguration>) {
   const {
     data: profile,
     error,
     mutate,
-  } = useSWR('http://localhost:9500/api/profile', {
+  } = useSWR('/api/v1/user/profile', {
     dedupingInterval: 60 * 60 * 1000, // 1h
     revalidateOnFocus: false,
     ...option,

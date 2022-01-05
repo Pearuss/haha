@@ -20,7 +20,7 @@ function News({ data }: any) {
     setDataPosts(data?.data?.map((post: any) => ({ ...post, selected: false })));
   }, [data]);
 
-  const handleClickExport = () => {};
+  // const handleClickExport = () => {};
 
   const hasSelectedTag = useMemo(
     () => dataPosts?.find((post: any) => post.selected === true),
