@@ -42,3 +42,18 @@ export interface Article {
   articleCategories: ArticleCategory;
   articleTags: ArticleTag;
 }
+
+export interface INewPost {
+  title: string;
+  shortContent: string;
+  content: string;
+  status: Boolean;
+  reason: string;
+  sectionNo: number;
+  partialId: number;
+  tag: string[];
+  mainCategory: number;
+  relatedCategory: string[];
+  image: string;
+  public: boolean;
+}

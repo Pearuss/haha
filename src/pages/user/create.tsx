@@ -1,27 +1,13 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable no-param-reassign */
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import useSWR from 'swr';
 
 import ModalPost from '../../Components/CreatePost';
 import useCall from '../../hooks/use-call';
 import { HeaderLayout } from '../../layout';
-
-interface INewPost {
-  title: string;
-  shortContent: string;
-  content: string;
-  status: true;
-  reason: string;
-  sectionNo: number;
-  partialId: number;
-  tag: string[];
-  mainCategory: number;
-  relatedCategory: string[];
-  image: string;
-  public: boolean;
-}
+import { INewPost } from '../../models';
 
 function UserCreatePage() {
   const { data: tagData }: any = useSWR('http://localhost:3100/api/v1/tags', {
@@ -46,6 +32,7 @@ function UserCreatePage() {
     image: '',
     public: true,
   });
+  console.log(newPost);
 
   useEffect(() => {
     try {
@@ -70,8 +57,8 @@ function UserCreatePage() {
         const md = document.querySelectorAll('.md-editor .md-editor-toolbar');
 
         md[1]?.appendChild(button);
-        const btnUpLoadMD: any = document.querySelector('.btnUpLoadMD');
-        btnUpLoadMD.onclick = openBrowseImg;
+        const btnUpLoadMD: HTMLElement | null = document.querySelector('.btnUpLoadMD');
+        if (btnUpLoadMD) btnUpLoadMD.onclick = openBrowseImg;
       }, 1000);
     } catch (error) {
       console.log(error);
@@ -79,7 +66,7 @@ function UserCreatePage() {
   }, []);
 
   // Append link image inside markdown
-  function handleUploadImgMD(e: any) {
+  function handleUploadImgMD(e: ChangeEvent<HTMLInputElement> | any): void {
     console.log(e.target.files[0]);
 
     setNewPost((state: any) => ({
@@ -88,65 +75,65 @@ function UserCreatePage() {
     }));
   }
 
-  function openBrowseImg(e: any) {
+  function openBrowseImg(e: ChangeEvent<MouseEvent> | any): void {
     e.preventDefault();
     document.getElementById('uploadImgMD')?.click();
   }
 
-  const changeTitle = (e: any) => {
-    setNewPost((state: any) => ({ ...state, title: e.target.value }));
+  const changeTitle = (e: ChangeEvent<HTMLInputElement>): void => {
+    setNewPost((state: INewPost) => ({ ...state, title: e.target.value }));
   };
 
-  const changeShortContent = (e: any) => {
-    setNewPost((state: any) => ({ ...state, shortContent: e.target.value }));
+  const changeShortContent = (e: ChangeEvent<HTMLInputElement>): void => {
+    setNewPost((state: INewPost) => ({ ...state, shortContent: e.target.value }));
   };
 
-  const changeSectionNo = (value: any) => {
-    setNewPost((state: any) => ({ ...state, sectionNo: +value.value }));
+  const changeSectionNo = (value: any): void => {
+    setNewPost((state: INewPost) => ({ ...state, sectionNo: +value.value }));
   };
 
-  const changeMainCategory = (value: any) => {
-    setNewPost((state: any) => ({ ...state, mainCategory: value.value }));
+  const changeMainCategory = (value: any): void => {
+    setNewPost((state: INewPost) => ({ ...state, mainCategory: value.value }));
   };
 
-  const changeRelatedCategory = (value: any) => {
+  const changeRelatedCategory = (value: any): void => {
     const newrelCat = value.map((cat: any) => cat.value);
-    setNewPost((state: any) => ({ ...state, relatedCategory: newrelCat }));
+    setNewPost((state: INewPost) => ({ ...state, relatedCategory: newrelCat }));
   };
 
-  const changePartialId = (value: any) => {
-    setNewPost((state: any) => ({ ...state, partialId: value.value }));
+  const changePartialId = (value: any): void => {
+    setNewPost((state: INewPost) => ({ ...state, partialId: value.value }));
   };
 
-  const changeTag = (value: any) => {
+  const changeTag = (value: any): void => {
     const newTag = value.map((tag: any) => tag.value);
-    setNewPost((state: any) => ({ ...state, tag: newTag }));
+    setNewPost((state: INewPost) => ({ ...state, tag: newTag }));
   };
 
-  const changeStatus = () => {
-    setNewPost((state: any) => ({ ...state, status: !newPost.status }));
+  const changeStatus = (): void => {
+    setNewPost((state: INewPost) => ({ ...state, status: !newPost.status }));
   };
 
-  const changePublic = () => {
-    setNewPost((state: any) => ({
+  const changePublic = (): void => {
+    setNewPost((state: INewPost) => ({
       ...state,
       public: !state.public,
     }));
   };
 
-  const imageHandler = (e: any) => {
+  const imageHandler = (e: any): void => {
     console.log(1);
     const reader = new FileReader();
 
     reader.onload = () => {
       if (reader.readyState === 2) {
-        setNewPost((state: any) => ({ ...state, image: reader.result }));
+        setNewPost((state: INewPost) => ({ ...state, image: `${reader.result}` }));
       }
     };
     reader.readAsDataURL(e.target.files[0]);
   };
-  const removeImage = () => {
-    setNewPost((state: any) => ({ ...state, image: '' }));
+  const removeImage = (): void => {
+    setNewPost((state: INewPost) => ({ ...state, image: '' }));
   };
 
   return (

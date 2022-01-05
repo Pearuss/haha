@@ -44,21 +44,21 @@ function ProfilePage() {
 
   useEffect(() => {
     const btnShowTag = document.querySelector('.btnShowTag');
-    const menuMobile: any = document.querySelector('.menuMobile');
-    const cover: any = document.querySelector('.cover');
+    const menuMobile: HTMLElement | null = document.querySelector('.menuMobile');
+    const cover: HTMLElement | null = document.querySelector('.cover');
 
     btnShowTag?.addEventListener('click', () => {
       setIsShowTagMobile(true);
-      menuMobile.classList.add(
+      menuMobile?.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
         'ssm:-translate-x-full',
       );
-      menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
+      menuMobile?.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
 
-    cover.addEventListener('click', () => {
-      cover.classList.add('hidden');
+    cover?.addEventListener('click', () => {
+      cover?.classList.add('hidden');
       setIsShowTagMobile(false);
     });
   }, []);

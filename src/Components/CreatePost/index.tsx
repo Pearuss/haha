@@ -7,7 +7,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/react-in-jsx-scope */
-import { useState } from 'react';
+import { ChangeEventHandler, FormEvent, useState } from 'react';
 
 import Switch from '@material-ui/core/Switch';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
@@ -20,6 +20,9 @@ import { useRouter } from 'next/router';
 import Select from 'react-select';
 
 import useFetch from '../../hooks/use-fetch';
+import {
+ Article, Category, INewPost, Tag,
+} from '../../models';
 import { countWord } from '../../utilities/helper';
 import {
   postSchema,
@@ -48,22 +51,22 @@ function ModalPost({
   imageHandler,
   removeImage,
 }: {
-  newPost: any;
-  setNewPost: any;
-  changeTitle: any;
-  changeShortContent: any;
-  changeSectionNo: any;
-  changeMainCategory: any;
-  changeRelatedCategory: any;
-  changePartialId: any;
-  changeTag: any;
-  catData: any;
-  tagData: any;
-  myArticle: any;
-  changeStatus: any;
-  changePublic: any;
-  imageHandler: any;
-  removeImage: any;
+  newPost: INewPost;
+  setNewPost: Function;
+  changeTitle: ChangeEventHandler<HTMLInputElement> | undefined;
+  changeShortContent: ChangeEventHandler<HTMLInputElement> | undefined;
+  changeSectionNo: ChangeEventHandler<HTMLInputElement> | undefined;
+  changeMainCategory: ChangeEventHandler<HTMLInputElement> | undefined;
+  changeRelatedCategory: ChangeEventHandler<HTMLInputElement> | undefined;
+  changePartialId: ChangeEventHandler<HTMLInputElement> | undefined;
+  changeTag: ChangeEventHandler<HTMLInputElement> | undefined;
+  catData: Category[];
+  tagData: Tag[];
+  myArticle: Article[];
+  changeStatus: ChangeEventHandler<HTMLInputElement> | undefined;
+  changePublic: ChangeEventHandler<HTMLInputElement> | undefined;
+  imageHandler: Function | any;
+  removeImage: Function;
 }): JSX.Element {
   const router = useRouter();
 
@@ -76,13 +79,19 @@ function ModalPost({
   const [isErrorTag, setIsErrorTag] = useState(false);
   const [isErrorCategory, setIsErrorCategory] = useState(false);
 
-  const tagOptions: any[] = tagData?.map((tag: any) => ({ value: tag.id, label: tag.name }));
-  const catOptions: any[] = catData?.map((cat: any) => ({ value: cat.id, label: cat.name }));
-  const partialOption: any[] = myArticle?.map((article: any) => ({
+  const tagOptions: { value: string; label: string }[] = tagData?.map((tag: any) => ({
+    value: tag.id,
+    label: tag.name,
+  }));
+  const catOptions: { value: string; label: string }[] = catData?.map((cat: any) => ({
+    value: cat.id,
+    label: cat.name,
+  }));
+  const partialOption: { value: string; label: string }[] = myArticle?.map((article: any) => ({
     value: article.id,
     label: article.title,
   }));
-  const sectionNoOptions: any = [
+  const sectionNoOptions: { value: string; label: string }[] = [
     { value: '1', label: '1' },
     { value: '2', label: '2' },
     { value: '3', label: '3' },
@@ -91,7 +100,7 @@ function ModalPost({
     { value: '6', label: '6' },
   ];
   // Submit handle
-  const onSubmit = async (e: any) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     const formData = {
       title: newPost.title,
