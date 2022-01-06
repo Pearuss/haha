@@ -14,6 +14,11 @@ import PostDetail from '../../Components/PostDetail/PostDetail';
 import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
 import { useAuth } from '../../hooks';
 import { DetailPostLayout } from '../../layout';
+// import dynamic from 'next/dynamic';
+
+// const CommentSection = dynamic(() => import('../../Components/CommentSection/CommentSection'), {
+//   ssr: false,
+// });
 
 function Index({ data }: any) {
   const [isLogin, setIsLogin] = useState(false);

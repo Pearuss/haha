@@ -16,14 +16,12 @@ const proxy = httpProxy.createProxyServer();
 
 export default function handler(req: any, res: NextApiResponse<any>) {
   // req.url = req.url.replace(/^\/api/, '');
-  console.log(req.url);
 
   return new Promise((resolve) => {
     const cookies = new Cookies(req, res);
 
     if (cookies.get('access_token')) {
       const accessToken = cookies.get('access_token');
-      console.log(accessToken);
 
       req.headers.Authorization = `Bearer ${accessToken}`;
     }

@@ -1,56 +1,81 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/order */
+import Swal from 'sweetalert2';
 import React, { useEffect, useState } from 'react';
 
 import InputMention from '../../common/InputMention/InputMention';
+import { useAuth } from '../../hooks';
 import useFetch from '../../hooks/use-fetch';
-import { IComment } from '../../models';
+// import { IComment } from '../../models';
 
 import Comment from './Comment';
+import useSWR from 'swr';
 
 // interface CommentSectionProps {
 //   showForm: any;
 //   postId: number;
 // }
+// const TIME_REFRESH = 20 * 1000;
 
 function CommentSection({ showForm, postId }: any) {
   const [backendComments, setBackendComments] = useState<any[]>([]);
   const [activeComment, setActiveComment] = useState(null);
+  const { profile } = useAuth();
 
+  // useEffect(() => {
+  //   useFetch(`http://localhost:3100/api/v1/comment/${postId}`).then(
+  //     (data: Record<string, IComment[]>) => {
+  //       if (data?.data) {
+  //         setBackendComments(data.data);
+  //       }
+  //     }
+  //   );
+  // }, [postId]);
+  const { data } = useSWR(`http://localhost:3100/api/v1/comment/${postId}`, {
+    revalidateIfStale: true,
+  });
   useEffect(() => {
-    useFetch(`http://localhost:3100/api/v1/comment/${postId}`).then(
-      (data: Record<string, IComment[]>) => {
-        if (data?.data) {
-          setBackendComments(data.data);
-        }
-      },
-    );
-  }, [postId]);
+    if (data?.data) {
+      setBackendComments(data.data);
+    }
+  }, [data]);
 
   const rootComments = backendComments?.filter(
-    (backendComment) => backendComment.parentId.toString() === '0',
+    (backendComment) => backendComment.parentId.toString() === '0'
   );
-  const getReplies = (commentId: number) => backendComments
-    ?.filter((backendComment) => backendComment.parentId.toString() === commentId)
-    .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+  const getReplies = (commentId: number) => {
+    return backendComments
+      ?.filter((backendComment) => backendComment.parentId === commentId)
+      .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+  };
 
-  const addComment = (text: string, parentId: number) => {
-    if (typeof parentId === 'undefined') {
-      parentId = 0;
+  const addComment = (text: string, parentId: number, quoteId: number) => {
+    if (profile) {
+      if (typeof parentId === 'undefined' || parentId === 0) {
+        parentId = 0;
+        quoteId = 0;
+      }
+      useFetch('/api/v1/comment', {
+        method: 'POST',
+        body: JSON.stringify({
+          comment: text,
+          parentId,
+          quoteId,
+          articleId: postId,
+          status: 1,
+          liked: 0,
+        }),
+      }).then((comment) => {
+        comment.data['user'] = {
+          firstName: profile.data.firstName,
+        };
+
+        setBackendComments([comment.data, ...backendComments]);
+        setActiveComment(null);
+      });
+    } else {
+      Swal.fire('Please try again, profile error!');
     }
-    useFetch('http://localhost:3001/allComments', {
-      method: 'POST',
-      body: JSON.stringify({
-        comment: text,
-        parentId,
-        userId: '2',
-        username: 'Pearuss',
-        postId,
-      }),
-    }).then((comment) => {
-      setBackendComments([comment, ...backendComments]);
-      setActiveComment(null);
-    });
   };
 
   return (
@@ -59,6 +84,7 @@ function CommentSection({ showForm, postId }: any) {
       {rootComments?.map((rootComment) => (
         <Comment
           key={rootComment.id}
+          idUserComment={rootComment.user.id}
           userId={rootComment.userId}
           commentContent={rootComment}
           replies={getReplies(rootComment.id)}

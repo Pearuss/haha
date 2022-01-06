@@ -13,14 +13,14 @@ import { replaceTagBr, convertReplyTagInit } from '../../utilities/helper';
 import { APIservice } from './services';
 
 const InputMention = ({
-  handleSubmit, initialText, submitLabel, handleCancel,
+  handleSubmit, initialText, submitLabel, handleCancel, idUserReply
 }: any) => {
   const [content, setContent] = useState<any>(initialText);
   const [users, setUsers] = useState<any>([]);
   const [tags, setTags] = useState<any>([]);
   // const [tagNames, setTagNames] = useState<any>([]);
   const myInput = useRef<any>();
-
+  
   useEffect(() => {
     getActors();
     getTags();
@@ -76,7 +76,7 @@ const InputMention = ({
         handleSubmit(replaceTagBr(body));
         setContent('');
       } else if (submitLabel === 'Reply') {
-        handleSubmit(replaceTagBr(convertReplyTagInit(body, 1)));
+        handleSubmit(replaceTagBr(convertReplyTagInit(body, idUserReply)));
         setContent('');
       }
     }

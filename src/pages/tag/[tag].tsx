@@ -17,16 +17,14 @@ function PostsTag(data: any) {
   const [isFollow, setIsFollow] = useToggle(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
   const [currentTagId, setCurrentTagId] = useState<string | null>(null);
+  const [totalFollow, setTotalFollow] = useState<number | null>(0);
   const router = useRouter();
 
   const { data: allTag } = useSWR('http://localhost:3100/api/v1/tags', {
     revalidateOnFocus: false,
   });
 
-  const { data: followTags } = useSWR('/api/v1/following-tag/get-full', {
-    revalidateOnFocus: false,
-  });
-  console.log(currentTagId);
+  const { data: followTags } = useSWR('/api/v1/following-tag/get-full');
 
   const followHandler = async () => {
     if (currentTagId && isFollow) {
@@ -63,12 +61,23 @@ function PostsTag(data: any) {
       setCurrentTagId(followTags?.data[currentTagIndex]?.id || null);
       setIsFollow(true);
     }
-    // currentTag = allTag?.data?.findIndex(
-    //   (tag: Tag) => tag.slug.toString() === `/${router.query.tag}`
-    // );
-    // currentTagIndex == -1 ? setIsFollow(false) : setIsFollow(true);
-    // setCurrentTagId(followTags?.data[currentTagIndex]?.id || null);
   }, [router, followTags]);
+
+  useEffect(() => {
+    const getTotalFollow = async () => {
+      const res = await useFetch(
+        `http://localhost:3100/api/v1/following-tag/total-follower/${currentTagId}`
+      );
+      if (res.message.toString() === '200') {
+        console.log(res);
+
+        setTotalFollow(res.data);
+      }
+    };
+    if (currentTagId) {
+      getTotalFollow();
+    }
+  }, [currentTagId, followTags, isFollow]);
 
   useEffect(() => {
     const btnShowTag = document.querySelector('.btnShowTag');
@@ -107,7 +116,7 @@ function PostsTag(data: any) {
         >
           {isFollow ? 'UnFollow' : 'Follow'}
         </button>
-        <span className="px-3 py-2 font-medium text-gray-900 ">100 Follower</span>
+        <span className="px-3 py-2 font-medium text-gray-900 ">{totalFollow} Follower</span>
       </div>
       <div className="w-full flex items-center pt-8 border-b-4 border-blueCyanLogo">
         <div className="flex-1 pb-2 text-center font-semibold  text-blueCyanLogo">All Posts</div>

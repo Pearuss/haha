@@ -32,7 +32,6 @@ function UserCreatePage() {
     image: '',
     public: true,
   });
-  console.log(newPost);
 
   useEffect(() => {
     try {
