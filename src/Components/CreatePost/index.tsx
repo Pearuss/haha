@@ -7,7 +7,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/react-in-jsx-scope */
-import { ChangeEventHandler, FormEvent, useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 import Switch from '@material-ui/core/Switch';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
@@ -65,7 +65,7 @@ function ModalPost({
   tagData: Tag[];
   myArticle: Article[];
   changeStatus: any;
-  changePublic: ChangeEventHandler<HTMLInputElement> | undefined;
+  changePublic: any;
   imageHandler: Function | any;
   removeImage: Function;
 }): JSX.Element {

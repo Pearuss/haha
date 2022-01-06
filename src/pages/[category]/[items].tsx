@@ -77,27 +77,34 @@ export default Category;
 //     fallback: true,
 //   };
 // }
-export const getStaticPaths = async () => ({
-  paths: [], // indicates that no page needs be created at build time
-  fallback: 'blocking', // indicates the type of fallback
-});
+export const getStaticPaths = async () => {
+  const res = await fetch('http://localhost:3100/api/v1/tags');
+  const tags = await res.json();
 
-export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:3001/posts');
-  const posts = await res.json();
+  const paths = tags.data.map((tag: any) => ({
+    params: { items: tag.slug?.toString(), category: '1' },
+  }));
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+};
+
+export const getStaticProps = async ({ params }: any) => {
+  const { category } = params;
+  if (!category) return { notFound: true };
+
+  const resFullCat = await fetch('http://localhost:3100/api/v1/category/menu');
+  const fullCats = await resFullCat.json();
+  const catResult = fullCats.data.find((item: any) => item.name.toLowerCase() === category);
+
+  const res = await fetch(`http://localhost:3100/api/v1/user/article/cat/${catResult?.id}`);
+  const { data }: any = await res.json();
 
   return {
     props: {
-      data: posts.map((post: any) => ({
-        id: post.id,
-        title: post.title,
-        body: post.body,
-        views: post.views,
-        comments: post.comments,
-        tags: post.tags,
-        img: post.img,
-        author: post.author,
-      })),
+      data,
     },
     revalidate: 1,
   };

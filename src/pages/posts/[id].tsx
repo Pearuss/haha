@@ -15,7 +15,7 @@ import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
 import { useAuth } from '../../hooks';
 import { DetailPostLayout } from '../../layout';
 
-function Index({ data }: any) {
+function DetailArticlePage({ data }: any) {
   const [isLogin, setIsLogin] = useState(false);
   const [showFormComment, setShowFormComment] = useState(false);
   const [isShowContentIndex, setIsShowContentIndex] = useState(true);
@@ -211,9 +211,9 @@ function Index({ data }: any) {
     </div>
   );
 }
-Index.Layout = DetailPostLayout;
+DetailArticlePage.Layout = DetailPostLayout;
 
-export default Index;
+export default DetailArticlePage;
 
 export const getStaticPaths = async () => {
   const res = await fetch('http://localhost:3100/api/v1/user/article/full-list');

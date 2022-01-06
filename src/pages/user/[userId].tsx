@@ -88,9 +88,12 @@ function ProfilePage() {
         </div>
       </div>
       <UserDetail data={profile} userId={userId} />
-      {articles?.data.map((article: any) => (
-        <Post key={article.id} article={article} />
-      ))}
+      {articles?.data
+        .slice(0)
+        .reverse()
+        .map((article: any) => (
+          <Post key={article.id} article={article} />
+        ))}
       <TagSectionMobile isShowTagMobile={isShowTagMobile} />
     </div>
   );

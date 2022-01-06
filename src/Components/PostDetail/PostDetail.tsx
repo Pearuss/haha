@@ -16,7 +16,6 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   const [isLogin, setIsLogin] = useState(false);
   const router = useRouter();
   const article = dataPostDetail.data;
-  console.log('article', article);
 
   // useEffect(() => {
   //   if (localStorage.getItem('isView') && localStorage.getItem('isView') === 'true') {

@@ -118,9 +118,12 @@ function PostsPage() {
         </div> */}
         <h1 className="text-4xl font-medium mb-6">{`${articles?.data[0]?.author?.firstName}'s Posts`}</h1>
       </div>
-      {articles?.data.map((article: Article) => (
-        <Post key={article.id} article={article} />
-      ))}
+      {articles?.data
+        .slice(0)
+        .reverse()
+        .map((article: Article) => (
+          <Post key={article.id} article={article} />
+        ))}
 
       {/* {dataPosts?.length > 0 ? (
       //   dataPosts?.map((post: PostItem) => <Post key={post.id} post={post} />)
