@@ -70,7 +70,6 @@ function Comment({
               idUserComment != null ? `/user/${idUserComment}` : `/user/${profile.data.userId}`
             }`}
           >
-            {/* <Link href={`${commentContent.user.id != null ? `/user/${commentContent.user.id}` : ''}`}> */}
             <span className="text-lg text-blueCyanLogo font-medium cursor-pointer">
               {commentContent?.user?.firstName}
             </span>

@@ -29,19 +29,6 @@ function ProfilePage() {
 
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
-  //   const [userProfile, setUserProfile] = useState();
-  //   console.log(userProfile);
-
-  //   useEffect(() => {
-  //     if (router.query?.userId) {
-  //       const { userId } = router.query;
-  //       const { data } = useSWR(`http://localhost:3100/api/v1/user/${userId}`, {
-  //         revalidateOnFocus: false,
-  //       });
-  //       setUserProfile(data);
-  //     }
-  //   }, []);
-
   useEffect(() => {
     const btnShowTag = document.querySelector('.btnShowTag');
     const menuMobile: HTMLElement | null = document.querySelector('.menuMobile');

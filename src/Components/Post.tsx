@@ -26,7 +26,7 @@ function Post({ article }: { article: Article }) {
             {article?.title}
           </h3>
         </Link>
-        <p className="text-base pt-1">{truncate(`${article?.content}`, 220)}</p>
+        <p className="text-base pt-1">{truncate(`${article?.shortContent}`, 220)}</p>
 
         <div className="flex items-center absolute bottom-0 right-[2%] ssm:bottom-[-4.2rem] ssm:right-0 ssm:text-[14px]">
           <div className="flex items-center pr-6 ssm:pr-3">

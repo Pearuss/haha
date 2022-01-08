@@ -8,17 +8,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import CommentSection from '../../Components/CommentSection/CommentSection';
+// import CommentSection from '../../Components/CommentSection/CommentSection';
 import { ContentIndex } from '../../Components/PostDetail/ContentIndex';
 import PostDetail from '../../Components/PostDetail/PostDetail';
 import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
 import { useAuth } from '../../hooks';
 import { DetailPostLayout } from '../../layout';
-// import dynamic from 'next/dynamic';
+import dynamic from 'next/dynamic';
 
-// const CommentSection = dynamic(() => import('../../Components/CommentSection/CommentSection'), {
-//   ssr: false,
-// });
+const CommentSection = dynamic(() => import('../../Components/CommentSection/CommentSection'), {
+  ssr: false,
+});
 
 function Index({ data }: any) {
   const [isLogin, setIsLogin] = useState(false);
