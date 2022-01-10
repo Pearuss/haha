@@ -11,23 +11,75 @@ import { MainLayout } from '../../layout';
 import { capitalizeFirstLetter } from '../../utilities/helper';
 import useSWR from 'swr';
 import { Tag } from '../../models';
+import useFetch from '../../hooks/use-fetch';
 
 function PostsTag({ data }: any) {
   console.log('data', data);
 
   const [isFollow, setIsFollow] = useToggle(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
+  const [currentTagId, setCurrentTagId] = useState<string | null>(null);
+  const [totalFollow, setTotalFollow] = useState<number | null>(0);
   const router = useRouter();
 
-  const { data: followTags } = useSWR('/api/v1/following-tag/get-full', {
+  const { data: allTag } = useSWR('http://localhost:3100/api/v1/tags', {
     revalidateOnFocus: false,
   });
 
+  const { data: followTags } = useSWR('/api/v1/following-tag/get-full');
+
+  const followHandler = async () => {
+    if (currentTagId && isFollow) {
+      const res = await useFetch('/api/v1/following-tag/unfollow', {
+        method: 'POST',
+        body: JSON.stringify({
+          tagId: currentTagId,
+        }),
+      });
+      res.message.toString() === '200' ? setIsFollow(false) : null;
+    }
+    if (currentTagId && !isFollow) {
+      const res = await useFetch('/api/v1/following-tag/follow', {
+        method: 'POST',
+        body: JSON.stringify({
+          tagId: currentTagId,
+        }),
+      });
+      res.message.toString() === '200' ? setIsFollow(true) : null;
+    }
+  };
   useEffect(() => {
-    followTags?.data.some((tag: Tag) => tag.slug == `/${router.query.tag}`)
-      ? setIsFollow(true)
-      : setIsFollow(false);
+    let currentTagIndex = -1;
+    currentTagIndex = followTags?.data?.findIndex(
+      (tag: Tag) => tag.slug.toString() === `/${router.query.tag}`
+    );
+    if (currentTagIndex === -1) {
+      const currentTag = allTag?.data?.findIndex(
+        (tag: Tag) => tag.slug.toString() === `/${router.query.tag}`
+      );
+      setCurrentTagId(allTag?.data[currentTag]?.id || null);
+      setIsFollow(false);
+    } else {
+      setCurrentTagId(followTags?.data[currentTagIndex]?.id || null);
+      setIsFollow(true);
+    }
   }, [router, followTags]);
+
+  useEffect(() => {
+    const getTotalFollow = async () => {
+      const res = await useFetch(
+        `http://localhost:3100/api/v1/following-tag/total-follower/${currentTagId}`
+      );
+      if (res.message.toString() === '200') {
+        console.log(res);
+
+        setTotalFollow(res.data);
+      }
+    };
+    if (currentTagId) {
+      getTotalFollow();
+    }
+  }, [currentTagId, followTags, isFollow]);
 
   useEffect(() => {
     const btnShowTag = document.querySelector('.btnShowTag');
@@ -50,7 +102,7 @@ function PostsTag({ data }: any) {
     });
   }, []);
   return (
-    <div className="flex-1 mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
+    <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw] flex-1">
       <div className="flex items-center ">
         <Image src="/images/hashtag1.png" width={40} height={40} />
         <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl text-black font-normal ml-[1vw]">
@@ -59,14 +111,14 @@ function PostsTag({ data }: any) {
       </div>
       <div className="flex w-full my-4">
         <button
-          onClick={setIsFollow}
+          onClick={followHandler}
           className={`px-3 py-2 rounded-lg font-medium tracking-wider  cursor-pointer border border-blueCyanLogo ${
             isFollow ? 'border-gray-400 text-gray-900' : 'bg-blueCyanLogo text-white px-6'
           }`}
         >
           {isFollow ? 'UnFollow' : 'Follow'}
         </button>
-        <span className="px-3 py-2 font-medium text-gray-900 ">100 Follower</span>
+        <span className="px-3 py-2 font-medium text-gray-900 ">{totalFollow} Follower</span>
       </div>
       <div className="w-full flex items-center pt-8 border-b-4 border-blueCyanLogo">
         <div className="flex-1 pb-2 text-center font-semibold  text-blueCyanLogo">All Posts</div>

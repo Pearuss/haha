@@ -16,6 +16,7 @@ import InputMention from '../../common/InputMention/InputMention';
 import { useAuth } from '../../hooks';
 import { formatDate, truncate } from '../../utilities/helper';
 import { IComment } from '../../models';
+import Link from 'next/link';
 
 function Comment({
   commentContent,
@@ -23,6 +24,7 @@ function Comment({
   activeComment,
   setActiveComment,
   addComment,
+  idUserComment,
   parentId = null,
 }: any) {
   const { profile } = useAuth();
@@ -62,9 +64,16 @@ function Comment({
       </div>
       <div className="ml-2 pl-16 py-3 w-full">
         <div className="flex justify-between ">
-          <span className="text-lg text-blueCyanLogo font-medium">
-            {commentContent?.user?.firstName}
-          </span>
+          {/* <Link href={`/user/${idUserComment}`}> */}
+          <Link
+            href={`${
+              idUserComment != null ? `/user/${idUserComment}` : `/user/${profile.data.userId}`
+            }`}
+          >
+            <span className="text-lg text-blueCyanLogo font-medium cursor-pointer">
+              {commentContent?.user?.firstName}
+            </span>
+          </Link>
           <span className="mr-4 text-sm font-medium text-gray-700">
             {formatDate(new Date(commentContent?.createdAt))}
           </span>
@@ -107,22 +116,17 @@ function Comment({
             </span>
           </div>
         </div>
-        {/* <div className="w-full border-b border-gray-200 pt-4"></div> */}
         {isReplying && (
           <InputMention
             submitLabel="Reply"
             initialText={`${parentId === 0 ? '' : `@${commentContent?.user.firstName}: `}`}
-            commentContent={commentContent}
-            // initialText={`${
-            //   parentId == null
-            //     ? ''
-            //     : `${parse('<p class="text-darkRed">@${commentContent.username}</p>')} `
-            // }`}
+            idUserReply={commentContent?.user.id}
             handleSubmit={(text: string) =>
               addComment(
                 // `${parentId == null ? '' : `@${commentContent.username}`} ${text}`,
                 text,
                 replyId,
+                commentContent?.user.id,
               )}
             handleCancel={() => setActiveComment(null)}
           />

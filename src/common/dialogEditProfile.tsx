@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useRef, useState } from 'react';
 
 import Slider from '@material-ui/core/Slider';
@@ -107,13 +108,13 @@ export default function ChangeProfileDialog({ open, setOpen }: any) {
         <div className="relative max-w-full w-full h-[170px] max-h-[170px] mb-9">
           <Image src="/images/cover-photo4.jpg" layout="fill" objectFit="cover" />
           <div className="absolute w-[128px] h-[128px] bottom-[-61px] left-4 overflow-hidden rounded-full border-[6px] border-white">
-            <Image
-              src="/images/toc2.jpg"
+            <img
+              src={profileImage}
               width={122}
               height={122}
-              objectFit="cover"
-              className="z-10"
-              priority
+              // objectFit="cover"
+              // className="z-10"
+              // priority
             />
           </div>
           <input
