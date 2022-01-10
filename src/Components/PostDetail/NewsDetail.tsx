@@ -1,18 +1,13 @@
 /* eslint-disable */
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 
 import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import ReactMarkdown from 'react-markdown';
 
-import { useAuth } from '../../hooks';
-import { truncateBody, timeAgo } from '../../utilities/helper';
 import CodeBlock from './CodeBlock';
-import useSWR from 'swr';
+import { timeAgo } from '../../utilities/helper';
 
 function PostDetail({ dataPostDetail }: any) {
-  const router = useRouter();
   const article = dataPostDetail.data;
   console.log(article);
 

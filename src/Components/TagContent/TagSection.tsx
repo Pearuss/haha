@@ -12,7 +12,7 @@ function TagSection() {
   });
   const { data: followTags } = useSWR('/api/v1/following-tag/get-full', {
     // refreshInterval : 4000,
-    revalidateIfStale: true,
+    revalidateOnFocus: true,
   });
 
   return (

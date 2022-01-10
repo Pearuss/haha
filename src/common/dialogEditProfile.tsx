@@ -1,5 +1,7 @@
-/* eslint-disable jsx-a11y/alt-text */
-import React, { useRef, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-shadow */
+import React, {
+  useEffect, useRef, useState, useCallback,
+} from 'react';
 
 import Slider from '@material-ui/core/Slider';
 import CameraEnhanceOutlinedIcon from '@mui/icons-material/CameraEnhanceOutlined';
@@ -7,34 +9,73 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import TextField from '@mui/material/TextField';
 import Image from 'next/image';
 import Cropper from 'react-easy-crop';
 
-export default function ChangeProfileDialog({ open, setOpen }: any) {
+import useFetch from '../hooks/use-fetch';
+import getCroppedImg from '../utilities/helper';
+
+export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
   const profileImageRef = useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
   const coverImageRef = useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
 
-  const [openCropImage, setOpenCropImage] = useState(true);
+  const [openCropImage, setOpenCropImage] = useState(false);
   const [croppedArea, setCroppedArea] = useState(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoomImage, setZoomImage] = useState<any>(1);
-  const [profileImage, setProfileImage] = useState<any | null>();
+  const thumbnail = profile?.data?.thumbnail;
+  const [profileImage, setProfileImage] = useState<any>(
+    thumbnail || 'http://localhost:3100/articles/user.png',
+  );
+  // const [coverImage, setCoverImage] = useState<any | null>('/images/cover-photo4.jpg');
 
-  const onCropComplete = (croppedAreaPixels: any) => {
+  const [firstName, setFirstName] = useState(profile?.data.firstName || '');
+  const [lastName, setLastName] = useState(profile?.data.lastName || '');
+
+  useEffect(() => {
+    // if (!thumbnail) {
+    //   setProfileImage('http://localhost:3100/articles/user.png');
+    // }
+    if (thumbnail) {
+      setProfileImage(`http://localhost:3100${thumbnail}`);
+    }
+  }, [thumbnail]);
+  useEffect(() => {
+    if (profile?.data) {
+      setFirstName(profile?.data.firstName);
+      setLastName(profile?.data.lastName);
+    }
+  }, [profile]);
+
+  const onCropComplete = (croppedArea: any, croppedAreaPixels: any) => {
+    console.log(croppedArea);
+
     setCroppedArea(croppedAreaPixels);
   };
-  const chooseImage = () => {
-    console.log(croppedArea);
-    console.log(profileImage);
-    setOpenCropImage(false);
-  };
+  const chooseImage = useCallback(async () => {
+    const canvas = await getCroppedImg(profileImage, croppedArea);
+
+    setProfileImage(canvas);
+    if (canvas) {
+      const res = await useFetch('/api/v1/user/update-profile', {
+        method: 'POST',
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          thumbnail: canvas,
+        }),
+      });
+      if (res.status) {
+        setOpenCropImage(false);
+      }
+    }
+  }, [firstName, lastName, croppedArea]);
 
   const triggerImageProfileSelectPopup = () => {
     profileImageRef?.current?.click();
   };
   const triggerCoverImageSelectPopup = () => {
-    profileImageRef?.current?.click();
+    // coverImageRef?.current?.click();
   };
 
   const onSelectFile = (event: any) => {
@@ -106,15 +147,15 @@ export default function ChangeProfileDialog({ open, setOpen }: any) {
         aria-describedby="alert-dialog-description"
       >
         <div className="relative max-w-full w-full h-[170px] max-h-[170px] mb-9">
-          <Image src="/images/cover-photo4.jpg" layout="fill" objectFit="cover" />
-          <div className="absolute w-[128px] h-[128px] bottom-[-61px] left-4 overflow-hidden rounded-full border-[6px] border-white">
-            <img
+          <Image src="/images/cover-photo4.jpg" layout="fill" objectFit="cover" className="z-20" />
+          <div className="absolute w-[128px] h-[128px] bottom-[-61px] left-4 overflow-hidden rounded-full border-[6px] border-white z-40">
+            <Image
+              loader={() => profileImage}
               src={profileImage}
               width={122}
               height={122}
-              // objectFit="cover"
-              // className="z-10"
-              // priority
+              alt="profileImage"
+              objectFit="cover"
             />
           </div>
           <input
@@ -132,11 +173,11 @@ export default function ChangeProfileDialog({ open, setOpen }: any) {
             className="hidden"
           />
           <CameraEnhanceOutlinedIcon
-            className="absolute bottom-[-11px] left-[69px] text-white z-20 opacity-50"
+            className="absolute bottom-[-11px] left-[69px] text-white opacity-50 z-50"
             onClick={triggerImageProfileSelectPopup}
           />
           <CameraEnhanceOutlinedIcon
-            className="absolute top-[46%] left-[50%] text-white z-20 opacity-50"
+            className="absolute top-[46%] left-[50%] text-white opacity-50 z-50"
             onClick={triggerCoverImageSelectPopup}
           />
         </div>
@@ -146,18 +187,35 @@ export default function ChangeProfileDialog({ open, setOpen }: any) {
             Let Google help apps determine location. This means sending anonymous location data to
             Google, even when no apps are running.
           </DialogContentText> */}
-          <TextField autoFocus margin="dense" id="name" label="Name" fullWidth variant="standard" />
-          <TextField margin="dense" id="name" label="Name" fullWidth variant="standard" />
-          <TextField margin="dense" id="name" label="Name" fullWidth variant="standard" />
-          <TextField
+          {/* <TextField
+            color="secondary"
             margin="dense"
             id="name"
-            label="Email"
-            type="text"
+            label="First name"
+            inputProps={{ style: { color: '#76dce6' } }}
             fullWidth
-            multiline
             variant="standard"
-          />
+            defaultValue={profile?.data.firstName || ''}
+            className="text-red-400"
+          /> */}
+          <div className="flex items-center w-full mt-6 text-gray-600">
+            <span className="w-28 flex font-medium  justify-end">First name*</span>
+            <input
+              onChange={(e) => setFirstName(e.target.value)}
+              value={firstName}
+              className="w-full py-[0.65rem] px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
+              type="text"
+            />
+          </div>
+          <div className="flex items-center w-full mt-6 text-gray-600">
+            <span className="w-28 flex font-medium justify-end">Last name*</span>
+            <input
+              onChange={(e) => setLastName(e.target.value)}
+              value={lastName}
+              className="w-full py-[0.65rem] px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
+              type="text"
+            />
+          </div>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} className="text-gray-600 px-1">

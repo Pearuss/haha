@@ -62,7 +62,7 @@ function login({
                   variant="filled"
                   label={errors.email?.message || 'Email'}
                   placeholder="Enter your email"
-                  color="primary"
+                  // color="primary"
                   size="medium"
                   fullWidth
                   {...field}
