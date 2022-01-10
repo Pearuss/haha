@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/comma-dangle */
 /* eslint-disable react/react-in-jsx-scope */
 import { useEffect, useState } from 'react';
-// import UseForm from "../hooks/useFormHook";
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
@@ -10,6 +10,7 @@ import * as yup from 'yup';
 import LoginComponent from '../Components/Auth/login';
 import ThemeWrapper from '../container/themeWrapper';
 import { useAuth } from '../hooks';
+import { LoginPayLoad } from '../models';
 import adminTheme from '../styles/theme/materialClient';
 
 // import Swal from "sweetalert2";
@@ -33,16 +34,17 @@ const Login = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!firstLoading && !profile?.username) {
+    if (!firstLoading && !profile?.data) {
       // setIsLogin(false);
-    } else if (profile?.username) {
+    } else if (profile?.data) {
       router.replace('/');
     }
   }, [profile, firstLoading]);
 
   const { handleSubmit, control, formState } = useForm({
-    mode: 'all',
-    // criteriaMode: 'firstError',
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
+    criteriaMode: 'firstError',
     shouldFocusError: false,
     resolver: yupResolver(schema),
   });
@@ -67,20 +69,16 @@ const Login = () => {
 
   const handleLoginSSO = () => {
     router.push(
-      'https://sso.hybrid-technologies.co.jp/auth/realms/eas/protocol/openid-connect/auth?response_type=code&redirect_uri=http://localhost:9500/loginsso/&client_id=skh-dev&scope=openid%20profile',
+      'https://sso.hybrid-technologies.co.jp/auth/realms/eas/protocol/openid-connect/auth?response_type=code&redirect_uri=http://localhost:9500/loginsso/&client_id=skh-dev&scope=openid%20profile'
     );
   };
 
-  const submit = async (data: any, event: React.FormEvent<HTMLFormElement>) => {
+  const submit = async (data: LoginPayLoad, event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const userData = {
-      username: data.email,
-      password: data.password,
-    };
     try {
       setIsLoadingForm(true);
-      await login(userData);
+      await login(data);
       localStorage.setItem('isView', 'true');
       setIsLoadingForm(false);
       router.push('/');
@@ -134,5 +132,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// export default withAuthentication(WithFormProvider);

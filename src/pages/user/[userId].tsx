@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import UserDetail from '../../common/ProfileInfomation/UserDetail';
 import Post from '../../Components/Post';
@@ -14,37 +15,57 @@ import { Article } from '../../models';
 
 function ProfilePage() {
   // const { profile } = useAuth();
+  const router = useRouter();
+  const userId = router.query.userId as never;
+
   const { value: articles }: { value: Article[] | any } = useCall(
-    '/api/v1/user/article/my-articles',
+    `http://localhost:3100/api/v1/user/article/${userId}`,
     {},
-    [],
+    [userId],
   );
+  const { value: profile }: any = useCall(`http://localhost:3100/api/v1/user/${userId}`, {}, [
+    userId,
+  ]);
+
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
+
+  //   const [userProfile, setUserProfile] = useState();
+  //   console.log(userProfile);
+
+  //   useEffect(() => {
+  //     if (router.query?.userId) {
+  //       const { userId } = router.query;
+  //       const { data } = useSWR(`http://localhost:3100/api/v1/user/${userId}`, {
+  //         revalidateOnFocus: false,
+  //       });
+  //       setUserProfile(data);
+  //     }
+  //   }, []);
 
   useEffect(() => {
     const btnShowTag = document.querySelector('.btnShowTag');
-    const menuMobile: any = document.querySelector('.menuMobile');
-    const cover: any = document.querySelector('.cover');
+    const menuMobile: HTMLElement | null = document.querySelector('.menuMobile');
+    const cover: HTMLElement | null = document.querySelector('.cover');
 
     btnShowTag?.addEventListener('click', () => {
       setIsShowTagMobile(true);
-      menuMobile.classList.add(
+      menuMobile?.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
         'ssm:-translate-x-full',
       );
-      menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
+      menuMobile?.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
 
-    cover.addEventListener('click', () => {
-      cover.classList.add('hidden');
+    cover?.addEventListener('click', () => {
+      cover?.classList.add('hidden');
       setIsShowTagMobile(false);
     });
   }, []);
 
   return (
-    <div className="relative mr-16 bg-white md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
-      <div className="flex items-center text-gray-600 text-sm">
+    <div className="relative mr-16 bg-white md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw] flex-1 mt-[-10px]">
+      <div className="flex items-center text-gray-600 text-sm ">
         <Link href="/">
           <p className="leading-8 cursor-pointer">Home</p>
         </Link>
@@ -66,11 +87,11 @@ function ProfilePage() {
           />
         </div>
       </div>
-      <UserDetail />
-      {articles
-        ?.slice(0)
+      <UserDetail data={profile} userId={userId} />
+      {articles?.data
+        .slice(0)
         .reverse()
-        .map((article: Article) => (
+        .map((article: any) => (
           <Post key={article.id} article={article} />
         ))}
       <TagSectionMobile isShowTagMobile={isShowTagMobile} />
@@ -80,24 +101,3 @@ function ProfilePage() {
 
 ProfilePage.Layout = AdminLayout;
 export default ProfilePage;
-
-// export const getStaticProps = async () => {
-//   const res = await fetch('http://localhost:3001/posts');
-//   const posts = await res.json();
-
-//   return {
-//     props: {
-//       data: posts.map((post: any) => ({
-//         id: post.id,
-//         title: post.title,
-//         body: post.body,
-//         views: post.views,
-//         comments: post.comments,
-//         tags: post.tags,
-//         img: post.img,
-//         author: post.author,
-//       })),
-//     },
-//     revalidate: 1,
-//   };
-// };

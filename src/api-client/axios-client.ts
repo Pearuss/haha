@@ -1,3 +1,5 @@
+import queryString from 'querystring';
+
 import axios from 'axios';
 
 const axiosClient = axios.create({
@@ -5,6 +7,7 @@ const axiosClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  paramsSerializer: (params) => queryString.stringify(params),
 });
 
 // Add a response interceptor

@@ -1,5 +1,5 @@
-/* eslint-disable react/button-has-type */
-import React, { ReactElement, useEffect, useState } from 'react';
+/* eslint-disable */
+import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -9,18 +9,25 @@ import TagSectionMobile from '../../Components/TagContent/TagSection';
 import useToggle from '../../hooks/use-toggle';
 import { MainLayout } from '../../layout';
 import { capitalizeFirstLetter } from '../../utilities/helper';
+import useSWR from 'swr';
+import { Tag } from '../../models';
 
-// interface PostItem {
-//   id: string;
-//   title: string;
-//   img: string;
-//   body: string;
-// }
+function PostsTag({ data }: any) {
+  console.log('data', data);
 
-const PostsTag = (data: any): ReactElement => {
   const [isFollow, setIsFollow] = useToggle(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
   const router = useRouter();
+
+  const { data: followTags } = useSWR('/api/v1/following-tag/get-full', {
+    revalidateOnFocus: false,
+  });
+
+  useEffect(() => {
+    followTags?.data.some((tag: Tag) => tag.slug == `/${router.query.tag}`)
+      ? setIsFollow(true)
+      : setIsFollow(false);
+  }, [router, followTags]);
 
   useEffect(() => {
     const btnShowTag = document.querySelector('.btnShowTag');
@@ -32,7 +39,7 @@ const PostsTag = (data: any): ReactElement => {
       menuMobile.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full',
+        'ssm:-translate-x-full'
       );
       menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -43,13 +50,11 @@ const PostsTag = (data: any): ReactElement => {
     });
   }, []);
   return (
-    <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
+    <div className="flex-1 mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
       <div className="flex items-center ">
         <Image src="/images/hashtag1.png" width={40} height={40} />
         <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl text-black font-normal ml-[1vw]">
-          Tag:
-          {' '}
-          {capitalizeFirstLetter(router.query.tag?.toString() || '')}
+          Tag: {capitalizeFirstLetter(router.query.tag?.toString() || '')}
         </p>
       </div>
       <div className="flex w-full my-4">
@@ -66,9 +71,12 @@ const PostsTag = (data: any): ReactElement => {
       <div className="w-full flex items-center pt-8 border-b-4 border-blueCyanLogo">
         <div className="flex-1 pb-2 text-center font-semibold  text-blueCyanLogo">All Posts</div>
       </div>
-      {data.post?.map((post: any) => (
-        <Post key={post.id} post={post} />
-      ))}
+      {data
+        ?.slice(0)
+        .reverse()
+        .map((post: any) => (
+          <Post key={post.id} article={post} />
+        ))}
       <div
         className={`hidden p-3 z-50 overflow-scroll md:block sm:block ssm:block fixed h-[100vh] w-[35vw] top-0 right-0 bg-white transition duration-200 ease-in-out md:w-[40vw] sm:w-[50vw] ssm:w-[70vw] transform ${
           !isShowTagMobile ? 'translate-x-full' : ''
@@ -78,30 +86,42 @@ const PostsTag = (data: any): ReactElement => {
       </div>
     </div>
   );
-};
+}
 PostsTag.Layout = MainLayout;
 export default PostsTag;
 
-export async function getStaticPaths() {
-  const res = await fetch('http://localhost:3001/posts?_limit=300');
-  const posts = await res.json();
+export const getStaticPaths = async () => {
+  const res = await fetch('http://localhost:3100/api/v1/tags');
+  const tags = await res.json();
 
-  const paths = posts?.data?.map((post: any) => ({
-    params: { tag: post.id.toString() },
-  }));
+  const paths = tags.data.map((tag: any) => {
+    return {
+      params: { tag: tag.slug?.toString() },
+    };
+  });
+
   return {
     paths,
-    // paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
-    fallback: true,
+    fallback: 'blocking',
   };
-}
+};
 
-export async function getStaticProps() {
-  const res = await fetch('http://localhost:3001/posts');
-  const post = await res.json();
+export const getStaticProps = async ({ params }: any) => {
+  const { tag } = params;
+  if (!tag) return { notFound: true };
+
+  const resFullTags = await fetch('http://localhost:3100/api/v1/tags');
+  const fullTags = await resFullTags.json();
+
+  const tagResult = fullTags.data.find((item: any) => item.slug === `/${tag}`);
+
+  const res = await fetch(`http://localhost:3100/api/v1/user/article/tag/${tagResult?.id}`);
+  const { data }: any = await res.json();
 
   return {
-    props: { post },
+    props: {
+      data,
+    },
     revalidate: 1,
   };
-}
+};

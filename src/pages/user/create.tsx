@@ -1,32 +1,23 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable no-param-reassign */
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import useSWR from 'swr';
 
+import { Loading } from '../../common/Loading';
 import ModalPost from '../../Components/CreatePost';
+import useCall from '../../hooks/use-call';
 import { HeaderLayout } from '../../layout';
-
-interface INewPost {
-  title: string;
-  shortContent: string;
-  content: string;
-  status: true;
-  reason: string;
-  sectionNo: any;
-  partialId: any;
-  tag: string[];
-  mainCategory: string;
-  relatedCategory: string[];
-  image: string;
-  public: boolean;
-}
+import { INewPost } from '../../models';
 
 function UserCreatePage() {
-  const { data: tagData }: any = useSWR('http://localhost:3001/tags', { revalidateOnFocus: false });
-  const { data: catData }: any = useSWR('http://localhost:3001/category', {
+  const { data: tagData }: any = useSWR('http://localhost:3100/api/v1/tags', {
     revalidateOnFocus: false,
   });
+  const { data: catData }: any = useSWR('http://localhost:3100/api/v1/category/menu', {
+    revalidateOnFocus: false,
+  });
+  const { value: myArticle }: any = useCall('/api/v1/user/article/my-articles', {}, []);
 
   const [newPost, setNewPost] = useState<INewPost>({
     title: '',
@@ -35,19 +26,21 @@ function UserCreatePage() {
     status: true,
     reason: '',
     sectionNo: 1,
-    partialId: '',
+    partialId: 0,
     tag: [],
-    mainCategory: '',
+    mainCategory: null,
     relatedCategory: [],
     image: '',
     public: true,
   });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const button = document.createElement('button');
+    try {
+      const button = document.createElement('button');
 
-    button.className = 'btnUpLoadMD';
-    button.innerHTML = `
+      button.className = 'btnUpLoadMD';
+      button.innerHTML = `
       <svg
         className="block MuiSvgIcon-root MuiSvgIcon-fontSizeMedium  css-w2bhrx"
         focusable="false"
@@ -61,17 +54,20 @@ function UserCreatePage() {
       </svg>
   `;
 
-    setTimeout(() => {
-      const md = document.querySelectorAll('.md-editor .md-editor-toolbar');
+      setTimeout(() => {
+        const md = document.querySelectorAll('.md-editor .md-editor-toolbar');
 
-      md[1].appendChild(button);
-      const btnUpLoadMD: any = document.querySelector('.btnUpLoadMD');
-      btnUpLoadMD.onclick = openBrowseImg;
-    }, 1000);
+        md[1]?.appendChild(button);
+        const btnUpLoadMD: HTMLElement | null = document.querySelector('.btnUpLoadMD');
+        if (btnUpLoadMD) btnUpLoadMD.onclick = openBrowseImg;
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   // Append link image inside markdown
-  function handleUploadImgMD(e: any) {
+  function handleUploadImgMD(e: ChangeEvent<HTMLInputElement> | any): void {
     console.log(e.target.files[0]);
 
     setNewPost((state: any) => ({
@@ -80,59 +76,64 @@ function UserCreatePage() {
     }));
   }
 
-  function openBrowseImg(e: any) {
+  function openBrowseImg(e: ChangeEvent<MouseEvent> | any): void {
     e.preventDefault();
     document.getElementById('uploadImgMD')?.click();
   }
 
-  const changeTitle = (e: any) => {
-    setNewPost((state: any) => ({ ...state, title: e.target.value }));
+  const changeTitle = (e: ChangeEvent<HTMLInputElement>): void => {
+    setNewPost((state: INewPost) => ({ ...state, title: e.target.value }));
   };
 
-  const changeShortContent = (e: any) => {
-    setNewPost((state: any) => ({ ...state, shortContent: e.target.value }));
+  const changeShortContent = (e: ChangeEvent<HTMLInputElement>): void => {
+    setNewPost((state: INewPost) => ({ ...state, shortContent: e.target.value }));
   };
 
-  const changeSectionNo = (value: any) => {
-    setNewPost((state: any) => ({ ...state, sectionNo: +value.value }));
+  const changeSectionNo = (value: any): void => {
+    setNewPost((state: INewPost) => ({ ...state, sectionNo: +value.value }));
   };
 
-  const changeMainCategory = (value: any) => {
-    setNewPost((state: any) => ({ ...state, mainCategory: value.value }));
+  const changeMainCategory = (value: any): void => {
+    setNewPost((state: INewPost) => ({ ...state, mainCategory: value.value }));
   };
 
-  const changeRelatedCategory = (value: any) => {
+  const changeRelatedCategory = (value: any): void => {
     const newrelCat = value.map((cat: any) => cat.value);
-    setNewPost((state: any) => ({ ...state, relatedCategory: newrelCat }));
+    setNewPost((state: INewPost) => ({ ...state, relatedCategory: newrelCat }));
   };
 
-  const changeTag = (value: any) => {
+  const changePartialId = (value: any): void => {
+    setNewPost((state: INewPost) => ({ ...state, partialId: value.value }));
+  };
+
+  const changeTag = (value: any): void => {
     const newTag = value.map((tag: any) => tag.value);
-    setNewPost((state: any) => ({ ...state, tag: newTag }));
+    setNewPost((state: INewPost) => ({ ...state, tag: newTag }));
   };
 
-  const changeStatus = () => {
-    setNewPost((state: any) => ({ ...state, status: !newPost.status }));
+  const changeStatus = (): void => {
+    setNewPost((state: INewPost) => ({ ...state, status: !newPost.status }));
   };
 
-  const changePublic = () => {
-    setNewPost((state: any) => ({
+  const changePublic = (): void => {
+    setNewPost((state: INewPost) => ({
       ...state,
       public: !state.public,
     }));
   };
 
-  const imageHandler = (e: any) => {
+  const imageHandler = (e: any): void => {
     const reader = new FileReader();
+
     reader.onload = () => {
       if (reader.readyState === 2) {
-        setNewPost((state: any) => ({ ...state, image: reader.result }));
+        setNewPost((state: INewPost) => ({ ...state, image: `${reader.result}` }));
       }
     };
     reader.readAsDataURL(e.target.files[0]);
   };
-  const removeImage = () => {
-    setNewPost((state: any) => ({ ...state, image: '' }));
+  const removeImage = (): void => {
+    setNewPost((state: INewPost) => ({ ...state, image: '' }));
   };
 
   return (
@@ -145,13 +146,16 @@ function UserCreatePage() {
         changeSectionNo={changeSectionNo}
         changeMainCategory={changeMainCategory}
         changeRelatedCategory={changeRelatedCategory}
+        changePartialId={changePartialId}
         changeTag={changeTag}
         changeStatus={changeStatus}
         changePublic={changePublic}
-        catData={catData}
+        catData={catData?.data}
+        myArticle={myArticle?.data}
         imageHandler={imageHandler}
         removeImage={removeImage}
-        tagData={tagData?.followingTags}
+        setIsLoading={setIsLoading}
+        tagData={tagData?.data}
       />
       <input
         type="file"
@@ -160,6 +164,7 @@ function UserCreatePage() {
         className="hidden"
         onChange={handleUploadImgMD}
       />
+      {isLoading ? <Loading /> : ''}
     </div>
   );
 }
@@ -167,19 +172,3 @@ function UserCreatePage() {
 UserCreatePage.Layout = HeaderLayout;
 
 export default UserCreatePage;
-
-export const getStaticProps = async () => {
-  const resTag = await fetch('http://localhost:3001/tags');
-  const tags = await resTag.json();
-  const tagData = tags.followingTags;
-
-  const resCat = await fetch('http://localhost:3001/category');
-  const catData = await resCat.json();
-
-  return {
-    props: {
-      tagData,
-      catData,
-    },
-  };
-};

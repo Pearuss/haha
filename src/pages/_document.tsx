@@ -1,8 +1,7 @@
+/* eslint-disable object-curly-newline */
 import React from 'react';
 
-import Document, {
-  Html, Head, Main, NextScript,
-} from 'next/document';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
   render() {
@@ -13,6 +12,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
+          <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
         </Head>
         <body>
           <Main />

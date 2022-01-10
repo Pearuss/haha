@@ -1,47 +1,47 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/order */
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-// import useCall from '../../hooks/use-call';
 import InputMention from '../../common/InputMention/InputMention';
 import useFetch from '../../hooks/use-fetch';
+import { IComment } from '../../models';
 
-// import FormComment from './FormComment';
-// import { getComments as getCommentsApi, createComment as createCommentApi } from './api';
 import Comment from './Comment';
 
-function CommentSection({ showForm, postId }: any): ReactElement {
+// interface CommentSectionProps {
+//   showForm: any;
+//   postId: number;
+// }
+
+function CommentSection({ showForm, postId }: any) {
   const [backendComments, setBackendComments] = useState<any[]>([]);
   const [activeComment, setActiveComment] = useState(null);
 
   useEffect(() => {
-    useFetch(`http://localhost:3001/allComments?postId=${postId}`).then((data: any) => {
-      setBackendComments(data);
-    });
+    useFetch(`http://localhost:3100/api/v1/comment/${postId}`).then(
+      (data: Record<string, IComment[]>) => {
+        if (data?.data) {
+          setBackendComments(data.data);
+        }
+      },
+    );
   }, [postId]);
-  // const { loading, error, value } = useCall(`http://localhost:3001/allComments?postId=${postId}`);
-  // console.log(value);
 
   const rootComments = backendComments?.filter(
-    (backendComment) => backendComment.parentId === null,
+    (backendComment) => backendComment.parentId.toString() === '0',
   );
-  const getReplies = (commentId: any) => backendComments
-    ?.filter((backendComment) => backendComment.parentId === commentId)
+  const getReplies = (commentId: number) => backendComments
+    ?.filter((backendComment) => backendComment.parentId.toString() === commentId)
     .sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
 
-  const addComment = (text: any, parentId: any) => {
-    // createCommentApi(text, parentId).then((comment) => {
-    //   setBackendComments([comment, ...backendComments]);
-    //   setActiveComment(null);
-    // });
+  const addComment = (text: string, parentId: number) => {
     if (typeof parentId === 'undefined') {
-      parentId = null;
+      parentId = 0;
     }
     useFetch('http://localhost:3001/allComments', {
       method: 'POST',
       body: JSON.stringify({
-        id: Math.random().toString(36).substr(2, 9),
-        body: text,
+        comment: text,
         parentId,
         userId: '2',
         username: 'Pearuss',
@@ -56,7 +56,7 @@ function CommentSection({ showForm, postId }: any): ReactElement {
   return (
     <div className="w-full relative mb-2">
       {showForm && <InputMention handleSubmit={addComment} initialText="" submitLabel="Comment" />}
-      {rootComments.map((rootComment) => (
+      {rootComments?.map((rootComment) => (
         <Comment
           key={rootComment.id}
           userId={rootComment.userId}
@@ -67,7 +67,6 @@ function CommentSection({ showForm, postId }: any): ReactElement {
           setActiveComment={setActiveComment}
         />
       ))}
-      {/* <div className="w-full border-b border-gray-200"></div> */}
     </div>
   );
 }

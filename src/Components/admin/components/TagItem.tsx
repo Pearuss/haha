@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 import { IconButton, Tooltip } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
 
-function TagList(props: any): ReactElement {
+function TagList(props: any) {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
   const {
@@ -19,7 +19,7 @@ function TagList(props: any): ReactElement {
           <Checkbox {...label} checked={tag.selected} onClick={() => handleCheckItemClick(tag)} />
         </span>
       </span>
-      <span>{tag.name}</span>
+      <span className="ml-[-50%]">{tag.name}</span>
       <span>{tag.createAt}</span>
       <span>2000</span>
       <span className="flex items-center gap-[45%]">

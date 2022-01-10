@@ -3,7 +3,7 @@ import React from 'react';
 import Auth from '../Components/Auth/auth';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header/Header';
-import { LayoutProps } from '../modals';
+import { LayoutProps } from '../models';
 
 export function HeaderLayout({ children }: LayoutProps) {
   return (

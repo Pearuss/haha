@@ -1,7 +1,5 @@
 /* eslint-disable max-len */
-import React, {
-  ReactElement, useCallback, useEffect, useState,
-} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { UserCircleIcon, MenuIcon, SearchIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
@@ -11,7 +9,7 @@ import Swal from 'sweetalert2';
 import { useAuth } from '../../hooks';
 import useToggle from '../../hooks/use-toggle';
 
-function HeaderRight(): ReactElement {
+function HeaderRight() {
   const router = useRouter();
   const { logout, profile, firstLoading } = useAuth();
 
@@ -19,9 +17,9 @@ function HeaderRight(): ReactElement {
   const [showSearchInput, setShowSearchInput] = useToggle(false);
 
   useEffect(() => {
-    if (!firstLoading && !profile?.username && !localStorage.getItem('tokenSso')) {
+    if (!firstLoading && !profile?.data && !localStorage.getItem('tokenSso')) {
       setIsLogin(false);
-    } else if (profile?.username || localStorage.getItem('tokenSso')) {
+    } else if (profile?.data || localStorage.getItem('tokenSso')) {
       setIsLogin(true);
     }
   }, [profile, firstLoading]);
@@ -63,11 +61,11 @@ function HeaderRight(): ReactElement {
             data-dropdown-button-user
           >
             <UserCircleIcon className="h-8 pointer-events-none cursor-pointer text-lg md:h6 sm:h-5 ssm:h-4" />
-            Pearuss
+            {profile?.data.firstName}
           </div>
           <div className={`userDropdown-menu ${isLogin ? '' : 'hidden'}`}>
             <div className="flex flex-col gap-1">
-              <Link href="/user/profile">
+              <Link href={`/user/${profile?.data.userId}`}>
                 <a className="link ">Profile</a>
               </Link>
               <Link href="/user/create">

@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import CloseIcon from '@mui/icons-material/Close';
 import Image from 'next/image';
@@ -6,16 +6,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
+import { Category } from '../../models';
 import { capitalizeFirstLetter } from '../../utilities/helper';
 
-function Menu(): ReactElement {
+/* eslint-disable */
+function Menu() {
   const router = useRouter();
-  // const [category, setCategory] = useState<any[]>([])
-  // if(data) {
-  //   setCategory(Object.keys(data));
-  // }
-
-  const { data } = useSWR('http://localhost:3001/menu', { revalidateOnFocus: false });
+  const { data } = useSWR('http://localhost:3100/api/v1/category', { revalidateOnFocus: false });
 
   useEffect(() => {
     const btnMenuMobile = document.querySelector('.btnMenuMobile');
@@ -28,13 +25,13 @@ function Menu(): ReactElement {
         'lg:-translate-x-full',
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full',
+        'ssm:-translate-x-full'
       );
       menuMobile.classList.add(
         'lg:translate-x-0',
         'md:translate-x-0',
         'sm:translate-x-0',
-        'ssm:translate-x-0',
+        'ssm:translate-x-0'
       );
       cover.classList.remove('hidden');
     });
@@ -44,13 +41,13 @@ function Menu(): ReactElement {
         'lg:-translate-x-full',
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full',
+        'ssm:-translate-x-full'
       );
       menuMobile.classList.remove(
         'lg:translate-x-0',
         'md:translate-x-0',
         'sm:translate-x-0',
-        'ssm:translate-x-0',
+        'ssm:translate-x-0'
       );
       cover.classList.add('hidden');
     });
@@ -60,13 +57,13 @@ function Menu(): ReactElement {
         'lg:-translate-x-full',
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full',
+        'ssm:-translate-x-full'
       );
       menuMobile.classList.remove(
         'lg:translate-x-0',
         'md:translate-x-0',
         'sm:translate-x-0',
-        'ssm:translate-x-0',
+        'ssm:translate-x-0'
       );
       cover.classList.add('hidden');
     });
@@ -125,9 +122,9 @@ function Menu(): ReactElement {
             <a data-dropdown-button>Home</a>
           </Link>
         </li>
-        {typeof data === 'object'
-          && data !== null
-          && Object.keys(data).map((category: any) => (
+        {typeof data?.data === 'object' &&
+          data.data !== null &&
+          Object.keys(data.data).map((category: string) => (
             <li key={category} className="dropdown" data-dropdown>
               <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
                 {capitalizeFirstLetter(category)}
@@ -135,8 +132,8 @@ function Menu(): ReactElement {
 
               <div className="dropdown-menu">
                 <div className="flex flex-col gap-1">
-                  {data[category].map((result: any) => (
-                    <Link href={result.path} key={result.id}>
+                  {data.data[category]?.map((result: Category) => (
+                    <Link href={result.slug} key={result.id}>
                       <a className="link">{result.name}</a>
                     </Link>
                   ))}
@@ -169,9 +166,9 @@ function Menu(): ReactElement {
             </a>
           </Link>
         </li>
-        {typeof data === 'object'
-          && data !== null
-          && Object.keys(data).map((category: any) => (
+        {typeof data?.data === 'object' &&
+          data.data !== null &&
+          Object.keys(data.data).map((category: string) => (
             <li
               key={category}
               className={`${
@@ -185,8 +182,8 @@ function Menu(): ReactElement {
 
               <div className="dropdown-menu">
                 <div className="flex flex-col gap-1">
-                  {data[category].map((result: any) => (
-                    <Link href={result.path} key={result.id}>
+                  {data.data[category]?.map((result: Category) => (
+                    <Link href={result.slug} key={result.id}>
                       <a className="link">{result.name}</a>
                     </Link>
                   ))}

@@ -61,3 +61,52 @@ export function capitalizeFirstLetter(string: string) {
 export function countWord(string: string) {
   return string.split(' ').length;
 }
+
+export function formatDate(dateObj: Date): string {
+  const monthNames = [
+    'Jan',
+    'Feb',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  const month = monthNames[dateObj.getMonth()];
+  const day = String(dateObj.getDate()).padStart(2, '0');
+  const year = dateObj.getFullYear();
+  const output = `${month} ${day} ${year}`;
+  return output;
+}
+
+export function timeAgo(date: Date) {
+  const seconds = Math.floor((Number(new Date()) - Number(date)) / 1000);
+
+  let interval = seconds / 31536000;
+
+  if (interval > 1) {
+    return `${Math.floor(interval)} years`;
+  }
+  interval = seconds / 2592000;
+  if (interval > 1) {
+    return `${Math.floor(interval)} months`;
+  }
+  interval = seconds / 86400;
+  if (interval > 1) {
+    return `${Math.floor(interval)} days`;
+  }
+  interval = seconds / 3600;
+  if (interval > 1) {
+    return `${Math.floor(interval)} hours`;
+  }
+  interval = seconds / 60;
+  if (interval > 1) {
+    return `${Math.floor(interval)} minutes`;
+  }
+  return `${Math.floor(seconds)} seconds`;
+}

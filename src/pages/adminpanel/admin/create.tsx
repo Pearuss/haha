@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable react/button-has-type */
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { Theme, useTheme } from '@mui/material/styles';
@@ -41,7 +41,7 @@ const category = [
   'Kelly Snyder',
 ];
 
-function CreateCategory(): ReactElement {
+function CreateCategory() {
   const [catName, setCatName] = React.useState<string[]>(category);
 
   const theme = useTheme();

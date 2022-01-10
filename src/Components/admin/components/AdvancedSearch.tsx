@@ -1,6 +1,6 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import DateRangePicker, { DateRange } from '@mui/lab/DateRangePicker';
@@ -8,7 +8,7 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-function AdvancedSearch(): ReactElement {
+function AdvancedSearch() {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
   return (
     <div className="bg-white rounded h-200px p-4 px-6 mb-4">

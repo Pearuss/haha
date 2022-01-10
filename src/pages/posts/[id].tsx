@@ -1,11 +1,5 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable eqeqeq */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable no-restricted-globals */
-/* eslint-disable @typescript-eslint/no-loop-func */
-/* eslint-disable no-plusplus */
-import React, { ReactElement, useEffect, useState } from 'react';
+/* eslint-disable */
+import React, { useEffect, useState } from 'react';
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CloseIcon from '@mui/icons-material/Close';
@@ -21,7 +15,7 @@ import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
 import { useAuth } from '../../hooks';
 import { DetailPostLayout } from '../../layout';
 
-function Index({ data }: any): ReactElement {
+function DetailArticlePage({ data }: any) {
   const [isLogin, setIsLogin] = useState(false);
   const [showFormComment, setShowFormComment] = useState(false);
   const [isShowContentIndex, setIsShowContentIndex] = useState(true);
@@ -32,7 +26,7 @@ function Index({ data }: any): ReactElement {
   const { profile, firstLoading } = useAuth();
   const router = useRouter();
 
-  const postId = router.query.id;
+  // const postId = router.query.id;
 
   if (router.isFallback) {
     return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>;
@@ -47,9 +41,9 @@ function Index({ data }: any): ReactElement {
   }, [isShowTopicMobile]);
 
   useEffect(() => {
-    if (!firstLoading && !profile?.username && !localStorage.getItem('tokenSso')) {
+    if (!firstLoading && !profile?.data && !localStorage.getItem('tokenSso')) {
       setIsLogin(false);
-    } else if (profile?.username || localStorage.getItem('tokenSso')) {
+    } else if (profile?.data || localStorage.getItem('tokenSso')) {
       setIsLogin(true);
     }
   }, [profile, firstLoading]);
@@ -135,7 +129,7 @@ function Index({ data }: any): ReactElement {
       menuMobile.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full',
+        'ssm:-translate-x-full'
       );
       menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -193,7 +187,7 @@ function Index({ data }: any): ReactElement {
         <PostDetail dataPostDetail={data} isReadMore={isReadMore} setIsReadMore={setIsReadMore} />
         {isLogin && (
           <div className="flex items-center justify-between py-4 mt-12 shadow-sm font-medium text-gray-700 rounded-md bg-white mb-4">
-            <div className="text-lg">Comments (20)</div>
+            <div className="text-lg">Comments</div>
             <button
               onClick={toggleFormComment}
               className="flex items-center py-[0.35rem] px-3 rounded-md border border-blue-600 text-blue-600"
@@ -205,7 +199,7 @@ function Index({ data }: any): ReactElement {
         )}
         {isLogin && (
           <CommentSection
-            postId={postId}
+            postId={data.data.id}
             showForm={showFormComment}
             setShowFormComment={setShowFormComment}
           />
@@ -217,12 +211,12 @@ function Index({ data }: any): ReactElement {
     </div>
   );
 }
-Index.Layout = DetailPostLayout;
+DetailArticlePage.Layout = DetailPostLayout;
 
-export default Index;
+export default DetailArticlePage;
 
 export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:3001/posts?_limit=200');
+  const res = await fetch('http://localhost:3100/api/v1/user/article/full-list');
   const posts = await res.json();
 
   const paths = posts?.data?.map((post: any) => ({
@@ -238,12 +232,12 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context: any) => {
   const { id } = context?.params;
   if (!id) return { notFound: true };
-  const res = await fetch(`http://localhost:3001/posts/${id}?_limit=200`);
-  const posts = await res.json();
+  const res = await fetch(`http://localhost:3100/api/v1/user/article/${id}/detail`);
+  const data: any = await res.json();
 
   return {
     props: {
-      data: posts,
+      data: data,
     },
     revalidate: 1,
   };
