@@ -28,11 +28,9 @@ import { countWord } from '../../utilities/helper';
 import {
   postSchema,
   postTitleSchema,
-  postContentSchema,
   postShortContentSchema,
   postTagSchema,
   postCategorySchema,
-  postImageSchema,
 } from '../../validation/createPost';
 import MarkDown from './MarkDown';
 
@@ -51,7 +49,6 @@ function ModalPost({
   myArticle,
   changeStatus,
   changePublic,
-  setIsLoading,
   imageHandler,
   removeImage,
 }: {
@@ -69,7 +66,6 @@ function ModalPost({
   myArticle: Article[];
   changeStatus: any;
   changePublic: any;
-  setIsLoading: any;
   imageHandler: Function | any;
   removeImage: Function;
 }): JSX.Element {
@@ -78,12 +74,11 @@ function ModalPost({
   const goHomePage = () => {
     router.push('/');
   };
+
   const [isErrorTitle, setIsErrorTitle] = useState(false);
   const [isErrorShortContent, setIsErrorShortContent] = useState(false);
-  const [isErrorContent, setIsErrorContent] = useState(false);
   const [isErrorTag, setIsErrorTag] = useState(false);
   const [isErrorCategory, setIsErrorCategory] = useState(false);
-  const [isErrorImage, setIsErrorImage] = useState(false);
 
   const tagOptions: { value: string; label: string }[] = tagData?.map((tag: any) => ({
     value: tag.id,
@@ -111,7 +106,7 @@ function ModalPost({
     const formData = {
       title: newPost.title,
       shortContent: countWord(newPost.shortContent),
-      content: countWord(newPost.content),
+      // content: countWord(newPost.content),
       tag: newPost.tag,
       mainCategory: newPost.mainCategory,
       image: newPost.image,
@@ -119,8 +114,7 @@ function ModalPost({
     const isValid = await postSchema.isValid(formData);
 
     if (isValid) {
-      setIsLoading(true);
-      const { message }: any = await useFetch('http://localhost:9500/api/v1/user/article', {
+      const { message: value }: any = await useFetch('http://localhost:9500/api/v1/user/article', {
         method: 'POST',
         body: JSON.stringify({
           article: {
@@ -129,7 +123,7 @@ function ModalPost({
             title: newPost.title,
             shortContent: newPost.shortContent,
             content: newPost.content,
-            thumbnail: newPost.image,
+            thumbnail: null,
             status: 1,
             mainCatId: newPost.mainCategory,
           },
@@ -137,11 +131,10 @@ function ModalPost({
           categoryIds: newPost.relatedCategory,
         }),
       });
-      if (message === 200) {
-        setIsLoading(false);
+      if (value === 200) {
         Swal.fire('Article saved success.');
         setTimeout(() => {
-          router.push('/', '/');
+          router.push('/');
         }, 1000);
       }
     } else {
@@ -157,12 +150,6 @@ function ModalPost({
       const isValidShortContent = await postShortContentSchema.isValid(formShortContent);
       setIsErrorShortContent(!isValidShortContent);
 
-      const formContent = {
-        content: countWord(newPost.content),
-      };
-      const isValidContent = await postContentSchema.isValid(formContent);
-      setIsErrorContent(!isValidContent);
-
       const formTag = {
         tag: newPost.tag,
       };
@@ -174,12 +161,6 @@ function ModalPost({
       };
       const isValidCat = await postCategorySchema.isValid(formCategory);
       setIsErrorCategory(!isValidCat);
-
-      const formImage = {
-        image: newPost.image,
-      };
-      const isValidImage = await postImageSchema.isValid(formImage);
-      setIsErrorImage(!isValidImage);
     }
   };
 
@@ -222,7 +203,7 @@ function ModalPost({
                 size="small"
                 variant="outlined"
                 error={isErrorTitle}
-                label={isErrorTitle ? 'Title is required field.' : ''}
+                helperText={isErrorTitle ? 'This is required field.' : ''}
               />
             </div>
             <div className="flex w-full bg-white p-3 border-b-2">
@@ -236,22 +217,10 @@ function ModalPost({
                 onChange={changeShortContent}
                 value={newPost.shortContent}
                 error={isErrorShortContent}
-                label={isErrorShortContent ? 'Short content must be more than 30 words.' : ''}
+                helperText={isErrorShortContent ? 'This field must be more than 30 words.' : ''}
               />
             </div>
-            <div className="w-full bg-white">
-              <div className="flex items-center">
-                <p className="flex p-3 w-32 ml-4 text-gray-900 font-medium ">Content:</p>
-                {isErrorContent ? (
-                  <p className="text-darkRed">Content must be more than 100 words</p>
-                ) : (
-                  ''
-                )}
-              </div>
-              <div className={`border ${isErrorContent ? 'border-darkRed' : ''} `}>
-                <MarkDown content={newPost.content} setNewPost={setNewPost} />
-              </div>
-            </div>
+            <MarkDown content={newPost.content} setNewPost={setNewPost} />
           </div>
           <div className="w-1/3 max-w-1/3 flex flex-col justify-between border-l border-gray-300 shadow-md rounded-md md:w-full sm:w-full ssm:w-full md:ml-0 sm:ml-0 ssm:ml-0">
             <div className="flex flex-col justify-around w-full bg-opacity-50 py-3 px-5">
@@ -275,7 +244,9 @@ function ModalPost({
               <div className="flex mb-3 border-b border-gray-300 pb-1">
                 <p className="w-23 font-medium mr-8 lg:mr-1">Partial Id:</p>
                 <Select
-                  className="basic-single mb-1"
+                  className={`basic-single mb-1 ${
+                    isErrorCategory ? 'border border-darkRed rounded-md' : ''
+                  }`}
                   classNamePrefix="select"
                   placeholder="Enter Article of User"
                   name="partialId"
@@ -322,12 +293,9 @@ function ModalPost({
                 />
               </div>
               <div className="pb-1">
-                <div className="flex items-center">
-                  <p className="w-23 font-medium lg:mr-1">Image:</p>
-                  {isErrorImage ? <p className="text-darkRed">Image is required.</p> : ''}
-                </div>
+                <p className="w-23 font-medium mr-8 lg:mr-1">Image:</p>
                 <div className="flex flex-wrap gap-2 w-full">
-                  {newPost.image !== '' ? (
+                  {newPost.image ? (
                     <div className="relative flex-1 min-w-[49%] md:min-w-[30%]  h-auto max-h-[300] p-1 mt-4  rounded border border-gray-300">
                       <img src={newPost.image} alt="" className="overflow-hidden rounded" />
                       <CloseIcon

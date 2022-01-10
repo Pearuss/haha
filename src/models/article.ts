@@ -52,7 +52,7 @@ export interface INewPost {
   sectionNo: number;
   partialId: number;
   tag: string[];
-  mainCategory: number | null;
+  mainCategory: number;
   relatedCategory: string[];
   image: string;
   public: boolean;

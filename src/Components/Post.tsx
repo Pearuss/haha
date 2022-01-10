@@ -16,9 +16,7 @@ function Post({ article }: { article: Article }) {
       <div className="relative my-[0.4rem] overflow-hidden max-w-[200px] ssm:max-w-full ssm:w-full w-[200px] ssm:min-h-[200px] h-auto ">
         <img
           className="absolute inset-0 overflow-hidden rounded-sm"
-          // src="http://localhost:3100/uploads/articles/202201/EMbXFEDrEd38I2PlStUX.jpg"
-          src={`http://localhost:3100${article.thumbnail}`}
-          alt="img"
+          src="https://sadesign.vn/wp-content/uploads/2020/11/di-doc-bai-bien.jpg"
           // src={post.img}
         />
       </div>

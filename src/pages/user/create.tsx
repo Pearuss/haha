@@ -4,7 +4,6 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import useSWR from 'swr';
 
-import { Loading } from '../../common/Loading';
 import ModalPost from '../../Components/CreatePost';
 import useCall from '../../hooks/use-call';
 import { HeaderLayout } from '../../layout';
@@ -28,12 +27,12 @@ function UserCreatePage() {
     sectionNo: 1,
     partialId: 0,
     tag: [],
-    mainCategory: null,
+    mainCategory: 1,
     relatedCategory: [],
     image: '',
     public: true,
   });
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  console.log(newPost);
 
   useEffect(() => {
     try {
@@ -123,6 +122,7 @@ function UserCreatePage() {
   };
 
   const imageHandler = (e: any): void => {
+    console.log(1);
     const reader = new FileReader();
 
     reader.onload = () => {
@@ -154,7 +154,6 @@ function UserCreatePage() {
         myArticle={myArticle?.data}
         imageHandler={imageHandler}
         removeImage={removeImage}
-        setIsLoading={setIsLoading}
         tagData={tagData?.data}
       />
       <input
@@ -164,7 +163,6 @@ function UserCreatePage() {
         className="hidden"
         onChange={handleUploadImgMD}
       />
-      {isLoading ? <Loading /> : ''}
     </div>
   );
 }
