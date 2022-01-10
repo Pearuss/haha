@@ -112,7 +112,7 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
         </div>
       </div>
       {articles
-        // .slice(0)
+        .slice(0)
         .reverse()
         .map((article: Article) => (
           <Post key={article.id} article={article} />
