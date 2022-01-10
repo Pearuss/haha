@@ -114,6 +114,7 @@ function ModalPost({
     const isValid = await postSchema.isValid(formData);
 
     if (isValid) {
+      console.log('newPost', newPost);
       const { message: value }: any = await useFetch('http://localhost:9500/api/v1/user/article', {
         method: 'POST',
         body: JSON.stringify({
@@ -123,7 +124,7 @@ function ModalPost({
             title: newPost.title,
             shortContent: newPost.shortContent,
             content: newPost.content,
-            thumbnail: null,
+            thumbnail: newPost.image,
             status: 1,
             mainCatId: newPost.mainCategory,
           },
@@ -134,7 +135,7 @@ function ModalPost({
       if (value === 200) {
         Swal.fire('Article saved success.');
         setTimeout(() => {
-          router.push('/');
+          router.push('/', '/');
         }, 1000);
       }
     } else {
