@@ -17,15 +17,27 @@ function ProfilePage() {
   // const { profile } = useAuth();
   const router = useRouter();
   const userId = router.query.userId as never;
+  const { value: profile }: any = useCall(`http://localhost:3100/api/v1/user/${userId}`, {}, [
+    userId,
+  ]);
+  const [profileImage, setProfileImage] = useState(
+    profile?.data?.thumbnail || 'http://localhost:3100/articles/user.png'
+  );
+  const thumbnail = profile?.data.thumbnail;
+
+  useEffect(() => {
+    if (thumbnail) {
+      setProfileImage(
+        `http://localhost:3100${thumbnail}` || 'http://localhost:3100/articles/user.png'
+      );
+    }
+  }, [thumbnail]);
 
   const { value: articles }: { value: Article[] | any } = useCall(
     `http://localhost:3100/api/v1/user/article/${userId}`,
     {},
-    [userId],
+    [userId]
   );
-  const { value: profile }: any = useCall(`http://localhost:3100/api/v1/user/${userId}`, {}, [
-    userId,
-  ]);
 
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
@@ -39,7 +51,7 @@ function ProfilePage() {
       menuMobile?.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full',
+        'ssm:-translate-x-full'
       );
       menuMobile?.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -63,13 +75,15 @@ function ProfilePage() {
       </div>
       <div className="relative max-w-full w-full h-[220px] max-h-[220px]">
         <Image src="/images/cover-photo4.jpg" layout="fill" objectFit="cover" />
-        <div className="absolute w-[138px] h-[138px] bottom-[-66px] left-4 overflow-hidden rounded-full border-[6px] border-white">
+        <div className="absolute w-[138px] h-[138px] bottom-[-66px] left-4 overflow-hidden rounded-full border-[6px] border-white z-50">
           <Image
-            src="/images/toc2.jpg"
+            loader={() => profileImage}
+            src={profileImage}
+            // src="/images/user.png"
             width={132}
             height={132}
             objectFit="cover"
-            className="z-10"
+            // className=" object-cover bg-black "
             priority
           />
         </div>

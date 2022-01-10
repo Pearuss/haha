@@ -22,7 +22,7 @@ function UserDetail({ data, userId }: any) {
   }, [profile, userId]);
 
   return (
-    <div className="relative w-full h-max bg-gray-100 mb-4 ">
+    <div className="relative w-full h-max bg-gray-100 mb-4 z-0">
       {isOwner && (
         <button
           type="button"
@@ -36,8 +36,7 @@ function UserDetail({ data, userId }: any) {
       <div className="pt-[4.4rem] pl-6">
         <div className="font-semibold text-xl text-blueCyanLogo pb-2">
           {data?.data.firstName}
-          {data?.data.lastName}
-          - Fresher
+          {data?.data.lastName}- Fresher
         </div>
         <div className="font-medium text-gray-900">Hybrid Technologies Vietnam</div>
         <div className="flex items-center text-gray-900 pt-2">
@@ -59,7 +58,7 @@ function UserDetail({ data, userId }: any) {
           <div className="flex-1 pb-2 text-center font-semibold text-gray-800">Comments</div>
         )}
       </div>
-      <ProfileModal open={showProfileModal} setOpen={setShowProfileModal} />
+      <ProfileModal profile={profile} open={showProfileModal} setOpen={setShowProfileModal} />
     </div>
   );
 }
