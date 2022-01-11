@@ -8,9 +8,10 @@
 import { useEffect, useState, useRef } from 'react';
 
 import { MentionsInput, Mention } from 'react-mentions';
+import useSWR from 'swr';
 
 import { replaceTagBr, convertReplyTagInit } from '../../utilities/helper';
-import { APIservice } from './services';
+// import { APIservice } from './services';
 
 const InputMention = ({
   handleSubmit,
@@ -25,6 +26,14 @@ const InputMention = ({
   // const [tagNames, setTagNames] = useState<any>([]);
   const myInput = useRef<any>();
 
+  const { data: allUser } = useSWR('http://localhost:3100/api/v1/user', {
+    revalidateOnFocus: false,
+  });
+
+  const { data: allTag } = useSWR('http://localhost:3100/api/v1/tags', {
+    revalidateOnFocus: false,
+  });
+
   useEffect(() => {
     getActors();
     getTags();
@@ -37,21 +46,19 @@ const InputMention = ({
   };
 
   async function getActors(): Promise<void> {
-    const res = await APIservice.get('/users');
     const usersArr: any = [];
-    res.data.map((item: any) => {
+    allUser?.data.map((item: any) => {
       usersArr.push({
         id: item.id,
-        display: item.name,
+        display: item.lastName,
       });
     });
     setUsers(usersArr);
   }
 
   async function getTags(): Promise<void> {
-    const res = await APIservice.get('/tags');
     const tagsArr: any = [];
-    res.data.tagsCloud.map((item: any) => {
+    allTag?.data.map((item: any) => {
       tagsArr.push({
         id: item.id,
         display: item.name,
