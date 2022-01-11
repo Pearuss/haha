@@ -17,6 +17,7 @@ import { useAuth } from '../../hooks';
 import { formatDate, truncate } from '../../utilities/helper';
 import { IComment } from '../../models';
 import Link from 'next/link';
+import useFetch from '../../hooks/use-fetch';
 
 function Comment({
   commentContent,
@@ -29,6 +30,9 @@ function Comment({
 }: any) {
   const { profile } = useAuth();
   const router = useRouter();
+  console.log(commentContent);
+
+  const [isLiked, setIsLiked] = useState(false);
 
   const isReplying =
     activeComment && activeComment.type === 'replying' && activeComment.id === commentContent.id;
@@ -36,6 +40,7 @@ function Comment({
   const replyId = parentId || commentContent.id;
 
   const [isReadMore, setIsReadMore] = useState(true);
+  const [totalLiked, setTotalLiked] = useState(commentContent?.liked);
 
   const contentBody = isReadMore
     ? truncate(`${commentContent?.comment}`, 210).toString() // max content length is 210
@@ -50,6 +55,26 @@ function Comment({
       router.replace('/login');
     }
   }, [profile]);
+
+  const LikeCommentHandler = async () => {
+    if (!isLiked && commentContent?.id) {
+      setTotalLiked(totalLiked + 1);
+      useFetch('http://localhost:9500/api/v1/comment/like', {
+        method: 'POST',
+        body: JSON.stringify({ commentId: commentContent.id }),
+      });
+      setIsLiked(true);
+    }
+    if (isLiked && commentContent?.id) {
+      setTotalLiked(totalLiked - 1);
+      useFetch('http://localhost:9500/api/v1/comment/unlike', {
+        method: 'POST',
+        body: JSON.stringify({ commentId: commentContent.id }),
+      });
+      setIsLiked(false);
+    }
+    setIsLiked(!isLiked);
+  };
 
   return (
     <div className="flex w-full items-center shadow-sm bg-white rounded-lg relative mb-4">
@@ -91,11 +116,14 @@ function Comment({
 
         <div className="flex items-center justify-between text-gray-700 pt-2">
           <div className="flex items-center mr-6">
-            <span className="flex items-center mr-4">
+            <span
+              className={`flex items-center gap-1 px-[6px] py-[3px] mr-4 cursor-pointer border border-white ${
+                isLiked ? ' border-blueCyanLogo rounded hover:bg-blueCyanLight' : ''
+              }`}
+              onClick={LikeCommentHandler}
+            >
               <Image src="/images/star.png" width={20} height={20} />
-              <span className="pl-3 font-medium">
-                {commentContent?.liked === 0 ? null : commentContent.liked}
-              </span>
+              <span className="pl-3 font-medium">{totalLiked || 0}</span>
             </span>
             {/* <span className="flex items-center">
               <Image src="/images/smile.png" width={20} height={20} />
