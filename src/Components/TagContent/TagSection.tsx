@@ -9,10 +9,13 @@ import FollowTag from './FollowTag';
 function TagSection() {
   const { data: allTag } = useSWR('http://localhost:3100/api/v1/tags', {
     revalidateOnFocus: false,
+    dedupingInterval: 60 * 1000,
   });
   const { data: followTags } = useSWR('/api/v1/following-tag/get-full', {
     // refreshInterval : 4000,
     revalidateOnFocus: true,
+    // revalidateIfStale: true,
+    // revalidateOnMount: true,
   });
 
   return (

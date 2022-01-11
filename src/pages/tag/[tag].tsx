@@ -14,8 +14,6 @@ import { Tag } from '../../models';
 import useFetch from '../../hooks/use-fetch';
 
 function PostsTag({ data }: any) {
-  console.log('data', data);
-
   const [isFollow, setIsFollow] = useToggle(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
   const [currentTagId, setCurrentTagId] = useState<string | null>(null);
@@ -48,7 +46,9 @@ function PostsTag({ data }: any) {
       res.message.toString() === '200' ? setIsFollow(true) : null;
     }
   };
+
   useEffect(() => {
+    if (followTags?.errCd) return;
     let currentTagIndex = -1;
     currentTagIndex = followTags?.data?.findIndex(
       (tag: Tag) => tag.slug.toString() === `/${router.query.tag}`
@@ -107,7 +107,7 @@ function PostsTag({ data }: any) {
           Tag: {capitalizeFirstLetter(router.query.tag?.toString() || '')}
         </p>
       </div>
-      <div className="flex w-full my-4 ml-3">
+      {!followTags?.errCd && <div className="flex w-full my-4 ml-3">
         <button
           onClick={followHandler}
           className={`px-3 py-2 rounded-lg font-medium tracking-wider  cursor-pointer border border-blueCyanLogo ${
@@ -117,7 +117,7 @@ function PostsTag({ data }: any) {
           {isFollow ? 'UnFollow' : 'Follow'}
         </button>
         <span className="px-3 py-2 font-medium text-gray-900 ">{totalFollow} Follower</span>
-      </div>
+      </div>}
       {/* <div className="w-full flex items-center pt-8 border-b-4 border-blueCyanLogo">
         <div className="flex-1 pb-2 text-center font-semibold  text-blueCyanLogo">All Posts</div>
       </div> */}
