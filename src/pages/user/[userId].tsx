@@ -75,7 +75,7 @@ function ProfilePage() {
       </div>
       <div className="relative max-w-full w-full h-[220px] max-h-[220px]">
         <Image src="/images/cover-photo4.jpg" layout="fill" objectFit="cover" />
-        <div className="absolute w-[138px] h-[138px] bottom-[-66px] left-4 overflow-hidden rounded-full border-[6px] border-white z-50">
+        <div className="absolute w-[138px] h-[138px] bottom-[-66px] left-4 overflow-hidden rounded-full border-[6px] border-white z-40">
           <Image
             loader={() => profileImage}
             src={profileImage}
