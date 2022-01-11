@@ -30,7 +30,6 @@ function Comment({
 }: any) {
   const { profile } = useAuth();
   const router = useRouter();
-  console.log(commentContent);
 
   const [isLiked, setIsLiked] = useState(false);
 

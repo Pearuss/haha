@@ -30,6 +30,15 @@ function HeaderMiddle() {
     );
   }, []);
 
+  useEffect(() => {
+    const searchBox: any = document.querySelector('.searchBox');
+    const btnSearch: any = document.querySelector('.btnSearch');
+
+    btnSearch?.addEventListener('click', () => {
+      searchBox.focus();
+    });
+  }, []);
+
   async function searchArticleAsync(keyword: any) {
     if (typingTimeoutRef.current && keyword !== '') {
       const res = await useFetch(`/api/v1/user/article/search/${keyword}`);
@@ -58,7 +67,7 @@ function HeaderMiddle() {
         placeholder="What are you looking for ?"
         className="searchBox flex flex-1  pl-5 bg-transparent outline-none ssm:hidden"
       />
-      <SearchIcon className="md:hidden sm:hidden  inline-flex h-8 bg-blueCyanLogo rounded-full p-2 mx-2 cursor-pointer text-white" />
+      <SearchIcon className="btnSearch md:hidden sm:hidden  inline-flex h-8 bg-blueCyanLogo rounded-full p-2 mx-2 cursor-pointer text-white" />
       {listResult.length > 0 && isTyping ? (
         <div className="absolute text-black -bottom-1 left-0 transform translate-y-full w-full bg-white border border-grayBorder rounded-md z-10">
           <div className="w-full text-grayText px-5 py-2 border-b border-grayBorder">Result</div>
