@@ -14,7 +14,6 @@ export default function Index() {
   const logoutHandler = useCallback(async () => {
     try {
       await logout();
-      localStorage.removeItem('isView');
       if (localStorage.getItem('tokenSso')) {
         localStorage.removeItem('tokenSso');
       }

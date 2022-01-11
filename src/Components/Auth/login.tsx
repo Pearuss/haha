@@ -48,7 +48,7 @@ function login({
           className="w-[500px] h-[660px] box-border bg-lightBlack px-16 py-14 rounded-md"
         >
           <h1 className="text-3xl p-2 text-white w-full font-bold">Sign In</h1>
-          <div>{errorForm}</div>
+          <div className='text-darkRed ml-2'>{errorForm}</div>
           <Controller
             name="email"
             control={control}

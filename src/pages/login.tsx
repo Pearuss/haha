@@ -13,24 +13,13 @@ import { useAuth } from '../hooks';
 import { LoginPayLoad } from '../models';
 import adminTheme from '../styles/theme/materialClient';
 
-// import Swal from "sweetalert2";
-// import { StatusCode } from "status-code-enum";f
-
 const schema = yup.object().shape({
   email: yup.string().required().email('Please enter a valid email'),
   password: yup.string().min(8).max(20).required(),
 });
 
 const Login = () => {
-  // const { login, profile, firstLoading } = useAuth({
-  //   revalidateOnMount: false,
-  // });
   const { login, profile, firstLoading } = useAuth();
-  // const [isLogin, setIsLogin] = useState(false);
-
-  //   const dispatch = useDispatch();
-  // console.log(isLogin);
-
   const router = useRouter();
 
   useEffect(() => {
@@ -52,21 +41,6 @@ const Login = () => {
   const [errorFormLogin, setErrorFormLogin] = useState('');
   const [isLoadingForm, setIsLoadingForm] = useState(false);
 
-  //   useEffect(() => {
-  //     if (localStorage.getItem("token")) {
-  //       const userToken = localStorage.getItem("token");
-  //       const tokenObj = JSON.parse(userToken);
-  //       if (!tokenObj.expiresIn) {
-  //         tokenObj.expiresIn = 0;
-  //       }
-  //       if (new Date().getTime() >= tokenObj.expiresIn) {
-  //         localStorage.removeItem("token");
-  //         dispatch(actions.authentication.logout());
-  //       }
-  //       dispatch(actions.authentication.setAuthenticated());
-  //     }
-  //   }, []);
-
   const handleLoginSSO = () => {
     router.push(
       'https://sso.hybrid-technologies.co.jp/auth/realms/eas/protocol/openid-connect/auth?response_type=code&redirect_uri=http://localhost:9500/loginsso/&client_id=skh-dev&scope=openid%20profile'
@@ -78,42 +52,22 @@ const Login = () => {
 
     try {
       setIsLoadingForm(true);
-      await login(data);
-      localStorage.setItem('isView', 'true');
+      const res = await login(data);
       setIsLoadingForm(false);
+
+      if (res.message === 422) {
+        setErrorFormLogin('Email or password is incorrect!');
+        return;
+      }
+      if (res.message === 500) {
+        setErrorFormLogin('Server error!');
+        return;
+      }
       router.push('/');
     } catch (error) {
       console.log(error);
-      setErrorFormLogin('error');
+      setErrorFormLogin('Server not response');
     }
-    // try {
-    //   setLoading(true);
-    //   const userData = await useFetch(`${api_url.apiEndpoint}/auth/login`, {
-    //     method: "POST",
-    //     body: JSON.stringify(data),
-    //   });
-    //   setLoading(false);
-    //   if (userData.message === StatusCode.SuccessOK) {
-    //     if (!userData.data.accessToken) {
-    //       router.push("/auth/login");
-    //       Swal.fire("Token Error");
-    //     } else {
-    //       const { accessToken, tokenType, expiresIn } = userData.data;
-    //       let tokenObj = {
-    //         accessToken,
-    //         tokenType,
-    //         expiresIn,
-    //       };
-    //       const tokenObjStr = JSON.stringify(tokenObj);
-    //       localStorage.setItem("token", tokenObjStr);
-    //       dispatch(actions.authentication.setAuthenticated());
-    //     }
-    //   } else {
-    //     serErrorFormLogin("Invalid account: email / password");
-    //   }
-    // } catch (err) {
-    //   Swal.fire(`Server Error!`);
-    // }
   };
 
   return (

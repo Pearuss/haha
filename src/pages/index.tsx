@@ -15,8 +15,6 @@ import { formatDate, truncate } from '../utilities/helper';
 function HomePage({ articles, news }: { articles: Article[]; news: any }) {
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
-  console.log(news);
-
   useEffect(() => {
     const btnShowTag = document.querySelector('.btnShowTag');
     const menuMobile: HTMLElement | null = document.querySelector('.menuMobile');

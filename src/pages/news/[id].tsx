@@ -13,8 +13,6 @@ function NewSection({ data }: any) {
   const [isShowTopicMobile, setIsShowTopicMobile] = useState(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
-  console.log(data);
-
   useEffect(() => {
     const btnCloseTopic: any = document.querySelector('.btnCloseTopic');
 

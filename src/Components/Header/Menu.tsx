@@ -12,7 +12,10 @@ import { capitalizeFirstLetter } from '../../utilities/helper';
 /* eslint-disable */
 function Menu() {
   const router = useRouter();
-  const { data } = useSWR('http://localhost:3100/api/v1/category', { revalidateOnFocus: false });
+  const { data } = useSWR('http://localhost:3100/api/v1/category', {
+    revalidateOnFocus: false,
+    dedupingInterval: 60 * 1000,
+  });
 
   useEffect(() => {
     const btnMenuMobile = document.querySelector('.btnMenuMobile');

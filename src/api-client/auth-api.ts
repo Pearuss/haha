@@ -1,9 +1,10 @@
+import useFetch from '../hooks/use-fetch';
 import { LoginPayLoad } from '../models';
 import axiosAuth from './axios-auth';
 
 export const authApi = {
   login(payload: LoginPayLoad) {
-    return axiosAuth.post('/login', payload);
+    return useFetch('http://localhost:9500/api/login', { method: 'POST', body: JSON.stringify(payload) });
   },
 
   logout() {

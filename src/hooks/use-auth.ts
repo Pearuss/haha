@@ -23,9 +23,11 @@ export function useAuth(option?: Partial<PublicConfiguration>) {
   // }
 
   async function login(data: LoginPayLoad) {
-    await authApi.login(data);
-
-    mutate();
+    const res = await authApi.login(data);
+    if (res.message === 200) {
+      mutate();
+    }
+    return res;
   }
   async function logout() {
     await authApi.logout();
