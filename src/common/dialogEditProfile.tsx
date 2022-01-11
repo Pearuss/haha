@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-import React, {
-  useEffect, useRef, useState, useCallback,
-} from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 
 import Slider from '@material-ui/core/Slider';
 import CameraEnhanceOutlinedIcon from '@mui/icons-material/CameraEnhanceOutlined';
@@ -14,8 +12,10 @@ import Cropper from 'react-easy-crop';
 
 import useFetch from '../hooks/use-fetch';
 import getCroppedImg from '../utilities/helper';
+import { useRouter } from 'next/router';
 
 export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
+  const router = useRouter();
   const profileImageRef = useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
   const coverImageRef = useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
 
@@ -25,7 +25,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
   const [zoomImage, setZoomImage] = useState<any>(1);
   const thumbnail = profile?.data?.thumbnail;
   const [profileImage, setProfileImage] = useState<any>(
-    thumbnail || 'http://localhost:3100/articles/user.png',
+    thumbnail || 'http://localhost:3100/articles/user.png'
   );
   // const [coverImage, setCoverImage] = useState<any | null>('/images/cover-photo4.jpg');
 
@@ -67,6 +67,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
       });
       if (res.status) {
         setOpenCropImage(false);
+        router.reload();
       }
     }
   }, [firstName, lastName, croppedArea]);
@@ -79,8 +80,6 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
   };
 
   const onSelectFile = (event: any) => {
-    // console.log(profileImage);
-
     if (profileImage === undefined) {
       setProfileImage(null);
     }

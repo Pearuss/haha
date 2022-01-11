@@ -71,8 +71,6 @@ function PostsTag({ data }: any) {
         `http://localhost:3100/api/v1/following-tag/total-follower/${currentTagId}`
       );
       if (res.message.toString() === '200') {
-        console.log(res);
-
         setTotalFollow(res.data);
       }
     };
@@ -109,7 +107,7 @@ function PostsTag({ data }: any) {
           Tag: {capitalizeFirstLetter(router.query.tag?.toString() || '')}
         </p>
       </div>
-      <div className="flex w-full my-4">
+      <div className="flex w-full my-4 ml-3">
         <button
           onClick={followHandler}
           className={`px-3 py-2 rounded-lg font-medium tracking-wider  cursor-pointer border border-blueCyanLogo ${
@@ -120,9 +118,9 @@ function PostsTag({ data }: any) {
         </button>
         <span className="px-3 py-2 font-medium text-gray-900 ">{totalFollow} Follower</span>
       </div>
-      <div className="w-full flex items-center pt-8 border-b-4 border-blueCyanLogo">
+      {/* <div className="w-full flex items-center pt-8 border-b-4 border-blueCyanLogo">
         <div className="flex-1 pb-2 text-center font-semibold  text-blueCyanLogo">All Posts</div>
-      </div>
+      </div> */}
       {data
         ?.slice(0)
         .reverse()

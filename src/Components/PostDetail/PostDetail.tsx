@@ -10,24 +10,48 @@ import { useAuth } from '../../hooks';
 import { truncateBody, timeAgo } from '../../utilities/helper';
 import CodeBlock from './CodeBlock';
 import useSWR from 'swr';
+import useFetch from '../../hooks/use-fetch';
 
 function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   const { profile, firstLoading } = useAuth();
   const [isLogin, setIsLogin] = useState(false);
+  const [isLiked, setIsLiked] = useState<any>();
+  const [isInWork, setIsInWork] = useState<any>();
   // const [totalLiked, setTotalLiked] = useState<any>(0);
   const router = useRouter();
   const article = dataPostDetail.data;
 
-  const { data: totalLikedRes, mutate }: any = useSWR(
-    `http://localhost:3100/api/v1/user/articlelike/total-like/${article.id}`
+  const { data: totalLikedRes, mutate: mutateLike }: any = useSWR(
+    `http://localhost:3100/api/v1/user/articlelike/total-like/${article.id}`,
+    {
+      revalidateOnFocus: true,
+    }
   );
-  console.log(totalLikedRes);
+  const { data: totalInWorkRes, mutate: mutateInWork }: any = useSWR(
+    `http://localhost:3100/api/v1/user/articleinwork/total-inwork/${article.id}`,
+    {
+      revalidateOnFocus: true,
+    }
+  );
 
-  // useEffect(() => {
-  //   if (totalLiked?.data) {
-  //     setTotalLiked(totalLiked.data);
-  //   }
-  // }, [totalLikedRes]);
+  useEffect(() => {
+    const checkIsLiked = async () => {
+      const res = await useFetch(`/api/v1/user/articlelike/isLiked/${article.id}`);
+      if (res.message === 200) {
+        setIsLiked(res.data);
+      }
+    };
+    const checkIsInWork = async () => {
+      const res = await useFetch(`/api/v1/user/articleinwork/isInworked/${article.id}`);
+      if (res.message === 200) {
+        setIsInWork(res.data);
+      }
+    };
+    if (isLogin && article?.id) {
+      checkIsInWork();
+      checkIsLiked();
+    }
+  }, [isLogin]);
 
   const contentBody =
     isReadMore && !isLogin
@@ -52,8 +76,41 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
     }
   }, [profile]);
 
-  const likedHandler = () => {
-    mutate({ data: totalLikedRes.data + 1 }, false);
+  const likedHandler = async () => {
+    if (!isLiked && article?.id) {
+      mutateLike({ data: totalLikedRes.data + 1 }, false);
+      useFetch('http://localhost:9500/api/v1/user/articlelike/like', {
+        method: 'POST',
+        body: JSON.stringify({ articleId: article.id }),
+      });
+      setIsLiked(true);
+    }
+    if (isLiked && article?.id) {
+      mutateLike({ data: totalLikedRes.data - 1 }, false);
+      useFetch('http://localhost:9500/api/v1/user/articlelike/unlike', {
+        method: 'POST',
+        body: JSON.stringify({ articleId: article.id }),
+      });
+      setIsLiked(false);
+    }
+  };
+  const InWorkHandler = async () => {
+    if (!isInWork && article?.id) {
+      mutateInWork({ data: totalInWorkRes.data + 1 }, false);
+      useFetch('http://localhost:9500/api/v1/user/articleinwork/inwork', {
+        method: 'POST',
+        body: JSON.stringify({ articleId: article.id }),
+      });
+      setIsInWork(true);
+    }
+    if (isInWork && article?.id) {
+      mutateInWork({ data: totalInWorkRes.data - 1 }, false);
+      useFetch('http://localhost:9500/api/v1/user/articleinwork/uninwork', {
+        method: 'POST',
+        body: JSON.stringify({ articleId: article.id }),
+      });
+      setIsInWork(false);
+    }
   };
 
   return (
@@ -98,21 +155,31 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
         </button>
       )}
       <div className="flex items-center justify-evenly absolute bottom-[4%] mt - left-0 right-0 text-blueCyanLogo">
-        <div className="flex items-center gap-2">
+        <div
+          className={`flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white ${
+            isInWork ? ' border-blueCyanLogo rounded hover:bg-blueCyanLight' : ''
+          }`}
+          onClick={InWorkHandler}
+        >
           <Image src="/images/target.png" width={20} height={20} />
-          <span>{dataPostDetail.inWorks}</span>
+          <span>{totalInWorkRes?.data || 0}</span>
         </div>
-        <div className="flex items-center gap-2" onClick={likedHandler}>
+        <div
+          className={`flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white ${
+            isLiked ? ' border-blueCyanLogo rounded hover:bg-blueCyanLight' : ''
+          }`}
+          onClick={likedHandler}
+        >
           <Image src="/images/heart.png" width={20} height={20} />
           <span>{totalLikedRes?.data || 0}</span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
           <Image src="/images/comment.png" width={20} height={20} />
           <span>{dataPostDetail.comments}</span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
           <Image src="/images/view.png" width={20} height={20} />
-          <span>{dataPostDetail.views}</span>
+          <span>{article?.viewCount}</span>
         </div>
       </div>
     </div>

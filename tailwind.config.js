@@ -82,6 +82,7 @@ module.exports = {
         mainColor: '#ADD9E6',
         lightGreen: '#36CB83',
         blueCyanLogo: '#76dce6',
+        blueCyanLight: '#e8ffff',
         blueLogo: '#0D55FF',
         blueTag: '#76dce6',
         blueBold: '#0D55FF',

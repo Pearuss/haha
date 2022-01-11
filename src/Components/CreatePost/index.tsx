@@ -21,9 +21,7 @@ import Select from 'react-select';
 import Swal from 'sweetalert2';
 
 import useFetch from '../../hooks/use-fetch';
-import {
- Article, Category, INewPost, Tag,
-} from '../../models';
+import { Article, Category, INewPost, Tag } from '../../models';
 import { countWord } from '../../utilities/helper';
 import {
   postSchema,
@@ -139,10 +137,33 @@ function ModalPost({
       });
       if (message === 200) {
         setIsLoading(false);
-        Swal.fire('Article saved success.');
-        setTimeout(() => {
-          router.push('/', '/');
-        }, 1000);
+        // router.replace('/');
+        // router.push('/search');
+        // setTimeout(() => {
+        //   router.replace('/');
+        // }, 300);
+
+        router.push('/');
+
+        // Swal.fire('Successfully', 'Please reload the page to see your article!', 'success').then((result) => {
+
+        // });
+
+        Swal.fire({
+          title: 'Successfully',
+          text: 'Please reload the page to see your article!',
+          icon: 'success',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'Ok',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            router.reload();
+          } else {
+            setTimeout(() => {
+              router.reload();
+            }, 2000);
+          }
+        });
       }
     } else {
       const formTitle = {

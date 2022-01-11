@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 
 import { useAuth } from '../../hooks';
 import useToggle from '../../hooks/use-toggle';
+import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 
 function HeaderRight() {
   const router = useRouter();
@@ -57,11 +58,12 @@ function HeaderRight() {
       {isLogin ? (
         <div className="userDropdown ssm:mr-[-1.2rem]" data-dropdown-user>
           <div
-            className="flex items-center gap-1 px-3 py-[6px] text-sm xl:py-1 xl:px-2 lg:py-1 lg:px-2 sm:text-xs md:py-1 md:px-2 ssm:text-[10px] ssm:px-1 ssm:py-1"
+            className="flex items-center gap-1 px-3 py-[5px] text-sm xl:py-1 xl:px-2 lg:py-1 lg:px-2 sm:text-xs md:py-1 md:px-2 ssm:text-[10px] ssm:px-1 ssm:py-1"
             data-dropdown-button-user
           >
             <UserCircleIcon className="h-8 pointer-events-none cursor-pointer text-lg md:h6 sm:h-5 ssm:h-4" />
             {profile?.data.firstName}
+            <ExpandMoreOutlinedIcon className='text-blueCyanLogo ml-2 pointer-events-none cursor-pointer' />
           </div>
           <div className={`userDropdown-menu ${isLogin ? '' : 'hidden'}`}>
             <div className="flex flex-col gap-1">

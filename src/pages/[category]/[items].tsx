@@ -36,7 +36,7 @@ function Category({ data }: any) {
   }, []);
   return (
     <div className="flex-1 mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
-      <div className="flex items-center ">
+      <div className="flex items-center mb-4">
         <Image src="/images/category.png" width={40} height={40} />
         <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-1 text-black font-normal ml-[1vw]">
           Category: {capitalizeFirstLetter(router.query.category?.toString() || '')}/
@@ -44,10 +44,6 @@ function Category({ data }: any) {
         </p>
       </div>
 
-      <div className="w-full flex items-center pt-8 border-b-4 border-blueCyanLogo">
-        <div className="flex-1 pb-2 text-center font-semibold  text-blueCyanLogo">All Posts</div>
-        {/* <div className="flex-1 pb-2 text-center font-semibold text-gray-800">Comments</div> */}
-      </div>
       {data?.map((post: any) => (
         <Post key={post.id} article={post} />
       ))}

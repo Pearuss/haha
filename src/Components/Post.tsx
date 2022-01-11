@@ -37,7 +37,7 @@ function Post({ article }: { article: Article }) {
           </div>
           <div className="flex items-center">
             <ChatIcon className="h-5 ssm:h-4" />
-            <span className="pl-3 ssm:pl-2">{article?.comments}</span>
+            <span className="pl-3 ssm:pl-2">{Math.floor(Math.random() * 20)}</span>
           </div>
         </div>
         <p className="absolute bottom-8 ssm:bottom-[-2.2rem] ssm:right-0 ssm:text-sm tracking-wide ">
