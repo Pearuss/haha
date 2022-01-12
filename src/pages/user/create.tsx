@@ -103,7 +103,8 @@ function UserCreatePage() {
   };
 
   const changePartialId = (value: any): void => {
-    setNewPost((state: INewPost) => ({ ...state, partialId: value.value }));
+    if (value === null) setNewPost((state: INewPost) => ({ ...state, partialId: 0 }));
+    else setNewPost((state: INewPost) => ({ ...state, partialId: value.value }));
   };
 
   const changeTag = (value: any): void => {

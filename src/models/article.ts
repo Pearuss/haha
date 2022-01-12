@@ -1,4 +1,3 @@
-import { Author } from './author';
 import { Category } from './category';
 import { Tag } from './tag';
 
@@ -22,7 +21,7 @@ export interface Article {
   sectionNo: number | null;
   title: string;
   slug: string | null;
-  shortContent: string | null;
+  short_content: string | null;
   content: string | null;
   thumbnail: string | null;
   comments: any;
@@ -30,15 +29,17 @@ export interface Article {
   authorId: number;
   source: string | null;
   stopShareAt: Date | null;
+  countComment: string | null;
   approvalId: number | null;
-  publishedAt: string | number | Date;
-  viewCount: number | null;
+  published_at: string | number | Date;
+  view_count: number | null;
   metaTitle: string | null;
   metaDescription: string | null;
   metaKeywords: string | null;
   mainCatId: number | null;
-  mainCategory: Category | null;
-  author: Author | null;
+  mainCategory: string | null;
+  authorFirstname: string | null;
+  authorLastname: string | null;
   articleCategories: ArticleCategory;
   articleTags: ArticleTag;
 }

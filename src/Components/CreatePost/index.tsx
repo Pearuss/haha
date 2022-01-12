@@ -21,7 +21,9 @@ import Select from 'react-select';
 import Swal from 'sweetalert2';
 
 import useFetch from '../../hooks/use-fetch';
-import { Article, Category, INewPost, Tag } from '../../models';
+import {
+ Article, Category, INewPost, Tag,
+} from '../../models';
 import { countWord } from '../../utilities/helper';
 import {
   postSchema,
@@ -296,6 +298,7 @@ function ModalPost({
               <div className="flex mb-3 border-b border-gray-300 pb-1">
                 <p className="w-23 font-medium mr-8 lg:mr-1">Partial Id:</p>
                 <Select
+                  isClearable
                   className="basic-single mb-1"
                   classNamePrefix="select"
                   placeholder="Enter Article of User"
