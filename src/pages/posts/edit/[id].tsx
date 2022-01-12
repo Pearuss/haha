@@ -14,15 +14,16 @@ import MarkDown from '../../../Components/CreatePost/MarkDown';
 import { HeaderLayout } from '../../../layout';
 import { truncate } from '../../../utilities/helper';
 
-function EditPost({ data }: any) {
-  const { data: tagData }: any = useSWR('http://localhost:3001/tags');
-  const { data: catData }: any = useSWR('http://localhost:3001/category');
+function EditPost() {
+  const data: any = [];
+  const { data: tagData }: any = useSWR('http://localhost:3100/api/v1/tags');
+  // const { data: catData }: any = useSWR('http://localhost:3001/category');
 
-  const tagOptions: any[] = tagData?.followingTags.map((tag: any) => ({
+  const tagOptions: any[] = tagData?.data.map((tag: any) => ({
     value: tag.name,
     label: tag.name,
   }));
-  const catOptions: any[] = catData?.map((tag: any) => ({ value: tag.name, label: tag.name }));
+  const catOptions: any[] = []?.map((tag: any) => ({ value: tag.name, label: tag.name }));
 
   return (
     <form className="w-full h-auto min-h-screen">
@@ -146,30 +147,30 @@ function EditPost({ data }: any) {
 EditPost.Layout = HeaderLayout;
 export default EditPost;
 
-export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:3001/posts?_limit=200');
-  const posts = await res.json();
+// export const getStaticPaths = async () => {
+//   const res = await fetch('http://localhost:3001/posts?_limit=200');
+//   const posts = await res.json();
 
-  const paths = posts?.data?.map((post: any) => ({
-    params: { id: post.id.toString() },
-  }));
+//   const paths = posts?.data?.map((post: any) => ({
+//     params: { id: post.id.toString() },
+//   }));
 
-  return {
-    paths,
-    fallback: 'blocking',
-  };
-};
+//   return {
+//     paths,
+//     fallback: 'blocking',
+//   };
+// };
 
-export const getStaticProps = async (context: any) => {
-  const { id } = context?.params;
-  if (!id) return { notFound: true };
-  const res = await fetch(`http://localhost:3001/posts/${id}?_limit=200`);
-  const posts = await res.json();
+// export const getStaticProps = async (context: any) => {
+//   const { id } = context?.params;
+//   if (!id) return { notFound: true };
+//   const res = await fetch(`http://localhost:3001/posts/${id}?_limit=200`);
+//   const posts = await res.json();
 
-  return {
-    props: {
-      data: posts,
-    },
-    revalidate: 1,
-  };
-};
+//   return {
+//     props: {
+//       data: posts,
+//     },
+//     revalidate: 1,
+//   };
+// };

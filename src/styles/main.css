@@ -21,11 +21,12 @@ a {
   @apply w-full h-full;
 }
 .postContent > h1 {
-  @apply text-xl;
-  @apply text-black;
-  @apply font-bold;
-  margin-top: 30px;
+  @apply text-xl text-black font-bold mt-[30px];
 }
+.postDetail {
+  word-break: break-word;
+}
+
 
 @tailwind components;
 

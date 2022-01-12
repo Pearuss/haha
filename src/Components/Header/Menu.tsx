@@ -129,9 +129,11 @@ function Menu() {
           data.data !== null &&
           Object.keys(data.data).map((category: string) => (
             <li key={category} className="dropdown" data-dropdown>
-              <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
-                {capitalizeFirstLetter(category)}
-              </a>
+              <Link href={`/${category}`}>
+                <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
+                  {capitalizeFirstLetter(category)}
+                </a>
+              </Link>
 
               <div className="dropdown-menu">
                 <div className="flex flex-col gap-1">
@@ -179,9 +181,11 @@ function Menu() {
               } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
               data-dropdown
             >
-              <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
-                {category}
-              </a>
+              <Link href={`/${category}`}>
+                <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
+                  {category}
+                </a>
+              </Link>
 
               <div className="dropdown-menu">
                 <div className="flex flex-col gap-1">

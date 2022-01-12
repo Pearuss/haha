@@ -131,7 +131,7 @@ function ModalPost({
             content: newPost.content,
             thumbnail: newPost.image,
             status: 1,
-            mainCatId: newPost.mainCategory,
+            main_cat_id: newPost.mainCategory,
           },
           tagIds: newPost.tag,
           categoryIds: newPost.relatedCategory,

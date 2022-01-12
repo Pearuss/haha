@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useEffect, useState } from 'react';
 
@@ -40,8 +39,7 @@ function Category({ data }: any) {
       <div className="flex items-center mb-4">
         <Image src="/images/category.png" width={40} height={40} />
         <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-1 text-black font-normal ml-[1vw]">
-          Category: {capitalizeFirstLetter(router.query.category?.toString() || '')}/
-          {capitalizeFirstLetter(router.query.items?.toString() || '')}
+          Category: {capitalizeFirstLetter(router.query.category?.toString() || '')}
         </p>
       </div>
 
@@ -94,9 +92,6 @@ export const getStaticProps = async ({ params }: any) => {
 
   const resFullCat = await fetch('http://localhost:3100/api/v1/category/menu');
   const fullCats = await resFullCat.json();
-  // const catResult = fullCats.data.find(
-  //   (item: any) => item.name.toLowerCase() === category.toLowerCase(),
-  // );
   const catResult = fullCats.data.find((item: any) => item.name === category);
 
   const res = await fetch(`http://localhost:3100/api/v1/user/article/cat/${catResult?.id}`);
