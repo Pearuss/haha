@@ -24,7 +24,7 @@ function Category({ data }: any) {
       menuMobile.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full'
+        'ssm:-translate-x-full',
       );
       menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });

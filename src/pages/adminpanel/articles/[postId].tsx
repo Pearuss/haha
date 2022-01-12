@@ -22,7 +22,6 @@ function EditPost({ data }: any) {
   const updatePostHandler = () => {
     // const newMainContent = mainContentRef.current.value;
     // const postData = { ...data, title: newTitle };
-
     // useFetch(`http://localhost:3001/posts/${data.id}`, {
     //   method: 'PUT',
     //   body: JSON.stringify(postData),

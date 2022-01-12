@@ -1,3 +1,4 @@
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
@@ -147,16 +148,15 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async () => {
-  // const { postId } = context?.params;
-  // if (!postId) return { notFound: true };
-  // const res = await fetch(`http://localhost:3001/posts/${postId}?_limit=200`);
-  // const posts = await res.json();
+export const getStaticProps = async () =>
+// const { postId } = context?.params;
+// if (!postId) return { notFound: true };
+// const res = await fetch(`http://localhost:3001/posts/${postId}?_limit=200`);
+// const posts = await res.json();
 
-  return {
+  ({
     props: {
       data: [],
     },
     revalidate: 1,
-  };
-};
+  });

@@ -41,7 +41,10 @@ function HeaderMiddle() {
 
   async function searchArticleAsync(keyword: any) {
     if (typingTimeoutRef.current && keyword !== '') {
-      const res = await useFetch(`/api/v1/user/article/search/${keyword}`);
+      const res = await useFetch('/api/v1/user/article/search', {
+        method: 'POST',
+        body: JSON.stringify({ keyword }),
+      });
       if (res?.data) {
         setListResult(res?.data);
       } else setListResult([]);
@@ -70,7 +73,6 @@ function HeaderMiddle() {
       <SearchIcon className="btnSearch md:hidden sm:hidden  inline-flex h-8 bg-blueCyanLogo rounded-full p-2 mx-2 cursor-pointer text-white" />
       {listResult.length > 0 && isTyping ? (
         <div className="absolute text-black -bottom-1 left-0 transform translate-y-full w-full bg-white border border-grayBorder rounded-md z-10">
-          <div className="w-full text-grayText px-5 py-2 border-b border-grayBorder">Result</div>
           <div className=" overflow-y-scroll max-h-[50vh]">
             {listResult
               ?.slice(0)

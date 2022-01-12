@@ -28,24 +28,26 @@ function Post({ article }: { article: Article }) {
             {truncate(`${article?.title}`, 70)}
           </h3>
         </Link>
-        <p className="text-base pt-1 pb-20">{truncate(`${article?.shortContent}`, 230)}</p>
+        <p className="text-base pt-1 pb-20">{truncate(`${article?.short_content}`, 230)}</p>
 
         <div className="flex items-center absolute bottom-0 right-[2%] ssm:bottom-[-4.2rem] ssm:right-0 ssm:text-[14px]">
           <div className="flex items-center pr-6 ssm:pr-3">
             <EyeIcon className="h-5 ssm:h-4" />
-            <span className="pl-3 ssm:pl-2">{article?.viewCount}</span>
+            <span className="pl-3 ssm:pl-2">{article?.view_count}</span>
           </div>
           <div className="flex items-center">
             <ChatIcon className="h-5 ssm:h-4" />
-            <span className="pl-3 ssm:pl-2">{Math.floor(Math.random() * 20)}</span>
+            <span className="pl-3 ssm:pl-2">{article?.countComment}</span>
           </div>
         </div>
         <p className="absolute bottom-8 ssm:bottom-[-2.2rem] ssm:right-0 ssm:text-sm tracking-wide ">
-          {formatDate(new Date(article?.publishedAt))}
+          {formatDate(new Date(article?.published_at))}
         </p>
         <p className="absolute bottom-0 ssm:bottom-[-4.2rem] ssm:left-0 ssm:text-sm ">
-          {article?.mainCategory?.name} -{' '}
-          {`${article?.author?.firstName} ${article?.author?.lastName}`}
+          {article?.mainCategory}
+          {' '}
+          -
+          {`${article?.authorLastname} ${article?.authorFirstname}`}
         </p>
       </div>
     </div>

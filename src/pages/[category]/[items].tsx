@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useEffect, useState } from 'react';
 
@@ -93,6 +94,9 @@ export const getStaticProps = async ({ params }: any) => {
 
   const resFullCat = await fetch('http://localhost:3100/api/v1/category/menu');
   const fullCats = await resFullCat.json();
+  // const catResult = fullCats.data.find(
+  //   (item: any) => item.name.toLowerCase() === category.toLowerCase(),
+  // );
   const catResult = fullCats.data.find((item: any) => item.name === category);
 
   const res = await fetch(`http://localhost:3100/api/v1/user/article/cat/${catResult?.id}`);

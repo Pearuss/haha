@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // /* eslint-disable */
 // import React, { useEffect, useMemo, useState } from 'react';
 
@@ -173,7 +174,7 @@
 import React, { ReactElement } from 'react';
 
 function Test(): ReactElement {
-  return <div></div>;
+  return <div />;
 }
 
 export default Test;

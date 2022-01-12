@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // /* eslint-disable react/button-has-type */
 // import React, { useEffect, useState } from 'react';
 
@@ -67,7 +68,7 @@
 import React, { ReactElement } from 'react';
 
 function FilterMyPosts(): ReactElement {
-  return <div></div>;
+  return <div />;
 }
 
 export default FilterMyPosts;
