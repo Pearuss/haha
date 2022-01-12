@@ -7,9 +7,18 @@ import 'react-calendar/dist/Calendar.css';
 import FollowTag from './FollowTag';
 // import UserInfo from './UserInfo';
 
-function TagSectionobile({ isShowTagMobile }: any) {
+function TagSectionMobile({ isShowTagMobile }: any) {
   // const { data, error, mutate, inValidating } = useSWR('/tags', { revalidateOnFocus: false });
-  const { data } = useSWR('http://localhost:3001/tags', { revalidateOnFocus: false });
+  const { data: allTag } = useSWR('http://localhost:3100/api/v1/tags', {
+    revalidateOnFocus: false,
+    dedupingInterval: 60 * 1000,
+  });
+  const { data: followTags } = useSWR('/api/v1/following-tag/get-full', {
+    // refreshInterval : 4000,
+    revalidateOnFocus: true,
+    // revalidateIfStale: true,
+    // revalidateOnMount: true,
+  });
 
   return (
     <div
@@ -25,11 +34,11 @@ function TagSectionobile({ isShowTagMobile }: any) {
           onChange={() => {}}
           value={new Date()}
         />
-        <FollowTag data={data?.followingTags} titleTagName="Following Tags" />
-        <FollowTag data={data?.tagsCloud} titleTagName="Tags Cloud" />
+        <FollowTag data={followTags?.data} titleTagName="Following Tags" />
+        <FollowTag data={allTag?.data} titleTagName="Tags Cloud" />
       </div>
     </div>
   );
 }
 
-export default TagSectionobile;
+export default TagSectionMobile;

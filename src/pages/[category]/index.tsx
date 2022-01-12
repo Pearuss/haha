@@ -24,7 +24,7 @@ function Category({ data }: any) {
       menuMobile.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full',
+        'ssm:-translate-x-full'
       );
       menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -39,8 +39,7 @@ function Category({ data }: any) {
       <div className="flex items-center mb-4">
         <Image src="/images/category.png" width={40} height={40} />
         <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-1 text-black font-normal ml-[1vw]">
-          Category: {capitalizeFirstLetter(router.query.category?.toString() || '')}/
-          {capitalizeFirstLetter(router.query.items?.toString() || '')}
+          Category: {capitalizeFirstLetter(router.query.category?.toString() || '')}
         </p>
       </div>
 

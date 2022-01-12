@@ -111,12 +111,12 @@ function News({ data }: any) {
 export default News;
 
 export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:3001/posts?_limit=4');
-  const news = await res.json();
+  // const res = await fetch('http://localhost:3001/posts?_limit=4');
+  // const news = await res.json();
 
   return {
     props: {
-      data: news,
+      data: [],
     },
     revalidate: 1,
   };

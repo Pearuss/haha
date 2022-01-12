@@ -10,7 +10,7 @@ import TextField from '@mui/material/TextField';
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import LayoutAdminPage from '../../../Components/admin/layout';
 import MarkDown from '../../../Components/CreatePost/MarkDown';
-import useFetch from '../../../hooks/use-fetch';
+// import useFetch from '../../../hooks/use-fetch';
 
 function EditPost({ data }: any) {
   const [value, setValue] = React.useState<Date | null>(null);
@@ -21,12 +21,12 @@ function EditPost({ data }: any) {
 
   const updatePostHandler = () => {
     // const newMainContent = mainContentRef.current.value;
-    const postData = { ...data, title: newTitle };
+    // const postData = { ...data, title: newTitle };
 
-    useFetch(`http://localhost:3001/posts/${data.id}`, {
-      method: 'PUT',
-      body: JSON.stringify(postData),
-    });
+    // useFetch(`http://localhost:3001/posts/${data.id}`, {
+    //   method: 'PUT',
+    //   body: JSON.stringify(postData),
+    // });
   };
 
   return (
@@ -107,12 +107,40 @@ function EditPost({ data }: any) {
 
 export default EditPost;
 
-export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:3001/posts?_limit=200');
-  const posts = await res.json();
+// export const getStaticPaths = async () => {
+//   const res = await fetch('http://localhost:3001/posts?_limit=200');
+//   const posts = await res.json();
 
-  const paths = posts?.data?.map((post: any) => ({
-    params: { postId: post.id.toString() },
+//   const paths = posts?.data?.map((post: any) => ({
+//     params: { postId: post.id.toString() },
+//   }));
+
+//   return {
+//     paths,
+//     fallback: 'blocking',
+//   };
+// };
+
+// export const getStaticProps = async (context: any) => {
+//   const { postId } = context?.params;
+//   if (!postId) return { notFound: true };
+//   const res = await fetch(`http://localhost:3001/posts/${postId}?_limit=200`);
+//   const posts = await res.json();
+
+//   return {
+//     props: {
+//       data: posts,
+//     },
+//     revalidate: 1,
+//   };
+// };
+
+export const getStaticPaths = async () => {
+  // const res = await fetch('http://localhost:3001/posts?_limit=200');
+  // const posts = await res.json();
+
+  const paths = [].map(() => ({
+    params: { postId: '1' },
   }));
 
   return {
@@ -124,12 +152,12 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context: any) => {
   const { postId } = context?.params;
   if (!postId) return { notFound: true };
-  const res = await fetch(`http://localhost:3001/posts/${postId}?_limit=200`);
-  const posts = await res.json();
+  // const res = await fetch(`http://localhost:3001/posts/${postId}?_limit=200`);
+  // const posts = await res.json();
 
   return {
     props: {
-      data: posts,
+      data: [],
     },
     revalidate: 1,
   };
