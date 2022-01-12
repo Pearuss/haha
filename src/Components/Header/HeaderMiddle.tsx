@@ -60,7 +60,7 @@ function HeaderMiddle() {
   };
 
   return (
-    <div className="flex relative items-center border-2 md:border-0 sm:border-0 sm:shadow-none md:shadow-none shadow-sm rounded-full text-black ssm:hidden">
+    <div className="flex relative items-center border-[1.5px] border-blueCyanLogo md:border-0 sm:border-0 sm:shadow-none md:shadow-none shadow-sm rounded-full text-black ssm:hidden">
       <input
         type="text"
         onChange={handleSearchChange}

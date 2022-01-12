@@ -33,9 +33,6 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
   const [lastName, setLastName] = useState(profile?.data.lastName || '');
 
   useEffect(() => {
-    // if (!thumbnail) {
-    //   setProfileImage('http://localhost:3100/articles/user.png');
-    // }
     if (thumbnail) {
       setProfileImage(`http://localhost:3100${thumbnail}`);
     }
@@ -56,21 +53,8 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
     const canvas = await getCroppedImg(profileImage, croppedArea);
 
     setProfileImage(canvas);
-    if (canvas) {
-      const res = await useFetch('/api/v1/user/update-profile', {
-        method: 'POST',
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          thumbnail: canvas,
-        }),
-      });
-      if (res.status) {
-        setOpenCropImage(false);
-        router.reload();
-      }
-    }
-  }, [firstName, lastName, croppedArea]);
+    setOpenCropImage(false);
+  }, [croppedArea]);
 
   const triggerImageProfileSelectPopup = () => {
     profileImageRef?.current?.click();
@@ -91,6 +75,22 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
         setProfileImage(reader?.result);
         setOpenCropImage(true);
       });
+    }
+  };
+  const updateProfileHandler = async () => {
+    if (profileImage) {
+      const res = await useFetch('/api/v1/user/update-profile', {
+        method: 'POST',
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          thumbnail: profileImage,
+        }),
+      });
+      if (res.status) {
+        setOpen(false);
+        router.reload();
+      }
     }
   };
 
@@ -220,7 +220,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
           <Button onClick={handleClose} className="text-gray-600 px-1">
             Cancel
           </Button>
-          <Button onClick={handleClose} autoFocus className="text-blueCyanLogo px-3">
+          <Button onClick={updateProfileHandler} autoFocus className="text-blueCyanLogo px-3">
             Save
           </Button>
         </DialogActions>

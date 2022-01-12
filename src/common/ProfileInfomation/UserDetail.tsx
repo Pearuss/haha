@@ -36,8 +36,7 @@ function UserDetail({ data, userId }: any) {
       <div className="pt-[4.4rem] pl-6">
         <div className="font-semibold text-xl text-blueCyanLogo pb-2">
           {data?.data.firstName}
-          {data?.data.lastName}
-          - Fresher
+          {data?.data.lastName}- Fresher
         </div>
         <div className="font-medium text-gray-900">Hybrid Technologies Vietnam</div>
         <div className="flex items-center text-gray-900 pt-2">

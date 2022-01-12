@@ -17,7 +17,7 @@ function Post({ article }: { article: Article }) {
         <img
           className="absolute inset-0 overflow-hidden rounded-sm"
           // src="http://localhost:3100/uploads/articles/202201/EMbXFEDrEd38I2PlStUX.jpg"
-          src={`http://localhost:3100${article.thumbnail}`}
+          src={`http://localhost:3100${article?.thumbnail || '/articles/user.png'}`}
           alt="img"
           // src={post.img}
         />
@@ -44,10 +44,7 @@ function Post({ article }: { article: Article }) {
           {formatDate(new Date(article?.publishedAt))}
         </p>
         <p className="absolute bottom-0 ssm:bottom-[-4.2rem] ssm:left-0 ssm:text-sm ">
-          {article?.mainCategory?.name}
-          {' '}
-          -
-          {' '}
+          {article?.mainCategory?.name} -{' '}
           {`${article?.author?.firstName} ${article?.author?.lastName}`}
         </p>
       </div>

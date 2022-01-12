@@ -15,6 +15,7 @@ import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
 import { useAuth } from '../../hooks';
 import { DetailPostLayout } from '../../layout';
 import dynamic from 'next/dynamic';
+import useFetch from '../../hooks/use-fetch';
 
 const CommentSection = dynamic(() => import('../../Components/CommentSection/CommentSection'), {
   ssr: false,
@@ -28,14 +29,21 @@ function DetailArticlePage({ data }: any) {
   const [isShowTopicMobile, setIsShowTopicMobile] = useState(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
-  const { profile, firstLoading } = useAuth();
   const router = useRouter();
-
-  // const postId = router.query.id;
+  const { profile, firstLoading } = useAuth();
+  const articleId = router.query.id;
 
   if (router.isFallback) {
     return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>;
   }
+
+  useEffect(() => {
+    if (articleId) {
+      useFetch(`http://localhost:3100/api/v1/user/article/${articleId}/incrementView`, {
+        method: 'POST',
+      });
+    }
+  }, [articleId]);
 
   useEffect(() => {
     const btnCloseTopic: any = document.querySelector('.btnCloseTopic');

@@ -41,7 +41,7 @@ function HeaderRight() {
   }, []);
 
   return (
-    <div className="userMenu relative flex items-center justify-end text-blueCyanLogo gap-4 ssm:gap-2">
+    <div className="userMenu relative flex items-center justify-end text-blueCyanLogo gap-4 ssm:gap-2 ">
       {showSearchInput && (
         <input
           className="changePlaceholder absolute outline-none py-1 px-3 w-[50vw] bottom-[-3rem] right-0 rounded-3xl bg-blue-100"
@@ -53,9 +53,9 @@ function HeaderRight() {
         onClick={setShowSearchInput}
       />
 
-      <MenuIcon className="hidden btnMenuMobile h-6 cursor-pointer sm:h-[22px] ssm:h-5 lg:inline-block md:inline-block sm:inline-block ssm:inline-block" />
+      <MenuIcon className="hidden btnMenuMobile h-6 cursor-pointer sm:h-[22px] ssm:h-5 lg:inline-block md:inline-block sm:inline-block ssm:inline-block " />
       {isLogin ? (
-        <div className="userDropdown ssm:mr-[-1.2rem]" data-dropdown-user>
+        <div className="userDropdown ssm:mr-[-1.2rem] border-[1.5px] border-blueCyanLogo" data-dropdown-user>
           <div
             className="flex items-center gap-1 px-3 py-[5px] text-sm xl:py-1 xl:px-2 lg:py-1 lg:px-2 sm:text-xs md:py-1 md:px-2 ssm:text-[10px] ssm:px-1 ssm:py-1"
             data-dropdown-button-user
