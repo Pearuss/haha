@@ -58,7 +58,7 @@ function Comment({
   const LikeCommentHandler = async () => {
     if (!isLiked && commentContent?.id) {
       setTotalLiked(totalLiked + 1);
-      useFetch('http://localhost:9500/api/v1/comment/like', {
+      useFetch('/api/v1/comment/like', {
         method: 'POST',
         body: JSON.stringify({ commentId: commentContent.id }),
       });
@@ -66,7 +66,7 @@ function Comment({
     }
     if (isLiked && commentContent?.id) {
       setTotalLiked(totalLiked - 1);
-      useFetch('http://localhost:9500/api/v1/comment/unlike', {
+      useFetch('/api/v1/comment/unlike', {
         method: 'POST',
         body: JSON.stringify({ commentId: commentContent.id }),
       });

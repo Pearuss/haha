@@ -16,10 +16,8 @@ function Post({ article }: { article: Article }) {
       <div className="relative mt-[0.4rem] overflow-hidden max-w-[200px] ssm:max-w-full ssm:w-full w-[200px] ssm:min-h-[200px] h-auto ">
         <img
           className="absolute inset-0 overflow-hidden rounded-sm ssm:object-cover"
-          // src="http://localhost:3100/uploads/articles/202201/EMbXFEDrEd38I2PlStUX.jpg"
-          src={`http://localhost:3100${article?.thumbnail || '/articles/user.png'}`}
+          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${article?.thumbnail || '/articles/user.png'}`}
           alt="img"
-          // src={post.img}
         />
       </div>
       <div className="flex-1 ml-5 relative cursor-auto ssm:w-full ssm:flex ssm:items-center ssm:flex-col ssm:ml-0 text-gray-900">
@@ -28,7 +26,9 @@ function Post({ article }: { article: Article }) {
             {truncate(`${article?.title}`, 70)}
           </h3>
         </Link>
-        <p className="text-base pt-1 pb-20 ssm:pb-2">{truncate(`${article?.short_content}`, 230)}</p>
+        <p className="text-base pt-1 pb-20 ssm:pb-2">
+          {truncate(`${article?.short_content}`, 230)}
+        </p>
 
         <div className="flex items-center absolute bottom-0 right-[2%] ssm:bottom-[-4.2rem] ssm:right-0 ssm:text-[14px]">
           <div className="flex items-center pr-6 ssm:pr-3">

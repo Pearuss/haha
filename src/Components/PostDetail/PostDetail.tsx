@@ -79,7 +79,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   const likedHandler = async () => {
     if (!isLiked && article?.id) {
       mutateLike({ data: totalLikedRes.data + 1 }, false);
-      useFetch('http://localhost:9500/api/v1/user/articlelike/like', {
+      useFetch('/api/v1/user/articlelike/like', {
         method: 'POST',
         body: JSON.stringify({ articleId: article.id }),
       });
@@ -87,7 +87,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
     }
     if (isLiked && article?.id) {
       mutateLike({ data: totalLikedRes.data - 1 }, false);
-      useFetch('http://localhost:9500/api/v1/user/articlelike/unlike', {
+      useFetch('/api/v1/user/articlelike/unlike', {
         method: 'POST',
         body: JSON.stringify({ articleId: article.id }),
       });
@@ -97,7 +97,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   const InWorkHandler = async () => {
     if (!isInWork && article?.id) {
       mutateInWork({ data: totalInWorkRes.data + 1 }, false);
-      useFetch('http://localhost:9500/api/v1/user/articleinwork/inwork', {
+      useFetch('/api/v1/user/articleinwork/inwork', {
         method: 'POST',
         body: JSON.stringify({ articleId: article.id }),
       });

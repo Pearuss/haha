@@ -17,9 +17,11 @@ function ProfilePage() {
   // const { profile } = useAuth();
   const router = useRouter();
   const userId = router.query.userId as never;
-  const { value: profile }: any = useCall(`${process.env.NEXT_PUBLIC_BASE_URL}/user/${userId}`, {}, [
-    userId,
-  ]);
+  const { value: profile }: any = useCall(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/user/${userId}`,
+    {},
+    [userId],
+  );
   const [profileImage, setProfileImage] = useState(
     profile?.data?.thumbnail || `${process.env.NEXT_PUBLIC_IMAGE_URL}/articles/user.png`,
   );
@@ -28,7 +30,8 @@ function ProfilePage() {
   useEffect(() => {
     if (thumbnail) {
       setProfileImage(
-        `http://localhost:3100${thumbnail}` || 'http://localhost:3100/articles/user.png',
+        `${process.env.NEXT_PUBLIC_IMAGE_URL}${thumbnail}`
+          || `${process.env.NEXT_PUBLIC_IMAGE_URL}/articles/user.png`,
       );
     }
   }, [thumbnail]);
