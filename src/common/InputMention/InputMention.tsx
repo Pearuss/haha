@@ -49,7 +49,7 @@ const InputMention = ({
     allUsers?.data.map((item: any) => {
       usersArr.push({
         id: item.id,
-        display: item.lastName,
+        display: item.firstName,
       });
     });
     setUsers(usersArr);
