@@ -1,5 +1,7 @@
 Development setup
 
+Create `.env` file from `.env.sample` file and replace url
+
 1.Install dependencies library
 
 npm install
