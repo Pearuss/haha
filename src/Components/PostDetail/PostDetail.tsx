@@ -19,7 +19,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   const [isInWork, setIsInWork] = useState<any>();
   // const [totalLiked, setTotalLiked] = useState<any>(0);
   const router = useRouter();
-  const article = dataPostDetail.data;
+  const article = dataPostDetail.data[0];
 
   const { data: totalLikedRes, mutate: mutateLike }: any = useSWR(
     `${process.env.NEXT_PUBLIC_BASE_URL}/user/articlelike/total-like/${article.id}`,
@@ -128,16 +128,18 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
           priority
         />
         <span className="font-medium text-xl ml-2 text-blueCyanLogo">
-          {`${article.author.firstName} ${article.author.lastName}`}
+          {`${article.authorFirstname} ${article.authorLastname}`}
         </span>
         <span className="text-gray-500 text-sm ml-1 mt-1">
-          @{`${article.mainCategory.name}• ${timeAgo(new Date(article?.publishedAt))}`}
+          @{`${article.mainCategory}• ${timeAgo(new Date(article?.publishedAt))}`}
         </span>
-        {profile?.data?.userId === article?.authorId && <Link href={`/posts/edit/${article.id}`}>
-          <span className="mt-1 ml-2">
-            <Image src="/images/pencil.png" width={12} height={12} />
-          </span>
-        </Link>}
+        {profile?.data?.userId === article?.author_id && (
+          <Link href={`/posts/edit/${article.id}`}>
+            <span className="mt-1 ml-2">
+              <Image src="/images/pencil.png" width={12} height={12} />
+            </span>
+          </Link>
+        )}
       </div>
 
       <div className="postContent mx-2 mb-6 mt-5 h-auto">
@@ -154,34 +156,36 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
           See more
         </button>
       )}
-      {isLogin && <div className="flex items-center justify-evenly absolute bottom-[16px] mt-2 left-0 right-0 text-blueCyanLogo">
-        <div
-          className={`flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white ${
-            isInWork ? ' border-blueCyanLogo rounded hover:bg-blueCyanLight' : ''
-          }`}
-          onClick={InWorkHandler}
-        >
-          <Image src="/images/target.png" width={20} height={20} />
-          <span>{totalInWorkRes?.data || 0}</span>
+      {isLogin && (
+        <div className="flex items-center justify-evenly absolute bottom-[16px] mt-2 left-0 right-0 text-blueCyanLogo">
+          <div
+            className={`flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white ${
+              isInWork ? ' border-blueCyanLogo rounded hover:bg-blueCyanLight' : ''
+            }`}
+            onClick={InWorkHandler}
+          >
+            <Image src="/images/target.png" width={20} height={20} />
+            <span>{totalInWorkRes?.data || 0}</span>
+          </div>
+          <div
+            className={`flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white ${
+              isLiked ? ' border-blueCyanLogo rounded hover:bg-blueCyanLight' : ''
+            }`}
+            onClick={likedHandler}
+          >
+            <Image src="/images/heart.png" width={20} height={20} />
+            <span>{totalLikedRes?.data || 0}</span>
+          </div>
+          <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
+            <Image src="/images/comment.png" width={20} height={20} />
+            <span>{article?.countComment}</span>
+          </div>
+          <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
+            <Image src="/images/view.png" width={20} height={20} />
+            <span>{article?.view_count}</span>
+          </div>
         </div>
-        <div
-          className={`flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white ${
-            isLiked ? ' border-blueCyanLogo rounded hover:bg-blueCyanLight' : ''
-          }`}
-          onClick={likedHandler}
-        >
-          <Image src="/images/heart.png" width={20} height={20} />
-          <span>{totalLikedRes?.data || 0}</span>
-        </div>
-        <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
-          <Image src="/images/comment.png" width={20} height={20} />
-          <span>{dataPostDetail.comments}</span>
-        </div>
-        <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
-          <Image src="/images/view.png" width={20} height={20} />
-          <span>{article?.viewCount}</span>
-        </div>
-      </div>}
+      )}
     </div>
   );
 }

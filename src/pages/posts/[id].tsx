@@ -212,7 +212,7 @@ function DetailArticlePage({ data }: any) {
         )}
         {isLogin && (
           <CommentSection
-            postId={data.data.id}
+            postId={data.data[0].id}
             showForm={showFormComment}
             setShowFormComment={setShowFormComment}
           />
