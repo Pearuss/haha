@@ -19,7 +19,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   const [isInWork, setIsInWork] = useState<any>();
   // const [totalLiked, setTotalLiked] = useState<any>(0);
   const router = useRouter();
-  const article = dataPostDetail.data;
+  const article = dataPostDetail.data[0];
 
   const { data: totalLikedRes, mutate: mutateLike }: any = useSWR(
     `${process.env.NEXT_PUBLIC_BASE_URL}/user/articlelike/total-like/${article.id}`,
@@ -128,12 +128,12 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
           priority
         />
         <span className="font-medium text-xl ml-2 text-blueCyanLogo">
-          {`${article.author.firstName} ${article.author.lastName}`}
+          {`${article.authorFirstname} ${article.authorLastname}`}
         </span>
         <span className="text-gray-500 text-sm ml-1 mt-1">
-          @{`${article.mainCategory.name}• ${timeAgo(new Date(article?.publishedAt))}`}
+          @{`${article.mainCategory}• ${timeAgo(new Date(article?.publishedAt))}`}
         </span>
-        {profile?.data?.userId === article?.authorId && (
+        {profile?.data?.userId === article?.author_id && (
           <Link href={`/posts/edit/${article.id}`}>
             <span className="mt-1 ml-2">
               <Image src="/images/pencil.png" width={12} height={12} />
@@ -178,11 +178,11 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
           </div>
           <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
             <Image src="/images/comment.png" width={20} height={20} />
-            <span>{dataPostDetail.comments}</span>
+            <span>{article?.countComment}</span>
           </div>
           <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
             <Image src="/images/view.png" width={20} height={20} />
-            <span>{article?.viewCount}</span>
+            <span>{article?.view_count}</span>
           </div>
         </div>
       )}
