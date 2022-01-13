@@ -8,9 +8,9 @@ export function ContentIndex() {
       <div className="btnCloseTopic hidden absolute top-2 right-2 ssm:block">
         <CloseIcon />
       </div>
-      <div className="text-gray-700 pb-3 text-2xl font-semibold">Topic</div>
-      <div className="flex flex-col ">
-        <ul className="contentIndex w-full" />
+      <div className="text-gray-700 ml-[-14px] pb-3 text-2xl font-semibold">Topic</div>
+      <div className="flex flex-col topic">
+        <ul className="contentIndex w-[90%]" />
       </div>
     </div>
   );

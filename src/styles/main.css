@@ -23,8 +23,11 @@ a {
 .postContent > h1 {
   @apply text-xl text-black font-bold mt-[30px];
 }
+.postContent code {
+  white-space: break-spaces !important;
+}
 .postDetail {
-  word-break: break-word;
+  white-space: break-word;
 }
 
 
@@ -91,7 +94,7 @@ li {
   @apply hover:bg-gray-300 hover:rounded-md;
 } */
 .userDropdown {
-  @apply flex gap-2 items-center border-2 rounded-[2rem] relative cursor-pointer;
+  @apply flex gap-2 items-center border-2 rounded-[2rem] relative cursor-pointer border-[1.5px] border-blueCyanLogo;
 }
 .userDropdown-menu {
   @apply absolute right-[10%] top-[calc(100%+0.8rem)] bg-white z-40 py-4 rounded-md pointer-events-none translate-y-20 opacity-0 shadow-md w-[9vw] ssm:w-[26vw] sm:w-[22vw] md:w-[20vw] lg:w-[16vw] xl:w-[13vw] 2xl:w-[11vw] ssm:text-xs sm:text-sm animate-transformCustom transition-all;
@@ -201,8 +204,11 @@ li {
   text-decoration: none;
 }
 .contentIndex li {
-  @apply pb-2;
+  @apply pb-2 pr-2 ml-[-14px] text-[15px];
 }
+/* .topic {s
+
+} */
 
 @tailwind utilities;
 @tailwind base;

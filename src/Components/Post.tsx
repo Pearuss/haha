@@ -13,9 +13,9 @@ function Post({ article }: { article: Article }) {
 
   return (
     <div className="relative flex ssm:flex-col w-full  h-auto bg-white rounded-lg px-3 py-5 mb-4 cursor-pointer ssm:border ssm:border-gray-300 ssm:p-4 ssm:pb-20">
-      <div className="relative my-[0.4rem] overflow-hidden max-w-[200px] ssm:max-w-full ssm:w-full w-[200px] ssm:min-h-[200px] h-auto ">
+      <div className="relative mt-[0.4rem] overflow-hidden max-w-[200px] ssm:max-w-full ssm:w-full w-[200px] ssm:min-h-[200px] h-auto ">
         <img
-          className="absolute inset-0 overflow-hidden rounded-sm"
+          className="absolute inset-0 overflow-hidden rounded-sm ssm:object-cover"
           // src="http://localhost:3100/uploads/articles/202201/EMbXFEDrEd38I2PlStUX.jpg"
           src={`http://localhost:3100${article?.thumbnail || '/articles/user.png'}`}
           alt="img"
@@ -28,7 +28,7 @@ function Post({ article }: { article: Article }) {
             {truncate(`${article?.title}`, 70)}
           </h3>
         </Link>
-        <p className="text-base pt-1 pb-20">{truncate(`${article?.short_content}`, 230)}</p>
+        <p className="text-base pt-1 pb-20 ssm:pb-2">{truncate(`${article?.short_content}`, 230)}</p>
 
         <div className="flex items-center absolute bottom-0 right-[2%] ssm:bottom-[-4.2rem] ssm:right-0 ssm:text-[14px]">
           <div className="flex items-center pr-6 ssm:pr-3">

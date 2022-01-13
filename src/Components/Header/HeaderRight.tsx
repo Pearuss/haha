@@ -55,7 +55,7 @@ function HeaderRight() {
 
       <MenuIcon className="hidden btnMenuMobile h-6 cursor-pointer sm:h-[22px] ssm:h-5 lg:inline-block md:inline-block sm:inline-block ssm:inline-block " />
       {isLogin ? (
-        <div className="userDropdown ssm:mr-[-1.2rem] border-[1.5px] border-blueCyanLogo" data-dropdown-user>
+        <div className="userDropdown ssm:mr-[-1.2rem]" data-dropdown-user>
           <div
             className="flex items-center gap-1 px-3 py-[5px] text-sm xl:py-1 xl:px-2 lg:py-1 lg:px-2 sm:text-xs md:py-1 md:px-2 ssm:text-[10px] ssm:px-1 ssm:py-1"
             data-dropdown-button-user

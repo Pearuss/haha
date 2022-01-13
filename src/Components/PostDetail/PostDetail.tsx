@@ -114,7 +114,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   };
 
   return (
-    <div className="relative bg-white rounded-lg shadow-md px-4 pt-2 py-16 mb-8 text-gray-600  h-auto postDetail">
+    <div className="relative bg-white rounded-lg shadow-md px-4 pt-2 py-16 mb-8 text-gray-600  h-auto postDetail flex-1">
       <div className=" text-black font-semibold text-3xl sm:text-2xl ssm:text-xl pl-2 py-4 mx-auto ">
         {article?.title}
       </div>
@@ -133,14 +133,14 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
         <span className="text-gray-500 text-sm ml-1 mt-1">
           @{`${article.mainCategory.name}• ${timeAgo(new Date(article?.publishedAt))}`}
         </span>
-        <Link href={`/posts/edit/${article.id}`}>
+        {profile?.data?.userId === article?.authorId && <Link href={`/posts/edit/${article.id}`}>
           <span className="mt-1 ml-2">
             <Image src="/images/pencil.png" width={12} height={12} />
           </span>
-        </Link>
+        </Link>}
       </div>
 
-      <div className="postContent mx-2 mb-4 mt-5 h-auto">
+      <div className="postContent mx-2 mb-6 mt-5 h-auto">
         <ReactMarkdown components={CodeBlock} children={contentBody} />
       </div>
       {article?.content?.length > 580 && (
@@ -154,7 +154,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
           See more
         </button>
       )}
-      <div className="flex items-center justify-evenly absolute bottom-[4%] mt - left-0 right-0 text-blueCyanLogo">
+      {isLogin && <div className="flex items-center justify-evenly absolute bottom-[16px] mt-2 left-0 right-0 text-blueCyanLogo">
         <div
           className={`flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white ${
             isInWork ? ' border-blueCyanLogo rounded hover:bg-blueCyanLight' : ''
@@ -181,7 +181,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
           <Image src="/images/view.png" width={20} height={20} />
           <span>{article?.viewCount}</span>
         </div>
-      </div>
+      </div>}
     </div>
   );
 }
