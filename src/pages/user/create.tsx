@@ -73,17 +73,16 @@ function UserCreatePage() {
     let path: string;
     reader.onload = async () => {
       if (reader.readyState === 2) {
-        path = await useFetch('http://localhost:3100/api/v1/image/upload', {
+        path = await useFetch(`${process.env.NEXT_PUBLIC_BASE_URL}/image/upload`, {
           method: 'POST',
           body: JSON.stringify({
             image: reader.result,
           }),
         });
       }
-      console.log(`localhost:3100${path}`);
       setNewPost((state: any) => ({
         ...state,
-        content: `${state.content}![](localhost:3100${path})`,
+        content: `${state.content}![](${process.env.NEXT_PUBLIC_IMAGE_URL}${path})`,
       }));
     };
     reader.readAsDataURL(e.target.files[0]);
