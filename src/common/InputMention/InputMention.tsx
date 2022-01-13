@@ -26,11 +26,11 @@ const InputMention = ({
   // const [tagNames, setTagNames] = useState<any>([]);
   const myInput = useRef<any>();
 
-  const { data: allUsers } = useSWR('http://localhost:3100/api/v1/user', {
+  const { data: allUsers } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/user`, {
     revalidateOnFocus: false,
   });
 
-  const { data: allTag } = useSWR('http://localhost:3100/api/v1/tags', {
+  const { data: allTag } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`, {
     revalidateOnFocus: false,
   });
 

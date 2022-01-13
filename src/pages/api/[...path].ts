@@ -29,7 +29,7 @@ export default function handler(req: any, res: NextApiResponse<any>) {
     req.headers.cookie = '';
 
     proxy.web(req, res, {
-      target: 'http://localhost:3100',
+      target: `${process.env.NEXT_PUBLIC_IMAGE_URL}`,
       changeOrigin: true,
       selfHandleResponse: false,
     });

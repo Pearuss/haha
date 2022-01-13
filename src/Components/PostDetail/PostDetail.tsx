@@ -22,13 +22,13 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   const article = dataPostDetail.data;
 
   const { data: totalLikedRes, mutate: mutateLike }: any = useSWR(
-    `http://localhost:3100/api/v1/user/articlelike/total-like/${article.id}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/user/articlelike/total-like/${article.id}`,
     {
       revalidateOnFocus: true,
     }
   );
   const { data: totalInWorkRes, mutate: mutateInWork }: any = useSWR(
-    `http://localhost:3100/api/v1/user/articleinwork/total-inwork/${article.id}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/user/articleinwork/total-inwork/${article.id}`,
     {
       revalidateOnFocus: true,
     }
@@ -114,7 +114,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   };
 
   return (
-    <div className="relative bg-white rounded-lg shadow-md px-4 pt-2 py-16 mb-8 text-gray-600  h-auto postDetail flex-1">
+    <div className="relative bg-white rounded-lg shadow-md px-4 pt-2 py-16 mb-8 text-gray-600  h-auto postDetail flex-1 max-w-[70vw]">
       <div className=" text-black font-semibold text-3xl sm:text-2xl ssm:text-xl pl-2 py-4 mx-auto ">
         {article?.title}
       </div>

@@ -73,7 +73,7 @@ export default Category;
 //   };
 // }
 export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:3100/api/v1/tags');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`);
   const tags = await res.json();
 
   const paths = tags.data.map((tag: any) => ({
@@ -90,11 +90,11 @@ export const getStaticProps = async ({ params }: any) => {
   const { category } = params;
   if (!category) return { notFound: true };
 
-  const resFullCat = await fetch('http://localhost:3100/api/v1/category/menu');
+  const resFullCat = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/category/menu`);
   const fullCats = await resFullCat.json();
   const catResult = fullCats.data.find((item: any) => item.name === category);
 
-  const res = await fetch(`http://localhost:3100/api/v1/user/article/cat/${catResult?.id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/cat/${catResult?.id}`);
   const { data }: any = await res.json();
 
   return {

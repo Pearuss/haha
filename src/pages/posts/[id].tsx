@@ -39,7 +39,7 @@ function DetailArticlePage({ data }: any) {
 
   useEffect(() => {
     if (articleId) {
-      useFetch(`http://localhost:3100/api/v1/user/article/${articleId}/incrementView`, {
+      useFetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${articleId}/incrementView`, {
         method: 'POST',
       });
     }
@@ -229,7 +229,7 @@ DetailArticlePage.Layout = DetailPostLayout;
 export default DetailArticlePage;
 
 export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:3100/api/v1/user/article/full-list');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/full-list`);
   const posts = await res.json();
 
   const paths = posts?.data?.map((post: any) => ({
@@ -245,7 +245,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context: any) => {
   const { id } = context?.params;
   if (!id) return { notFound: true };
-  const res = await fetch(`http://localhost:3100/api/v1/user/article/${id}/detail`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${id}/detail`);
   const data: any = await res.json();
 
   return {

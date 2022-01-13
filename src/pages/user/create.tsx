@@ -11,10 +11,10 @@ import { HeaderLayout } from '../../layout';
 import { INewPost } from '../../models';
 
 function UserCreatePage() {
-  const { data: tagData }: any = useSWR('http://localhost:3100/api/v1/tags', {
+  const { data: tagData }: any = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`, {
     revalidateOnFocus: false,
   });
-  const { data: catData }: any = useSWR('http://localhost:3100/api/v1/category/menu', {
+  const { data: catData }: any = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/category/menu`, {
     revalidateOnFocus: false,
   });
   const { value: myArticle }: any = useCall('/api/v1/user/article/my-articles', {}, []);

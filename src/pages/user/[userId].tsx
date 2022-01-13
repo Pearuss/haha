@@ -17,11 +17,11 @@ function ProfilePage() {
   // const { profile } = useAuth();
   const router = useRouter();
   const userId = router.query.userId as never;
-  const { value: profile }: any = useCall(`http://localhost:3100/api/v1/user/${userId}`, {}, [
+  const { value: profile }: any = useCall(`${process.env.NEXT_PUBLIC_BASE_URL}/user/${userId}`, {}, [
     userId,
   ]);
   const [profileImage, setProfileImage] = useState(
-    profile?.data?.thumbnail || 'http://localhost:3100/articles/user.png',
+    profile?.data?.thumbnail || `${process.env.NEXT_PUBLIC_IMAGE_URL}/articles/user.png`,
   );
   const thumbnail = profile?.data.thumbnail;
 
@@ -34,7 +34,7 @@ function ProfilePage() {
   }, [thumbnail]);
 
   const { value: articles }: { value: Article[] | any } = useCall(
-    `http://localhost:3100/api/v1/user/article/${userId}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${userId}`,
     {},
     [userId],
   );

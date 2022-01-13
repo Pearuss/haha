@@ -20,7 +20,7 @@ function PostsTag({ data }: any) {
   const [totalFollow, setTotalFollow] = useState<number | null>(0);
   const router = useRouter();
 
-  const { data: allTag } = useSWR('http://localhost:3100/api/v1/tags', {
+  const { data: allTag } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`, {
     revalidateOnFocus: false,
   });
 
@@ -68,7 +68,7 @@ function PostsTag({ data }: any) {
   useEffect(() => {
     const getTotalFollow = async () => {
       const res = await useFetch(
-        `http://localhost:3100/api/v1/following-tag/total-follower/${currentTagId}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/following-tag/total-follower/${currentTagId}`
       );
       if (res.message.toString() === '200') {
         setTotalFollow(res.data);
@@ -141,7 +141,7 @@ PostsTag.Layout = MainLayout;
 export default PostsTag;
 
 export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:3100/api/v1/tags');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`);
   const tags = await res.json();
 
   const paths = tags.data.map((tag: any) => {
@@ -160,12 +160,12 @@ export const getStaticProps = async ({ params }: any) => {
   const { tag } = params;
   if (!tag) return { notFound: true };
 
-  const resFullTags = await fetch('http://localhost:3100/api/v1/tags');
+  const resFullTags = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`);
   const fullTags = await resFullTags.json();
 
   const tagResult = fullTags.data.find((item: any) => item.slug === `/${tag}`);
 
-  const res = await fetch(`http://localhost:3100/api/v1/user/article/tag/${tagResult?.id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/tag/${tagResult?.id}`);
   const { data }: any = await res.json();
 
   return {

@@ -10,14 +10,12 @@ import Select from 'react-select';
 import useSWR from 'swr';
 
 import MarkDown from '../../../Components/CreatePost/MarkDown';
-// import Checkbox from '@mui/material/Checkbox';
 import { HeaderLayout } from '../../../layout';
 import { truncate } from '../../../utilities/helper';
 
 function EditPost() {
   const data: any = [];
-  const { data: tagData }: any = useSWR('http://localhost:3100/api/v1/tags');
-  // const { data: catData }: any = useSWR('http://localhost:3001/category');
+  const { data: tagData }: any = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`);
 
   const tagOptions: any[] = tagData?.data.map((tag: any) => ({
     value: tag.name,

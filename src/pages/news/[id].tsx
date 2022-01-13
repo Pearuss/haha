@@ -74,7 +74,7 @@ NewSection.Layout = DetailPostLayout;
 export default NewSection;
 
 export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:3100/api/v1/news/full-list');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news/full-list`);
   const news = await res.json();
 
   const paths = news?.data?.map((post: any) => ({
@@ -90,7 +90,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context: any) => {
   const { id } = context?.params;
   if (!id) return { notFound: true };
-  const res = await fetch(`http://localhost:3100/api/v1/news/${id}/detail`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news/${id}/detail`);
   const data: any = await res.json();
 
   return {
