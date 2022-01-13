@@ -25,7 +25,7 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
       menuMobile?.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full',
+        'ssm:-translate-x-full'
       );
       menuMobile?.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -66,7 +66,7 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
               </Link>
               <div className="text-sm mb-2">{truncate(`${news[1]?.shortContent}`, 112)}</div>
 
-              <div className="absolute bottom-1 right-4 pb-2 text-xs">
+              <div className="absolute bottom-1 right-4 text-xs">
                 <span>Admin</span>
                 <span className="ml-3">|</span>
                 <span className="ml-3">{formatDate(new Date(news[1]?.createdAt))}</span>
@@ -80,9 +80,11 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
                   {truncate(`${news[2]?.title}`, 40)}
                 </div>
               </Link>
-              <div className="text-sm mb-2">{truncate(`${news[2]?.shortContent}`, 112)}</div>
+              <div className="text-sm mb-2 xl:mb-4 lg:mb-5 md:mb-5">
+                {truncate(`${news[2]?.shortContent}`, 112)}
+              </div>
 
-              <div className="absolute bottom-1 right-4 text-gray-700 pb-2 text-xs">
+              <div className="absolute bottom-2 right-4 text-gray-700 text-xs">
                 <span>Admin</span>
                 <span className="ml-3">|</span>
                 <span className="ml-3">{formatDate(new Date(news[2]?.createdAt))}</span>
@@ -124,16 +126,16 @@ HomePage.Layout = MainLayout;
 export default HomePage;
 
 export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:3100/api/v1/user/article/full-list');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/full-list`);
   const articles = await res.json();
 
-  const res1 = await fetch('http://localhost:3100/api/v1/news/full-list');
+  const res1 = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news/full-list`);
   const news = await res1.json();
 
   return {
     props: {
       articles: articles.data,
-      news: news.data,
+      news: news.data.slice(0).reverse(),
     },
     revalidate: 1,
   };

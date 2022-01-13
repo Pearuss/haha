@@ -31,7 +31,7 @@ function CommentSection({ showForm, postId }: any) {
   //     }
   //   );
   // }, [postId]);
-  const { data } = useSWR(`http://localhost:3100/api/v1/comment/${postId}`, {
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/comment/${postId}`, {
     revalidateIfStale: true,
   });
   useEffect(() => {

@@ -56,7 +56,7 @@ export default function handler(req: any, res: any) {
 
     proxy.once('proxyRes', handleLoginResponse);
     proxy.web(req, res, {
-      target: 'http://localhost:3100/api/v1/auth',
+      target: `${process.env.NEXT_PUBLIC_BASE_URL}/auth`,
       changeOrigin: true,
       selfHandleResponse: true,
     });

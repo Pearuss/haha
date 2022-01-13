@@ -15,6 +15,7 @@ import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
 import { useAuth } from '../../hooks';
 import { DetailPostLayout } from '../../layout';
 import dynamic from 'next/dynamic';
+import useFetch from '../../hooks/use-fetch';
 
 const CommentSection = dynamic(() => import('../../Components/CommentSection/CommentSection'), {
   ssr: false,
@@ -28,14 +29,21 @@ function DetailArticlePage({ data }: any) {
   const [isShowTopicMobile, setIsShowTopicMobile] = useState(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
-  const { profile, firstLoading } = useAuth();
   const router = useRouter();
-
-  // const postId = router.query.id;
+  const { profile, firstLoading } = useAuth();
+  const articleId = router.query.id;
 
   if (router.isFallback) {
     return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>;
   }
+
+  useEffect(() => {
+    if (articleId) {
+      useFetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${articleId}/incrementView`, {
+        method: 'POST',
+      });
+    }
+  }, [articleId]);
 
   useEffect(() => {
     const btnCloseTopic: any = document.querySelector('.btnCloseTopic');
@@ -221,7 +229,7 @@ DetailArticlePage.Layout = DetailPostLayout;
 export default DetailArticlePage;
 
 export const getStaticPaths = async () => {
-  const res = await fetch('http://localhost:3100/api/v1/user/article/full-list');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/full-list`);
   const posts = await res.json();
 
   const paths = posts?.data?.map((post: any) => ({
@@ -237,7 +245,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context: any) => {
   const { id } = context?.params;
   if (!id) return { notFound: true };
-  const res = await fetch(`http://localhost:3100/api/v1/user/article/${id}/detail`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${id}/detail`);
   const data: any = await res.json();
 
   return {

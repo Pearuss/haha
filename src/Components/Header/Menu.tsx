@@ -12,7 +12,7 @@ import { capitalizeFirstLetter } from '../../utilities/helper';
 /* eslint-disable */
 function Menu() {
   const router = useRouter();
-  const { data } = useSWR('http://localhost:3100/api/v1/category', {
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/category`, {
     revalidateOnFocus: false,
     dedupingInterval: 60 * 1000,
   });

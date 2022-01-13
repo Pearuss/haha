@@ -9,7 +9,7 @@ import FollowTag from './FollowTag';
 
 function TagSectionMobile({ isShowTagMobile }: any) {
   // const { data, error, mutate, inValidating } = useSWR('/tags', { revalidateOnFocus: false });
-  const { data: allTag } = useSWR('http://localhost:3100/api/v1/tags', {
+  const { data: allTag } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`, {
     revalidateOnFocus: false,
     dedupingInterval: 60 * 1000,
   });
