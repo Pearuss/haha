@@ -26,7 +26,7 @@ const InputMention = ({
   // const [tagNames, setTagNames] = useState<any>([]);
   const myInput = useRef<any>();
 
-  const { data: allUser } = useSWR('http://localhost:3100/api/v1/user', {
+  const { data: allUsers } = useSWR('http://localhost:3100/api/v1/user', {
     revalidateOnFocus: false,
   });
 
@@ -37,8 +37,7 @@ const InputMention = ({
   useEffect(() => {
     getActors();
     getTags();
-  }, []);
-
+  }, [allUsers, allTag]);
   const addContent = (input: string | any[]) => {
     if (input.length <= 350) {
       setContent(input);
@@ -47,7 +46,7 @@ const InputMention = ({
 
   async function getActors(): Promise<void> {
     const usersArr: any = [];
-    allUser?.data.map((item: any) => {
+    allUsers?.data.map((item: any) => {
       usersArr.push({
         id: item.id,
         display: item.lastName,

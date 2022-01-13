@@ -89,15 +89,15 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }: any) => {
-  const { category } = params;
-  if (!category) return { notFound: true };
+  const { items } = params;
+  if (!items) return { notFound: true };
 
   const resFullCat = await fetch('http://localhost:3100/api/v1/category/menu');
   const fullCats = await resFullCat.json();
   // const catResult = fullCats.data.find(
   //   (item: any) => item.name.toLowerCase() === category.toLowerCase(),
   // );
-  const catResult = fullCats.data.find((item: any) => item.name === category);
+  const catResult = fullCats.data.find((item: any) => item.name === items);
 
   const res = await fetch(`http://localhost:3100/api/v1/user/article/cat/${catResult?.id}`);
   const { data }: any = await res.json();
