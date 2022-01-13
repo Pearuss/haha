@@ -7,6 +7,7 @@ import useSWR from 'swr';
 import { Loading } from '../../common/Loading';
 import ModalPost from '../../Components/CreatePost';
 import useCall from '../../hooks/use-call';
+import useFetch from '../../hooks/use-fetch';
 import { HeaderLayout } from '../../layout';
 import { INewPost } from '../../models';
 
@@ -68,12 +69,24 @@ function UserCreatePage() {
 
   // Append link image inside markdown
   function handleUploadImgMD(e: ChangeEvent<HTMLInputElement> | any): void {
-    console.log(e.target.files[0]);
-
-    setNewPost((state: any) => ({
-      ...state,
-      content: `${state.content}![](https://media.geeksforgeeks.org/wp-content/uploads/20190702142251/Screenshot-4051.png)`,
-    }));
+    const reader = new FileReader();
+    let path: string;
+    reader.onload = async () => {
+      if (reader.readyState === 2) {
+        path = await useFetch('http://localhost:3100/api/v1/image/upload', {
+          method: 'POST',
+          body: JSON.stringify({
+            image: reader.result,
+          }),
+        });
+      }
+      console.log(`localhost:3100${path}`);
+      setNewPost((state: any) => ({
+        ...state,
+        content: `${state.content}![](localhost:3100${path})`,
+      }));
+    };
+    reader.readAsDataURL(e.target.files[0]);
   }
 
   function openBrowseImg(e: ChangeEvent<MouseEvent> | any): void {

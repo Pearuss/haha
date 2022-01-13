@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, {
+  useEffect, useRef, useState, useCallback,
+} from 'react';
 
 import Slider from '@material-ui/core/Slider';
 import CameraEnhanceOutlinedIcon from '@mui/icons-material/CameraEnhanceOutlined';
@@ -8,11 +10,11 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import Cropper from 'react-easy-crop';
 
 import useFetch from '../hooks/use-fetch';
 import getCroppedImg from '../utilities/helper';
-import { useRouter } from 'next/router';
 
 export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
   const router = useRouter();
@@ -25,7 +27,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
   const [zoomImage, setZoomImage] = useState<any>(1);
   const thumbnail = profile?.data?.thumbnail;
   const [profileImage, setProfileImage] = useState<any>(
-    thumbnail || 'http://localhost:3100/articles/user.png'
+    thumbnail || 'http://localhost:3100/articles/user.png',
   );
   // const [coverImage, setCoverImage] = useState<any | null>('/images/cover-photo4.jpg');
 
