@@ -120,7 +120,7 @@ function ModalPost({
 
     if (isValid) {
       setIsLoading(true);
-      const { message }: any = await useFetch('http://localhost:9500/api/v1/user/article', {
+      const { message }: any = await useFetch('/api/v1/user/article', {
         method: 'POST',
         body: JSON.stringify({
           article: {

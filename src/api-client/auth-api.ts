@@ -4,7 +4,7 @@ import axiosAuth from './axios-auth';
 
 export const authApi = {
   login(payload: LoginPayLoad) {
-    return useFetch('http://localhost:9500/api/login', { method: 'POST', body: JSON.stringify(payload) });
+    return useFetch('/api/login', { method: 'POST', body: JSON.stringify(payload) });
   },
 
   logout() {

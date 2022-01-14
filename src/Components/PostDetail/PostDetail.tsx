@@ -120,7 +120,14 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
       </div>
       <div className="flex items-center pl-2">
         <Image
-          src="/images/toc2.jpg"
+          loader={() =>
+            `${process.env.NEXT_PUBLIC_IMAGE_URL}${
+              profile?.data?.thumbnail || '/articles/user.png'
+            }`
+          }
+          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${
+            profile?.data?.thumbnail || '/articles/user.png'
+          }`}
           width={48}
           height={48}
           objectFit="cover"
