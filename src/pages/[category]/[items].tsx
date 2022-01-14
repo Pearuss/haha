@@ -25,7 +25,7 @@ function Category({ data }: any) {
       menuMobile.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full'
+        'ssm:-translate-x-full',
       );
       menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -89,7 +89,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }: any) => {
-  const { items } = params;
+  const { items, category } = params;
   if (!items) return { notFound: true };
 
   const resFullCat = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/category/menu`);
@@ -97,7 +97,7 @@ export const getStaticProps = async ({ params }: any) => {
   // const catResult = fullCats.data.find(
   //   (item: any) => item.name.toLowerCase() === category.toLowerCase(),
   // );
-  const catResult = fullCats.data.find((item: any) => item.name === items);
+  const catResult = fullCats.data.find((item: any) => item.slug === `/${category}/${items}`);
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/cat/${catResult?.id}`);
   const { data }: any = await res.json();

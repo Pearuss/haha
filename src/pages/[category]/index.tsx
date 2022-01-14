@@ -92,7 +92,7 @@ export const getStaticProps = async ({ params }: any) => {
 
   const resFullCat = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/category/menu`);
   const fullCats = await resFullCat.json();
-  const catResult = fullCats.data.find((item: any) => item.name === category);
+  const catResult = fullCats.data.find((item: any) => item.slug.includes(`/${category}`));
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/cat/${catResult?.id}`);
   const { data }: any = await res.json();
