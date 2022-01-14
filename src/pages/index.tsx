@@ -25,7 +25,7 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
       menuMobile?.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full'
+        'ssm:-translate-x-full',
       );
       menuMobile?.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -37,7 +37,7 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
   }, []);
 
   return (
-    <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw] flex-1">
+    <div className="mr-12 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw] flex-1">
       <div className="relative w-full h-auto bg-white p-4 pt-0 rounded-md shadow-sm ssm:h-auto ssm:min-h-[250px] sm:min-h-[210px]">
         <Link href={`/news/${news[0]?.id}`}>
           <div className="text-[37px] 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[30px] sm:text-[28px] ssm:text-2xl pb-3 text-black font-normal cursor-pointer mt-[-9px]">
@@ -46,7 +46,7 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
         </Link>
         <div className="text-sm mb-8">{truncate(`${news[0]?.shortContent}`, 360)}</div>
 
-        <div className="absolute bottom-1 right-4 pb-2 text-xs">
+        <div className="absolute bottom-1 right-4 pb-2">
           <span>Admin</span>
           <span className="ml-3">|</span>
           <span className="ml-3">{formatDate(new Date(news[0]?.createdAt))}</span>
@@ -66,7 +66,7 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
               </Link>
               <div className="text-sm mb-2">{truncate(`${news[1]?.shortContent}`, 112)}</div>
 
-              <div className="absolute bottom-1 right-4 text-xs">
+              <div className="absolute bottom-1 right-4">
                 <span>Admin</span>
                 <span className="ml-3">|</span>
                 <span className="ml-3">{formatDate(new Date(news[1]?.createdAt))}</span>
@@ -84,7 +84,7 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
                 {truncate(`${news[2]?.shortContent}`, 112)}
               </div>
 
-              <div className="absolute bottom-2 right-4 text-gray-700 text-xs">
+              <div className="absolute bottom-2 right-4 text-gray-700">
                 <span>Admin</span>
                 <span className="ml-3">|</span>
                 <span className="ml-3">{formatDate(new Date(news[2]?.createdAt))}</span>

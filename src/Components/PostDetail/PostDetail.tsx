@@ -115,7 +115,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
 
   return (
     <div className="relative bg-white rounded-lg shadow-md px-4 pt-2 py-16 mb-8 text-gray-600  h-auto postDetail flex-1 max-w-[70vw]">
-      <div className=" text-black font-semibold text-3xl sm:text-2xl ssm:text-xl pl-2 py-4 mx-auto ">
+      <div className=" text-black font-semibold text-3xl sm:text-2xl ssm:text-xl pl-2 py-4 mx-auto w-full ">
         {article?.title}
       </div>
       <div className="flex items-center pl-2">

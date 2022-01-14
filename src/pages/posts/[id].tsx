@@ -154,7 +154,7 @@ function DetailArticlePage({ data }: any) {
   }, []);
 
   return (
-    <div className="relative flex md:mr-0 sm:mr-0">
+    <div className="relative flex md:mr-0 sm:mr-0 w-full">
       {isShowContentIndex && (
         <div className="mr-4 sm:mr-8 ssm:mr-12">
           <div
