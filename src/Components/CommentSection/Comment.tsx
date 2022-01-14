@@ -79,7 +79,11 @@ function Comment({
     <div className="flex w-full items-center shadow-sm bg-white rounded-lg relative mb-4">
       <div className="absolute top-3 left-2">
         <Image
-          src="/images/toc2.jpg"
+          loader={() =>
+            `${process.env.NEXT_PUBLIC_IMAGE_URL}${profile.data.thumbnail || '/articles/user.png'}`}
+          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${
+            profile.data.thumbnail || '/articles/user.png'
+          }`}
           width={52}
           height={52}
           objectFit="cover"
