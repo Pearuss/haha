@@ -131,7 +131,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
           {`${article.authorFirstname} ${article.authorLastname}`}
         </span>
         <span className="text-gray-500 text-sm ml-1 mt-1">
-          @{`${article.mainCategory}• ${timeAgo(new Date(article?.publishedAt))}`}
+          @{`${article.mainCategory}• ${timeAgo(new Date(article?.published_at))}`}
         </span>
         {profile?.data?.userId === article?.author_id && (
           <Link href={`/posts/edit/${article.id}`}>

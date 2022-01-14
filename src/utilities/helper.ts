@@ -8,7 +8,9 @@ export function truncate(string: string, n: number) {
 }
 
 export function truncateBody(string: string, n: number) {
-  return string?.length > n ? `${string.substr(0, indexOf(string, '#', 2))} ...` : string;
+  return string?.length > n && indexOf(string, '#', 2) > 0
+    ? `${string.substr(0, indexOf(string, '#', 2))} ...`
+    : string;
 }
 
 export function replaceTagBr(string: string) {
