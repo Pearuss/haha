@@ -139,18 +139,7 @@ function ModalPost({
       });
       if (message === 200) {
         setIsLoading(false);
-        // router.replace('/');
-        // router.push('/search');
-        // setTimeout(() => {
-        //   router.replace('/');
-        // }, 300);
-
         router.push('/');
-
-        // Swal.fire('Successfully', 'Please reload the page to see your article!', 'success').then((result) => {
-
-        // });
-
         Swal.fire({
           title: 'Successfully',
           text: 'Please reload the page to see your article!',
@@ -166,7 +155,14 @@ function ModalPost({
             }, 2000);
           }
         });
+      } else if (message === 400) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Title already exists',
+          text: 'Please change your title!',
+        });
       }
+      setIsLoading(false);
     } else {
       const formTitle = {
         title: newPost.title,

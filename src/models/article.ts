@@ -26,7 +26,7 @@ export interface Article {
   thumbnail: string | null;
   comments: any;
   status: number | null;
-  authorId: number;
+  author_id: number;
   source: string | null;
   stopShareAt: Date | null;
   countComment: string | null;
@@ -42,6 +42,7 @@ export interface Article {
   authorLastname: string | null;
   articleCategories: ArticleCategory;
   articleTags: ArticleTag;
+  slugCategory: string | null;
 }
 
 export interface INewPost {

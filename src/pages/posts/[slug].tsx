@@ -28,22 +28,22 @@ function DetailArticlePage({ data }: any) {
   const [isReadMore, setIsReadMore] = useState(true);
   const [isShowTopicMobile, setIsShowTopicMobile] = useState(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
-
   const router = useRouter();
   const { profile, firstLoading } = useAuth();
-  const articleId = router.query.id;
+  const article = data.data[0];
+  console.log('data', article);
 
   if (router.isFallback) {
     return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>;
   }
 
   useEffect(() => {
-    if (articleId) {
-      useFetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${articleId}/incrementView`, {
+    if (article) {
+      useFetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${article.id}/incrementView`, {
         method: 'POST',
       });
     }
-  }, [articleId]);
+  }, [data]);
 
   useEffect(() => {
     const btnCloseTopic: any = document.querySelector('.btnCloseTopic');
@@ -233,7 +233,7 @@ export const getStaticPaths = async () => {
   const posts = await res.json();
 
   const paths = posts?.data?.map((post: any) => ({
-    params: { id: post.id.toString() },
+    params: { slug: post.slug.toString() },
   }));
 
   return {
@@ -243,9 +243,9 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context: any) => {
-  const { id } = context?.params;
-  if (!id) return { notFound: true };
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${id}/detail`);
+  const { slug } = context?.params;
+  if (!slug) return { notFound: true };
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${slug}/detail`);
   const data: any = await res.json();
 
   return {
