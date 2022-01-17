@@ -139,10 +139,13 @@ function ModalPost({
       });
       if (message === 200) {
         setIsLoading(false);
+        await fetch('/', {
+          method: 'HEAD',
+        });
         router.push('/');
         Swal.fire({
           title: 'Successfully',
-          text: 'Please reload the page to see your article!',
+          text: 'Article is created successfully!',
           icon: 'success',
           confirmButtonColor: '#3085d6',
           confirmButtonText: 'Ok',
@@ -152,7 +155,7 @@ function ModalPost({
           } else {
             setTimeout(() => {
               router.reload();
-            }, 2000);
+            }, 1000);
           }
         });
       } else if (message === 400) {
