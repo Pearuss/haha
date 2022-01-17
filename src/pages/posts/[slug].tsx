@@ -31,7 +31,7 @@ function DetailArticlePage({ data }: any) {
   const router = useRouter();
   const { profile, firstLoading } = useAuth();
   const article = data.data[0];
-  console.log('data', article);
+  // console.log('data', article);
 
   if (router.isFallback) {
     return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>;
