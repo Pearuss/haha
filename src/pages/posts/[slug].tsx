@@ -28,22 +28,22 @@ function DetailArticlePage({ data }: any) {
   const [isReadMore, setIsReadMore] = useState(true);
   const [isShowTopicMobile, setIsShowTopicMobile] = useState(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
-
   const router = useRouter();
   const { profile, firstLoading } = useAuth();
-  const articleId = router.query.id;
+  const article = data.data[0];
+  console.log('data', article);
 
   if (router.isFallback) {
     return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>;
   }
 
   useEffect(() => {
-    if (articleId) {
-      useFetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${articleId}/incrementView`, {
+    if (article) {
+      useFetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${article.id}/incrementView`, {
         method: 'POST',
       });
     }
-  }, [articleId]);
+  }, [data]);
 
   useEffect(() => {
     const btnCloseTopic: any = document.querySelector('.btnCloseTopic');
@@ -154,7 +154,7 @@ function DetailArticlePage({ data }: any) {
   }, []);
 
   return (
-    <div className="relative flex md:mr-0 sm:mr-0">
+    <div className="relative flex md:mr-0 sm:mr-0 w-full">
       {isShowContentIndex && (
         <div className="mr-4 sm:mr-8 ssm:mr-12">
           <div
@@ -233,7 +233,7 @@ export const getStaticPaths = async () => {
   const posts = await res.json();
 
   const paths = posts?.data?.map((post: any) => ({
-    params: { id: post.id.toString() },
+    params: { slug: post.slug.toString() },
   }));
 
   return {
@@ -243,9 +243,9 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context: any) => {
-  const { id } = context?.params;
-  if (!id) return { notFound: true };
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${id}/detail`);
+  const { slug } = context?.params;
+  if (!slug) return { notFound: true };
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${slug}/detail`);
   const data: any = await res.json();
 
   return {

@@ -40,7 +40,7 @@ li {
   @apply list-none;
 }
 .mainContent {
-  @apply flex mx-[calc(3vw+0.5rem)] lg:mx-[calc(1.5vw+0.5rem)] py-8 min-h-[calc(100vh-171px)];
+  @apply flex mx-[calc(2vw+0.5rem)] lg:mx-[calc(1.5vw+0.5rem)] py-8 min-h-[calc(100vh-171px)];
 }
 
 .mainDetailContent {
@@ -111,6 +111,13 @@ li {
 
 .calendar {
   @apply p-2;
+  @apply text-xl;
+  @apply xl:text-lg;
+  @apply lg:text-base;
+}
+
+.calendar .react-calendar__navigation {
+  @apply mb-1
 }
 
 .calendar button {
@@ -122,13 +129,31 @@ li {
 }
 
 .calendar .react-calendar__navigation__label__labelText {
-  @apply text-xl;
   @apply capitalize;
-  @apply font-bold;
+  @apply font-semibold;
+  @apply text-xl;
+  @apply xl:text-lg;
+  @apply lg:text-base;
 }
 
 .calendar .react-calendar__navigation__arrow {
   @apply text-xl;
+  @apply lg:min-w-[30px];
+}
+
+.calendar .react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+}
+
+.calendar .react-calendar__tile {
+  @apply text-lg;
+  @apply xl:text-base;
+  @apply lg:pt-1;
+  @apply lg:pb-1;
+  @apply lg:pl-2;
+  @apply lg:pr-2;
+  @apply lg:text-base;
+
 }
 
 .mentions--singleLine .mentions__control {
