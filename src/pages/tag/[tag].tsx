@@ -102,22 +102,31 @@ function PostsTag({ data }: any) {
   return (
     <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw] flex-1">
       <div className="flex items-center ">
-        <Image src="/images/hashtag1.png" width={40} height={40} />
+        <Image
+          loader={() =>
+            'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/hashtag1.png'
+          }
+          src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/hashtag1.png"
+          width={40}
+          height={40}
+        />
         <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl text-black font-normal ml-[1vw]">
           Tag: {capitalizeFirstLetter(router.query.tag?.toString() || '')}
         </p>
       </div>
-      {!followTags?.errCd && <div className="flex w-full my-4 ml-3">
-        <button
-          onClick={followHandler}
-          className={`px-3 py-2 rounded-lg font-medium tracking-wider  cursor-pointer border border-blueCyanLogo ${
-            isFollow ? 'border-gray-400 text-gray-900' : 'bg-blueCyanLogo text-white px-6'
-          }`}
-        >
-          {isFollow ? 'UnFollow' : 'Follow'}
-        </button>
-        <span className="px-3 py-2 font-medium text-gray-900 ">{totalFollow} Follower</span>
-      </div>}
+      {!followTags?.errCd && (
+        <div className="flex w-full my-4 ml-3">
+          <button
+            onClick={followHandler}
+            className={`px-3 py-2 rounded-lg font-medium tracking-wider  cursor-pointer border border-blueCyanLogo ${
+              isFollow ? 'border-gray-400 text-gray-900' : 'bg-blueCyanLogo text-white px-6'
+            }`}
+          >
+            {isFollow ? 'UnFollow' : 'Follow'}
+          </button>
+          <span className="px-3 py-2 font-medium text-gray-900 ">{totalFollow} Follower</span>
+        </div>
+      )}
       {/* <div className="w-full flex items-center pt-8 border-b-4 border-blueCyanLogo">
         <div className="flex-1 pb-2 text-center font-semibold  text-blueCyanLogo">All Posts</div>
       </div> */}

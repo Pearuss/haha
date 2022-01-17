@@ -37,7 +37,12 @@ function Category({ data }: any) {
   return (
     <div className="flex-1 mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
       <div className="flex items-center mb-4">
-        <Image src="/images/category.png" width={40} height={40} />
+        <Image
+          loader={() => 'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/category.png'}
+          src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/category.png"
+          width={40}
+          height={40}
+        />
         <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-1 text-black font-normal ml-[1vw]">
           Category: {capitalizeFirstLetter(router.query.category?.toString() || '')}
         </p>

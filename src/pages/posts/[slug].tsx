@@ -205,7 +205,14 @@ function DetailArticlePage({ data }: any) {
               onClick={toggleFormComment}
               className="flex items-center py-[0.35rem] px-3 rounded-md border border-blue-600 text-blue-600"
             >
-              <Image src="/images/pencil2.png" width={20} height={20} />
+              <Image
+                loader={() =>
+                  'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/pencil2.png'
+                }
+                src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/pencil2.png"
+                width={20}
+                height={20}
+              />
               <span className="ml-1">Add comment</span>
             </button>
           </div>
