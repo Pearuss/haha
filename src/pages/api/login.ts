@@ -39,9 +39,10 @@ export default function handler(req: any, res: any) {
 
           // console.log(accessToken + '+' + expiresIn);
 
-          const cookies = new Cookies(req, res, {
-            secure: process.env.NODE_ENV !== 'development',
-          });
+          // const cookies = new Cookies(req, res, {
+          //   secure: process.env.NODE_ENV !== 'development',
+          // });
+          const cookies = new Cookies(req, res);
           cookies.set('access_token', accessToken, {
             httpOnly: true,
             sameSite: 'lax',

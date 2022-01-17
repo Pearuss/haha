@@ -10,7 +10,7 @@ import Post from '../../Components/Post';
 // import { useAuth } from '../../hooks';
 import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
 import useCall from '../../hooks/use-call';
-import { AdminLayout } from '../../layout';
+import { MainLayout } from '../../layout';
 import { Article } from '../../models';
 
 function ProfilePage() {
@@ -23,18 +23,18 @@ function ProfilePage() {
     [userId],
   );
   const [profileImage, setProfileImage] = useState(
-    profile?.data?.thumbnail || `${process.env.NEXT_PUBLIC_IMAGE_URL}/articles/user.png`,
+    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`,
   );
+  // const [profileImage, setProfileImage] = useState(
+  //   profile?.data?.thumbnail || `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`
+  // );
   const thumbnail = profile?.data.thumbnail;
 
   useEffect(() => {
     if (thumbnail) {
-      setProfileImage(
-        `${process.env.NEXT_PUBLIC_IMAGE_URL}${thumbnail}`
-          || `${process.env.NEXT_PUBLIC_IMAGE_URL}/articles/user.png`,
-      );
+      setProfileImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}${thumbnail}`);
     }
-  }, [thumbnail]);
+  }, [profile]);
 
   const { value: articles }: { value: Article[] | any } = useCall(
     `${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${userId}`,
@@ -80,6 +80,9 @@ function ProfilePage() {
         <Image
           loader={() => 'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/cover-photo4.jpg'}
           src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/cover-photo4.jpg"
+          onError={() => {
+            setProfileImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`);
+          }}
           layout="fill"
           objectFit="cover"
         />
@@ -108,5 +111,5 @@ function ProfilePage() {
   );
 }
 
-ProfilePage.Layout = AdminLayout;
+ProfilePage.Layout = MainLayout;
 export default ProfilePage;

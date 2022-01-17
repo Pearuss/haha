@@ -105,7 +105,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
     }
     if (isInWork && article?.id) {
       mutateInWork({ data: totalInWorkRes.data - 1 }, false);
-      useFetch('http://localhost:9500/api/v1/user/articleinwork/uninwork', {
+      useFetch('/api/v1/user/articleinwork/uninwork', {
         method: 'POST',
         body: JSON.stringify({ articleId: article.id }),
       });
@@ -122,11 +122,11 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
         <Image
           loader={() =>
             `${process.env.NEXT_PUBLIC_IMAGE_URL}${
-              profile?.data?.thumbnail || '/articles/user.png'
+              profile?.data?.thumbnail || '/uploads/articles/user.png'
             }`
           }
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${
-            profile?.data?.thumbnail || '/articles/user.png'
+            profile?.data?.thumbnail || '/uploads/articles/user.png'
           }`}
           width={48}
           height={48}
