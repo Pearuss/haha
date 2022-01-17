@@ -171,7 +171,14 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
             }`}
             onClick={InWorkHandler}
           >
-            <Image src="/images/target.png" width={20} height={20} />
+            <Image
+              loader={() =>
+                'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/target.png'
+              }
+              src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/target.png"
+              width={20}
+              height={20}
+            />
             <span>{totalInWorkRes?.data || 0}</span>
           </div>
           <div
@@ -180,15 +187,36 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
             }`}
             onClick={likedHandler}
           >
-            <Image src="/images/heart.png" width={20} height={20} />
+            <Image
+              loader={() =>
+                'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/heart.png'
+              }
+              src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/heart.png"
+              width={20}
+              height={20}
+            />
             <span>{totalLikedRes?.data || 0}</span>
           </div>
           <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
-            <Image src="/images/comment.png" width={20} height={20} />
+            <Image
+              loader={() =>
+                'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/comment.png'
+              }
+              src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/comment.png"
+              width={20}
+              height={20}
+            />
             <span>{article?.countComment}</span>
           </div>
           <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
-            <Image src="/images/view.png" width={20} height={20} />
+            <Image
+              loader={() =>
+                'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/view.png'
+              }
+              src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/view.png"
+              width={20}
+              height={20}
+            />
             <span>{article?.view_count}</span>
           </div>
         </div>

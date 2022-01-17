@@ -125,7 +125,13 @@ function Comment({
               }`}
               onClick={LikeCommentHandler}
             >
-              <Image src="/images/star.png" width={20} height={20} />
+              <Image
+                loader={() =>
+                  'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/star.png'}
+                src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/star.png"
+                width={20}
+                height={20}
+              />
               <span className="pl-3 font-medium">{totalLiked || 0}</span>
             </span>
             {/* <span className="flex items-center">
@@ -134,7 +140,13 @@ function Comment({
             </span> */}
           </div>
           <div className="flex items-center mr-6">
-            <Image src="/images/reply.png" width={20} height={20} />
+            <Image
+              loader={() =>
+                'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/reply.png'}
+              src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/reply.png"
+              width={20}
+              height={20}
+            />
             <span
               className="pl-3 font-medium"
               onClick={() =>
