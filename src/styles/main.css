@@ -20,6 +20,12 @@ a {
 .markdownCustomWidth > * {
   @apply w-full h-full;
 }
+.md-editor-preview ol li {
+  list-style-type: auto !important;
+}
+.md-editor-preview ul li {
+  list-style-type: inherit !important;
+}
 .postContent > h1 {
   @apply text-xl text-black font-bold mt-[30px];
 }
