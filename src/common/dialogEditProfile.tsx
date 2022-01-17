@@ -27,7 +27,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
   const [zoomImage, setZoomImage] = useState<any>(1);
   const thumbnail = profile?.data?.thumbnail;
   const [profileImage, setProfileImage] = useState<any>(
-    thumbnail || `${process.env.NEXT_PUBLIC_IMAGE_URL}/articles/user.png`,
+    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`,
   );
   // const [coverImage, setCoverImage] = useState<any | null>('/images/cover-photo4.jpg');
 
@@ -36,9 +36,9 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
 
   useEffect(() => {
     if (thumbnail) {
-      setProfileImage(`${process.env.NEXT_PUBLIC_BASE_URL}${thumbnail}`);
+      setProfileImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}${thumbnail}`);
     }
-  }, [thumbnail]);
+  }, [profile]);
   useEffect(() => {
     if (profile?.data) {
       setFirstName(profile?.data?.firstName);

@@ -22,24 +22,19 @@ function ProfilePage() {
     {},
     [userId],
   );
+  const [profileImage, setProfileImage] = useState(
+    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`,
+  );
   // const [profileImage, setProfileImage] = useState(
   //   profile?.data?.thumbnail || `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`
   // );
-  const [profileImage, setProfileImage] = useState(
-    `${process.env.NEXT_PUBLIC_IMAGE_URL}${
-      profile?.data?.thumbnail || '/uploads/articles/user.png'
-    }`,
-  );
   const thumbnail = profile?.data.thumbnail;
 
   useEffect(() => {
     if (thumbnail) {
-      setProfileImage(
-        `${process.env.NEXT_PUBLIC_IMAGE_URL}${thumbnail}`
-          || `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`,
-      );
+      setProfileImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}${thumbnail}`);
     }
-  }, []);
+  }, [profile]);
 
   const { value: articles }: { value: Article[] | any } = useCall(
     `${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${userId}`,

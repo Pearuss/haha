@@ -18,7 +18,7 @@ function Post({ article }: { article: Article }) {
           <img
             className="absolute inset-0 overflow-hidden rounded-sm ssm:object-cover"
             src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${
-              article?.thumbnail || '/articles/user.png'
+              article?.thumbnail || '/uploads/articles/user.png'
             }`}
             alt="img"
           />

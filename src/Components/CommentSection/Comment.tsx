@@ -82,7 +82,7 @@ function Comment({
           loader={() =>
             `${process.env.NEXT_PUBLIC_IMAGE_URL}${profile.data.thumbnail || '/articles/user.png'}`}
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${
-            profile.data.thumbnail || '/articles/user.png'
+            profile.data.thumbnail || '/uploads/articles/user.png'
           }`}
           width={52}
           height={52}
