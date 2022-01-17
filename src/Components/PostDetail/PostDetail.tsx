@@ -105,7 +105,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
     }
     if (isInWork && article?.id) {
       mutateInWork({ data: totalInWorkRes.data - 1 }, false);
-      useFetch('http://localhost:9500/api/v1/user/articleinwork/uninwork', {
+      useFetch('/api/v1/user/articleinwork/uninwork', {
         method: 'POST',
         body: JSON.stringify({ articleId: article.id }),
       });
