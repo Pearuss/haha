@@ -1,0 +1,21 @@
+version: '3'
+
+networks:
+    app-frontend:
+
+services:
+    nodejs-nextjs:
+        container_name: hyknow-nodejs-nextjs
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        restart: on-failure
+        ports:
+            - "9500:9500"
+        volumes:
+            - ./../storage/frontend/:/usr/src/app/public/
+        networks:
+            - app-frontend
+        stdin_open: true
+        tty: true
+        command: npm start
