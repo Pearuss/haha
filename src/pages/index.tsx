@@ -44,7 +44,7 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
             {news[0]?.title}
           </div>
         </Link>
-        <div className="text-sm mb-8">{truncate(`${news[0]?.shortContent}`, 360)}</div>
+        <div className="mb-8">{truncate(`${news[0]?.shortContent}`, 360)}</div>
 
         <div className="absolute bottom-1 right-4 pb-2">
           <span>Admin</span>
@@ -64,7 +64,7 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
               <Link href={`/news/${news[1]?.id}`}>
                 <div className="font-medium pb-1 text-black">{news[1]?.title}</div>
               </Link>
-              <div className="text-sm mb-2">{truncate(`${news[1]?.shortContent}`, 112)}</div>
+              <div className="mb-2">{truncate(`${news[1]?.shortContent}`, 112)}</div>
 
               <div className="absolute bottom-1 right-4">
                 <span>Admin</span>
@@ -80,7 +80,7 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
                   {truncate(`${news[2]?.title}`, 40)}
                 </div>
               </Link>
-              <div className="text-sm mb-2 xl:mb-4 lg:mb-5 md:mb-5">
+              <div className="mb-2 xl:mb-4 lg:mb-5 md:mb-5">
                 {truncate(`${news[2]?.shortContent}`, 112)}
               </div>
 
@@ -98,7 +98,7 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
                   {truncate(`${news[3]?.title}`, 34)}
                 </div>
               </Link>
-              <div className="text-sm mb-2">{truncate(`${news[3]?.shortContent}`, 112)}</div>
+              <div className="mb-2">{truncate(`${news[3]?.shortContent}`, 112)}</div>
 
               <div className="absolute bottom-1 right-4 text-gray-700 pb-2 text-xs">
                 <span>

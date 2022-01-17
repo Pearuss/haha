@@ -15,7 +15,9 @@ export const config = {
 const proxy = httpProxy.createProxyServer();
 
 export default function handler(req: any, res: any) {
-  req.url = req.url.replace(/^\/api/, '');
+  // req.url = req.url.replace(/^\/api/, '');
+  console.log(req.url);
+
   if (req.method !== 'POST') {
     return res.status(404).json({ message: 'method not support' });
   }
