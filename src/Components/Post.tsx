@@ -26,7 +26,7 @@ function Post({ article }: { article: Article }) {
       </div>
       <div className="flex-1 ml-5 relative cursor-auto ssm:w-full ssm:flex ssm:items-center ssm:flex-col ssm:ml-0 text-gray-900">
         <Link href={linkDetail} key={article?.id}>
-          <h3 className="text-xl cursor-pointer text-black font-medium ssm:my-2">
+          <h3 className="text-xl cursor-pointer text-black font-medium ssm:my-2 hover:opacity-80">
             {truncate(`${article?.title}`, 70)}
           </h3>
         </Link>
@@ -47,14 +47,12 @@ function Post({ article }: { article: Article }) {
         <p className="absolute bottom-8 ssm:bottom-[-2.2rem] ssm:right-0 ssm:text-sm tracking-wide ">
           {formatDate(new Date(article?.published_at))}
         </p>
-        <p className="absolute bottom-0 ssm:bottom-[-4.2rem] ssm:left-0 ssm:text-sm ">
+        <p className="absolute bottom-0 ssm:bottom-[-4.2rem] ssm:left-0 ssm:text-sm">
           <Link href={`${article.slugCategory}`}>{article?.mainCategory}</Link>
           {' '}
           -
           {' '}
-          <Link
-            href={`/user/${article.author_id}`}
-          >
+          <Link href={`/user/${article.author_id}`}>
             {`${article?.authorLastname} ${article?.authorFirstname}`}
           </Link>
         </p>
