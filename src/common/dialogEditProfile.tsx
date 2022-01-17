@@ -31,8 +31,8 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
   );
   // const [coverImage, setCoverImage] = useState<any | null>('/images/cover-photo4.jpg');
 
-  const [firstName, setFirstName] = useState(profile?.data.firstName || '');
-  const [lastName, setLastName] = useState(profile?.data.lastName || '');
+  const [firstName, setFirstName] = useState(profile?.data?.firstName || '');
+  const [lastName, setLastName] = useState(profile?.data?.lastName || '');
 
   useEffect(() => {
     if (thumbnail) {
@@ -41,8 +41,8 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
   }, [thumbnail]);
   useEffect(() => {
     if (profile?.data) {
-      setFirstName(profile?.data.firstName);
-      setLastName(profile?.data.lastName);
+      setFirstName(profile?.data?.firstName);
+      setLastName(profile?.data?.lastName);
     }
   }, [profile]);
 
