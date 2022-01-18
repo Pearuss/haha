@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import LocalFireDepartmentOutlinedIcon from '@mui/icons-material/LocalFireDepartmentOutlined';
 import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
-import PhoneIphoneOutlinedIcon from '@mui/icons-material/PhoneIphoneOutlined';
+// import PhoneIphoneOutlinedIcon from '@mui/icons-material/PhoneIphoneOutlined';
 
 import { useAuth } from '../../hooks';
 import ProfileModal from '../dialogEditProfile';
@@ -36,22 +36,22 @@ function UserDetail({ data, userId }: any) {
       <div className="pt-[4.4rem] pl-6">
         <div className="font-semibold text-xl text-blueCyanLogo pb-2">
           {data?.data?.firstName}
+          {' '}
           {data?.data?.lastName}
-          - Fresher
         </div>
         <div className="font-medium text-gray-900">Hybrid Technologies Vietnam</div>
         <div className="flex items-center text-gray-900 pt-2">
           <LocalFireDepartmentOutlinedIcon />
-          <span className="pl-4">HAN Fresher Training</span>
+          <span className="pl-4">Technical Solution</span>
         </div>
         <div className="flex items-center text-gray-900 pt-2">
           <MailOutlineOutlinedIcon />
           <span className="pl-4">{data?.data.email}</span>
         </div>
-        <div className="flex items-center text-gray-900 pt-2">
+        {/* <div className="flex items-center text-gray-900 pt-2">
           <PhoneIphoneOutlinedIcon />
           <span className="pl-4">0989275134</span>
-        </div>
+        </div> */}
       </div>
       <div className="w-full flex items-center pt-8 border-b-4 border-blueCyanLogo">
         <div className="flex-1 pb-2 text-center font-semibold  text-blueCyanLogo">Posts</div>

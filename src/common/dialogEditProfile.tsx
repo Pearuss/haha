@@ -148,7 +148,13 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
         aria-describedby="alert-dialog-description"
       >
         <div className="relative max-w-full w-full h-[170px] max-h-[170px] mb-9">
-          <Image src="/images/cover-photo4.jpg" layout="fill" objectFit="cover" className="z-20" />
+          <Image
+            loader={() => 'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/cover-photo4.jpg'}
+            src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/cover-photo4.jpg"
+            layout="fill"
+            objectFit="cover"
+            className="z-20"
+          />
           <div className="absolute w-[128px] h-[128px] bottom-[-61px] left-4 overflow-hidden rounded-full border-[6px] border-white z-40">
             <Image
               loader={() => profileImage}

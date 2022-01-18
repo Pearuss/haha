@@ -4,16 +4,34 @@ import React, { useEffect, useState } from 'react';
 
 // import Link from 'next/link';
 import Link from 'next/link';
+import useSWR from 'swr';
 
 import Post from '../Components/Post';
 import TagSectionMobile from '../Components/TagContent/TagSectionMobile';
 import { MainLayout } from '../layout';
 import { Article } from '../models';
 import { formatDate, truncate } from '../utilities/helper';
+// import { useRouter } from 'next/router';
 // import { LayoutMeta } from 'next';
 
 function HomePage({ articles, news }: { articles: Article[]; news: any }) {
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
+  // const router = useRouter();
+  const [allArticles, setAllArticles] = useState(articles);
+
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/full-list`, {
+    // revalidateOnMount: false,
+    revalidateOnMount: true,
+    revalidateIfStale: true,
+  });
+  // const backupArticles = data === undefined ? 1 : data.data;
+  // console.log(data);
+
+  useEffect(() => {
+    if (data?.data && JSON.stringify(data.data) !== JSON.stringify(articles)) {
+      setAllArticles(data.data);
+    }
+  }, [data?.data]);
 
   useEffect(() => {
     const btnShowTag = document.querySelector('.btnShowTag');
@@ -91,27 +109,9 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
               </div>
             </div>
           )}
-          {/* {news[3]?.id && (
-            <div className="relative w-full h-full min-h-[150px] bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:shadow-custom hover:scale-105 transition-all duration-300 hidden  2xl:hidden lg:hidden md:hidden xl:hidden sm:hidden ssm:hidden">
-              <Link href={`/posts/${news[3]?.id}`}>
-                <div className="font-medium pb-1 text-black">
-                  {truncate(`${news[3]?.title}`, 34)}
-                </div>
-              </Link>
-              <div className="mb-2">{truncate(`${news[3]?.shortContent}`, 112)}</div>
-
-              <div className="absolute bottom-1 right-4 text-gray-700 pb-2 text-xs">
-                <span>
-                  Admin
-                </span>
-                <span className="ml-3">|</span>
-                <span className="ml-3">{formatDate(new Date(news[3]?.createdAt))}</span>
-              </div>
-            </div>
-          )} */}
         </div>
       </div>
-      {articles
+      {allArticles
         .slice(0)
         .reverse()
         .map((article: Article) => (
