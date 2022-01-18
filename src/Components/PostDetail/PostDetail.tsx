@@ -122,11 +122,11 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
         <Image
           loader={() =>
             `${process.env.NEXT_PUBLIC_IMAGE_URL}${
-              profile?.data?.thumbnail || '/uploads/articles/user.png'
+              article?.authorAvatar || '/uploads/articles/user.png'
             }`
           }
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${
-            profile?.data?.thumbnail || '/uploads/articles/user.png'
+            article?.authorAvatar || '/uploads/articles/user.png'
           }`}
           width={48}
           height={48}
@@ -135,7 +135,9 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
           priority
         />
         <span className="font-medium text-xl ml-2 text-blueCyanLogo">
-          {`${article.authorFirstname} ${article.authorLastname}`}
+          {article.authorName
+            ? `${article.authorName}`
+            : `${article.authorFirstname} ${article.authorLastname}`}
         </span>
         <span className="text-gray-500 text-sm ml-1 mt-1">
           @{`${article.mainCategory}• ${timeAgo(new Date(article?.published_at))}`}
