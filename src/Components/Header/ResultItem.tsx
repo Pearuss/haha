@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { formatDate, truncate } from '../../utilities/helper';
 
 export default function ResultItem({ result }: any) {
-  const linkDetail = `/posts/${result?.id}`;
+  const linkDetail = `/posts/${result?.slug}`;
   const date = new Date(result.publishedAt);
   return (
     <Link href={linkDetail} key={result?.id}>
