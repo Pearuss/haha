@@ -103,10 +103,8 @@ function PostsTag({ data }: any) {
     <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw] flex-1">
       <div className="flex items-center ">
         <Image
-          loader={() =>
-            'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/hashtag1.png'
-          }
-          src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/hashtag1.png"
+          loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/hashtag1.png`}
+          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/hashtag1.png`}
           width={40}
           height={40}
         />

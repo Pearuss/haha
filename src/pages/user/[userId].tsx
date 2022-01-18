@@ -78,8 +78,8 @@ function ProfilePage() {
       </div>
       <div className="relative max-w-full w-full h-[220px] max-h-[220px]">
         <Image
-          loader={() => 'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/cover-photo4.jpg'}
-          src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/cover-photo4.jpg"
+          loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`}
+          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`}
           // onError={() => {
           //   setProfileImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`);
           // }}

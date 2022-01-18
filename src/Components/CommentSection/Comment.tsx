@@ -81,9 +81,11 @@ function Comment({
       <div className="absolute top-3 left-2">
         <Image
           loader={() =>
-            `${process.env.NEXT_PUBLIC_IMAGE_URL}${UserComment?.thumbnail || '/articles/user.png'}`}
+            `${process.env.NEXT_PUBLIC_IMAGE_URL}${
+              UserComment?.thumbnail || profile.data.thumbnail
+            }`}
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${
-            UserComment?.thumbnail || '/uploads/articles/user.png'
+            UserComment?.thumbnail || profile.data.thumbnail
           }`}
           width={52}
           height={52}
@@ -126,9 +128,8 @@ function Comment({
               onClick={LikeCommentHandler}
             >
               <Image
-                loader={() =>
-                  'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/star.png'}
-                src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/star.png"
+                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/star.png`}
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/star.png`}
                 width={20}
                 height={20}
               />
@@ -141,9 +142,8 @@ function Comment({
           </div>
           <div className="flex items-center mr-6">
             <Image
-              loader={() =>
-                'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/reply.png'}
-              src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/reply.png"
+              loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/reply.png`}
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/reply.png`}
               width={20}
               height={20}
             />

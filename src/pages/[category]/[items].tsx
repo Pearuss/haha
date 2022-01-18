@@ -40,8 +40,8 @@ function Category({ data }: any) {
     <div className="flex-1 mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
       <div className="flex items-center mb-4">
         <Image
-          loader={() => 'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/category.png'}
-          src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/category.png"
+          loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/category.png`}
+          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/category.png`}
           width={40}
           height={40}
         />

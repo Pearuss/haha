@@ -9,15 +9,12 @@ function HeaderLeft() {
     <div className="relative flex items-center cursor-pointer pt-4 ml-[-2rem] max-w-[250px] w-[250px] md:h-[38px] md:mt-1 sm:mt-[5px] sm:h-[35px] sm:ml-[-4rem] ssm:h-[32px] ssm:ml-[-5rem] h-[45px] max-h-[45px]">
       <Link href="/">
         <Image
-          loader={() => 'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/logo.svg'}
-          src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/logo.svg"
+          loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/logo.svg`}
+          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/logo.svg`}
           layout="fill"
           priority
         />
       </Link>
-      {/* <Link href="/">
-        <Image src="/images/favicon-32x32.png" layout="fill" priority className="ssm:block hidden" />
-      </Link> */}
     </div>
   );
 }

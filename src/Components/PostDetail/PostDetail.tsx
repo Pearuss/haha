@@ -145,7 +145,14 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
         {profile?.data?.userId === article?.author_id && (
           <Link href={`/posts/edit/${article.id}`}>
             <span className="mt-1 ml-2">
-              <Image src="/images/pencil.png" width={12} height={12} />
+              <Image
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/pencil.png`
+                }
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/pencil.png`}
+                width={12}
+                height={12}
+              />
             </span>
           </Link>
         )}
@@ -174,10 +181,8 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
             onClick={InWorkHandler}
           >
             <Image
-              loader={() =>
-                'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/target.png'
-              }
-              src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/target.png"
+              loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/target.png`}
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/target.png`}
               width={20}
               height={20}
             />
@@ -190,10 +195,8 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
             onClick={likedHandler}
           >
             <Image
-              loader={() =>
-                'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/heart.png'
-              }
-              src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/heart.png"
+              loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/heart.png`}
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/heart.png`}
               width={20}
               height={20}
             />
@@ -202,9 +205,9 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
           <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
             <Image
               loader={() =>
-                'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/comment.png'
+                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/comment.png`
               }
-              src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/comment.png"
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/comment.png`}
               width={20}
               height={20}
             />
@@ -212,10 +215,8 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
           </div>
           <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
             <Image
-              loader={() =>
-                'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/view.png'
-              }
-              src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/view.png"
+              loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/view.png`}
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/view.png`}
               width={20}
               height={20}
             />

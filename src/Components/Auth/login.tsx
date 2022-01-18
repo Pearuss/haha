@@ -49,9 +49,9 @@ function login({
           <Link href="/">
             <Image
               loader={() =>
-                'https://sso.hybrid-technologies.co.jp/auth/resources/4.2.1.final/login/eas/img/logo_login2.png'
+                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/logo_login2.jpg`
               }
-              src="https://sso.hybrid-technologies.co.jp/auth/resources/4.2.1.final/login/eas/img/logo_login2.png"
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/logo_login2.jpg`}
               width={360}
               height={85}
               priority

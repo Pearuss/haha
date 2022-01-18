@@ -43,7 +43,7 @@ const Login = () => {
 
   const handleLoginSSO = () => {
     router.push(
-      'https://sso.hybrid-technologies.co.jp/auth/realms/eas/protocol/openid-connect/auth?response_type=code&redirect_uri=http://localhost:9500/loginsso/&client_id=skh-dev&scope=openid%20profile'
+      `https://sso.hybrid-technologies.co.jp/auth/realms/eas/protocol/openid-connect/auth?response_type=code&redirect_uri=${process.env.NEXT_PUBLIC_IMAGE_URL}/loginsso/&client_id=skh-dev&scope=openid%20profile`
     );
   };
 

@@ -30,7 +30,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
     `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`,
   );
   const [coverImage, setCoverImage] = useState<any>(
-    'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/cover-photo4.jpg',
+    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`,
   );
   // const [coverImage, setCoverImage] = useState<any | null>('/images/cover-photo4.jpg');
 

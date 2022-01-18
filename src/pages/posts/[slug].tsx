@@ -207,9 +207,9 @@ function DetailArticlePage({ data }: any) {
             >
               <Image
                 loader={() =>
-                  'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/pencil2.png'
+                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/pencil2.png`
                 }
-                src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/pencil2.png"
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/pencil2.png`}
                 width={20}
                 height={20}
               />
