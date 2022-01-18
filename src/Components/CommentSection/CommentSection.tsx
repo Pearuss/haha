@@ -82,7 +82,7 @@ function CommentSection({ showForm, postId }: any) {
       {rootComments?.map((rootComment) => (
         <Comment
           key={rootComment.id}
-          idUserComment={rootComment.user.id}
+          UserComment={rootComment.user}
           userId={rootComment.userId}
           commentContent={rootComment}
           replies={getReplies(rootComment.id)}

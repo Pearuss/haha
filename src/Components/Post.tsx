@@ -53,7 +53,9 @@ function Post({ article }: { article: Article }) {
           -
           {' '}
           <Link href={`/user/${article.author_id}`}>
-            {`${article?.authorLastname} ${article?.authorFirstname}`}
+            {article.authorName
+              ? `${article.authorName}`
+              : `${article.authorFirstname} ${article.authorLastname}`}
           </Link>
         </p>
       </div>

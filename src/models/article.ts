@@ -40,6 +40,7 @@ export interface Article {
   mainCategory: string | null;
   authorFirstname: string | null;
   authorLastname: string | null;
+  authorName: string | null;
   articleCategories: ArticleCategory;
   articleTags: ArticleTag;
   slugCategory: string | null;

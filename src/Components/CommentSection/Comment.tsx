@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-multi-spaces */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable operator-linebreak */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -25,7 +26,7 @@ function Comment({
   activeComment,
   setActiveComment,
   addComment,
-  idUserComment,
+  UserComment,
   parentId = null,
 }: any) {
   const { profile } = useAuth();
@@ -80,9 +81,9 @@ function Comment({
       <div className="absolute top-3 left-2">
         <Image
           loader={() =>
-            `${process.env.NEXT_PUBLIC_IMAGE_URL}${profile.data.thumbnail || '/articles/user.png'}`}
+            `${process.env.NEXT_PUBLIC_IMAGE_URL}${UserComment?.thumbnail || '/articles/user.png'}`}
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${
-            profile.data.thumbnail || '/uploads/articles/user.png'
+            UserComment?.thumbnail || '/uploads/articles/user.png'
           }`}
           width={52}
           height={52}
@@ -92,10 +93,9 @@ function Comment({
       </div>
       <div className="ml-2 pl-16 py-3 w-full">
         <div className="flex justify-between ">
-          {/* <Link href={`/user/${idUserComment}`}> */}
           <Link
             href={`${
-              idUserComment != null ? `/user/${idUserComment}` : `/user/${profile.data.userId}`
+              UserComment?.id != null ? `/user/${UserComment?.id}` : `/user/${profile.data.userId}`
             }`}
           >
             <span className="text-lg text-blueCyanLogo font-medium cursor-pointer">
@@ -180,6 +180,7 @@ function Comment({
             {replies?.map((reply: IComment) => (
               <Comment
                 commentContent={reply}
+                UserComment={reply.user}
                 key={reply.id}
                 replies={[]}
                 addComment={addComment}
