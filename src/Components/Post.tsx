@@ -26,7 +26,7 @@ function Post({ article }: { article: Article }) {
       </div>
       <div className="flex-1 ml-5 relative cursor-auto ssm:w-full ssm:flex ssm:items-center ssm:flex-col ssm:ml-0 text-gray-900">
         <Link href={linkDetail} key={article?.id}>
-          <h3 className="text-xl cursor-pointer text-black font-medium ssm:my-2 hover:opacity-80">
+          <h3 className="text-xl cursor-pointer text-black font-medium ssm:my-2 hover:opacity-70">
             {truncate(`${article?.title}`, 70)}
           </h3>
         </Link>

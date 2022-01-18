@@ -11,7 +11,7 @@ const ButtonLoading = (props: any) => {
       const { messageLoading } = props;
       return (
         <Button
-          className="w-full mt-5 py-4 text-white"
+          // className="w-full mt-5 py-4 text-white"
           {..._.omit(props, ['isLoading', 'messageLoading', 'isSuccess'])}
           disabled
         >

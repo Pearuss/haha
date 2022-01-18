@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { TextField, Typography } from '@material-ui/core';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Controller } from 'react-hook-form';
 
@@ -24,31 +25,39 @@ function login({
     <div
       style={{
         // backgroundImage: `url(https://assets.nflxext.com/ffe/siteui/vlv3/5a27cb25-33a9-4bcc-b441-95fefabcbd37/6bdbf132-dd7b-4d42-8f84-9139f9c4eaac/VN-en-20210823-popsignuptwoweeks-perspective_alpha_website_large.jpg)`,
-        backgroundImage: `url(https://jobs.hybrid-technologies.vn/wp-content/uploads/2021/08/1.png)`,
+        backgroundImage: `url(https://sso.hybrid-technologies.co.jp/auth/resources/4.2.1.final/login/eas/img/background/bg_login_page.jpg)`,
       }}
       className="relative h-screen bg-cover bg-no-repeat bg-center"
     >
-      <div
-        style={{
-          background: `rgba(0, 0, 0, 0.4)`,
-          backgroundImage: `linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.8) 0,
-          rgba(0, 0, 0, 0) 60%,
-          rgba(0, 0, 0, 0.8) 100%
-        )`,
-        }}
-        className="flex items-center justify-center w-full h-full"
-      >
+      <div className="flex items-center justify-center w-full h-full">
         {/* <div className="login__logo">
       <img src="/netflix_logo.png" alt="" />
     </div> */}
         <form
           onSubmit={handleSubmit(submit)}
-          className="w-[500px] h-[660px] box-border bg-lightBlack px-16 py-14 rounded-md"
+          style={{
+            background: `#D3E2E3`,
+            backgroundImage: `linear-gradient(
+          to top,
+          rgba(211, 226, 227, 0.8) 0,
+          rgba(211, 226, 227, 0) 60%,
+          rgba(211, 226, 227, 0.8) 100%
+        )`,
+          }}
+          className="w-[500px] h-[660px] box-border bg-transparent px-16 py-10 rounded-md"
         >
-          <h1 className="text-3xl p-2 text-white w-full font-bold">Sign In</h1>
-          <div className='text-darkRed ml-2'>{errorForm}</div>
+          <Link href="/">
+            <Image
+              loader={() =>
+                'https://sso.hybrid-technologies.co.jp/auth/resources/4.2.1.final/login/eas/img/logo_login2.png'
+              }
+              src="https://sso.hybrid-technologies.co.jp/auth/resources/4.2.1.final/login/eas/img/logo_login2.png"
+              width={360}
+              height={85}
+              priority
+            />
+          </Link>
+          <div className="text-darkRed ml-2 mt-8">{errorForm}</div>
           <Controller
             name="email"
             control={control}
@@ -56,13 +65,14 @@ function login({
             render={({ field }) => {
               return (
                 <TextField
-                  inputProps={{ style: { color: 'white' } }}
-                  className="loginPlaceholder bg-lightGray rounded-md !mt-6 !text-white "
+                  // inputProps={{ style: { color: 'white' } }}
+                  className="loginPlaceholder bg-transparent rounded !mt-6  "
+                  type={'email'}
                   error={!!errors.email}
                   variant="filled"
                   label={errors.email?.message || 'Email'}
                   placeholder="Enter your email"
-                  // color="primary"
+                  color="primary"
                   size="medium"
                   fullWidth
                   {...field}
@@ -77,15 +87,15 @@ function login({
             defaultValue=""
             render={({ field }) => (
               <TextField
-                inputProps={{ style: { color: 'white' } }}
-                className="placeholder-white bg-lightGray rounded-md !mt-6"
+                // inputProps={{ style: { color: 'white' } }}
+                className="placeholder-white bg-transparent rounded !mt-6"
                 type="password"
                 variant="filled"
                 label={errors.password?.message || 'Password'}
                 placeholder="Enter your password"
-                size="medium"
                 color="primary"
                 error={!!errors.password}
+                size="medium"
                 fullWidth
                 {...field}
               />
@@ -104,7 +114,7 @@ function login({
           </Link>
 
           <ButtonLoading
-            className="w-full mt-8 p-3 bg-darkRed !text-white font-medium"
+            className="w-full mt-8 shadow-customLogin font-medium !text-white  !bg-blueRice  mx-auto rounded-full py-3 px-3 tracking-wider"
             messageLoading="Processing..."
             isLoading={isLoading}
             variant="contained"
@@ -114,15 +124,15 @@ function login({
           </ButtonLoading>
 
           <p className="flex items-center justify-center mt-12">
-            <span className="text-grayText">Join as a client? </span>
+            <span className="text-grayLightText">Join as a client? </span>
             <Link href="/">
-              <a className="no-underline ml-2 font-semibold text-white">Join now</a>
+              <a className="no-underline ml-2 font-semibold text-blueRice">Join now</a>
             </Link>
           </p>
           <button
             onClick={handleLoginSSO}
             type="button"
-            className="bg-lightGray text-grayText w-full mx-auto rounded-full font-medium py-3 px-3 mt-12"
+            className="bg-blueRice uppercase text-sm text-white shadow-customLogin  w-full mx-auto rounded-full font-medium py-3 px-3 mt-12"
           >
             Login with Gate
           </button>

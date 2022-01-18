@@ -29,6 +29,9 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
   const [profileImage, setProfileImage] = useState<any>(
     `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`,
   );
+  const [coverImage, setCoverImage] = useState<any>(
+    'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/cover-photo4.jpg',
+  );
   // const [coverImage, setCoverImage] = useState<any | null>('/images/cover-photo4.jpg');
 
   const [firstName, setFirstName] = useState(profile?.data?.firstName || '');
@@ -62,7 +65,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
     profileImageRef?.current?.click();
   };
   const triggerCoverImageSelectPopup = () => {
-    // coverImageRef?.current?.click();
+    coverImageRef?.current?.click();
   };
 
   const onSelectFile = (event: any) => {
@@ -76,6 +79,19 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
       reader.addEventListener('load', () => {
         setProfileImage(reader?.result);
         setOpenCropImage(true);
+      });
+    }
+  };
+  const onSelectFileCoverPicture = (event: any) => {
+    if (profileImage === undefined) {
+      setCoverImage(null);
+    }
+
+    if (event.target.files && event.target.files.length > 0) {
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.addEventListener('load', () => {
+        setCoverImage(reader?.result);
       });
     }
   };
@@ -149,8 +165,8 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
       >
         <div className="relative max-w-full w-full h-[170px] max-h-[170px] mb-9">
           <Image
-            loader={() => 'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/cover-photo4.jpg'}
-            src="http://hyknow.hybrid-technologies.co.jp/uploads/static/images/cover-photo4.jpg"
+            loader={() => coverImage}
+            src={coverImage}
             layout="fill"
             objectFit="cover"
             className="z-20"
@@ -176,7 +192,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
             ref={coverImageRef}
             accept="image/*"
             type="file"
-            onChange={onSelectFile}
+            onChange={onSelectFileCoverPicture}
             className="hidden"
           />
           <CameraEnhanceOutlinedIcon
@@ -190,22 +206,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
         </div>
 
         <DialogContent>
-          {/* <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending anonymous location data to
-            Google, even when no apps are running.
-          </DialogContentText> */}
-          {/* <TextField
-            color="secondary"
-            margin="dense"
-            id="name"
-            label="First name"
-            inputProps={{ style: { color: '#76dce6' } }}
-            fullWidth
-            variant="standard"
-            defaultValue={profile?.data.firstName || ''}
-            className="text-red-400"
-          /> */}
-          <div className="flex items-center w-full mt-6 text-gray-600">
+          <div className="flex items-center w-full mt-6 text-gray-600 ">
             <span className="w-28 flex font-medium  justify-end">First name*</span>
             <input
               onChange={(e) => setFirstName(e.target.value)}

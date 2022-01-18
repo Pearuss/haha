@@ -34,6 +34,7 @@ module.exports = {
       inner: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
       none: 'none',
       custom: '0 10px 15px -3px #76dce6, 0 4px 6px -2px #76dce6',
+      customLogin: '0 10px 15px -3px #76dce6, 0 4px 6px -2px #039be5',
     },
     fontSize: {
       xs: '0.75rem',
@@ -83,6 +84,8 @@ module.exports = {
         lightGreen: '#36CB83',
         blueCyanLogo: '#76dce6',
         blueCyanLight: '#e8ffff',
+        whiteRice: '#D3E2E3',
+        blueRice: '#039be5',
         blueLogo: '#0D55FF',
         blueTag: '#76dce6',
         blueBold: '#0D55FF',

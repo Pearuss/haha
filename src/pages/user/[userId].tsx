@@ -90,11 +90,9 @@ function ProfilePage() {
           <Image
             loader={() => profileImage}
             src={profileImage}
-            // src="/images/user.png"
             width={132}
             height={132}
             objectFit="cover"
-            // className=" object-cover bg-black "
             priority
           />
         </div>

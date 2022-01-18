@@ -58,13 +58,13 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
     <div className="mr-12 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw] flex-1">
       <div className="relative w-full h-auto bg-white p-4 pt-0 rounded-md shadow-sm ssm:h-auto ssm:min-h-[250px] sm:min-h-[210px]">
         <Link href={`/news/${news[0]?.id}`}>
-          <div className="text-[37px] 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[30px] sm:text-[28px] ssm:text-2xl pb-3 text-black font-normal cursor-pointer mt-[-9px]">
+          <div className="text-[37px] 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[30px] sm:text-[28px] ssm:text-2xl pb-3 text-black font-normal cursor-pointer mt-[-9px] hover:opacity-70">
             {news[0]?.title}
           </div>
         </Link>
         <div className="mb-8">{truncate(`${news[0]?.shortContent}`, 360)}</div>
 
-        <div className="absolute bottom-1 right-4 pb-2">
+        <div className="absolute text-sm bottom-1 right-4 pb-2">
           <span>Admin</span>
           <span className="ml-3">|</span>
           <span className="ml-3">{formatDate(new Date(news[0]?.createdAt))}</span>
@@ -84,7 +84,7 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
               </Link>
               <div className="mb-2">{truncate(`${news[1]?.shortContent}`, 112)}</div>
 
-              <div className="absolute bottom-1 right-4">
+              <div className="absolute text-sm bottom-1 right-4">
                 <span>Admin</span>
                 <span className="ml-3">|</span>
                 <span className="ml-3">{formatDate(new Date(news[1]?.createdAt))}</span>
@@ -102,7 +102,7 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
                 {truncate(`${news[2]?.shortContent}`, 112)}
               </div>
 
-              <div className="absolute bottom-2 right-4 text-gray-700">
+              <div className="absolute text-sm bottom-2 right-4 text-gray-700">
                 <span>Admin</span>
                 <span className="ml-3">|</span>
                 <span className="ml-3">{formatDate(new Date(news[2]?.createdAt))}</span>

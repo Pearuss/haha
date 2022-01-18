@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import Post from '../../Components/Post';
@@ -45,8 +46,18 @@ function Category({ data }: any) {
           height={40}
         />
         <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-1 text-black font-normal ml-[1vw]">
-          Category: {capitalizeFirstLetter(router.query.category?.toString() || '')}/
-          {capitalizeFirstLetter(router.query.items?.toString() || '')}
+          Category:{' '}
+          <Link href={`/${router.query.category}`}>
+            <span className="hover:hover:opacity-70 cursor-pointer">
+              {capitalizeFirstLetter(router.query.category?.toString() || '')}
+            </span>
+          </Link>{' '}
+          /{' '}
+          <Link href="">
+            <span className="hover:hover:opacity-70  cursor-pointer">
+              {capitalizeFirstLetter(router.query.items?.toString() || '')}
+            </span>
+          </Link>
         </p>
       </div>
 
