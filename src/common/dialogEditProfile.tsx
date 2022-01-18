@@ -26,16 +26,16 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoomImage, setZoomImage] = useState<any>(1);
   const thumbnail = profile?.data?.thumbnail;
-  const [profileImage, setProfileImage] = useState<any>(
-    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`,
-  );
+  const [profileImage, setProfileImage] = useState<any>('');
   const [coverImage, setCoverImage] = useState<any>(
     `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`,
   );
   // const [coverImage, setCoverImage] = useState<any | null>('/images/cover-photo4.jpg');
-
   const [firstName, setFirstName] = useState(profile?.data?.firstName || '');
   const [lastName, setLastName] = useState(profile?.data?.lastName || '');
+  const [authorName, setAuthorName] = useState(profile?.data?.authorName || '');
+  const [slogan, setSlogan] = useState(profile?.data?.slogan || '');
+  const [tel, setTel] = useState(profile?.data?.tel || '');
 
   useEffect(() => {
     if (thumbnail) {
@@ -46,6 +46,9 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
     if (profile?.data) {
       setFirstName(profile?.data?.firstName);
       setLastName(profile?.data?.lastName);
+      setAuthorName(profile?.data?.authorName);
+      setSlogan(profile?.data?.slogan);
+      setTel(profile?.data?.tel);
     }
   }, [profile]);
 
@@ -102,7 +105,11 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
         body: JSON.stringify({
           firstName,
           lastName,
-          thumbnail: profileImage,
+          authorName,
+          slogan,
+          tel,
+          thumbnail:
+            profileImage === `${process.env.NEXT_PUBLIC_IMAGE_URL}${thumbnail}` ? '' : profileImage,
         }),
       });
       if (res.status) {
@@ -163,7 +170,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <div className="relative max-w-full w-full h-[170px] max-h-[170px] mb-9">
+        <div className="relative max-w-full w-full h-[170px] max-h-[170px] mb-6">
           <Image
             loader={() => coverImage}
             src={coverImage}
@@ -206,21 +213,48 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
         </div>
 
         <DialogContent>
-          <div className="flex items-center w-full mt-6 text-gray-600 ">
-            <span className="w-28 flex font-medium  justify-end">First name*</span>
+          <div className="flex items-center w-full mt-2 text-gray-600 ">
+            <span className="w-28 flex font-base  justify-end">First name*</span>
             <input
               onChange={(e) => setFirstName(e.target.value)}
               value={firstName}
-              className="w-full py-[0.65rem] px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
+              className="w-full py-2 px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
               type="text"
             />
           </div>
-          <div className="flex items-center w-full mt-6 text-gray-600">
-            <span className="w-28 flex font-medium justify-end">Last name*</span>
+          <div className="flex items-center w-full mt-2 text-gray-600">
+            <span className="w-28 flex font-base justify-end">Last name*</span>
             <input
               onChange={(e) => setLastName(e.target.value)}
               value={lastName}
-              className="w-full py-[0.65rem] px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
+              className="w-full py-2 px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
+              type="text"
+            />
+          </div>
+          <div className="flex items-center w-full mt-2 text-gray-600">
+            <span className="w-28 flex font-base justify-end">Author name*</span>
+            <input
+              onChange={(e) => setAuthorName(e.target.value)}
+              value={authorName}
+              className="w-full py-2 px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
+              type="text"
+            />
+          </div>
+          <div className="flex items-center w-full mt-2 text-gray-600">
+            <span className="w-28 flex font-base justify-end">Slogan*</span>
+            <input
+              onChange={(e) => setSlogan(e.target.value)}
+              value={slogan}
+              className="w-full py-2 px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
+              type="text"
+            />
+          </div>
+          <div className="flex items-center w-full mt-2 text-gray-600">
+            <span className="w-28 flex font-base justify-end">Tel*</span>
+            <input
+              onChange={(e) => setTel(e.target.value)}
+              value={tel}
+              className="w-full py-2 px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
               type="text"
             />
           </div>
