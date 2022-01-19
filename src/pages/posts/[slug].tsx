@@ -237,7 +237,7 @@ DetailArticlePage.Layout = DetailPostLayout;
 export default DetailArticlePage;
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/full-list`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/full-list?limit=100`);
   const posts = await res.json();
 
   const paths = posts?.data?.map((post: any) => ({
