@@ -79,8 +79,10 @@ function ProfilePage() {
       </div>
       <div className="relative max-w-full w-full h-[220px] max-h-[220px]">
         <Image
-          loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}${profile?.data.cover}`}
-          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${profile?.data.cover}`}
+          loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}${
+            profile?.data.cover || '/uploads/static/images/cover-photo4.jpg'
+          }`}
+          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${profile?.data.cover} || '/uploads/static/images/cover-photo4.jpg'`}
           // onError={() => {
           //   setProfileImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`);
           // }}
