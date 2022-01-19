@@ -124,9 +124,12 @@ li {
 .calendar .react-calendar__navigation {
   @apply mb-1;
 }
+/* .calendar .react-calendar__tile react-calendar__month-view__days__day {
+  @apply 2xl:text-[10px];
+} */
 
 .calendar button {
-  border-radius: 12px;
+  @apply rounded-[12px];
 }
 
 .calendar .react-calendar__tile--active {
@@ -134,25 +137,27 @@ li {
 }
 
 .calendar .react-calendar__navigation__label__labelText {
-  @apply capitalize;
+  @apply capitalize text-grayCalendar;
   @apply font-semibold;
   @apply text-xl;
   @apply xl:text-lg;
   @apply lg:text-base;
 }
+.calendar .react-calendar__month-view__days__day--weekend {
+  @apply text-blueCyanLogo;
+}
 
 .calendar .react-calendar__navigation__arrow {
-  @apply text-xl;
+  @apply text-xl text-grayCalendar;
   @apply lg:min-w-[30px];
 }
 
 .calendar .react-calendar__month-view__weekdays__weekday abbr {
-  text-decoration: none;
+  @apply text-grayCalendar no-underline;
 }
 
 .calendar .react-calendar__tile {
-  @apply text-lg;
-  @apply xl:text-sm;
+  @apply text-lg xl:text-sm 2xl:text-[0.96rem] lg:text-sm;
   @apply lg:pt-1;
   @apply lg:pb-1;
   @apply lg:pl-2;

@@ -94,6 +94,7 @@ module.exports = {
         grayBorder: '#C4C4C4',
         blueAdmin: '#3366ff',
         warning: '#dd6b20',
+        grayCalendar: '#858585',
       },
       keyframes: {
         jelly: {
