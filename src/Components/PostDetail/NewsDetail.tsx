@@ -16,7 +16,8 @@ function PostDetail({ dataPostDetail }: any) {
       </div>
       <div className="flex items-center pl-2">
         <Image
-          src="/images/toc2.jpg"
+          loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/admin-logo.jpg`}
+          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/admin-logo.jpg`}
           width={48}
           height={48}
           objectFit="cover"

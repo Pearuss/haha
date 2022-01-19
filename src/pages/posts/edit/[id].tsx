@@ -65,7 +65,7 @@ function EditPost() {
             <div className="flex flex-col justify-around w-full bg-opacity-50 py-3 px-5">
               <div className="flex mb-3 border-b border-gray-300 pb-1">
                 <p className="w-23 font-medium mr-8 lg:mr-1">Category:</p>
-                <div className="">
+                <div>
                   <Select
                     // className={`basic-single mb-1 ${
                     //   isErrorCategory ? 'border border-darkRed rounded-md' : ''

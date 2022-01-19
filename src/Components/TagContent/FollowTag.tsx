@@ -25,7 +25,7 @@ function FollowTag({ data, titleTagName }: FollowTagProp) {
       <p className="flex w-full flex-wrap">
         {tagFollow?.map((tag: Tag) => (
           <Link href={`/tag${tag.slug}`} key={tag.id}>
-            <div className="">#{tag.name}</div>
+            <div>#{tag.name}</div>
           </Link>
         ))}
       </p>
