@@ -17,6 +17,7 @@ function ProfilePage() {
   // const { profile } = useAuth();
   const router = useRouter();
   const userId = router.query.userId as never;
+
   const { value: profile }: any = useCall(
     `${process.env.NEXT_PUBLIC_BASE_URL}/user/${userId}`,
     {},
@@ -83,6 +84,7 @@ function ProfilePage() {
           // onError={() => {
           //   setProfileImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`);
           // }}
+          alt="Cover image"
           layout="fill"
           objectFit="cover"
         />
@@ -90,6 +92,7 @@ function ProfilePage() {
           <Image
             loader={() => profileImage}
             src={profileImage}
+            alt="Avatar"
             width={132}
             height={132}
             objectFit="cover"

@@ -20,6 +20,7 @@ function PostDetail({ dataPostDetail }: any) {
           width={48}
           height={48}
           objectFit="cover"
+          alt="Avatar"
           className="rounded-full"
           priority
         />

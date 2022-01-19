@@ -103,10 +103,10 @@ function Tag() {
           <span className="text-sm mt-2 ml-2">(3)</span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <button onClick={handleClickAdd}>
-              <Image src="/images/plus.png" width={19} height={19} />
+              <Image src="/images/plus.png" alt="Add" width={19} height={19} />
             </button>
             <button onClick={handleClickOpen} disabled={typeof hasSelectedTag === 'undefined'}>
-              <Image src="/images/delete.png" width={20} height={20} />
+              <Image src="/images/delete.png" alt="Delete" width={20} height={20} />
             </button>
           </div>
         </div>

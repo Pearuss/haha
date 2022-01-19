@@ -11,6 +11,7 @@ function HeaderLeft() {
         <Image
           loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/logo.svg`}
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/logo.svg`}
+          alt="Logo"
           layout="fill"
           priority
         />

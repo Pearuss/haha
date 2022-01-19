@@ -174,6 +174,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
           <Image
             loader={() => coverImage}
             src={coverImage}
+            alt={`${profile?.data?.authorName}'s cover image`}
             layout="fill"
             objectFit="cover"
             className="z-20"
@@ -182,9 +183,9 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
             <Image
               loader={() => profileImage}
               src={profileImage}
+              alt={`${profile?.data?.authorName}'s avatar`}
               width={122}
               height={122}
-              alt="profileImage"
               objectFit="cover"
             />
           </div>

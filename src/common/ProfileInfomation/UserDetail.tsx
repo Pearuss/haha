@@ -34,20 +34,32 @@ function UserDetail({ data, userId }: any) {
       )}
 
       <div className="pt-[4.4rem] pl-6">
-        <div className="font-semibold text-xl text-blueCyanLogo pb-2">
-          {data?.data.authorName
-            ? data?.data.authorName
-            : `${data?.data?.firstName} ${data?.data?.lastName}`}
-        </div>
+        {data?.data ? (
+          <div className="font-semibold text-xl text-blueCyanLogo pb-2">
+            {data?.data.authorName
+              ? data?.data.authorName
+              : `${data?.data?.firstName} ${data?.data?.lastName}`}
+          </div>
+        ) : (
+          ''
+        )}
         <div className="font-medium text-gray-900">Hybrid Technologies Vietnam</div>
-        <div className="flex items-center text-gray-900 pt-2">
-          <LocalFireDepartmentOutlinedIcon />
-          <span className="pl-4">{data?.data.slogan}</span>
-        </div>
-        <div className="flex items-center text-gray-900 pt-2">
-          <MailOutlineOutlinedIcon />
-          <span className="pl-4">{data?.data.email}</span>
-        </div>
+        {data?.data.slogan ? (
+          <div className="flex items-center text-gray-900 pt-2">
+            <LocalFireDepartmentOutlinedIcon />
+            <span className="pl-4">{data?.data.slogan}</span>
+          </div>
+        ) : (
+          ''
+        )}
+        {data?.data.email ? (
+          <div className="flex items-center text-gray-900 pt-2">
+            <MailOutlineOutlinedIcon />
+            <span className="pl-4">{data?.data.email}</span>
+          </div>
+        ) : (
+          ''
+        )}
         <div className="flex items-center text-gray-900 pt-2">
           <PhoneIphoneOutlinedIcon />
           <span className="pl-4">{data?.data.tel ? data?.data.tel : '********'}</span>

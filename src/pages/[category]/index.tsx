@@ -40,6 +40,7 @@ function Category({ data }: any) {
         <Image
           loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/category.png`}
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/category.png`}
+          alt="Category"
           width={40}
           height={40}
         />

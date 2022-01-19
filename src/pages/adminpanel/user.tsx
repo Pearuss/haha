@@ -110,7 +110,7 @@ function Cpanel() {
             disabled={typeof hasSelectedCustomer === 'undefined'}
           >
             {/* <Image src="/images/share.png" width={20} height={20} /> */}
-            <Image src="/images/delete.png" width={20} height={20} />
+            <Image src="/images/delete.png" alt="Delete" width={20} height={20} />
           </button>
         </div>
 

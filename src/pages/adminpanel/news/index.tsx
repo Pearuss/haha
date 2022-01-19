@@ -74,10 +74,10 @@ function News({ data }: any) {
           <span className="text-sm mt-2 ml-2">(4)</span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <button type="button">
-              <Image src="/images/share.png" width={20} height={20} />
+              <Image src="/images/share.png" alt="Share" width={20} height={20} />
             </button>
             <button type="button" onClick={handleClickOpen}>
-              <Image src="/images/delete.png" width={20} height={20} />
+              <Image src="/images/delete.png" alt="Delete" width={20} height={20} />
             </button>
           </div>
         </div>

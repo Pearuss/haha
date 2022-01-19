@@ -105,6 +105,7 @@ function PostsTag({ data }: any) {
         <Image
           loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/hashtag1.png`}
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/hashtag1.png`}
+          alt="Hash tag"
           width={40}
           height={40}
         />

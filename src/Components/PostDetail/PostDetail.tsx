@@ -128,6 +128,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${
             article?.authorAvatar || '/uploads/articles/user.png'
           }`}
+          alt="Avatar"
           width={48}
           height={48}
           objectFit="cover"
@@ -150,6 +151,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
                   `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/pencil.png`
                 }
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/pencil.png`}
+                alt="Edit"
                 width={12}
                 height={12}
               />
@@ -183,6 +185,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
             <Image
               loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/target.png`}
               src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/target.png`}
+              alt="Inwork"
               width={20}
               height={20}
             />
@@ -197,6 +200,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
             <Image
               loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/heart.png`}
               src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/heart.png`}
+              alt="Heart"
               width={20}
               height={20}
             />
@@ -208,6 +212,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
                 `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/comment.png`
               }
               src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/comment.png`}
+              alt="Comment"
               width={20}
               height={20}
             />
@@ -217,6 +222,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
             <Image
               loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/view.png`}
               src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/view.png`}
+              alt="View"
               width={20}
               height={20}
             />

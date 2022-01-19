@@ -52,6 +52,7 @@ function login({
                 `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/logo_login2.jpg`
               }
               src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/logo_login2.jpg`}
+              alt="Logo login"
               width={360}
               height={85}
               priority

@@ -87,6 +87,7 @@ function Comment({
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${
             UserComment?.thumbnail || profile.data.thumbnail
           }`}
+          alt="Avatar"
           width={52}
           height={52}
           objectFit="cover"
@@ -130,6 +131,7 @@ function Comment({
               <Image
                 loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/star.png`}
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/star.png`}
+                alt="Like"
                 width={20}
                 height={20}
               />
@@ -144,6 +146,7 @@ function Comment({
             <Image
               loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/reply.png`}
               src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/reply.png`}
+              alt="Reply"
               width={20}
               height={20}
             />

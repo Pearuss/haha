@@ -29,7 +29,7 @@ function MemberItem(props: any) {
       <span>{member.createAt}</span>
       <span className="flex items-center gap-[45%]">
         <span>
-          <Image src="/images/check1.png" width={20} height={20} />
+          <Image src="/images/check1.png" alt="Check" width={20} height={20} />
         </span>
         <Tooltip title="Edit">
           <IconButton
@@ -38,7 +38,7 @@ function MemberItem(props: any) {
               setAdminSelected(member);
             }}
           >
-            <Image src="/images/edit.png" width={20} height={20} />
+            <Image src="/images/edit.png" alt="Edit" width={20} height={20} />
           </IconButton>
         </Tooltip>
       </span>

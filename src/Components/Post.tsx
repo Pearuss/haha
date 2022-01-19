@@ -20,7 +20,7 @@ function Post({ article }: { article: Article }) {
             src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${
               article?.thumbnail || '/uploads/articles/user.png'
             }`}
-            alt="img"
+            alt={`${article?.title}`}
           />
         </Link>
       </div>

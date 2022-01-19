@@ -2,13 +2,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { UserCircleIcon, MenuIcon, SearchIcon } from '@heroicons/react/solid';
+import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
 
 import { useAuth } from '../../hooks';
 import useToggle from '../../hooks/use-toggle';
-import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
 
 function HeaderRight() {
   const router = useRouter();
@@ -62,7 +62,7 @@ function HeaderRight() {
           >
             <UserCircleIcon className="h-8 pointer-events-none cursor-pointer text-lg md:h6 sm:h-5 ssm:h-4" />
             {profile?.data.firstName}
-            <ExpandMoreOutlinedIcon className='text-blueCyanLogo ml-2 pointer-events-none cursor-pointer' />
+            <ExpandMoreOutlinedIcon className="text-blueCyanLogo ml-2 pointer-events-none cursor-pointer" />
           </div>
           <div className={`userDropdown-menu ${isLogin ? '' : 'hidden'}`}>
             <div className="flex flex-col gap-1">

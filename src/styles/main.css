@@ -153,7 +153,7 @@ li {
 
 .calendar .react-calendar__tile {
   @apply text-lg;
-  @apply xl:text-base;
+  @apply xl:text-sm;
   @apply lg:pt-1;
   @apply lg:pb-1;
   @apply lg:pl-2;

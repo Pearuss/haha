@@ -35,13 +35,13 @@ function CustomerItem(props: any) {
         {customer.status ? (
           <Tooltip title="Status">
             <IconButton>
-              <Image src="/images/check1.png" width={20} height={20} />
+              <Image src="/images/check1.png" alt="check" width={20} height={20} />
             </IconButton>
           </Tooltip>
         ) : (
           <Tooltip title="Status">
             <IconButton>
-              <Image src="/images/cross.png" width={20} height={20} />
+              <Image src="/images/cross.png" alt="cross" width={20} height={20} />
             </IconButton>
           </Tooltip>
         )}
@@ -52,12 +52,12 @@ function CustomerItem(props: any) {
               setUserSelected(customer);
             }}
           >
-            <Image src="/images/edit.png" width={20} height={20} />
+            <Image src="/images/edit.png" alt="edit" width={20} height={20} />
           </IconButton>
         </Tooltip>
         <Tooltip title="Notification">
           <IconButton onClick={setShowDialogSendMessage}>
-            <Image src="/images/send-mail.png" width={21} height={21} />
+            <Image src="/images/send-mail.png" alt="send" width={21} height={21} />
           </IconButton>
         </Tooltip>
       </span>

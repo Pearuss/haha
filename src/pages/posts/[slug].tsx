@@ -210,6 +210,7 @@ function DetailArticlePage({ data }: any) {
                   `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/pencil2.png`
                 }
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/pencil2.png`}
+                alt="Edit"
                 width={20}
                 height={20}
               />

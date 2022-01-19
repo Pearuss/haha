@@ -23,6 +23,7 @@ function PostList({ post, handleCheckItemClick }: any) {
             className="overflow-hidden rounded"
             loader={() => post.img}
             src={post.img}
+            alt="Article's image"
             layout="fill"
             objectFit="cover"
             priority
@@ -38,7 +39,7 @@ function PostList({ post, handleCheckItemClick }: any) {
       <span>25/08/2000</span>
       <span>{post.author}</span>
       <span>
-        <Image src="/images/check1.png" width={20} height={20} />
+        <Image src="/images/check1.png" alt="Check" width={20} height={20} />
       </span>
 
       {/* <Link href={linkDetail}>
@@ -48,15 +49,15 @@ function PostList({ post, handleCheckItemClick }: any) {
         </Link> */}
       <span className="grid grid-cols-3 ml-[-40%]">
         <button className="flex items-center">
-          <Image src="/images/target.png" width={20} height={20} />
+          <Image src="/images/target.png" alt="Target" width={20} height={20} />
           <span className="ml-[10%]">{post.inWorks}</span>
         </button>
         <button className="flex items-center 2xl:ml-[18%]">
-          <Image src="/images/heart.png" width={20} height={20} />
+          <Image src="/images/heart.png" alt="Like" width={20} height={20} />
           <span className="ml-[10%]">{post.likes}</span>
         </button>
         <button className="flex items-center 2xl:ml-[38%]">
-          <Image src="/images/comment.png" width={20} height={20} />
+          <Image src="/images/comment.png" alt="Comment" width={20} height={20} />
           <span className="ml-[10%]">{post.comments}</span>
         </button>
       </span>
