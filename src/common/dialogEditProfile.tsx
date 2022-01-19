@@ -26,6 +26,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoomImage, setZoomImage] = useState<any>(1);
   const thumbnail = profile?.data?.thumbnail;
+  const cover = profile?.data?.cover;
   const [profileImage, setProfileImage] = useState<any>('');
   const [coverImage, setCoverImage] = useState<any>(
     `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`,
@@ -36,10 +37,12 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
   const [authorName, setAuthorName] = useState(profile?.data?.authorName || '');
   const [slogan, setSlogan] = useState(profile?.data?.slogan || '');
   const [tel, setTel] = useState(profile?.data?.tel || '');
-
   useEffect(() => {
     if (thumbnail) {
       setProfileImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}${thumbnail}`);
+    }
+    if (cover) {
+      setCoverImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}${cover}`);
     }
   }, [profile]);
   useEffect(() => {
@@ -110,6 +113,12 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
           tel,
           thumbnail:
             profileImage === `${process.env.NEXT_PUBLIC_IMAGE_URL}${thumbnail}` ? '' : profileImage,
+          // cover: coverImage === `${process.env.NEXT_PUBLIC_IMAGE_URL}${cover}` ? '' : coverImage,
+          cover:
+            coverImage
+            === 'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/cover-photo4.jpg'
+              ? ''
+              : coverImage,
         }),
       });
       if (res.status) {
