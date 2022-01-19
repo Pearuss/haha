@@ -214,48 +214,48 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
         </div>
 
         <DialogContent>
-          <div className="flex items-center w-full mt-2 text-gray-600 ">
-            <span className="w-28 flex font-base  justify-end">First name*</span>
+          <div className="flex items-center w-full mt-4 text-gray-600 ">
+            <span className="w-32 flex font-base  justify-end">First name*</span>
             <input
               onChange={(e) => setFirstName(e.target.value)}
               value={firstName}
-              className="w-full py-2 px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
+              className="w-full py-[10px] px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
               type="text"
             />
           </div>
-          <div className="flex items-center w-full mt-2 text-gray-600">
-            <span className="w-28 flex font-base justify-end">Last name*</span>
+          <div className="flex items-center w-full mt-4 text-gray-600">
+            <span className="w-32 flex font-base justify-end">Last name*</span>
             <input
               onChange={(e) => setLastName(e.target.value)}
               value={lastName}
-              className="w-full py-2 px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
+              className="w-full py-[10px] px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
               type="text"
             />
           </div>
-          <div className="flex items-center w-full mt-2 text-gray-600">
-            <span className="w-28 flex font-base justify-end">Author name*</span>
+          <div className="flex items-center w-full mt-4 text-gray-600">
+            <span className="w-32 flex font-base justify-end">Username*</span>
             <input
               onChange={(e) => setAuthorName(e.target.value)}
               value={authorName}
-              className="w-full py-2 px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
+              className="w-full py-[10px] px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
               type="text"
             />
           </div>
-          <div className="flex items-center w-full mt-2 text-gray-600">
-            <span className="w-28 flex font-base justify-end">Slogan*</span>
+          <div className="flex items-center w-full mt-4 text-gray-600">
+            <span className="w-32 flex font-base justify-end">Slogan*</span>
             <input
               onChange={(e) => setSlogan(e.target.value)}
               value={slogan}
-              className="w-full py-2 px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
+              className="w-full py-[10px] px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
               type="text"
             />
           </div>
-          <div className="flex items-center w-full mt-2 text-gray-600">
-            <span className="w-28 flex font-base justify-end">Tel*</span>
+          <div className="flex items-center w-full mt-4 text-gray-600">
+            <span className="w-32 flex font-base justify-end">Tel*</span>
             <input
               onChange={(e) => setTel(e.target.value)}
               value={tel}
-              className="w-full py-2 px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
+              className="w-full py-[10px] px-4 outline-none border-2 border-blueCyanLogo rounded ml-8"
               type="text"
             />
           </div>

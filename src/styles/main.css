@@ -36,7 +36,6 @@ a {
   white-space: break-word;
 }
 
-
 @tailwind components;
 
 /* .active {
@@ -123,7 +122,7 @@ li {
 }
 
 .calendar .react-calendar__navigation {
-  @apply mb-1
+  @apply mb-1;
 }
 
 .calendar button {
@@ -159,7 +158,6 @@ li {
   @apply lg:pl-2;
   @apply lg:pr-2;
   @apply lg:text-base;
-
 }
 
 .mentions--singleLine .mentions__control {

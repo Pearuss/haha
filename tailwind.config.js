@@ -93,6 +93,7 @@ module.exports = {
         titleAdmin: '#EDF1F7',
         grayBorder: '#C4C4C4',
         blueAdmin: '#3366ff',
+        warning: '#dd6b20',
       },
       keyframes: {
         jelly: {

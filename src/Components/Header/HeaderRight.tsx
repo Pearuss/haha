@@ -61,7 +61,9 @@ function HeaderRight() {
             data-dropdown-button-user
           >
             <UserCircleIcon className="h-8 pointer-events-none cursor-pointer text-lg md:h6 sm:h-5 ssm:h-4" />
-            {profile?.data.firstName}
+            {profile?.data.authorName
+              ? `${profile?.data.authorName}`
+              : `${profile?.data.firstName} ${profile?.data.lastName}`}
             <ExpandMoreOutlinedIcon className="text-blueCyanLogo ml-2 pointer-events-none cursor-pointer" />
           </div>
           <div className={`userDropdown-menu ${isLogin ? '' : 'hidden'}`}>

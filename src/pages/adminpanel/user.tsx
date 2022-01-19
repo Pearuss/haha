@@ -124,7 +124,7 @@ function Cpanel() {
           <span>Username</span>
           <span>Total articles</span>
           <span>Date created</span>
-          <span className="">Status</span>
+          <span>Status</span>
         </div>
         {dataCustomers.map((customer) => (
           <CustomerItem

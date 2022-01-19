@@ -24,8 +24,7 @@ function login({
   return (
     <div
       style={{
-        // backgroundImage: `url(https://assets.nflxext.com/ffe/siteui/vlv3/5a27cb25-33a9-4bcc-b441-95fefabcbd37/6bdbf132-dd7b-4d42-8f84-9139f9c4eaac/VN-en-20210823-popsignuptwoweeks-perspective_alpha_website_large.jpg)`,
-        backgroundImage: `url(https://sso.hybrid-technologies.co.jp/auth/resources/4.2.1.final/login/eas/img/background/bg_login_page.jpg)`,
+        backgroundImage: `url(${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/bg_login_page.jpg)`,
       }}
       className="relative h-screen bg-cover bg-no-repeat bg-center"
     >
@@ -58,7 +57,7 @@ function login({
               priority
             />
           </Link>
-          <div className="text-darkRed ml-2 mt-8">{errorForm}</div>
+          <div className="text-warning ml-2 mt-8">{errorForm}</div>
           <Controller
             name="email"
             control={control}
@@ -115,7 +114,7 @@ function login({
           </Link>
 
           <ButtonLoading
-            className="w-full mt-8 shadow-customLogin font-medium !text-white  !bg-blueRice  mx-auto rounded-full py-3 px-3 tracking-wider"
+            className="w-full mt-8 shadow-customLogin font-medium !text-white  !bg-blueRice  mx-auto rounded-full py-3 px-3 tracking-wider active:animate-jelly"
             messageLoading="Processing..."
             isLoading={isLoading}
             variant="contained"
@@ -133,7 +132,7 @@ function login({
           <button
             onClick={handleLoginSSO}
             type="button"
-            className="bg-blueRice uppercase text-sm text-white shadow-customLogin  w-full mx-auto rounded-full font-medium py-3 px-3 mt-12"
+            className="bg-blueRice uppercase text-sm text-white shadow-customLogin  w-full mx-auto rounded-full font-medium py-3 px-3 mt-12 active:animate-jelly"
           >
             Login with Gate
           </button>
