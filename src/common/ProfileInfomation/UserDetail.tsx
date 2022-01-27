@@ -37,7 +37,7 @@ function UserDetail({ data, userId }: any) {
         {data?.data ? (
           <div className="font-semibold text-xl text-blueCyanLogo pb-2">
             {data?.data.authorName
-              ? data?.data.authorName
+              ? `${data?.data.authorName} - ${data?.data?.firstName} ${data?.data?.lastName}`
               : `${data?.data?.firstName} ${data?.data?.lastName}`}
           </div>
         ) : (

@@ -31,7 +31,6 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
   const [coverImage, setCoverImage] = useState<any>(
     `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`,
   );
-  // const [coverImage, setCoverImage] = useState<any | null>('/images/cover-photo4.jpg');
   const [firstName, setFirstName] = useState(profile?.data?.firstName || '');
   const [lastName, setLastName] = useState(profile?.data?.lastName || '');
   const [authorName, setAuthorName] = useState(profile?.data?.authorName || '');
@@ -116,7 +115,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
           // cover: coverImage === `${process.env.NEXT_PUBLIC_IMAGE_URL}${cover}` ? '' : coverImage,
           cover:
             coverImage
-            === 'http://hyknow.hybrid-technologies.co.jp/uploads/static/images/cover-photo4.jpg'
+            === `${process.env.NEXT_PUBLIC_IMAGE_URL}${thumbnail}/uploads/static/images/cover-photo4.jpg`
               ? ''
               : coverImage,
         }),
