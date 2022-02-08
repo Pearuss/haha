@@ -158,7 +158,7 @@ function ModalPost({
             }, 1000);
           }
         });
-      } else if (message === 400) {
+      } else {
         Swal.fire({
           icon: 'error',
           title: 'Title already exists',
