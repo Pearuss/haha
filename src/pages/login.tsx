@@ -12,11 +12,13 @@ import ThemeWrapper from '../container/themeWrapper';
 import { useAuth } from '../hooks';
 import { LoginPayLoad } from '../models';
 import adminTheme from '../styles/theme/materialClient';
+// import useFetch from '../hooks/use-fetch';
 
 const schema = yup.object().shape({
   email: yup.string().required().email('Please enter a valid email'),
   password: yup.string().min(8).max(20).required(),
 });
+// const [data, setData] = useState<any>()
 
 const Login = () => {
   const { login, profile, firstLoading } = useAuth();
@@ -41,10 +43,14 @@ const Login = () => {
   const [errorFormLogin, setErrorFormLogin] = useState('');
   const [isLoadingForm, setIsLoadingForm] = useState(false);
 
-  const handleLoginSSO = () => {
+  const handleLoginSSO = async () => {
     router.push(
-      `https://sso.hybrid-technologies.co.jp/auth/realms/eas/protocol/openid-connect/auth?response_type=code&redirect_uri=${process.env.NEXT_PUBLIC_IMAGE_URL}/loginsso/&client_id=skh-dev&scope=openid%20profile`
+      `https://sso.hybrid-technologies.co.jp/auth/realms/eas/protocol/openid-connect/auth?response_type=code&redirect_uri=${process.env.NEXT_PUBLIC_IMAGE_URL}/loginsso&client_id=hyknow-live&scope=openid%20profile`
     );
+    // router.push(
+    //   `https://sso.hybrid-technologies.co.jp/auth/realms/eas/protocol/openid-connect/auth?response_type=code&redirect_uri=${process.env.NEXT_PUBLIC_IMAGE_URL}/loginsso&client_id=hyknow-live&scope=openid%20profile`
+    // );
+    // https://sso.hybrid-technologies.co.jp/auth/realms/eas/protocol/openid-connect/auth?response_type=code&redirect_uri=https://hyknow.hybrid-technologies.co.jp/loginsso&client_id=hyknow-live&scope=openid%20profile
   };
 
   const submit = async (data: LoginPayLoad, event: React.FormEvent<HTMLFormElement>) => {

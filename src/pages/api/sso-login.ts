@@ -12,6 +12,7 @@ const proxy = httpProxy.createProxyServer();
 
 export default function handler(req: any, res: any) {
   req.url = req.url.replace(/^\/api/, '');
+  console.log(req.url);
 
   if (req.method !== 'POST') {
     return res.status(404).json({ message: 'method not support' });
@@ -32,7 +33,6 @@ export default function handler(req: any, res: any) {
           }
 
           const { accessToken, expiresIn } = JSON.parse(body).data;
-
           // const cookies = new Cookies(req, res, {
           //   secure: process.env.NODE_ENV !== 'development',
           // });
