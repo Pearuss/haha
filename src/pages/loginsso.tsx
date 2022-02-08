@@ -14,32 +14,32 @@ export default function LoginSSOPage() {
   const router = useRouter();
   const token = router.query.code;
   console.log(token);
-  // useEffect(() => {
-  //   Swal.fire('Login successfully but the feature is under maintenance.');
-  // }, []);
-
   useEffect(() => {
-    const getToken = async () => {
-      const res = await fetch('/api/sso-login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          code: token,
-        }),
-      });
-      if (res.ok) {
-        const dataLogin = await res.json();
-        if (dataLogin.message.toString() === '200') {
-          router.replace('/');
-        }
-      }
-    };
-    if (router.query.session_state && token) {
-      getToken();
-    }
+    // Swal.fire('Login successfully but the feature is under maintenance.');
+  }, []);
 
-    // console.log(router.query.code);
-  }, [token]);
+  // useEffect(() => {
+  //   const getToken = async () => {
+  //     const res = await fetch('/api/sso-login', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({
+  //         code: token,
+  //       }),
+  //     });
+  //     if (res.ok) {
+  //       const dataLogin = await res.json();
+  //       if (dataLogin.message.toString() === '200') {
+  //         router.replace('/');
+  //       }
+  //     }
+  //   };
+  //   if (router.query.session_state && token) {
+  //     getToken();
+  //   }
+
+  //   // console.log(router.query.code);
+  // }, [token]);
   return (
     // <Backdrop
     //   sx={{ color: '#fff', zIndex: (theme: any) => theme.zIndex.drawer + 1 }}
