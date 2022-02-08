@@ -45,7 +45,7 @@ const Login = () => {
 
   const handleLoginSSO = async () => {
     router.push(
-      `https://sso.hybrid-technologies.co.jp/auth/realms/eas/protocol/openid-connect/auth?response_type=code&redirect_uri=${process.env.NEXT_PUBLIC_IMAGE_URL}/loginsso&client_id=hyknow-live&scope=openid%20profile`
+      `https://sso.hybrid-technologies.co.jp/auth/realms/eas/protocol/openid-connect/auth?response_type=code&redirect_uri=${process.env.NEXT_PUBLIC_SSO_LINK}&client_id=hyknow-live&scope=openid%20profile`
     );
     // router.push(
     //   `https://sso.hybrid-technologies.co.jp/auth/realms/eas/protocol/openid-connect/auth?response_type=code&redirect_uri=${process.env.NEXT_PUBLIC_IMAGE_URL}/loginsso&client_id=hyknow-live&scope=openid%20profile`
