@@ -92,7 +92,7 @@ export default Category;
 //   };
 // }
 export const getStaticPaths = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/category/menu`);
   const tags = await res.json();
 
   const paths = tags.data.map((tag: any) => ({
