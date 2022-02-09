@@ -53,10 +53,13 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
     }
   }, [isLogin]);
 
-  const contentBody =
-    isReadMore && !isLogin
-      ? truncateBody(`${article.content}`, 580).toString() // max content length is 580
-      : truncateBody(`${article.content}`, 20000).toString(); // see full content
+  const contentBody = isReadMore
+    ? truncateBody(`${article.content}`, 580).toString() // max content length is 580
+    : truncateBody(`${article.content}`, 20000).toString(); // see full content
+  // const contentBody =
+  //   isReadMore && !isLogin
+  //     ? truncateBody(`${article.content}`, 580).toString() // max content length is 580
+  //     : truncateBody(`${article.content}`, 20000).toString(); // see full content
 
   useEffect(() => {
     if (!firstLoading && !profile?.data && !localStorage.getItem('tokenSso')) {
