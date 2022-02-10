@@ -12,6 +12,7 @@ import DialogContent from '@mui/material/DialogContent';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Cropper from 'react-easy-crop';
+import Swal from 'sweetalert2';
 
 import useFetch from '../hooks/use-fetch';
 import getCroppedImg from '../utilities/helper';
@@ -54,9 +55,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
     }
   }, [profile]);
 
-  const onCropComplete = (croppedArea: any, croppedAreaPixels: any) => {
-    console.log(croppedArea);
-
+  const onCropComplete = (croppedAreaPixels: any) => {
     setCroppedArea(croppedAreaPixels);
   };
   const chooseImage = useCallback(async () => {
@@ -101,6 +100,8 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
     }
   };
   const updateProfileHandler = async () => {
+    if (firstName.trim().length === 0 || lastName.trim().length === 0) return;
+
     if (profileImage) {
       const res = await useFetch('/api/v1/user/update-profile', {
         method: 'POST',
@@ -115,7 +116,8 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
           // cover: coverImage === `${process.env.NEXT_PUBLIC_IMAGE_URL}${cover}` ? '' : coverImage,
           cover:
             coverImage
-            === `${process.env.NEXT_PUBLIC_IMAGE_URL}${thumbnail}/uploads/static/images/cover-photo4.jpg`
+              === `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`
+            || coverImage === `${process.env.NEXT_PUBLIC_IMAGE_URL}${thumbnail}`
               ? ''
               : coverImage,
         }),
@@ -123,6 +125,9 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
       if (res.status) {
         setOpen(false);
         router.reload();
+      } else {
+        setOpen(false);
+        Swal.fire('Something went wrong! Please try again later.');
       }
     }
   };
@@ -183,6 +188,11 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
             loader={() => coverImage}
             src={coverImage}
             alt={`${profile?.data?.authorName}'s cover image`}
+            onError={() => {
+              setCoverImage(
+                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`,
+              );
+            }}
             layout="fill"
             objectFit="cover"
             className="z-20"
@@ -212,11 +222,11 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
             className="hidden"
           />
           <CameraEnhanceOutlinedIcon
-            className="absolute bottom-[-11px] left-[69px] text-white opacity-50 z-50"
+            className="absolute bottom-[-11px] left-[69px] text-blueCyanLogo opacity-50 z-50"
             onClick={triggerImageProfileSelectPopup}
           />
           <CameraEnhanceOutlinedIcon
-            className="absolute top-[46%] left-[50%] text-white opacity-50 z-50"
+            className="absolute top-[46%] left-[50%] text-blueCyanLogo opacity-50 z-50"
             onClick={triggerCoverImageSelectPopup}
           />
         </div>
@@ -241,7 +251,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
             />
           </div>
           <div className="flex items-center w-full mt-4 text-gray-600">
-            <span className="w-32 flex font-base justify-end">Username*</span>
+            <span className="w-32 flex font-base justify-end">Username</span>
             <input
               onChange={(e) => setAuthorName(e.target.value)}
               value={authorName}
@@ -250,7 +260,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
             />
           </div>
           <div className="flex items-center w-full mt-4 text-gray-600">
-            <span className="w-32 flex font-base justify-end">Slogan*</span>
+            <span className="w-32 flex font-base justify-end">Slogan</span>
             <input
               onChange={(e) => setSlogan(e.target.value)}
               value={slogan}
@@ -259,7 +269,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
             />
           </div>
           <div className="flex items-center w-full mt-4 text-gray-600">
-            <span className="w-32 flex font-base justify-end">Tel*</span>
+            <span className="w-32 flex font-base justify-end">Tel</span>
             <input
               onChange={(e) => setTel(e.target.value)}
               value={tel}

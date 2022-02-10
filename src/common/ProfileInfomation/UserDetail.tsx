@@ -34,35 +34,35 @@ function UserDetail({ data, userId }: any) {
       )}
 
       <div className="pt-[4.4rem] pl-6">
-        {data?.data ? (
+        {data ? (
           <div className="font-semibold text-xl text-blueCyanLogo pb-2">
-            {data?.data.authorName
-              ? `${data?.data.authorName} - ${data?.data?.firstName} ${data?.data?.lastName}`
-              : `${data?.data?.firstName} ${data?.data?.lastName}`}
+            {data?.authorName
+              ? `${data?.authorName} - ${data?.firstName} ${data?.lastName}`
+              : `${data?.firstName} ${data?.lastName}`}
           </div>
         ) : (
           ''
         )}
         <div className="font-medium text-gray-900">Hybrid Technologies Vietnam</div>
-        {data?.data.slogan ? (
+        {data?.slogan ? (
           <div className="flex items-center text-gray-900 pt-2">
             <LocalFireDepartmentOutlinedIcon />
-            <span className="pl-4">{data?.data.slogan}</span>
+            <span className="pl-4">{data?.slogan}</span>
           </div>
         ) : (
           ''
         )}
-        {data?.data.email ? (
+        {data?.email ? (
           <div className="flex items-center text-gray-900 pt-2">
             <MailOutlineOutlinedIcon />
-            <span className="pl-4">{data?.data.email}</span>
+            <span className="pl-4">{data?.email}</span>
           </div>
         ) : (
           ''
         )}
         <div className="flex items-center text-gray-900 pt-2">
           <PhoneIphoneOutlinedIcon />
-          <span className="pl-4">{data?.data.tel ? data?.data.tel : '********'}</span>
+          <span className="pl-4">{data?.tel ? data?.tel : '********'}</span>
         </div>
       </div>
       <div className="w-full flex items-center pt-8 border-b-4 border-blueCyanLogo">

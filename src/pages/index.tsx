@@ -24,8 +24,6 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
     revalidateOnMount: true,
     revalidateIfStale: true,
   });
-  // const backupArticles = data === undefined ? 1 : data.data;
-  // console.log(data);
 
   useEffect(() => {
     if (data?.data && JSON.stringify(data.data) !== JSON.stringify(articles)) {

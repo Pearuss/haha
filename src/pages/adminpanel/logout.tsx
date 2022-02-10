@@ -14,9 +14,6 @@ export default function Index() {
   const logoutHandler = useCallback(async () => {
     try {
       await logout();
-      if (localStorage.getItem('tokenSso')) {
-        localStorage.removeItem('tokenSso');
-      }
       router.push('/login');
       //   if (router.pathname === '/') {
       //     Swal.fire('Logout success!');

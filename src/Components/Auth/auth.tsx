@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import { useAuth } from '../../hooks';
 
 function Auth({ children }: any) {
-  let tokenSso: any = false;
   const router = useRouter();
   const { profile, firstLoading } = useAuth();
 
@@ -17,15 +16,12 @@ function Auth({ children }: any) {
   };
 
   useEffect(() => {
-    if (localStorage.getItem('tokenSso')) {
-      tokenSso = localStorage.getItem('tokenSso');
-    }
-    if (!firstLoading && !profile?.data && !tokenSso) {
+    if (!firstLoading && !profile?.data) {
       router.replace('/login');
     }
   }, [router, profile, firstLoading]);
 
-  if (!profile?.data && tokenSso) {
+  if (!profile?.data) {
     return (
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme: any) => theme.zIndex.drawer + 1 }}

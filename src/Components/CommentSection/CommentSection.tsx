@@ -22,15 +22,6 @@ function CommentSection({ showForm, postId }: any) {
   const [activeComment, setActiveComment] = useState(null);
   const { profile } = useAuth();
 
-  // useEffect(() => {
-  //   useFetch(`http://localhost:3100/api/v1/comment/${postId}`).then(
-  //     (data: Record<string, IComment[]>) => {
-  //       if (data?.data) {
-  //         setBackendComments(data.data);
-  //       }
-  //     }
-  //   );
-  // }, [postId]);
   const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/comment/${postId}`, {
     revalidateIfStale: true,
   });

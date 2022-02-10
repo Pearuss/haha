@@ -10,7 +10,4 @@ export const authApi = {
   logout() {
     return axiosAuth.post('/logout');
   },
-  getProfile() {
-    return axiosAuth.get('/user/1');
-  },
 };

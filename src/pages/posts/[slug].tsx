@@ -6,9 +6,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-
-// import CommentSection from '../../Components/CommentSection/CommentSection';
 import { ContentIndex } from '../../Components/PostDetail/ContentIndex';
 import PostDetail from '../../Components/PostDetail/PostDetail';
 import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
@@ -16,6 +13,7 @@ import { useAuth } from '../../hooks';
 import { DetailPostLayout } from '../../layout';
 import dynamic from 'next/dynamic';
 import useFetch from '../../hooks/use-fetch';
+import { useRouter } from 'next/router';
 
 const CommentSection = dynamic(() => import('../../Components/CommentSection/CommentSection'), {
   ssr: false,
@@ -28,14 +26,14 @@ function DetailArticlePage({ data }: any) {
   const [isReadMore, setIsReadMore] = useState(true);
   const [isShowTopicMobile, setIsShowTopicMobile] = useState(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
-  const router = useRouter();
   const { profile, firstLoading } = useAuth();
   const article = data.data[0];
-  // console.log('data', article);
 
-  if (router.isFallback) {
-    return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>;
-  }
+  const router = useRouter();
+
+  // if (router.isFallback) {
+  //   return <div style={{ fontSize: '2rem', textAlign: 'center' }}>Loading...</div>;
+  // }
 
   useEffect(() => {
     if (article) {
@@ -54,9 +52,9 @@ function DetailArticlePage({ data }: any) {
   }, [isShowTopicMobile]);
 
   useEffect(() => {
-    if (!firstLoading && !profile?.data && !localStorage.getItem('tokenSso')) {
+    if (!firstLoading && !profile?.data) {
       setIsLogin(false);
-    } else if (profile?.data || localStorage.getItem('tokenSso')) {
+    } else if (profile?.data) {
       setIsLogin(true);
     }
   }, [profile, firstLoading]);
@@ -125,6 +123,9 @@ function DetailArticlePage({ data }: any) {
   }, []);
 
   const toggleFormComment = () => {
+    if (!isLogin) {
+      router.push('/login');
+    }
     setShowFormComment(!showFormComment);
   };
 
@@ -198,32 +199,37 @@ function DetailArticlePage({ data }: any) {
           </Link>
         </div>
         <PostDetail dataPostDetail={data} isReadMore={isReadMore} setIsReadMore={setIsReadMore} />
-        {isLogin && (
-          <div className="flex items-center justify-between py-4 mt-12 shadow-sm font-medium text-gray-700 rounded-md bg-white mb-4">
-            <div className="text-lg">Comments</div>
-            <button
-              onClick={toggleFormComment}
-              className="flex items-center py-[0.35rem] px-3 rounded-md border border-blue-600 text-blue-600"
-            >
-              <Image
-                loader={() =>
-                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/pencil2.png`
-                }
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/pencil2.png`}
-                alt="Edit"
-                width={20}
-                height={20}
-              />
-              <span className="ml-1">Add comment</span>
-            </button>
-          </div>
-        )}
+
+        <div className="flex items-center justify-between py-4 mt-12 shadow-sm font-medium text-gray-700 rounded-md bg-white mb-4">
+          <div className="text-lg">Comments</div>
+          <button
+            onClick={toggleFormComment}
+            className="flex items-center py-[0.35rem] px-3 rounded-md border border-blue-600 text-blue-600"
+          >
+            <Image
+              loader={() =>
+                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/pencil2.png`
+              }
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/pencil2.png`}
+              alt="Edit"
+              width={20}
+              height={20}
+            />
+            <span className="ml-1">Add comment</span>
+          </button>
+        </div>
+
         {isLogin && (
           <CommentSection
             postId={data.data[0].id}
             showForm={showFormComment}
             setShowFormComment={setShowFormComment}
           />
+        )}
+        {!isLogin && (
+          <div className="text-center text-gray-700 mt-6 text-xl">
+            Please login to read comment's articles
+          </div>
         )}
       </div>
       <TagSectionMobile isShowTagMobile={isShowTagMobile} />

@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-// import useFetch from '../hooks/use-fetch';
 import { useRouter } from 'next/router';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
+
+import useFetch from '../hooks/use-fetch';
 
 export default function LoginSSOPage() {
   const [open, setOpen] = useState(true);
@@ -15,25 +16,24 @@ export default function LoginSSOPage() {
   const token = router.query.code;
   useEffect(() => {
     const getToken = async () => {
-      const res = await fetch('/api/sso-login', {
+      const dataLogin = await useFetch('/api/sso-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           code: token,
         }),
       });
-      if (res.ok) {
-        const dataLogin = await res.json();
-        if (dataLogin.message.toString() === '200') {
-          router.replace('/');
-        }
+
+      if (dataLogin.message.toString() === '200') {
+        router.replace('/');
+      } else {
+        router.replace('/login');
+        Swal.fire('Login error! Please try again.');
       }
     };
     if (router.query.session_state && token) {
       getToken();
     }
-
-    // console.log(router.query.code);
   }, [token]);
   return (
     <Backdrop

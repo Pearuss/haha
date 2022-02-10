@@ -10,9 +10,6 @@ import React, { useState, useCallback } from 'react';
 import parse from 'html-react-parser';
 import Image from 'next/image';
 
-// import FormComment from './FormComment';
-import { useRouter } from 'next/router';
-
 import InputMention from '../../common/InputMention/InputMention';
 import { useAuth } from '../../hooks';
 import { formatDate, truncate } from '../../utilities/helper';
@@ -30,7 +27,6 @@ function Comment({
   parentId = null,
 }: any) {
   const { profile } = useAuth();
-  const router = useRouter();
 
   const [isLiked, setIsLiked] = useState(false);
 
@@ -47,14 +43,8 @@ function Comment({
     : truncate(`${commentContent?.comment}`, 20000).toString(); // see full content
 
   const ReadMoreHandler = useCallback(() => {
-    if (profile?.message === 'You need to login to access') {
-      router.replace('/login');
-    } else if (profile?.data) {
-      setIsReadMore(false);
-    } else {
-      router.replace('/login');
-    }
-  }, [profile]);
+    setIsReadMore(false);
+  }, []);
 
   const LikeCommentHandler = async () => {
     if (!isLiked && commentContent?.id) {

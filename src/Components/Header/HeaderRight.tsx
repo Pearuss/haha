@@ -18,9 +18,9 @@ function HeaderRight() {
   const [showSearchInput, setShowSearchInput] = useToggle(false);
 
   useEffect(() => {
-    if (!firstLoading && !profile?.data && !localStorage.getItem('tokenSso')) {
+    if (!firstLoading && !profile?.data) {
       setIsLogin(false);
-    } else if (profile?.data || localStorage.getItem('tokenSso')) {
+    } else if (profile?.data) {
       setIsLogin(true);
     }
   }, [profile, firstLoading]);
@@ -28,9 +28,6 @@ function HeaderRight() {
   const logoutHandler = useCallback(async () => {
     try {
       await logout();
-      if (localStorage.getItem('tokenSso')) {
-        localStorage.removeItem('tokenSso');
-      }
       router.push('/');
       if (router.pathname === '/') {
         Swal.fire('Logout success!');

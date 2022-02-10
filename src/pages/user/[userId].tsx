@@ -4,44 +4,64 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Swal from 'sweetalert2';
 
 import UserDetail from '../../common/ProfileInfomation/UserDetail';
 import Post from '../../Components/Post';
-// import { useAuth } from '../../hooks';
 import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
-import useCall from '../../hooks/use-call';
+import useFetch from '../../hooks/use-fetch';
 import { MainLayout } from '../../layout';
-import { Article } from '../../models';
 
 function ProfilePage() {
-  // const { profile } = useAuth();
   const router = useRouter();
   const userId = router.query.userId as never;
+  const [profileClient, setProfileClient] = useState<any>();
+  const [allArticleUser, setAllArticleUser] = useState<any>();
 
-  const { value: profile }: any = useCall(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/user/${userId}`,
-    {},
-    [userId],
-  );
   const [profileImage, setProfileImage] = useState(
     `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`,
   );
-  // const [profileImage, setProfileImage] = useState(
-  //   profile?.data?.thumbnail || `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`
-  // );
-  const thumbnail = profile?.data.thumbnail;
+  const [coverImage, setCoverImage] = useState(
+    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`,
+  );
+  const thumbnail = profileClient?.thumbnail;
+  const coverUrl = profileClient?.cover;
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const dataUser = await useFetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/${userId}`);
+      if (dataUser.message === 200) {
+        setProfileClient(dataUser.data);
+      } else {
+        Swal.fire('Something went wrong whet get profile, please try again later!');
+        router.replace('/');
+      }
+    };
+    const getAllArticleUser = async () => {
+      const dataArticles = await useFetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${userId}`,
+      );
+      if (dataArticles.message === 200) {
+        setAllArticleUser(dataArticles);
+      } else {
+        Swal.fire('Something went wrong whet get articles, please try again later!');
+        router.replace('/');
+      }
+    };
+    if (userId) {
+      getProfile();
+      getAllArticleUser();
+    }
+  }, [userId]);
 
   useEffect(() => {
     if (thumbnail) {
       setProfileImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}${thumbnail}`);
     }
-  }, [profile]);
-
-  const { value: articles }: { value: Article[] | any } = useCall(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${userId}`,
-    {},
-    [userId],
-  );
+    if (coverUrl) {
+      setCoverImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}${coverUrl}`);
+    }
+  }, [profileClient]);
 
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
@@ -73,21 +93,19 @@ function ProfilePage() {
           <p className="leading-8 cursor-pointer">Home</p>
         </Link>
         <ArrowForwardIosIcon className="px-2" />
-        <Link href="/user/profile">
+        <Link href={`/user/${userId}`}>
           <p className="leading-8 cursor-pointer">Profile</p>
         </Link>
       </div>
       <div className="relative max-w-full w-full h-[220px] max-h-[220px]">
         <Image
-          loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}${
-            profile?.data?.cover ? profile.data.cover : '/uploads/static/images/cover-photo4.jpg'
-          }`}
-          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${
-            profile?.data?.cover ? profile.data.cover : '/uploads/static/images/cover-photo4.jpg'
-          }`}
-          // onError={() => {
-          //   setProfileImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`);
-          // }}
+          loader={() => coverImage}
+          src={coverImage}
+          onError={() => {
+            setCoverImage(
+              `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`,
+            );
+          }}
           alt="Cover image"
           layout="fill"
           objectFit="cover"
@@ -97,6 +115,9 @@ function ProfilePage() {
             loader={() => profileImage}
             src={profileImage}
             alt="Avatar"
+            onError={() => {
+              setCoverImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`);
+            }}
             width={132}
             height={132}
             objectFit="cover"
@@ -104,8 +125,8 @@ function ProfilePage() {
           />
         </div>
       </div>
-      <UserDetail data={profile} userId={userId} />
-      {articles?.data
+      <UserDetail data={profileClient} userId={userId} />
+      {allArticleUser?.data
         .slice(0)
         .reverse()
         .map((article: any) => (
