@@ -57,8 +57,9 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
     }
   }, [profile]);
 
-  const onCropComplete = (croppedAreaPixels: any) => {
+  const onCropComplete = (croppedArea: any, croppedAreaPixels: any) => {
     setCroppedArea(croppedAreaPixels);
+    console.log(croppedArea);
   };
   const chooseImage = useCallback(async () => {
     const canvas = await getCroppedImg(profileImage, croppedArea);
