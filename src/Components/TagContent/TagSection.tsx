@@ -9,7 +9,7 @@ import FollowTag from './FollowTag';
 function TagSection() {
   const { data: allTag } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`, {
     revalidateOnFocus: false,
-    dedupingInterval: 60 * 1000,
+    // dedupingInterval: 60 * 1000,
   });
   const { data: followTags } = useSWR('/api/v1/following-tag/get-full', {
     // refreshInterval : 4000,

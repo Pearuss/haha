@@ -14,7 +14,7 @@ function Menu() {
   const router = useRouter();
   const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/category`, {
     revalidateOnFocus: false,
-    dedupingInterval: 60 * 1000,
+    // dedupingInterval: 60 * 1000,
   });
 
   useEffect(() => {
