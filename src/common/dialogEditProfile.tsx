@@ -45,6 +45,8 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
       setCoverImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}${cover}`);
     }
   }, [profile]);
+  console.log('coverImage', coverImage);
+  console.log('thumbnail', thumbnail);
   useEffect(() => {
     if (profile?.data) {
       setFirstName(profile?.data?.firstName);
@@ -103,6 +105,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
     if (firstName.trim().length === 0 || lastName.trim().length === 0) return;
 
     if (profileImage) {
+      console.log(coverImage);
       const res = await useFetch('/api/v1/user/update-profile', {
         method: 'POST',
         body: JSON.stringify({
@@ -186,7 +189,8 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
         <div className="relative max-w-full w-full h-[170px] max-h-[170px] mb-6">
           <Image
             loader={() => coverImage}
-            src={coverImage}
+            // src={coverImage}
+            src="http://localhost:3100/uploads/static/images/cover-photo4.jpg"
             alt={`${profile?.data?.authorName}'s cover image`}
             onError={() => {
               setCoverImage(
@@ -200,7 +204,11 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
           <div className="absolute w-[128px] h-[128px] bottom-[-61px] left-4 overflow-hidden rounded-full border-[6px] border-white z-40">
             <Image
               loader={() => profileImage}
-              src={profileImage}
+              // src={profileImage}
+              src="http://localhost:3100/uploads/static/images/cover-photo4.jpg"
+              onError={() => {
+                setCoverImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`);
+              }}
               alt={`${profile?.data?.authorName}'s avatar`}
               width={122}
               height={122}
