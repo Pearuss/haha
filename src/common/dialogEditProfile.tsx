@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-shadow */
 import React, {
   useEffect, useRef, useState, useCallback,
@@ -28,7 +29,9 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
   const [zoomImage, setZoomImage] = useState<any>(1);
   const thumbnail = profile?.data?.thumbnail;
   const cover = profile?.data?.cover;
-  const [profileImage, setProfileImage] = useState<any>('');
+  const [profileImage, setProfileImage] = useState<any>(
+    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`,
+  );
   const [coverImage, setCoverImage] = useState<any>(
     `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`,
   );
@@ -45,8 +48,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
       setCoverImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}${cover}`);
     }
   }, [profile]);
-  console.log('coverImage', coverImage);
-  console.log('thumbnail', thumbnail);
+
   useEffect(() => {
     if (profile?.data) {
       setFirstName(profile?.data?.firstName);
@@ -106,7 +108,9 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
     if (firstName.trim().length === 0 || lastName.trim().length === 0) return;
 
     if (profileImage) {
-      console.log(coverImage);
+      // const tpmCover = coverImage === `${process.env.NEXT_PUBLIC_IMAGE_URL}${cover}` ? '' : coverImage;
+      // const tpmAvatar = profileImage === `${process.env.NEXT_PUBLIC_IMAGE_URL}${thumbnail}` ? '' : profileImage;
+
       const res = await useFetch('/api/v1/user/update-profile', {
         method: 'POST',
         body: JSON.stringify({
@@ -117,13 +121,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
           tel,
           thumbnail:
             profileImage === `${process.env.NEXT_PUBLIC_IMAGE_URL}${thumbnail}` ? '' : profileImage,
-          // cover: coverImage === `${process.env.NEXT_PUBLIC_IMAGE_URL}${cover}` ? '' : coverImage,
-          cover:
-            coverImage
-              === `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`
-            || coverImage === `${process.env.NEXT_PUBLIC_IMAGE_URL}${thumbnail}`
-              ? ''
-              : coverImage,
+          cover: coverImage === `${process.env.NEXT_PUBLIC_IMAGE_URL}${cover}` ? '' : coverImage,
         }),
       });
       if (res.status) {
@@ -190,8 +188,7 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
         <div className="relative max-w-full w-full h-[170px] max-h-[170px] mb-6">
           <Image
             loader={() => coverImage}
-            // src={coverImage}
-            src="http://localhost:3100/uploads/static/images/cover-photo4.jpg"
+            src={coverImage}
             alt={`${profile?.data?.authorName}'s cover image`}
             onError={() => {
               setCoverImage(
@@ -205,10 +202,9 @@ export default function ChangeProfileDialog({ open, setOpen, profile }: any) {
           <div className="absolute w-[128px] h-[128px] bottom-[-61px] left-4 overflow-hidden rounded-full border-[6px] border-white z-40">
             <Image
               loader={() => profileImage}
-              // src={profileImage}
-              src="http://localhost:3100/uploads/static/images/cover-photo4.jpg"
+              src={profileImage}
               onError={() => {
-                setCoverImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`);
+                setProfileImage(`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`);
               }}
               alt={`${profile?.data?.authorName}'s avatar`}
               width={122}
