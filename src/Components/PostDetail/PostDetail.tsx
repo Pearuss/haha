@@ -147,7 +147,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
           @{`${article.mainCategory}• ${timeAgo(new Date(article?.published_at))}`}
         </span>
         {profile?.data?.userId === article?.author_id && (
-          <Link href={`/posts/edit/${article.id}`}>
+          <Link href={`/posts/edit/${article.slug}`}>
             <span className="mt-1 ml-2">
               <Image
                 loader={() =>
