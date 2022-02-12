@@ -10,7 +10,7 @@ export function useAuth(option?: Partial<PublicConfiguration>) {
     error,
     mutate,
   } = useSWR('/api/v1/user/profile', {
-    // dedupingInterval: 5 * 60 * 1000, // 5p
+    dedupingInterval: 5 * 60 * 1000, // 5p
     revalidateOnFocus: false,
     ...option,
   });
