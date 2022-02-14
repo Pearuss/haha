@@ -134,7 +134,6 @@ li {
 .calendar .react-calendar__tile--active {
   @apply bg-blueCyanLogo;
 }
-
 .calendar .react-calendar__navigation__label__labelText {
   @apply capitalize text-grayCalendar;
   @apply font-semibold;
@@ -144,6 +143,9 @@ li {
 }
 .calendar .react-calendar__month-view__days__day--weekend {
   @apply text-blueCyanLogo;
+}
+.calendar .react-calendar__tile--now.react-calendar__month-view__days__day--weekend {
+  @apply text-white;
 }
 
 .calendar .react-calendar__navigation__arrow {

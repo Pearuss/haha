@@ -4,6 +4,7 @@ import React from 'react';
 import { IconButton, Tooltip } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
+import { formatDate } from '../../../utilities/helper';
 
 function TagList(props: any) {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -20,7 +21,7 @@ function TagList(props: any) {
         </span>
       </span>
       <span className="ml-[-50%]">{tag.name}</span>
-      <span>{tag.createAt}</span>
+      <span>{formatDate(new Date(tag?.createdAt))}</span>
       <span>2000</span>
       <span className="flex items-center gap-[45%]">
         <span>

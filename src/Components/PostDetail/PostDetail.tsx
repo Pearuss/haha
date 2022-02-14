@@ -11,6 +11,7 @@ import { truncateBody, timeAgo } from '../../utilities/helper';
 import CodeBlock from './CodeBlock';
 import useSWR from 'swr';
 import useFetch from '../../hooks/use-fetch';
+import { Tooltip } from '@mui/material';
 
 function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   const { profile, firstLoading } = useAuth();
@@ -122,43 +123,52 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
         {article?.title}
       </div>
       <div className="flex items-center pl-2">
-        <Image
-          loader={() =>
-            `${process.env.NEXT_PUBLIC_IMAGE_URL}${
+        <Link href={`/user/${article?.author_id}`}>
+          <Image
+            loader={() =>
+              `${process.env.NEXT_PUBLIC_IMAGE_URL}${
+                article?.authorAvatar || '/uploads/articles/user.png'
+              }`
+            }
+            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${
               article?.authorAvatar || '/uploads/articles/user.png'
-            }`
-          }
-          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${
-            article?.authorAvatar || '/uploads/articles/user.png'
-          }`}
-          alt="Avatar"
-          width={48}
-          height={48}
-          objectFit="cover"
-          className="rounded-full"
-          priority
-        />
-        <span className="font-medium text-xl ml-2 text-blueCyanLogo">
-          {article.authorName
-            ? `${article.authorName}`
-            : `${article.authorFirstname} ${article.authorLastname}`}
-        </span>
-        <span className="text-gray-500 text-sm ml-1 mt-1">
-          @{`${article.mainCategory}• ${timeAgo(new Date(article?.published_at))}`}
-        </span>
+            }`}
+            alt="Avatar"
+            width={48}
+            height={48}
+            objectFit="cover"
+            className="rounded-full cursor-pointer"
+            priority
+          />
+        </Link>
+        <Link href={`/user/${article?.author_id}`}>
+          <span className="font-medium text-xl ml-2 text-blueCyanLogo cursor-pointer hover:opacity-50">
+            {article.authorName
+              ? `${article.authorName}`
+              : `${article.authorFirstname} ${article.authorLastname}`}
+          </span>
+        </Link>
+        <Link href={`/${article?.mainCategory.trim().toLowerCase().replace(/ /g, '-')}`}>
+          <span className="text-gray-500 text-sm ml-1 mt-1 cursor-pointer hover:opacity-50">
+            @{`${article.mainCategory} • ${timeAgo(new Date(article?.published_at))}`}
+          </span>
+        </Link>
+
         {profile?.data?.userId === article?.author_id && (
           <Link href={`/posts/edit/${article.slug}`}>
-            <span className="mt-1 ml-2">
-              <Image
-                loader={() =>
-                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/pencil.png`
-                }
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/pencil.png`}
-                alt="Edit"
-                width={12}
-                height={12}
-              />
-            </span>
+            <Tooltip disableFocusListener disableTouchListener title="Edit">
+              <span className="mt-1 ml-2">
+                <Image
+                  loader={() =>
+                    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/pencil.png`
+                  }
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/pencil.png`}
+                  alt="Edit"
+                  width={14}
+                  height={15}
+                />
+              </span>
+            </Tooltip>
           </Link>
         )}
       </div>
@@ -179,58 +189,72 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
       )}
       {isLogin && (
         <div className="flex items-center justify-evenly absolute bottom-[16px] mt-2 left-0 right-0 text-blueCyanLogo">
-          <div
-            className={`flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white ${
-              isInWork ? ' border-blueCyanLogo rounded hover:bg-blueCyanLight' : ''
-            }`}
-            onClick={InWorkHandler}
-          >
-            <Image
-              loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/target.png`}
-              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/target.png`}
-              alt="Inwork"
-              width={20}
-              height={20}
-            />
-            <span>{totalInWorkRes?.data || 0}</span>
-          </div>
-          <div
-            className={`flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white ${
-              isLiked ? ' border-blueCyanLogo rounded hover:bg-blueCyanLight' : ''
-            }`}
-            onClick={likedHandler}
-          >
-            <Image
-              loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/heart.png`}
-              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/heart.png`}
-              alt="Heart"
-              width={20}
-              height={20}
-            />
-            <span>{totalLikedRes?.data || 0}</span>
-          </div>
-          <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
-            <Image
-              loader={() =>
-                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/comment.png`
-              }
-              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/comment.png`}
-              alt="Comment"
-              width={20}
-              height={20}
-            />
-            <span>{article?.countComment}</span>
-          </div>
-          <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
-            <Image
-              loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/view.png`}
-              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/view.png`}
-              alt="View"
-              width={20}
-              height={20}
-            />
-            <span>{article?.view_count}</span>
-          </div>
+          <Tooltip disableFocusListener disableTouchListener title="InWork">
+            <div
+              className={`flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white ${
+                isInWork ? ' border-blueCyanLogo rounded hover:bg-blueCyanLight' : ''
+              }`}
+              onClick={InWorkHandler}
+            >
+              <Image
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/target.png`
+                }
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/target.png`}
+                alt="Inwork"
+                width={20}
+                height={20}
+              />
+              <span>{totalInWorkRes?.data || 0}</span>
+            </div>
+          </Tooltip>
+          <Tooltip disableFocusListener disableTouchListener title="Like">
+            <div
+              className={`flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white ${
+                isLiked ? ' border-blueCyanLogo rounded hover:bg-blueCyanLight' : ''
+              }`}
+              onClick={likedHandler}
+            >
+              <Image
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/heart.png`
+                }
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/heart.png`}
+                alt="Heart"
+                width={20}
+                height={20}
+              />
+              <span>{totalLikedRes?.data || 0}</span>
+            </div>
+          </Tooltip>
+
+          <Tooltip disableFocusListener disableTouchListener title="Comments">
+            <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
+              <Image
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/comment.png`
+                }
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/comment.png`}
+                alt="Comment"
+                width={20}
+                height={20}
+              />
+              <span>{article?.countComment}</span>
+            </div>
+          </Tooltip>
+
+          <Tooltip disableFocusListener disableTouchListener title="Viewed">
+            <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
+              <Image
+                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/view.png`}
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/view.png`}
+                alt="View"
+                width={20}
+                height={20}
+              />
+              <span>{article?.view_count}</span>
+            </div>
+          </Tooltip>
         </div>
       )}
     </div>

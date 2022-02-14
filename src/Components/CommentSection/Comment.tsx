@@ -16,6 +16,7 @@ import { formatDate, truncate } from '../../utilities/helper';
 import { IComment } from '../../models';
 import Link from 'next/link';
 import useFetch from '../../hooks/use-fetch';
+import { Tooltip } from '@mui/material';
 
 function Comment({
   commentContent,
@@ -73,7 +74,8 @@ function Comment({
           loader={() =>
             `${process.env.NEXT_PUBLIC_IMAGE_URL}${
               UserComment?.thumbnail || profile.data.thumbnail
-            }`}
+            }`
+          }
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${
             UserComment?.thumbnail || profile.data.thumbnail
           }`}
@@ -112,21 +114,26 @@ function Comment({
 
         <div className="flex items-center justify-between text-gray-700 pt-2">
           <div className="flex items-center mr-6">
-            <span
-              className={`flex items-center gap-1 px-[6px] py-[3px] mr-4 cursor-pointer border border-white ${
-                isLiked ? ' border-blueCyanLogo rounded hover:bg-blueCyanLight' : ''
-              }`}
-              onClick={LikeCommentHandler}
-            >
-              <Image
-                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/star.png`}
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/star.png`}
-                alt="Like"
-                width={20}
-                height={20}
-              />
-              <span className="pl-3 font-medium">{totalLiked || 0}</span>
-            </span>
+            <Tooltip disableFocusListener disableTouchListener title="Love">
+              <span
+                className={`flex items-center gap-1 px-[6px] py-[3px] mr-4 cursor-pointer border border-white ${
+                  isLiked ? ' border-blueCyanLogo rounded hover:bg-blueCyanLight' : ''
+                }`}
+                onClick={LikeCommentHandler}
+              >
+                <Image
+                  loader={() =>
+                    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/star.png`
+                  }
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/star.png`}
+                  alt="Like"
+                  width={20}
+                  height={20}
+                />
+                <span className="pl-3 font-medium">{totalLiked || 0}</span>
+              </span>
+            </Tooltip>
+
             {/* <span className="flex items-center">
               <Image src="/images/smile.png" width={20} height={20} />
               <span className="pl-3 font-medium">12</span>
@@ -146,7 +153,8 @@ function Comment({
                 setActiveComment({
                   id: commentContent.id,
                   type: 'replying',
-                })}
+                })
+              }
             >
               Reply
             </span>
@@ -162,8 +170,9 @@ function Comment({
                 // `${parentId == null ? '' : `@${commentContent.username}`} ${text}`,
                 text,
                 replyId,
-                commentContent?.user.id,
-              )}
+                commentContent?.user.id
+              )
+            }
             handleCancel={() => setActiveComment(null)}
           />
         )}

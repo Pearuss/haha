@@ -1,24 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+// import React from 'react';
 
 import Calendar from 'react-calendar';
 import useSWR from 'swr';
 import 'react-calendar/dist/Calendar.css';
 
 import FollowTag from './FollowTag';
-// import UserInfo from './UserInfo';
+import { useAuth } from '../../hooks';
 
 function TagSectionMobile({ isShowTagMobile }: any) {
-  // const { data, error, mutate, inValidating } = useSWR('/tags', { revalidateOnFocus: false });
+  const { profile, firstLoading } = useAuth();
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    if (!firstLoading && !profile?.data) {
+      setIsLogin(false);
+    } else if (profile?.data) {
+      setIsLogin(true);
+    }
+  }, [profile, firstLoading]);
+
   const { data: allTag } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`, {
     revalidateOnFocus: false,
     // dedupingInterval: 60 * 1000,
   });
-  const { data: followTags } = useSWR('/api/v1/following-tag/get-full', {
+
+  let { data: followTags } = useSWR(isLogin ? '/api/v1/following-tag/get-full' : null, {
     // refreshInterval : 4000,
     revalidateOnFocus: true,
     // revalidateIfStale: true,
     // revalidateOnMount: true,
   });
+  if (!followTags) {
+    followTags = [];
+  }
 
   return (
     <div

@@ -12,49 +12,38 @@ import FormUpdateTag from '../../../Components/admin/components/FormUpdateTag';
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import TagItem from '../../../Components/admin/components/TagItem';
 import LayoutAdminPage from '../../../Components/admin/layout';
+import useSWR from 'swr';
 
 function Tag() {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`, {
+    // revalidateOnMount: false,
+    revalidateOnMount: true,
+    revalidateIfStale: true,
+  });
 
-  const tagFake = [
-    {
-      id: '1',
-      name: 'ReactJS',
-      createAt: '25/08/2000',
-      description: 'Tag Description',
-      status: 'Activated',
-      selected: false,
-    },
-    {
-      id: '2',
-      name: 'ReactJS',
-      createAt: '25/08/2000',
-      description: 'Tag Description',
-      status: 'Activated',
-      selected: false,
-    },
-    {
-      id: '3',
-      name: 'ReactJS',
-      createAt: '25/08/2000',
-      description: 'Tag Description',
-      status: 'Activated',
-      selected: false,
-    },
-  ];
+  console.log(data);
 
   const [openDialog, setOpenDialog] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
-  const [dataTags, setDataTags] = useState(tagFake);
+  const [dataTags, setDataTags] = useState<any>([]);
   const [tagSelected, setTagSelected] = useState();
 
   const router = useRouter();
 
-  const hasSelectedTag = useMemo(() => dataTags.find((tag) => tag.selected === true), [dataTags]);
+  useEffect(() => {
+    if (data?.data) {
+      console.log(data?.data);
+
+      setDataTags(data?.data?.map((post: any) => ({ ...post, selected: false })));
+    }
+  }, [data]);
+
+  const hasSelectedTag = useMemo(() => dataTags.find((tag: any) => tag.selected === true), [dataTags]);
 
   useEffect(() => {
-    const isSelectedAll = dataTags.find((tag) => tag.selected === false);
+    const isSelectedAll = dataTags.find((tag: any) => tag.selected === false);
     if (typeof isSelectedAll === 'undefined') setSelectAll(true);
     else setSelectAll(false);
   }, [dataTags]);
@@ -81,7 +70,7 @@ function Tag() {
   };
 
   const handleDeleteClick = () => {
-    const dataSelected = dataTags.filter((tag) => tag.selected === true);
+    const dataSelected = dataTags.filter((tag: any) => tag.selected === true);
     console.log(dataSelected);
     handleClose();
   };
@@ -96,11 +85,11 @@ function Tag() {
 
   return (
     <LayoutAdminPage title="HashTag">
-      <HeaderAdmin titlePage="Hashtag" subTitlePage="Total 12" searchPlaceholder="Search tag..." />
+      <HeaderAdmin titlePage="Hashtag" subTitlePage="" searchPlaceholder="Search tag..." />
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All hashtag</h4>
-          <span className="text-sm mt-2 ml-2">(3)</span>
+          <span className="text-sm mt-2 ml-2">(Total {dataTags.length})</span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <button onClick={handleClickAdd}>
               <Image src="/images/plus.png" alt="Add" width={19} height={19} />
@@ -118,10 +107,10 @@ function Tag() {
           </span>
           <span className="ml-[-50%]">Tag Name</span>
           <span>Date created</span>
-          <span>Total tag</span>
+          <span>Total Articles</span>
           <span>Status</span>
         </div>
-        {dataTags.map((tag) => (
+        {dataTags.map((tag: any) => (
           <TagItem
             setOpenPopup={setOpenPopup}
             setTagSelected={setTagSelected}

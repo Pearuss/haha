@@ -7,18 +7,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 // import Link from 'next/link';
-import { truncate } from '../../../utilities/helper';
+import { formatDate, truncate } from '../../../utilities/helper';
 
-function PostList({ _new, handleCheckItemClick }: any) {
+function NewItem({ _new, handleCheckItemClick }: any) {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
   return (
-    <div className="grid grid-cols-8 gap-1 bg-white hover:bg- px-3 py-1 font-medium items-center">
+    <div className="grid grid-cols-7 gap-1 bg-white hover:bg- px-3 py-1 font-medium items-center">
       <span className="flex items-center">
         <Checkbox {...label} checked={_new?.selected} onClick={() => handleCheckItemClick(_new)} />
       </span>
       <span className="col-span-3 flex items-center w-[100%] py-1 ml-[-12%]">
-        <div className="relative w-[220px] max-w-[120px] mr-2 h-[68px] ">
+        {/* <div className="relative w-[220px] max-w-[120px] mr-2 h-[68px] ">
           <Image
             className="overflow-hidden rounded"
             loader={() => _new.img}
@@ -28,16 +28,16 @@ function PostList({ _new, handleCheckItemClick }: any) {
             objectFit="cover"
             priority
           />
-        </div>
-        <div className="flex flex-col mt-[-5px] mb-auto">
-          <h6 className="text-textAdmin text-base">{truncate(`${_new.title}`, 55)}</h6>
-          <Link href={`/posts/${_new.id}`}>
-            <span className="text-sm cursor-pointer">#slug_article</span>
+        </div> */}
+        <div className="flex flex-col mt-[-2px] mb-auto">
+          <h6 className="text-textAdmin text-base">{truncate(`${_new.title}`, 85)}</h6>
+          <Link href={`/news/${_new.id}`}>
+            <span className="text-sm cursor-pointer hover:opacity-40"># {_new.slug}</span>
           </Link>
         </div>
       </span>
-      <span>25/08/2000</span>
-      <span>{_new.author}</span>
+      <span>{formatDate(new Date(_new?.createdAt))}</span>
+      {/* <span>{_new.author}</span> */}
       <span>
         <Image src="/images/check1.png" alt="Check" width={20} height={20} />
       </span>
@@ -65,4 +65,4 @@ function PostList({ _new, handleCheckItemClick }: any) {
   );
 }
 
-export default PostList;
+export default NewItem;

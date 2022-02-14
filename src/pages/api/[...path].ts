@@ -17,6 +17,8 @@ const proxy = httpProxy.createProxyServer();
 export default function handler(req: any, res: NextApiResponse<any>) {
   req.url = req.url.replace(/^\/api/, '/backend-api');
   // req.url = req.url.replace(/^\/api/, '/api');
+  // console.log(req.url);
+  
 
   return new Promise((resolve) => {
     const cookies = new Cookies(req, res);

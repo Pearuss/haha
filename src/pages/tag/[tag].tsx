@@ -28,7 +28,7 @@ function PostsTag({ data }: any) {
 
   const followHandler = async () => {
     if (currentTagId && isFollow) {
-      const res = await useFetch('/api/v1/following-tag/unfollow', {
+      const res = await useFetch('/api/v1//unfollow', {
         method: 'POST',
         body: JSON.stringify({
           tagId: currentTagId,
@@ -37,7 +37,7 @@ function PostsTag({ data }: any) {
       res.message.toString() === '200' ? setIsFollow(false) : null;
     }
     if (currentTagId && !isFollow) {
-      const res = await useFetch('/api/v1/following-tag/follow', {
+      const res = await useFetch('/api/v1//follow', {
         method: 'POST',
         body: JSON.stringify({
           tagId: currentTagId,
