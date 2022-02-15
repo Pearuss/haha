@@ -27,7 +27,7 @@ function News() {
     if (data?.data) {
       console.log(data?.data);
 
-      setDataPosts(data?.data?.map((post: any) => ({ ...post, selected: false })));
+      setDataPosts(data.data.map((post: any) => ({ ...post, selected: false })));
     }
   }, [data]);
 

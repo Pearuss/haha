@@ -5,6 +5,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
+import useSWR from 'swr';
 
 import DialogDelete from '../../Components/admin/common/dialogDelete';
 import Popup from '../../Components/admin/common/popUp';
@@ -15,50 +16,32 @@ import LayoutAdminPage from '../../Components/admin/layout';
 
 function Cpanel() {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
-  const customerFake = [
-    {
-      id: '1',
-      email: 'duc12a1cauxe0825@gmail.com',
-      name: 'Pearuss',
-      phone: '40',
-      createAt: '25/08/2000',
-      status: true,
-      selected: false,
-    },
-    {
-      id: '2',
-      email: 'duc12a1cauxe0825@gmail.com',
-      name: 'Paine',
-      phone: '16',
-      createAt: '25/08/2000',
-      status: false,
-      selected: false,
-    },
-    {
-      id: '3',
-      email: 'duc12a1cauxe0825@gmail.com',
-      name: 'Hunter',
-      phone: '12',
-      createAt: '25/08/2000',
-      status: true,
-      selected: false,
-    },
-  ];
-
   const [openDialog, setOpenDialog] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
-  const [dataCustomers, setDataCustomers] = useState(customerFake);
+  const [dataCustomers, setDataCustomers] = useState<any>([]);
   const [userSelected, setUserSelected] = useState();
 
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/user/all-client`, {
+    // revalidateOnMount: false,
+    revalidateOnMount: true,
+    revalidateIfStale: true,
+  });
+  console.log(dataCustomers);
+
+  useEffect(() => {
+    if (data?.data) {
+      setDataCustomers(data.data.map((post: any) => ({ ...post, selected: false })));
+    }
+  }, [data]);
+
   const hasSelectedCustomer = useMemo(
-    () => dataCustomers.find((customer) => customer.selected === true),
+    () => dataCustomers.find((customer: any) => customer.selected === true),
     [dataCustomers],
   );
 
   useEffect(() => {
-    const isSelectedAll = dataCustomers.find((customer) => customer.selected === false);
+    const isSelectedAll = dataCustomers.find((customer: any) => customer.selected === false);
     if (typeof isSelectedAll === 'undefined') setSelectAll(true);
     else setSelectAll(false);
   }, [dataCustomers]);
@@ -88,7 +71,7 @@ function Cpanel() {
   };
 
   const handleDeleteClick = () => {
-    const dataSelected = dataCustomers.filter((customer) => customer.selected === true);
+    const dataSelected = dataCustomers.filter((customer: any) => customer.selected === true);
     console.log(dataSelected);
     handleClose();
   };
@@ -103,7 +86,11 @@ function Cpanel() {
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All user</h4>
-          <span className="text-sm mt-2 ml-2">(3)</span>
+          <span className="text-sm mt-2 ml-2">
+            (Total
+            {dataCustomers.length}
+            )
+          </span>
           <button
             className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer"
             onClick={handleClickOpen}
@@ -126,7 +113,7 @@ function Cpanel() {
           <span>Date created</span>
           <span>Status</span>
         </div>
-        {dataCustomers.map((customer) => (
+        {dataCustomers.map((customer: any) => (
           <CustomerItem
             key={customer.id}
             customer={customer}

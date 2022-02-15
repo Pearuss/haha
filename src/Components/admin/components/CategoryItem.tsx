@@ -4,12 +4,16 @@ import React from 'react';
 import { IconButton, Tooltip } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
+import Link from 'next/link';
+
 import { formatDate } from '../../../utilities/helper';
 
 function CategoryItem(props: any) {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-  const { cat, handleCheckItemClick, setOpenPopup, setCategorySelected } = props;
+  const {
+    cat, handleCheckItemClick, setOpenPopup, setCategorySelected,
+  } = props;
 
   return (
     <div className="grid grid-cols-6 bg-white hover:bg- px-3 py-1 font-medium items-center">
@@ -18,10 +22,15 @@ function CategoryItem(props: any) {
           <Checkbox {...label} checked={cat.selected} onClick={() => handleCheckItemClick(cat)} />
         </span>
       </span>
-      <span>{cat.name}</span>
-      <span>{cat.parentId === 0 ? 'Main' : 'Sub'}</span>
-      <span>{formatDate(new Date(cat?.createdAt))}</span>
-      <span>3000</span>
+      <Link href={cat?.slug}>
+        <span className="hover:opacity-50 cursor-pointer">{cat?.name}</span>
+      </Link>
+      <span>{cat?.parent_id === 0 ? 'Main' : 'Sub'}</span>
+      <span>{formatDate(new Date(cat?.created_at))}</span>
+      <Link href={cat?.slug}>
+        <span className="ml-6 hover:opacity-50 cursor-pointer">{cat?.total}</span>
+      </Link>
+
       <span className="flex items-center gap-[45%]">
         <span>
           <Image src="/images/check1.png" alt="Check" width={20} height={20} />

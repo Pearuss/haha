@@ -5,6 +5,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import useSWR from 'swr';
 
 import DialogDelete from '../../../Components/admin/common/dialogDelete';
 import Popup from '../../../Components/admin/common/popUp';
@@ -12,7 +13,6 @@ import CategoryItem from '../../../Components/admin/components/CategoryItem';
 import FormUpdateCategory from '../../../Components/admin/components/FormUpdateCategory';
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import LayoutAdminPage from '../../../Components/admin/layout';
-import useSWR from 'swr';
 
 function Category() {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -23,7 +23,7 @@ function Category() {
   const [dataCats, setDataCats] = useState<any>([]);
   const [categorySelected, setCategorySelected] = useState();
 
-  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/category/menu`, {
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/category/full-list`, {
     // revalidateOnMount: false,
     revalidateOnMount: true,
     revalidateIfStale: true,
@@ -39,7 +39,10 @@ function Category() {
 
   const router = useRouter();
 
-  const hasSelectedCat = useMemo(() => dataCats.find((cat: any) => cat.selected === true), [dataCats]);
+  const hasSelectedCat = useMemo(
+    () => dataCats.find((cat: any) => cat.selected === true),
+    [dataCats],
+  );
 
   useEffect(() => {
     const isSelectedAll = dataCats.find((cat: any) => cat.selected === false);
@@ -93,7 +96,11 @@ function Category() {
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All category</h4>
-          <span className="text-sm mt-2 ml-2">(Total {dataCats.length})</span>
+          <span className="text-sm mt-2 ml-2">
+            (Total
+            {dataCats.length}
+            )
+          </span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <button onClick={handleClickAdd}>
               <Image src="/images/plus.png" alt="Add" width={19} height={19} />

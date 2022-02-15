@@ -24,6 +24,7 @@ function HeaderRight() {
       setIsLogin(true);
     }
   }, [profile, firstLoading]);
+  console.log(profile);
 
   const logoutHandler = useCallback(async () => {
     try {
@@ -74,14 +75,14 @@ function HeaderRight() {
               <Link href="/user/posts/1">
                 <a className="link ">My posts</a>
               </Link>
-              {/* {profile?.data?.role === 40 && (
+              {profile?.data?.role === 40 && (
                 <Link href="/adminpanel/dashboard">
                   <a className="link ">Moderator</a>
                 </Link>
-              )} */}
-              <Link href="/adminpanel/dashboard">
+              )}
+              {/* <Link href="/adminpanel/dashboard">
                 <a className="link ">Moderator</a>
-              </Link>
+              </Link> */}
               <div className="link  hover:rounded-full" onClick={logoutHandler} aria-hidden="true">
                 Log out
               </div>
@@ -101,36 +102,6 @@ function HeaderRight() {
           </div>
         </Link>
       )}
-
-      {/* <Link href={`${isLogin ? '#' : '/login'}`}>
-        <div className="userDropdown ssm:mr-[-1.2rem]" data-dropdown-user>
-          <div className="flex items-center gap-1 px-3 py-[6px] text-sm xl:py-1 xl:px-2 lg:py-1 lg:px-2 sm:text-xs md:py-1 md:px-2 ssm:text-[10px] ssm:px-1 ssm:py-1" data-dropdown-button-user>
-            <UserCircleIcon className="h-8 pointer-events-none cursor-pointer text-lg md:h6 sm:h-5 ssm:h-4" />
-            {isLogin ? 'Pearuss' : 'Login'}
-          </div>
-          <div className={`userDropdown-menu ${isLogin ? '' : 'hidden'}`}>
-            <div className="flex flex-col gap-1">
-              <Link href="/user/profile">
-                <a className="link ">Profile</a>
-              </Link>
-              <Link href="/user/create">
-                <a className="link ">Create post</a>
-              </Link>
-              <Link href="/user/posts/1">
-                <a className="link ">My posts</a>
-              </Link>
-              {/* {(profile?.isAdmin || false) && (
-              <Link href="/user/admin">
-                <a className="link ">Moderator</a>
-              </Link>
-            )}
-              <div className="link  hover:rounded-full" onClick={logoutHandler} aria-hidden="true">
-                Log out
-              </div>
-            </div>
-          </div>
-        </div>
-      </Link> */}
     </div>
   );
 }

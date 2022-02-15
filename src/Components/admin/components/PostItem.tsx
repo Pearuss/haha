@@ -12,7 +12,7 @@ import { formatDate, truncate } from '../../../utilities/helper';
 function PostList({ post, handleCheckItemClick }: any) {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
   const [imgArticle, setImgArticle] = useState(
-    `${process.env.NEXT_PUBLIC_IMAGE_URL}${post.thumbnail}`
+    `${process.env.NEXT_PUBLIC_IMAGE_URL}${post.thumbnail}`,
   );
 
   return (
@@ -28,7 +28,7 @@ function PostList({ post, handleCheckItemClick }: any) {
             src={imgArticle}
             onError={() => {
               setImgArticle(
-                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`
+                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`,
               );
             }}
             alt="Article's image"
@@ -41,7 +41,8 @@ function PostList({ post, handleCheckItemClick }: any) {
           <h6 className="text-textAdmin text-base">{truncate(`${post.title}`, 55)}</h6>
           <Link href={`/posts/${post?.slug}`}>
             <span className="text-sm cursor-pointer hover:opacity-50">
-              #{truncate(`${post?.slug}`, 55)}
+              #
+              {truncate(`${post?.slug}`, 55)}
             </span>
           </Link>
         </div>
@@ -62,15 +63,15 @@ function PostList({ post, handleCheckItemClick }: any) {
       <span className="grid grid-cols-3 ml-[-40%]">
         <button className="flex items-center">
           <Image src="/images/target.png" alt="Target" width={20} height={20} />
-          <span className="ml-[10%]">{post.inWorks}</span>
+          <span className="ml-[10%]">{post.countInwork}</span>
         </button>
         <button className="flex items-center 2xl:ml-[18%]">
           <Image src="/images/heart.png" alt="Like" width={20} height={20} />
-          <span className="ml-[10%]">{post.likes}</span>
+          <span className="ml-[10%]">{post.countLike}</span>
         </button>
         <button className="flex items-center 2xl:ml-[38%]">
           <Image src="/images/comment.png" alt="Comment" width={20} height={20} />
-          <span className="ml-[10%]">{post.comments}</span>
+          <span className="ml-[10%]">{post.countComment}</span>
         </button>
       </span>
     </div>

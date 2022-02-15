@@ -11,55 +11,39 @@ import FormUpdateAdmin from '../../../Components/admin/components/FormUpdateAdmi
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import MemberItem from '../../../Components/admin/components/MemberItem';
 import LayoutAdminPage from '../../../Components/admin/layout';
+import useSWR from 'swr';
 
-function Cpanel() {
+function AdminPage() {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
   const router = useRouter();
 
-  const memberFake = [
-    {
-      id: '1',
-      email: 'duc12a1cauxe0825@gmail.com',
-      name: 'Minnas Cover',
-      authorization: 'Admin',
-      createAt: '25/08/2000',
-      status: 'active',
-      selected: false,
-    },
-    {
-      id: '2',
-      email: 'duc12a1cauxe0825@gmail.com',
-      name: 'Minnas Cover',
-      authorization: 'Admin',
-      createAt: '25/08/2000',
-      status: 'active',
-      selected: false,
-    },
-    {
-      id: '3',
-      email: 'duc12a1cauxe0825@gmail.com',
-      name: 'Paine Hunter',
-      authorization: 'Admin',
-      createAt: '25/08/2000',
-      status: 'active',
-      selected: false,
-    },
-  ];
-
   const [openDialog, setOpenDialog] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
-  const [dataMembers, setDataMembers] = useState(memberFake);
+  const [dataMembers, setDataMembers] = useState<any>([]);
   const [adminSelected, setAdminSelected] = useState();
 
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/user/all-admin`, {
+    // revalidateOnMount: false,
+    revalidateOnMount: true,
+    revalidateIfStale: true,
+  });
+  console.log(dataMembers);
+
+  useEffect(() => {
+    if (data?.data) {
+      setDataMembers(data.data.map((post: any) => ({ ...post, selected: false })));
+    }
+  }, [data]);
+
   const hasSelectedMember = useMemo(
-    () => dataMembers.find((member) => member.selected === true),
+    () => dataMembers.find((member: any) => member.selected === true),
     [dataMembers]
   );
 
   useEffect(() => {
-    const isSelectedAll = dataMembers.find((member) => member.selected === false);
+    const isSelectedAll = dataMembers.find((member: any) => member.selected === false);
     if (typeof isSelectedAll === 'undefined') setSelectAll(true);
     else setSelectAll(false);
   }, [dataMembers]);
@@ -86,7 +70,7 @@ function Cpanel() {
   };
 
   const handleDeleteClick = () => {
-    const dataSelected = dataMembers.filter((member) => member.selected === true);
+    const dataSelected = dataMembers.filter((member: any) => member.selected === true);
     console.log(dataSelected);
     handleClose();
   };
@@ -106,7 +90,7 @@ function Cpanel() {
       <div className="bg-white rounded h-full p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All user</h4>
-          <span className="text-sm mt-2 ml-2">(3)</span>
+          <span className="text-sm mt-2 ml-2">(Total {dataMembers.length})</span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <button onClick={handleClickAdd}>
               <Image src="/images/add-user.png" alt="Add" width={19} height={19} />
@@ -129,7 +113,7 @@ function Cpanel() {
           <span>Date created</span>
           <span>Status</span>
         </div>
-        {dataMembers.map((member) => (
+        {dataMembers.map((member: any) => (
           <MemberItem
             setOpenPopup={setOpenPopup}
             setAdminSelected={setAdminSelected}
@@ -157,4 +141,4 @@ function Cpanel() {
   );
 }
 
-export default Cpanel;
+export default AdminPage;

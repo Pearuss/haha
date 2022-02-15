@@ -5,11 +5,15 @@ import React from 'react';
 import { IconButton, Tooltip } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
+import Link from 'next/link';
+
+import { formatDate } from '../../../utilities/helper';
 
 function MemberItem(props: any) {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
   const { member, handleCheckItemClick, setOpenPopup, setAdminSelected } = props;
+  console.log(member);
 
   return (
     <div className="grid grid-cols-6 bg-white hover:bg- px-3 py-1 font-medium items-center">
@@ -22,11 +26,18 @@ function MemberItem(props: any) {
           />
         </span>
       </span>
-      <span className="ml-[-42%]">{member.email}</span>
-      <span>{member.name}</span>
+      <Link href={`/user/${member?.id}`}>
+        <span className="ml-[-42%] hover:opacity-50">{member?.email}</span>
+      </Link>
+      <Link href={`/user/${member?.id}`}>
+        <span className="hover:opacity-50">
+          {member?.authorName ? member.authorName : `${member?.firstName} ${member?.lastName}`}
+        </span>
+      </Link>
+
       {/* <span>{member.authorization}</span> */}
       <span>All category</span>
-      <span>{member.createAt}</span>
+      <span>{formatDate(new Date(member?.createdAt))}</span>
       <span className="flex items-center gap-[45%]">
         <span>
           <Image src="/images/check1.png" alt="Check" width={20} height={20} />
