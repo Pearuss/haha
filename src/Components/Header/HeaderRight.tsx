@@ -24,7 +24,6 @@ function HeaderRight() {
       setIsLogin(true);
     }
   }, [profile, firstLoading]);
-  console.log(profile);
 
   const logoutHandler = useCallback(async () => {
     try {

@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useEffect, useState } from 'react';
 
+import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
@@ -9,7 +10,7 @@ import TagSectionMobile from '../../Components/TagContent/TagSection';
 import { MainLayout } from '../../layout';
 import { capitalizeFirstLetter } from '../../utilities/helper';
 
-function Category({ data }: any) {
+function Category({ data, category }: any) {
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
   const router = useRouter();
@@ -36,6 +37,12 @@ function Category({ data }: any) {
   }, []);
   return (
     <div className="flex-1 mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
+      <NextSeo
+        title={category}
+        defaultTitle={`All articles in ${category} category`}
+        description="Hybrid Technologies Know-How"
+        // keywords={article.meta_keywords}
+      />
       <div className="flex items-center mb-4">
         <Image
           loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/category.png`}
@@ -106,6 +113,7 @@ export const getStaticProps = async ({ params }: any) => {
   return {
     props: {
       data,
+      category,
     },
     revalidate: 1,
   };

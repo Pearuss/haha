@@ -9,27 +9,20 @@ import useSWR from 'swr';
 import Post from '../Components/Post';
 import TagSectionMobile from '../Components/TagContent/TagSectionMobile';
 import { MainLayout } from '../layout';
-import { Article } from '../models';
+// import { Article } from '../models';
 import { formatDate, truncate } from '../utilities/helper';
 // import { useRouter } from 'next/router';
 // import { LayoutMeta } from 'next';
 
-function HomePage({ articles, news }: { articles: Article[]; news: any }) {
+function HomePage({ articles, news }: { articles: any; news: any }) {
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
-  // const router = useRouter();
-  const [allArticles, setAllArticles] = useState(articles);
 
   const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/full-list`, {
-    // revalidateOnMount: false,
-    revalidateOnMount: true,
+    revalidateOnMount: false,
+    // revalidateOnMount: true,
     revalidateIfStale: true,
+    fallbackData: articles,
   });
-
-  useEffect(() => {
-    if (data?.data && JSON.stringify(data.data) !== JSON.stringify(articles)) {
-      setAllArticles(data.data);
-    }
-  }, [data?.data]);
 
   useEffect(() => {
     const btnShowTag = document.querySelector('.btnShowTag');
@@ -109,10 +102,10 @@ function HomePage({ articles, news }: { articles: Article[]; news: any }) {
           )}
         </div>
       </div>
-      {allArticles
+      {data?.data
         .slice(0)
         .reverse()
-        .map((article: Article) => (
+        .map((article: any) => (
           <Post key={article.id} article={article} />
         ))}
       <TagSectionMobile isShowTagMobile={isShowTagMobile} />
@@ -132,7 +125,7 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      articles: articles.data,
+      articles,
       news: news.data.slice(0).reverse(),
     },
     revalidate: 1,

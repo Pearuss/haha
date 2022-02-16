@@ -5,14 +5,14 @@ import React, { useState } from 'react';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import DatePicker from '@mui/lab/DatePicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
+import TextField from '@mui/material/TextField';
+import Swal from 'sweetalert2';
 
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import LayoutAdminPage from '../../../Components/admin/layout';
 import MarkDown from '../../../Components/CreatePost/MarkDown';
 import useFetch from '../../../hooks/use-fetch';
-import Swal from 'sweetalert2';
 // import useFetch from '../../../hooks/use-fetch';
 
 function EditPost() {
@@ -28,7 +28,7 @@ function EditPost() {
 
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
   const updatePostHandler = async () => {
-    const res = await useFetch(`/api/v1/news`, {
+    const res = await useFetch('/api/v1/news', {
       method: 'POST',
       body: JSON.stringify({
         news: {
@@ -45,9 +45,11 @@ function EditPost() {
         },
       }),
     });
-    console.log(res);
-    
+
     if (res?.message === 200) {
+      await fetch('/', {
+        method: 'HEAD',
+      });
       Swal.fire('Add a new successfully!');
     } else {
       Swal.fire('Something went wrong, please try again later!');
@@ -74,9 +76,11 @@ function EditPost() {
             />
           </div>
           <div className="flex items-start w-full mt-8">
-            <span className="w-40 flex font-medium text-gray-600 justify-end">Short content*</span>
+            <span className="w-40 flex font-medium text-gray-600 justify-end px-1 py-2">
+              Short content*
+            </span>
             <textarea
-              className="w-full py-2 px-4 outline-none resize-none rounded ml-8"
+              className="w-full py-2 px-4 outline-none resize-none rounded ml-8 overflow-y-hidden"
               onChange={(e) => setNewShortContent(e.target.value)}
               value={newShortContent}
             />
@@ -125,7 +129,7 @@ function EditPost() {
             <div className="w-full ml-8">
               <Checkbox
                 {...label}
-                checked={true}
+                checked
                 // onClick={() => handleCheckItemClick(_new)}
               />
             </div>

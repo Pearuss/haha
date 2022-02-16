@@ -13,7 +13,6 @@ import { INewPost } from '../../../models';
 
 function UserCreatePage({ data }: any) {
   const oldArticle = data.data[0];
-  console.log('oldArticle', oldArticle);
   const { data: tagData }: any = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`, {
     revalidateOnFocus: false,
   });
@@ -38,7 +37,6 @@ function UserCreatePage({ data }: any) {
     public: true,
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  console.log('newPost', newPost);
 
   useEffect(() => {
     try {

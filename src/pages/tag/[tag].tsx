@@ -12,8 +12,9 @@ import { capitalizeFirstLetter } from '../../utilities/helper';
 import useSWR from 'swr';
 import { Tag } from '../../models';
 import useFetch from '../../hooks/use-fetch';
+import { NextSeo } from 'next-seo';
 
-function PostsTag({ data }: any) {
+function PostsTag({ data, tag }: any) {
   const [isFollow, setIsFollow] = useToggle(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
   const [currentTagId, setCurrentTagId] = useState<string | null>(null);
@@ -101,6 +102,12 @@ function PostsTag({ data }: any) {
   }, []);
   return (
     <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw] flex-1">
+      <NextSeo
+        title={tag}
+        defaultTitle={`All articles in ${tag} tag`}
+        description="Hybrid Technologies Know-How"
+        // keywords={article.meta_keywords}
+      />
       <div className="flex items-center ">
         <Image
           loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/hashtag1.png`}
@@ -179,6 +186,7 @@ export const getStaticProps = async ({ params }: any) => {
   return {
     props: {
       data,
+      tag,
     },
     revalidate: 1,
   };

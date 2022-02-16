@@ -12,6 +12,7 @@ import CodeBlock from './CodeBlock';
 import useSWR from 'swr';
 import useFetch from '../../hooks/use-fetch';
 import { Tooltip } from '@mui/material';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   const { profile, firstLoading } = useAuth();
@@ -150,9 +151,13 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
         </Link>
         <Link href={`/${article?.mainCategory.trim().toLowerCase().replace(/ /g, '-')}`}>
           <span className="text-gray-500 text-sm ml-1 mt-1 cursor-pointer hover:opacity-50">
-            @{`${article.mainCategory} • ${timeAgo(new Date(article?.published_at))}`}
+            @{`${article.mainCategory} • ${timeAgo(new Date(article?.published_at))} • `}
           </span>
         </Link>
+        <span className="flex items-center mt-1 text-gray-500">
+          <span className="pr-2 pl-1 text-[13px]">{article?.view_count}</span>
+          <VisibilityIcon className="text-[15px]" />
+        </span>
 
         {profile?.data?.userId === article?.author_id && (
           <Link href={`/posts/edit/${article.slug}`}>
@@ -225,34 +230,6 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
                 height={20}
               />
               <span>{totalLikedRes?.data || 0}</span>
-            </div>
-          </Tooltip>
-
-          <Tooltip disableFocusListener disableTouchListener title="Comments">
-            <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
-              <Image
-                loader={() =>
-                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/comment.png`
-                }
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/comment.png`}
-                alt="Comment"
-                width={20}
-                height={20}
-              />
-              <span>{article?.countComment}</span>
-            </div>
-          </Tooltip>
-
-          <Tooltip disableFocusListener disableTouchListener title="Viewed">
-            <div className="flex items-center gap-2 px-[6px] py-[3px] cursor-pointer border border-white">
-              <Image
-                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/view.png`}
-                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/view.png`}
-                alt="View"
-                width={20}
-                height={20}
-              />
-              <span>{article?.view_count}</span>
             </div>
           </Tooltip>
         </div>
