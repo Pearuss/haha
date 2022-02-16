@@ -154,9 +154,11 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
             @{`${article.mainCategory} • ${timeAgo(new Date(article?.published_at))} • `}
           </span>
         </Link>
-        <span className="flex items-center mt-1 text-gray-500">
-          <span className="pr-2 pl-1 text-[13px]">{article?.view_count}</span>
-          <VisibilityIcon className="text-[15px]" />
+        <span className="flex items-center mt-[5px] text-gray-500 pl-2">
+          <Tooltip disableFocusListener disableTouchListener title="Viewed">
+            <VisibilityIcon className="text-[15px]" />
+          </Tooltip>
+          <span className="pl-1 text-[13px]">{article?.view_count}</span>
         </span>
 
         {profile?.data?.userId === article?.author_id && (
