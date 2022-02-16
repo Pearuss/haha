@@ -10,7 +10,7 @@ RUN npm install
 COPY . .
 COPY ./public ./
 
-RUN npm run build
+#RUN npm run build
 
 EXPOSE 9500
 
