@@ -38,7 +38,7 @@ function PostsTag({ data, tag }: any) {
       res.message.toString() === '200' ? setIsFollow(false) : null;
     }
     if (currentTagId && !isFollow) {
-      const res = await useFetch('/api/v1//follow', {
+      const res = await useFetch('/api/v1/follow', {
         method: 'POST',
         body: JSON.stringify({
           tagId: currentTagId,

@@ -17,6 +17,7 @@ import useFetch from '../../../hooks/use-fetch';
 
 function EditPost() {
   const [dateEvent, setDateEvent] = React.useState<Date | null>(null);
+  console.log(dateEvent);
 
   const [newContent, setNewContent] = useState<any>({
     content: '',
@@ -40,7 +41,7 @@ function EditPost() {
           images_banner: null,
           status: 1,
           publishedAt: null,
-          eventDate: dateEvent,
+          eventDate: null,
           type: newType,
         },
       }),
