@@ -29,7 +29,7 @@ function PostsTag({ data, tag }: any) {
 
   const followHandler = async () => {
     if (currentTagId && isFollow) {
-      const res = await useFetch('/api/v1//unfollow', {
+      const res = await useFetch('/api/v1/unfollow', {
         method: 'POST',
         body: JSON.stringify({
           tagId: currentTagId,

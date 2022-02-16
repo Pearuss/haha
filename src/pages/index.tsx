@@ -9,16 +9,15 @@ import useSWR from 'swr';
 import Post from '../Components/Post';
 import TagSectionMobile from '../Components/TagContent/TagSectionMobile';
 import { MainLayout } from '../layout';
-// import { Article } from '../models';
 import { formatDate, truncate } from '../utilities/helper';
 // import { useRouter } from 'next/router';
-// import { LayoutMeta } from 'next';
+// import { Article } from '../models';
 
 function HomePage({ articles, news }: { articles: any; news: any }) {
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
   const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/full-list`, {
-    revalidateOnMount: false,
+    revalidateOnMount: true,
     // revalidateOnMount: true,
     revalidateIfStale: true,
     fallbackData: articles,
