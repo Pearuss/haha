@@ -72,7 +72,7 @@ function EditPost() {
             <input
               onChange={(e) => setNewTitle(e.target.value)}
               value={newTitle}
-              className="w-full py-3 px-4 outline-none rounded ml-8"
+              className="w-full p-3 outline-none rounded ml-8"
               type="text"
             />
           </div>
@@ -81,7 +81,7 @@ function EditPost() {
               Short content*
             </span>
             <textarea
-              className="w-full py-2 px-4 outline-none resize-none rounded ml-8 overflow-y-hidden"
+              className="w-full py-4 px-3 outline-none resize-none rounded ml-8 overflow-y-hidden"
               onChange={(e) => setNewShortContent(e.target.value)}
               value={newShortContent}
             />
