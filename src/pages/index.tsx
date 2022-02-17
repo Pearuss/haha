@@ -53,7 +53,6 @@ function HomePage({ articles, news }: { articles: any; news: any }) {
   if (!allHighlightArticles) {
     allHighlightArticles = [];
   }
-  console.log(allHighlightArticles);
 
   useEffect(() => {
     const btnShowTag = document.querySelector('.btnShowTag');
@@ -78,24 +77,26 @@ function HomePage({ articles, news }: { articles: any; news: any }) {
 
   return (
     <div className="mr-12 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw] flex-1">
-      <div className="relative w-full h-auto bg-white p-4 pt-0 rounded-md shadow-sm ssm:h-auto ssm:min-h-[250px] sm:min-h-[210px]">
-        <Link href={`/news/${allNews?.data[allNews?.data.length - 1]?.id}`}>
-          <div className="text-[37px] 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[30px] sm:text-[28px] ssm:text-2xl pb-3 text-black font-normal cursor-pointer mt-[-9px] hover:opacity-70">
-            {allNews?.data[allNews?.data.length - 1]?.title}
+      {allNews?.data[allNews?.data.length - 1]?.id && (
+        <div className="relative w-full h-auto bg-white p-4 pt-0 rounded-md shadow-sm ssm:h-auto ssm:min-h-[250px] sm:min-h-[210px]">
+          <Link href={`/news/${allNews?.data[allNews?.data.length - 1]?.id}`}>
+            <div className="text-[37px] 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[30px] sm:text-[28px] ssm:text-2xl pb-3 text-black font-normal cursor-pointer mt-[-9px] hover:opacity-70">
+              {allNews?.data[allNews?.data.length - 1]?.title}
+            </div>
+          </Link>
+          <div className="mb-8">
+            {truncate(`${allNews?.data[allNews?.data.length - 1]?.shortContent}`, 360)}
           </div>
-        </Link>
-        <div className="mb-8">
-          {truncate(`${allNews?.data[allNews?.data.length - 1]?.shortContent}`, 360)}
-        </div>
 
-        <div className="absolute text-sm bottom-1 right-4 pb-2">
-          <span>Admin</span>
-          <span className="ml-3">|</span>
-          <span className="ml-3">
-            {formatDate(new Date(allNews?.data[allNews?.data.length - 1]?.createdAt))}
-          </span>
+          <div className="absolute text-sm bottom-1 right-4 pb-2">
+            <span>Admin</span>
+            <span className="ml-3">|</span>
+            <span className="ml-3">
+              {formatDate(new Date(allNews?.data[allNews?.data.length - 1]?.createdAt))}
+            </span>
+          </div>
         </div>
-      </div>
+      )}
       <div className="mt-4 text-gray-900">
         <div
           className={`flex items-center sm:h-[10.5rem] xl:h-[10.5rem] h-40 gap-12 pt-4 mb-10 ssm:mx-auto ${
@@ -145,18 +146,12 @@ function HomePage({ articles, news }: { articles: any; news: any }) {
           )}
         </div>
       </div>
-      {allHighlightArticles?.data
-        ?.slice(0)
-        .reverse()
-        .map((article: any) => (
-          <Post key={article.id} article={article} />
-        ))}
-      {allArticles?.data
-        .slice(0)
-        .reverse()
-        .map((article: any) => (
-          <Post key={article.id} article={article} />
-        ))}
+      {allHighlightArticles?.data?.map((article: any) => (
+        <Post key={article.id} article={article} />
+      ))}
+      {allArticles?.data?.map((article: any) => (
+        <Post key={article.id} article={article} />
+      ))}
       <TagSectionMobile isShowTagMobile={isShowTagMobile} />
     </div>
   );

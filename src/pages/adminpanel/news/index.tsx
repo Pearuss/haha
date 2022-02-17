@@ -10,6 +10,7 @@ import AdvancedSearch from '../../../Components/admin/components/AdvancedSearch'
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import LayoutAdminPage from '../../../Components/admin/layout';
 import useSWR from 'swr';
+import Link from 'next/link';
 
 function News() {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -84,6 +85,20 @@ function News() {
           <h4>All news</h4>
           <span className="text-sm mt-2 ml-2">({dataPosts.length})</span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
+            <Link href="/adminpanel/news/create">
+              <button type="button">
+                <Image
+                  loader={() =>
+                    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/plus.png`
+                  }
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/plus.png`}
+                  alt="Add"
+                  width={19}
+                  height={19}
+                />
+              </button>
+            </Link>
+
             <button type="button">
               <Image
                 loader={() =>

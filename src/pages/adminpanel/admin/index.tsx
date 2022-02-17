@@ -93,10 +93,26 @@ function AdminPage() {
           <span className="text-sm mt-2 ml-2">(Total {dataMembers.length})</span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <button onClick={handleClickAdd}>
-              <Image src="/images/add-user.png" alt="Add" width={19} height={19} />
+              <Image
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/add-user.png`
+                }
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/add-user.png`}
+                alt="Add"
+                width={19}
+                height={19}
+              />
             </button>
             <button onClick={handleClickOpen} disabled={typeof hasSelectedMember === 'undefined'}>
-              <Image src="/images/delete.png" alt="Delete" width={20} height={20} />
+              <Image
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`
+                }
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`}
+                alt="Delete"
+                width={20}
+                height={20}
+              />
             </button>
           </div>
         </div>

@@ -103,10 +103,22 @@ function Category() {
           </span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <button onClick={handleClickAdd}>
-              <Image src="/images/plus.png" alt="Add" width={19} height={19} />
+              <Image
+                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/plus.png`}
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/plus.png`}
+                alt="Add"
+                width={19}
+                height={19}
+              />
             </button>
             <button onClick={handleClickOpen} disabled={typeof hasSelectedCat === 'undefined'}>
-              <Image src="/images/delete.png" alt="Delete" width={20} height={20} />
+              <Image
+                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`}
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`}
+                alt="Delete"
+                width={20}
+                height={20}
+              />
             </button>
           </div>
         </div>

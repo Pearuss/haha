@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -11,18 +12,32 @@ import Post from '../../Components/Post';
 import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
 import useFetch from '../../hooks/use-fetch';
 import { MainLayout } from '../../layout';
+import { useAuth } from '../../hooks';
 
 function ProfilePage() {
   const router = useRouter();
-  const userId = router.query.userId as never;
+  const userId = router.query.userId;
   const [profileClient, setProfileClient] = useState<any>();
   const [allArticleUser, setAllArticleUser] = useState<any>();
+  const [articleUserComment, setArticleUserComment] = useState<any>();
+  const [toggleArticles, setToggleArticles] = useState<boolean>(true);
+
+  const { profile } = useAuth();
+
+  const [isOwner, setIsOwner] = useState(false);
+  useEffect(() => {
+    if (profile && userId && profile.data?.userId.toString() === userId.toString()) {
+      setIsOwner(true);
+    } else {
+      setIsOwner(false);
+    }
+  }, [profile, userId]);
 
   const [profileImage, setProfileImage] = useState(
-    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`,
+    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/articles/user.png`
   );
   const [coverImage, setCoverImage] = useState(
-    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`,
+    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`
   );
   const thumbnail = profileClient?.thumbnail;
   const coverUrl = profileClient?.cover;
@@ -39,7 +54,7 @@ function ProfilePage() {
     };
     const getAllArticleUser = async () => {
       const dataArticles = await useFetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${userId}`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${userId}`
       );
       if (dataArticles.message === 200) {
         setAllArticleUser(dataArticles);
@@ -48,11 +63,29 @@ function ProfilePage() {
         router.replace('/');
       }
     };
+
     if (userId) {
       getProfile();
       getAllArticleUser();
     }
   }, [userId]);
+  useEffect(() => {
+    const getArticleUserComment = async () => {
+      const dataArticles = await useFetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/user/article/user-comments/${userId}`
+      );
+
+      if (dataArticles.message === 200) {
+        setArticleUserComment(dataArticles);
+      } else {
+        Swal.fire('Something went wrong whet get articles, please try again later!');
+        router.replace('/');
+      }
+    };
+    if (isOwner) {
+      getArticleUserComment();
+    }
+  }, [isOwner]);
 
   useEffect(() => {
     if (thumbnail) {
@@ -75,7 +108,7 @@ function ProfilePage() {
       menuMobile?.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full',
+        'ssm:-translate-x-full'
       );
       menuMobile?.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -103,7 +136,7 @@ function ProfilePage() {
           src={coverImage}
           onError={() => {
             setCoverImage(
-              `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`,
+              `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`
             );
           }}
           alt="Cover image"
@@ -125,13 +158,17 @@ function ProfilePage() {
           />
         </div>
       </div>
-      <UserDetail data={profileClient} userId={userId} />
-      {allArticleUser?.data
-        .slice(0)
-        .reverse()
-        .map((article: any) => (
-          <Post key={article.id} article={article} />
-        ))}
+      <UserDetail
+        data={profileClient}
+        isOwner={isOwner}
+        profile={profile}
+        toggleArticles={toggleArticles}
+        setToggleArticles={setToggleArticles}
+      />
+      {toggleArticles &&
+        allArticleUser?.data.map((article: any) => <Post key={article.id} article={article} />)}
+      {!toggleArticles &&
+        articleUserComment?.data.map((article: any) => <Post key={article.id} article={article} />)}
       <TagSectionMobile isShowTagMobile={isShowTagMobile} />
     </div>
   );
