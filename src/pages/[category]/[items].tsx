@@ -40,7 +40,7 @@ function Category({ data, items }: any) {
   return (
     <div className="flex-1 mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
       <NextSeo
-        title={items}
+        title={capitalizeFirstLetter(items)}
         defaultTitle={`All articles in ${items} category`}
         description="Hybrid Technologies Know-How"
         // keywords={article.meta_keywords}

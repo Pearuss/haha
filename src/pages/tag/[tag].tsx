@@ -103,7 +103,7 @@ function PostsTag({ data, tag }: any) {
   return (
     <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw] flex-1">
       <NextSeo
-        title={tag}
+        title={capitalizeFirstLetter(tag)}
         defaultTitle={`All articles in ${tag} tag`}
         description="Hybrid Technologies Know-How"
         // keywords={article.meta_keywords}
