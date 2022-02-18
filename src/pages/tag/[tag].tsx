@@ -71,7 +71,7 @@ function PostsTag({ data, tag }: any) {
       const res = await useFetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/following-tag/total-follower/${currentTagId}`
       );
-      if (res.message.toString() === '200') {
+      if (res?.message.toString() === '200') {
         setTotalFollow(res.data);
       }
     };
@@ -133,9 +133,6 @@ function PostsTag({ data, tag }: any) {
           <span className="px-3 py-2 font-medium text-gray-900 ">{totalFollow} Follower</span>
         </div>
       )}
-      {/* <div className="w-full flex items-center pt-8 border-b-4 border-blueCyanLogo">
-        <div className="flex-1 pb-2 text-center font-semibold  text-blueCyanLogo">All Posts</div>
-      </div> */}
       {data.map((post: any) => (
         <Post key={post.id} article={post} />
       ))}

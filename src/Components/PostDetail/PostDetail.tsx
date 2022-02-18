@@ -22,6 +22,8 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   // const [totalLiked, setTotalLiked] = useState<any>(0);
   const router = useRouter();
   const article = dataPostDetail.data[0];
+  const tagArray = article?.articleTagNames?.split(',');
+  const tagSlugArray = article?.articleTagSlugs?.split(',');
 
   const { data: totalLikedRes, mutate: mutateLike }: any = useSWR(
     `${process.env.NEXT_PUBLIC_BASE_URL}/user/articlelike/total-like/${article.id}`,
@@ -178,6 +180,15 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
             </Tooltip>
           </Link>
         )}
+      </div>
+      <div className="flex items-center mt-4">
+        {tagArray?.map((tag: any, index: number) => (
+          <Link href={`/tag${tagSlugArray[index]}`} key={tag}>
+            <span className="px-2 py-1 border border-blueCyanLogo ml-2 text-sm rounded-md hover:bg-blueCyanLogo cursor-pointer">
+              #{tag}
+            </span>
+          </Link>
+        ))}
       </div>
 
       <div className="postContent mx-2 mb-6 mt-5 h-auto">

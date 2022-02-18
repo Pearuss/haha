@@ -12,8 +12,8 @@ import { useRouter } from 'next/router';
 import Post from '../../../Components/Post';
 import TagSectionMobile from '../../../Components/TagContent/TagSectionMobile';
 import useCall from '../../../hooks/use-call';
-import { MainLayout } from '../../../layout';
 import { Article } from '../../../models';
+import { AdminLayout } from '../../../layout';
 
 function PostsPage() {
   const router = useRouter();
@@ -141,41 +141,7 @@ function PostsPage() {
   );
 }
 
-PostsPage.Layout = MainLayout;
+PostsPage.Layout = AdminLayout;
 
 export default PostsPage;
 
-// export const getStaticPaths = async () => {
-//   const res = await fetch('http://localhost:3000/api/v1/user/article/my-articles');
-//   const articles = await res.json();
-
-//   // console.log(articles);
-
-//   const paths = articles?.data?.map((article: any) => ({
-//     params: { page: article.id.toString() },
-//   }));
-//   // const paths = {
-//   //   params: { page: "2" },
-//   // };
-
-//   return {
-//     paths,
-//     fallback: 'blocking',
-//   };
-// };
-
-// export const getStaticProps = async (context: any) => {
-//   const { page } = context?.params;
-//   console.log(page);
-
-//   // if (!page) return { notFound: true };
-//   // const res = await fetch(`http://localhost:3100/api/v1/user/article/${page}/detail`);
-//   // const articles = await res.json();
-
-//   return {
-//     props: {
-//       articles: [],
-//       // articles: articles.data,
-//     },
-//   };
-// };

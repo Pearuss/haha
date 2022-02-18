@@ -19,7 +19,7 @@ function TagSection() {
       setIsLogin(true);
     }
   }, [profile, firstLoading]);
-  
+
   const { data: allTag } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`, {
     revalidateOnFocus: false,
     // dedupingInterval: 60 * 1000,
@@ -42,6 +42,7 @@ function TagSection() {
         onChange={() => {}}
         value={new Date()}
       />
+
       <FollowTag data={followTags?.data} titleTagName="Following Tags" />
       <FollowTag data={allTag?.data} titleTagName="Tags Cloud" />
     </div>

@@ -153,7 +153,13 @@ function Menu() {
         <div className="flex p-4 items-center border-b border-gray-300 ssm:p-0">
           <CloseIcon className="ml-1 mr-9 btnCloseMenuMb" />
           <div className="relative flex items-center cursor-pointer pt-4 ml-[-2rem] max-w-[250px] w-[250px] ssm:max-w-[110px] sm:max-w-[200px] md:mt-1 h-[45px] max-h-[45px]">
-            <Image src="/logo.svg" alt="Logo" layout="fill" priority />
+            <Image
+              loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/logo.svg`}
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/logo.svg`}
+              alt="Logo"
+              layout="fill"
+              priority
+            />
           </div>
         </div>
         <li className="btnShowTag w-full lg:hidden text-left py-4 px-14 lg:px-10 ssm:px-8 border-b border-gray-300 cursor-pointer ssm:text-xs">

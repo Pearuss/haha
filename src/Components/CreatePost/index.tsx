@@ -143,7 +143,7 @@ function ModalPost({
           method: 'HEAD',
         });
         router.push('/');
-        Swal.fire('Article is created successfully!');
+        Swal.fire('Successfully!', '', 'success')
         // Swal.fire({
         //   title: 'Successfully',
         //   text: 'Article is created successfully!',

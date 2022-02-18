@@ -8,24 +8,13 @@ import useSWR from 'swr';
 
 import Post from '../Components/Post';
 import TagSectionMobile from '../Components/TagContent/TagSectionMobile';
-import { useAuth } from '../hooks';
+// import { useAuth } from '../hooks';
 import { MainLayout } from '../layout';
 import { formatDate, truncate } from '../utilities/helper';
-// import { useRouter } from 'next/router';
 // import { Article } from '../models';
 
 function HomePage({ articles, news }: { articles: any; news: any }) {
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
-  const { profile, firstLoading } = useAuth();
-  const [isLogin, setIsLogin] = useState(false);
-
-  useEffect(() => {
-    if (!firstLoading && !profile?.data) {
-      setIsLogin(false);
-    } else if (profile?.data) {
-      setIsLogin(true);
-    }
-  }, [profile, firstLoading]);
 
   const { data: allArticles } = useSWR(
     `${process.env.NEXT_PUBLIC_BASE_URL}/user/article/full-list`,
@@ -34,7 +23,7 @@ function HomePage({ articles, news }: { articles: any; news: any }) {
       // revalidateOnMount: true,
       revalidateIfStale: true,
       fallbackData: articles,
-    },
+    }
   );
   const { data: allNews } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/news/full-list`, {
     revalidateOnMount: true,
@@ -42,17 +31,6 @@ function HomePage({ articles, news }: { articles: any; news: any }) {
     revalidateIfStale: true,
     fallbackData: news,
   });
-  let { data: allHighlightArticles } = useSWR(
-    isLogin ? 'api/v1/user/article/following-tags' : null,
-    {
-      revalidateOnMount: true,
-      // revalidateOnMount: true,
-      revalidateIfStale: true,
-    },
-  );
-  if (!allHighlightArticles) {
-    allHighlightArticles = [];
-  }
 
   useEffect(() => {
     const btnShowTag = document.querySelector('.btnShowTag');
@@ -64,7 +42,7 @@ function HomePage({ articles, news }: { articles: any; news: any }) {
       menuMobile?.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full',
+        'ssm:-translate-x-full'
       );
       menuMobile?.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -146,9 +124,6 @@ function HomePage({ articles, news }: { articles: any; news: any }) {
           )}
         </div>
       </div>
-      {allHighlightArticles?.data?.map((article: any) => (
-        <Post key={article.id} article={article} />
-      ))}
       {allArticles?.data?.map((article: any) => (
         <Post key={article.id} article={article} />
       ))}
