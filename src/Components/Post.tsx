@@ -2,7 +2,6 @@
 import React from 'react';
 
 import { EyeIcon, ChatIcon } from '@heroicons/react/outline';
-// import Image from 'next/image';
 import Link from 'next/link';
 
 import { Article } from '../models';
@@ -10,6 +9,9 @@ import { truncate, formatDate } from '../utilities/helper';
 
 function Post({ article }: { article: Article }) {
   const linkDetail = `/posts/${article?.slug}`;
+
+  const tagArray = article?.articleTagNames?.split(',');
+  const tagSlugArray = article?.articleTagSlugs?.split(',');
 
   return (
     <div className="relative flex ssm:flex-col w-full  h-auto bg-white rounded-lg px-3 py-5 mb-4 cursor-pointer ssm:border ssm:border-gray-300 ssm:p-4 ssm:pb-20">
@@ -36,16 +38,26 @@ function Post({ article }: { article: Article }) {
 
         <div className="flex items-center absolute bottom-0 right-[2%] ssm:bottom-[-4.2rem] ssm:right-0 ssm:text-[14px]">
           <div className="flex items-center pr-6 ssm:pr-3">
-            <EyeIcon className="h-5 ssm:h-4" />
-            <span className="pl-3 ssm:pl-2">{article?.view_count}</span>
+            <EyeIcon className="h-[18px] ssm:[18px]" />
+            <span className="pl-3 ssm:pl-2 text-[14px]">{article?.view_count}</span>
           </div>
           <div className="flex items-center">
-            <ChatIcon className="h-5 ssm:h-4" />
-            <span className="pl-3 ssm:pl-2">{article?.countComment}</span>
+            <ChatIcon className="h-[18px] ssm:h-4" />
+            <span className="pl-3 ssm:pl-2 text-[14px]">{article?.countComment}</span>
           </div>
         </div>
-        <p className="absolute bottom-8 ssm:bottom-[-2.2rem] ssm:right-0 ssm:text-sm tracking-wide ">
-          {formatDate(new Date(article?.published_at))}
+        <p className="absolute bottom-8 ssm:bottom-[-2.2rem] ssm:right-0 ssm:text-sm tracking-wide flex items-center w-full mb-[2px]">
+          <div className="flex items-center flex-1 w-full">
+            {tagArray?.map((tag: any, index: number) => (
+              <Link href={`/tag${tagSlugArray[index]}`} key={tag}>
+                <span className="px-2 py-1 border border-gray-300 mr-2 text-xs rounded-md hover:bg-backgroundGrayTextTag cursor-pointer">
+                  #
+                  {tag}
+                </span>
+              </Link>
+            ))}
+          </div>
+          <span className="text-sm mr-4">{formatDate(new Date(article?.published_at))}</span>
         </p>
         <p className="absolute bottom-0 ssm:bottom-[-4.2rem] ssm:left-0 ssm:text-sm">
           <Link href={`${article.slugCategory}`}>{article?.mainCategory}</Link>

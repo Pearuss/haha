@@ -2,6 +2,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useEffect, useState } from 'react';
 
+import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -11,7 +12,7 @@ import TagSectionMobile from '../../Components/TagContent/TagSection';
 import { MainLayout } from '../../layout';
 import { capitalizeFirstLetter } from '../../utilities/helper';
 
-function Category({ data }: any) {
+function Category({ data, items }: any) {
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
   const router = useRouter();
@@ -38,16 +39,22 @@ function Category({ data }: any) {
   }, []);
   return (
     <div className="flex-1 mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
+      <NextSeo
+        title={capitalizeFirstLetter(items)}
+        defaultTitle={`All articles in ${items} category`}
+        description="Hybrid Technologies Know-How"
+        // keywords={article.meta_keywords}
+      />
       <div className="flex items-center mb-4">
         <Image
-          loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/category.png`}
-          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/category.png`}
+          loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/category2.png`}
+          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/category2.png`}
+          // src="/images/category2.png"
           alt="Category"
-          width={40}
-          height={40}
+          width={16}
+          height={16}
         />
-        <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-1 text-black font-normal ml-[1vw]">
-          Category:{' '}
+        <h1 className="text-black ml-[1vw]">
           <Link href={`/${router.query.category}`}>
             <span className="hover:hover:opacity-70 cursor-pointer">
               {capitalizeFirstLetter(router.query.category?.toString() || '')}
@@ -59,7 +66,7 @@ function Category({ data }: any) {
               {capitalizeFirstLetter(router.query.items?.toString() || '')}
             </span>
           </Link>
-        </p>
+        </h1>
       </div>
 
       {data?.map((post: any) => (
@@ -122,6 +129,7 @@ export const getStaticProps = async ({ params }: any) => {
   return {
     props: {
       data,
+      items,
     },
     revalidate: 1,
   };

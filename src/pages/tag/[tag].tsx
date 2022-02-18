@@ -12,8 +12,9 @@ import { capitalizeFirstLetter } from '../../utilities/helper';
 import useSWR from 'swr';
 import { Tag } from '../../models';
 import useFetch from '../../hooks/use-fetch';
+import { NextSeo } from 'next-seo';
 
-function PostsTag({ data }: any) {
+function PostsTag({ data, tag }: any) {
   const [isFollow, setIsFollow] = useToggle(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
   const [currentTagId, setCurrentTagId] = useState<string | null>(null);
@@ -70,7 +71,7 @@ function PostsTag({ data }: any) {
       const res = await useFetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/following-tag/total-follower/${currentTagId}`
       );
-      if (res.message.toString() === '200') {
+      if (res?.message.toString() === '200') {
         setTotalFollow(res.data);
       }
     };
@@ -101,6 +102,12 @@ function PostsTag({ data }: any) {
   }, []);
   return (
     <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw] flex-1">
+      <NextSeo
+        title={capitalizeFirstLetter(tag)}
+        defaultTitle={`All articles in ${tag} tag`}
+        description="Hybrid Technologies Know-How"
+        // keywords={article.meta_keywords}
+      />
       <div className="flex items-center ">
         <Image
           loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/hashtag1.png`}
@@ -126,15 +133,9 @@ function PostsTag({ data }: any) {
           <span className="px-3 py-2 font-medium text-gray-900 ">{totalFollow} Follower</span>
         </div>
       )}
-      {/* <div className="w-full flex items-center pt-8 border-b-4 border-blueCyanLogo">
-        <div className="flex-1 pb-2 text-center font-semibold  text-blueCyanLogo">All Posts</div>
-      </div> */}
-      {data
-        ?.slice(0)
-        .reverse()
-        .map((post: any) => (
-          <Post key={post.id} article={post} />
-        ))}
+      {data.map((post: any) => (
+        <Post key={post.id} article={post} />
+      ))}
       <div
         className={`hidden p-3 z-50 overflow-scroll md:block sm:block ssm:block fixed h-[100vh] w-[35vw] top-0 right-0 bg-white transition duration-200 ease-in-out md:w-[40vw] sm:w-[50vw] ssm:w-[70vw] transform ${
           !isShowTagMobile ? 'translate-x-full' : ''
@@ -179,6 +180,7 @@ export const getStaticProps = async ({ params }: any) => {
   return {
     props: {
       data,
+      tag,
     },
     revalidate: 1,
   };

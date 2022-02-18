@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useEffect, useState } from 'react';
 
+import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
@@ -9,7 +10,7 @@ import TagSectionMobile from '../../Components/TagContent/TagSection';
 import { MainLayout } from '../../layout';
 import { capitalizeFirstLetter } from '../../utilities/helper';
 
-function Category({ data }: any) {
+function Category({ data, category }: any) {
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
   const router = useRouter();
@@ -36,17 +37,24 @@ function Category({ data }: any) {
   }, []);
   return (
     <div className="flex-1 mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
-      <div className="flex items-center mb-4">
+      <NextSeo
+        title={capitalizeFirstLetter(category)}
+        defaultTitle={`All articles in ${category} category`}
+        description="Hybrid Technologies Know-How"
+        // keywords={article.meta_keywords}
+      />
+      <div className="flex items-center mb-4 ml-3">
         <Image
-          loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/category.png`}
-          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/category.png`}
+          loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/category2.png`}
+          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/category2.png`}
+          // src="/images/category2.png"
           alt="Category"
-          width={40}
-          height={40}
+          width={16}
+          height={16}
         />
-        <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl pb-1 text-black font-normal ml-[1vw]">
-          Category: {capitalizeFirstLetter(router.query.category?.toString() || '')}
-        </p>
+        <h1 className="text-black ml-[1vw]">
+          {capitalizeFirstLetter(router.query.category?.toString() || '')}
+        </h1>
       </div>
 
       {data?.map((post: any) => (
@@ -98,7 +106,8 @@ export const getStaticProps = async ({ params }: any) => {
 
   const resFullCat = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/category/menu`);
   const fullCats = await resFullCat.json();
-  const catResult = fullCats.data.find((item: any) => item.slug.includes(`/${category}`));
+  // console.log(category);
+  const catResult = fullCats.data.find((item: any) => item.slug === `/${category}`);
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/cat/${catResult?.id}`);
   const { data }: any = await res.json();
@@ -106,6 +115,7 @@ export const getStaticProps = async ({ params }: any) => {
   return {
     props: {
       data,
+      category,
     },
     revalidate: 1,
   };

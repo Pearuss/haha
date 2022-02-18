@@ -4,6 +4,9 @@ import React from 'react';
 import { IconButton, Tooltip } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
+import Link from 'next/link';
+
+import { formatDate } from '../../../utilities/helper';
 
 function TagList(props: any) {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -19,9 +22,15 @@ function TagList(props: any) {
           <Checkbox {...label} checked={tag.selected} onClick={() => handleCheckItemClick(tag)} />
         </span>
       </span>
-      <span className="ml-[-50%]">{tag.name}</span>
-      <span>{tag.createAt}</span>
-      <span>2000</span>
+      <Link href={`/tag${tag?.slug}`}>
+        <span className="ml-[-50%] hover:opacity-50 cursor-pointer">{tag?.name}</span>
+      </Link>
+
+      <span>{formatDate(new Date(tag?.created_at))}</span>
+      <Link href={`/tag${tag?.slug}`}>
+        <span className="ml-6 hover:opacity-50 cursor-pointer">{tag?.total}</span>
+      </Link>
+
       <span className="flex items-center gap-[45%]">
         <span>
           <Image src="/images/check1.png" alt="Check" width={20} height={20} />

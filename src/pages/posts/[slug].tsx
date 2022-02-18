@@ -14,6 +14,7 @@ import { DetailPostLayout } from '../../layout';
 import dynamic from 'next/dynamic';
 import useFetch from '../../hooks/use-fetch';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 
 const CommentSection = dynamic(() => import('../../Components/CommentSection/CommentSection'), {
   ssr: false,
@@ -156,6 +157,12 @@ function DetailArticlePage({ data }: any) {
 
   return (
     <div className="relative flex md:mr-0 sm:mr-0 w-full">
+      <NextSeo
+        title={article.title}
+        defaultTitle={article.meta_description}
+        description="Hybrid Technologies Know-How"
+        // keywords={article.meta_keywords}
+      />
       {isShowContentIndex && (
         <div className="mr-4 sm:mr-8 ssm:mr-12">
           <div
@@ -201,7 +208,7 @@ function DetailArticlePage({ data }: any) {
         <PostDetail dataPostDetail={data} isReadMore={isReadMore} setIsReadMore={setIsReadMore} />
 
         <div className="flex items-center justify-between py-4 mt-12 shadow-sm font-medium text-gray-700 rounded-md bg-white mb-4">
-          <div className="text-lg">Comments</div>
+          <div className="text-lg">Comments ({article?.countComment})</div>
           <button
             onClick={toggleFormComment}
             className="flex items-center py-[0.35rem] px-3 rounded-md border border-blue-600 text-blue-600"

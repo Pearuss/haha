@@ -94,14 +94,14 @@ li {
 .dropdown.activeClass > a + .dropdown-menu {
   @apply opacity-100 translate-y-0 pointer-events-auto;
 }
-/* .dropdown.activeClass .dropdown-menu a {
-  @apply hover:bg-gray-300 hover:rounded-md;
-} */
+.dropdown.activeClass .dropdown-menu a {
+  @apply hover:opacity-60;
+}
 .userDropdown {
   @apply flex gap-2 items-center border-2 rounded-[2rem] relative cursor-pointer border-[1.5px] border-blueCyanLogo;
 }
 .userDropdown-menu {
-  @apply absolute right-[10%] top-[calc(100%+0.8rem)] bg-white z-40 py-4 rounded-md pointer-events-none translate-y-20 opacity-0 shadow-md w-[9vw] ssm:w-[26vw] sm:w-[22vw] md:w-[20vw] lg:w-[16vw] xl:w-[13vw] 2xl:w-[11vw] ssm:text-xs sm:text-sm animate-transformCustom transition-all;
+  @apply absolute right-[10%] top-[calc(100%+0.8rem)] bg-white z-40 py-4 rounded-md pointer-events-none translate-y-20 opacity-0 shadow-md w-[10vw] ssm:w-[26vw] sm:w-[22vw] md:w-[20vw] lg:w-[16vw] xl:w-[13vw] 2xl:w-[11vw] ssm:text-xs sm:text-sm animate-transformCustom transition-all;
 }
 .userDropdown.activeClass .userDropdown-menu {
   @apply opacity-100 translate-y-0 pointer-events-auto;
@@ -134,7 +134,6 @@ li {
 .calendar .react-calendar__tile--active {
   @apply bg-blueCyanLogo;
 }
-
 .calendar .react-calendar__navigation__label__labelText {
   @apply capitalize text-grayCalendar;
   @apply font-semibold;
@@ -144,6 +143,9 @@ li {
 }
 .calendar .react-calendar__month-view__days__day--weekend {
   @apply text-blueCyanLogo;
+}
+.calendar .react-calendar__tile--now.react-calendar__month-view__days__day--weekend {
+  @apply text-white;
 }
 
 .calendar .react-calendar__navigation__arrow {

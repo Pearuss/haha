@@ -74,12 +74,9 @@ function HeaderMiddle() {
       {listResult.length > 0 && isTyping ? (
         <div className="absolute text-black -bottom-1 left-0 transform translate-y-full w-full bg-white border border-grayBorder rounded-md z-10">
           <div className=" overflow-y-scroll max-h-[50vh]">
-            {listResult
-              ?.slice(0)
-              .reverse()
-              .map((item: any) => (
-                <ResultItem result={item} />
-              ))}
+            {listResult?.map((item: any) => (
+              <ResultItem result={item} />
+            ))}
           </div>
         </div>
       ) : (

@@ -95,6 +95,8 @@ module.exports = {
         blueAdmin: '#3366ff',
         warning: '#dd6b20',
         grayCalendar: '#858585',
+        grayTextTag: '#e5e7eb',
+        backgroundGrayTextTag: '#f3f4f6',
       },
       keyframes: {
         jelly: {

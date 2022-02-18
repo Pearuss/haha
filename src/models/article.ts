@@ -44,6 +44,8 @@ export interface Article {
   articleCategories: ArticleCategory;
   articleTags: ArticleTag;
   slugCategory: string | null;
+  articleTagNames: string;
+  articleTagSlugs: string;
 }
 
 export interface INewPost {

@@ -161,9 +161,22 @@ function ModalPost({
           } else {
             setTimeout(() => {
               router.reload();
-            }, 1000);
+            }, 500);
           }
         });
+        // Swal.fire('Article is edited successfully!');
+        // Swal.fire({
+        //   title: 'Article is edited successfully!',
+        //   confirmButtonText: 'Ok',
+        // }).then((result) => {
+        //   /* Read more about isConfirmed, isDenied below */
+        //   if (result.isConfirmed) {
+        //   } else {
+        //     setTimeout(() => {
+        //       router.reload();
+        //     }, 500);
+        //   }
+        // });
       } else {
         Swal.fire({
           icon: 'error',

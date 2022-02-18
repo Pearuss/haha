@@ -14,6 +14,7 @@ import NProgress from 'nprogress';
 import '../styles/main.css';
 import '../styles/prism-a11y-dark.css';
 import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
@@ -36,6 +37,13 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
+        <NextSeo
+          title="Hybrid Technologies Know-How"
+          // titleTemplate="Hybrid Technologies Know-How"
+          // defaultTitle="Hybrid Technologies Know-How"
+          description="Hybrid Technologies Know-How"
+          canonical="http://hyknow.hybrid-technologies.co.jp/"
+        />
         <Component {...pageProps} />
       </Layout>
     </SWRConfig>

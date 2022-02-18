@@ -143,21 +143,22 @@ function ModalPost({
           method: 'HEAD',
         });
         router.push('/');
-        Swal.fire({
-          title: 'Successfully',
-          text: 'Article is created successfully!',
-          icon: 'success',
-          confirmButtonColor: '#3085d6',
-          confirmButtonText: 'Ok',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            router.reload();
-          } else {
-            setTimeout(() => {
-              router.reload();
-            }, 1000);
-          }
-        });
+        Swal.fire('Successfully!', '', 'success');
+        // Swal.fire({
+        //   title: 'Successfully',
+        //   text: 'Article is created successfully!',
+        //   icon: 'success',
+        //   confirmButtonColor: '#3085d6',
+        //   confirmButtonText: 'Ok',
+        // }).then((result) => {
+        //   if (result.isConfirmed) {
+        //     router.reload();
+        //   } else {
+        //     setTimeout(() => {
+        //       router.reload();
+        //     }, 1000);
+        //   }
+        // });
       } else {
         Swal.fire({
           icon: 'error',

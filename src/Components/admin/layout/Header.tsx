@@ -9,6 +9,7 @@ import User from '@paljs/ui/User';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useAuth } from '../../../hooks';
 
 interface HeaderProps {
   toggleSidebar: () => void;
@@ -22,6 +23,8 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = (props) => {
   const router = useRouter();
+  const { profile } = useAuth();
+  const userData = profile?.data;
 
   return (
     <LayoutHeader fixed>
@@ -64,8 +67,12 @@ const Header: React.FC<HeaderProps> = (props) => {
                   Link={Link}
                 >
                   <User
-                    image="url('/images/person1.jpg')"
-                    name="Thong Nguyen"
+                    image={`url('${process.env.NEXT_PUBLIC_IMAGE_URL}${userData.thumbnail}')`}
+                    name={
+                      userData?.authorName
+                        ? userData.authorName
+                        : `${userData?.firstName} ${userData?.lastName}`
+                    }
                     title="Admin"
                     size="Medium"
                   />

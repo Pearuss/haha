@@ -5,6 +5,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import useSWR from 'swr';
 
 import DialogDelete from '../../../Components/admin/common/dialogDelete';
 import Popup from '../../../Components/admin/common/popUp';
@@ -16,45 +17,35 @@ import LayoutAdminPage from '../../../Components/admin/layout';
 function Category() {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-  const catFake = [
-    {
-      id: '1',
-      name: 'ReactJS',
-      createAt: '25/08/2000',
-      description: 'Cat Description',
-      status: true,
-      selected: false,
-    },
-    {
-      id: '2',
-      name: 'ReactJS',
-      createAt: '25/08/2000',
-      description: 'Cat Description',
-      status: true,
-      selected: false,
-    },
-    {
-      id: '3',
-      name: 'ReactJS',
-      createAt: '25/08/2000',
-      description: 'Cat Description',
-      status: true,
-      selected: false,
-    },
-  ];
-
   const [openDialog, setOpenDialog] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
-  const [dataCats, setDataCats] = useState(catFake);
+  const [dataCats, setDataCats] = useState<any>([]);
   const [categorySelected, setCategorySelected] = useState();
+
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/category/full-list`, {
+    // revalidateOnMount: false,
+    revalidateOnMount: true,
+    revalidateIfStale: true,
+  });
+
+  useEffect(() => {
+    if (data?.data) {
+      console.log(data?.data);
+
+      setDataCats(data?.data?.map((post: any) => ({ ...post, selected: false })));
+    }
+  }, [data]);
 
   const router = useRouter();
 
-  const hasSelectedCat = useMemo(() => dataCats.find((cat) => cat.selected === true), [dataCats]);
+  const hasSelectedCat = useMemo(
+    () => dataCats.find((cat: any) => cat.selected === true),
+    [dataCats],
+  );
 
   useEffect(() => {
-    const isSelectedAll = dataCats.find((cat) => cat.selected === false);
+    const isSelectedAll = dataCats.find((cat: any) => cat.selected === false);
     if (typeof isSelectedAll === 'undefined') setSelectAll(true);
     else setSelectAll(false);
   }, [dataCats]);
@@ -81,7 +72,7 @@ function Category() {
   };
 
   const handleDeleteClick = () => {
-    const dataSelected = dataCats.filter((cat) => cat.selected === true);
+    const dataSelected = dataCats.filter((cat: any) => cat.selected === true);
     console.log(dataSelected);
     handleClose();
   };
@@ -105,28 +96,45 @@ function Category() {
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All category</h4>
-          <span className="text-sm mt-2 ml-2">(3)</span>
+          <span className="text-sm mt-2 ml-2">
+            (Total
+            {dataCats.length}
+            )
+          </span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <button onClick={handleClickAdd}>
-              <Image src="/images/plus.png" alt="Add" width={19} height={19} />
+              <Image
+                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/plus.png`}
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/plus.png`}
+                alt="Add"
+                width={19}
+                height={19}
+              />
             </button>
             <button onClick={handleClickOpen} disabled={typeof hasSelectedCat === 'undefined'}>
-              <Image src="/images/delete.png" alt="Delete" width={20} height={20} />
+              <Image
+                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`}
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`}
+                alt="Delete"
+                width={20}
+                height={20}
+              />
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-5 bg-titleAdmin px-3 py-1 font-medium items-center">
+        <div className="grid grid-cols-6 bg-titleAdmin px-3 py-1 font-medium items-center">
           <span className="flex items-center">
             <span className="flex-1">
               <Checkbox {...label} checked={selectAll} onChange={handleSelectAllClick} />
             </span>
           </span>
           <span>Category Name</span>
+          <span>Type</span>
           <span>Date created</span>
           <span>Total category</span>
           <span>Status</span>
         </div>
-        {dataCats.map((cat) => (
+        {dataCats.map((cat: any) => (
           <CategoryItem
             setOpenPopup={setOpenPopup}
             setCategorySelected={setCategorySelected}

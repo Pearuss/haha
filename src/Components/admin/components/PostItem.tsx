@@ -1,16 +1,19 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState } from 'react';
 
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
 import Link from 'next/link';
 
 // import Link from 'next/link';
-import { truncate } from '../../../utilities/helper';
+import { formatDate, truncate } from '../../../utilities/helper';
 
 function PostList({ post, handleCheckItemClick }: any) {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+  const [imgArticle, setImgArticle] = useState(
+    `${process.env.NEXT_PUBLIC_IMAGE_URL}${post.thumbnail}`,
+  );
 
   return (
     <div className="grid grid-cols-8 gap-1 bg-white hover:bg- px-3 py-1 font-medium items-center">
@@ -21,8 +24,13 @@ function PostList({ post, handleCheckItemClick }: any) {
         <div className="relative w-[220px] max-w-[120px] mr-2 h-[68px] ">
           <Image
             className="overflow-hidden rounded"
-            loader={() => post.img}
-            src={post.img}
+            loader={() => imgArticle}
+            src={imgArticle}
+            onError={() => {
+              setImgArticle(
+                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`,
+              );
+            }}
             alt="Article's image"
             layout="fill"
             objectFit="cover"
@@ -31,13 +39,18 @@ function PostList({ post, handleCheckItemClick }: any) {
         </div>
         <div className="flex flex-col mt-[-5px] mb-auto">
           <h6 className="text-textAdmin text-base">{truncate(`${post.title}`, 55)}</h6>
-          <Link href={`/posts/${post.id}`}>
-            <span className="text-sm cursor-pointer">#slug_article</span>
+          <Link href={`/posts/${post?.slug}`}>
+            <span className="text-sm cursor-pointer hover:opacity-50">
+              #
+              {truncate(`${post?.slug}`, 55)}
+            </span>
           </Link>
         </div>
       </span>
-      <span>25/08/2000</span>
-      <span>{post.author}</span>
+      <span>{formatDate(new Date(post?.published_at))}</span>
+      <span>
+        {post?.authorName ? post.authorName : `${post?.authorFirstname} ${post?.authorLastname}`}
+      </span>
       <span>
         <Image src="/images/check1.png" alt="Check" width={20} height={20} />
       </span>
@@ -50,15 +63,15 @@ function PostList({ post, handleCheckItemClick }: any) {
       <span className="grid grid-cols-3 ml-[-40%]">
         <button className="flex items-center">
           <Image src="/images/target.png" alt="Target" width={20} height={20} />
-          <span className="ml-[10%]">{post.inWorks}</span>
+          <span className="ml-[10%]">{post.countInwork}</span>
         </button>
         <button className="flex items-center 2xl:ml-[18%]">
           <Image src="/images/heart.png" alt="Like" width={20} height={20} />
-          <span className="ml-[10%]">{post.likes}</span>
+          <span className="ml-[10%]">{post.countLike}</span>
         </button>
         <button className="flex items-center 2xl:ml-[38%]">
           <Image src="/images/comment.png" alt="Comment" width={20} height={20} />
-          <span className="ml-[10%]">{post.comments}</span>
+          <span className="ml-[10%]">{post.countComment}</span>
         </button>
       </span>
     </div>

@@ -6,8 +6,10 @@ import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import useToggle from '../../../hooks/use-toggle';
+import { formatDate } from '../../../utilities/helper';
 import DialogSendMessage from '../common/dialogSendMessage';
 
 function CustomerItem(props: any) {
@@ -27,10 +29,20 @@ function CustomerItem(props: any) {
           />
         </span>
       </span>
-      <span className="ml-[-42%]">{customer.email}</span>
-      <span>{customer.name}</span>
-      <span>{customer.phone}</span>
-      <span>{customer.createAt}</span>
+      <Link href={`/user/${customer?.id}`}>
+        <span className="ml-[-42%] hover:opacity-50 cursor-pointer">{customer?.email}</span>
+      </Link>
+
+      <Link href={`/user/${customer?.id}`}>
+        <span className="hover:opacity-50 cursor-pointer">
+          {customer?.authorName
+            ? customer.authorName
+            : `${customer?.firstName} ${customer?.lastName}`}
+        </span>
+      </Link>
+
+      <span>20</span>
+      <span>{formatDate(new Date(customer?.createdAt))}</span>
       <span className="flex items-center gap-[24%] mr-2">
         {customer.status ? (
           <Tooltip title="Status">
