@@ -1,7 +1,14 @@
+/* eslint-disable consistent-return */
+/* eslint-disable @typescript-eslint/no-throw-literal */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-alert */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable no-param-reassign */
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, {
+  ChangeEvent, useEffect, useRef, useState,
+} from 'react';
 
+import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
 import { Loading } from '../../../common/Loading';
@@ -12,8 +19,34 @@ import { HeaderLayout } from '../../../layout';
 import { INewPost } from '../../../models';
 
 function UserCreatePage({ data }: any) {
+  const router = useRouter();
+  const refEdit = useRef(false);
+
+  useEffect(() => {
+    const confirmationMessage = 'Changes you made may not be saved.';
+    const beforeUnloadHandler = (e: BeforeUnloadEvent) => {
+      if (!refEdit.current) return;
+      (e || window.event).returnValue = confirmationMessage;
+      return confirmationMessage;
+    };
+    const beforeRouteHandler = (url: string) => {
+      if (!refEdit.current) return;
+      if (router.pathname !== url && !confirm(confirmationMessage)) {
+        router.events.emit('routeChangeError');
+        throw `Route change to "${url}"`;
+      }
+    };
+    window.addEventListener('beforeunload', beforeUnloadHandler);
+    router.events.on('routeChangeStart', beforeRouteHandler);
+
+    return () => {
+      window.removeEventListener('beforeunload', beforeUnloadHandler);
+      router.events.off('routeChangeStart', beforeRouteHandler);
+    };
+  }, []);
+
   const oldArticle = data.data[0];
-  console.log('oldArticle', oldArticle);
+
   const { data: tagData }: any = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`, {
     revalidateOnFocus: false,
   });
@@ -38,7 +71,6 @@ function UserCreatePage({ data }: any) {
     public: true,
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  console.log('newPost', newPost);
 
   useEffect(() => {
     try {
@@ -88,6 +120,7 @@ function UserCreatePage({ data }: any) {
         ...state,
         content: `${state.content}![](${process.env.NEXT_PUBLIC_IMAGE_URL}${path})`,
       }));
+      refEdit.current = true;
     };
     reader.readAsDataURL(e.target.files[0]);
   }
@@ -99,37 +132,45 @@ function UserCreatePage({ data }: any) {
 
   const changeTitle = (e: ChangeEvent<HTMLInputElement>): void => {
     setNewPost((state: INewPost) => ({ ...state, title: e.target.value }));
+    refEdit.current = true;
   };
 
   const changeShortContent = (e: ChangeEvent<HTMLInputElement>): void => {
     setNewPost((state: INewPost) => ({ ...state, shortContent: e.target.value }));
+    refEdit.current = true;
   };
 
   const changeSectionNo = (value: any): void => {
     setNewPost((state: INewPost) => ({ ...state, sectionNo: +value.value }));
+    refEdit.current = true;
   };
 
   const changeMainCategory = (value: any): void => {
     setNewPost((state: INewPost) => ({ ...state, mainCategory: value.value }));
+    refEdit.current = true;
   };
 
   const changeRelatedCategory = (value: any): void => {
     const newrelCat = value.map((cat: any) => cat.value);
     setNewPost((state: INewPost) => ({ ...state, relatedCategory: newrelCat }));
+    refEdit.current = true;
   };
 
   const changePartialId = (value: any): void => {
     if (value === null) setNewPost((state: INewPost) => ({ ...state, partialId: 0 }));
     else setNewPost((state: INewPost) => ({ ...state, partialId: value.value }));
+    refEdit.current = true;
   };
 
   const changeTag = (value: any): void => {
     const newTag = value.map((tag: any) => tag.value);
     setNewPost((state: INewPost) => ({ ...state, tag: newTag }));
+    refEdit.current = true;
   };
 
   const changeStatus = (): void => {
     setNewPost((state: INewPost) => ({ ...state, status: !newPost.status }));
+    refEdit.current = true;
   };
 
   const changePublic = (): void => {
@@ -137,6 +178,7 @@ function UserCreatePage({ data }: any) {
       ...state,
       public: !state.public,
     }));
+    refEdit.current = true;
   };
 
   const imageHandler = (e: any): void => {
@@ -145,12 +187,14 @@ function UserCreatePage({ data }: any) {
     reader.onload = () => {
       if (reader.readyState === 2) {
         setNewPost((state: INewPost) => ({ ...state, image: `${reader.result}` }));
+        refEdit.current = true;
       }
     };
     reader.readAsDataURL(e.target.files[0]);
   };
   const removeImage = (): void => {
     setNewPost((state: INewPost) => ({ ...state, image: '' }));
+    refEdit.current = true;
   };
 
   return (
