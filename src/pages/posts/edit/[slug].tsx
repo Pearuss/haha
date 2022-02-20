@@ -57,17 +57,17 @@ function UserCreatePage({ data }: any) {
 
   const [newPost, setNewPost] = useState<INewPost>({
     title: oldArticle?.title,
-    shortContent: oldArticle.short_content,
-    content: oldArticle.content,
-    status: oldArticle.status,
+    shortContent: oldArticle?.short_content,
+    content: oldArticle?.content,
+    status: oldArticle?.status,
     reason: '',
-    sectionNo: oldArticle.section_no,
-    partialId: oldArticle.partial_id,
-    tag: oldArticle.articleTags?.split(',').map((item: string) => parseInt(item, 10)) || [],
-    mainCategory: oldArticle.main_cat_id,
+    sectionNo: oldArticle?.section_no,
+    partialId: oldArticle?.partial_id,
+    tag: oldArticle?.articleTags?.split(',').map((item: string) => parseInt(item, 10)) || [],
+    mainCategory: oldArticle?.main_cat_id,
     relatedCategory:
-      oldArticle.articleCategories?.split(',').map((item: string) => parseInt(item, 10)) || [],
-    image: `${process.env.NEXT_PUBLIC_IMAGE_URL}${oldArticle.thumbnail}`,
+      oldArticle?.articleCategories?.split(',').map((item: string) => parseInt(item, 10)) || [],
+    image: `${process.env.NEXT_PUBLIC_IMAGE_URL}${oldArticle?.thumbnail}`,
     public: true,
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -103,6 +103,10 @@ function UserCreatePage({ data }: any) {
     }
   }, []);
 
+  const setEdited = (value: boolean) => {
+    refEdit.current = value;
+  };
+
   // Append link image inside markdown
   function handleUploadImgMD(e: ChangeEvent<HTMLInputElement> | any): void {
     const reader = new FileReader();
@@ -120,7 +124,7 @@ function UserCreatePage({ data }: any) {
         ...state,
         content: `${state.content}![](${process.env.NEXT_PUBLIC_IMAGE_URL}${path})`,
       }));
-      refEdit.current = true;
+      setEdited(true);
     };
     reader.readAsDataURL(e.target.files[0]);
   }
@@ -132,45 +136,45 @@ function UserCreatePage({ data }: any) {
 
   const changeTitle = (e: ChangeEvent<HTMLInputElement>): void => {
     setNewPost((state: INewPost) => ({ ...state, title: e.target.value }));
-    refEdit.current = true;
+    setEdited(true);
   };
 
   const changeShortContent = (e: ChangeEvent<HTMLInputElement>): void => {
     setNewPost((state: INewPost) => ({ ...state, shortContent: e.target.value }));
-    refEdit.current = true;
+    setEdited(true);
   };
 
   const changeSectionNo = (value: any): void => {
     setNewPost((state: INewPost) => ({ ...state, sectionNo: +value.value }));
-    refEdit.current = true;
+    setEdited(true);
   };
 
   const changeMainCategory = (value: any): void => {
     setNewPost((state: INewPost) => ({ ...state, mainCategory: value.value }));
-    refEdit.current = true;
+    setEdited(true);
   };
 
   const changeRelatedCategory = (value: any): void => {
     const newrelCat = value.map((cat: any) => cat.value);
     setNewPost((state: INewPost) => ({ ...state, relatedCategory: newrelCat }));
-    refEdit.current = true;
+    setEdited(true);
   };
 
   const changePartialId = (value: any): void => {
     if (value === null) setNewPost((state: INewPost) => ({ ...state, partialId: 0 }));
     else setNewPost((state: INewPost) => ({ ...state, partialId: value.value }));
-    refEdit.current = true;
+    setEdited(true);
   };
 
   const changeTag = (value: any): void => {
     const newTag = value.map((tag: any) => tag.value);
     setNewPost((state: INewPost) => ({ ...state, tag: newTag }));
-    refEdit.current = true;
+    setEdited(true);
   };
 
   const changeStatus = (): void => {
     setNewPost((state: INewPost) => ({ ...state, status: !newPost.status }));
-    refEdit.current = true;
+    setEdited(true);
   };
 
   const changePublic = (): void => {
@@ -178,7 +182,7 @@ function UserCreatePage({ data }: any) {
       ...state,
       public: !state.public,
     }));
-    refEdit.current = true;
+    setEdited(true);
   };
 
   const imageHandler = (e: any): void => {
@@ -187,14 +191,14 @@ function UserCreatePage({ data }: any) {
     reader.onload = () => {
       if (reader.readyState === 2) {
         setNewPost((state: INewPost) => ({ ...state, image: `${reader.result}` }));
-        refEdit.current = true;
+        setEdited(true);
       }
     };
     reader.readAsDataURL(e.target.files[0]);
   };
   const removeImage = (): void => {
     setNewPost((state: INewPost) => ({ ...state, image: '' }));
-    refEdit.current = true;
+    setEdited(true);
   };
 
   return (
@@ -218,6 +222,7 @@ function UserCreatePage({ data }: any) {
         setIsLoading={setIsLoading}
         tagData={tagData?.data}
         articleId={oldArticle?.id}
+        setEdited={setEdited}
       />
       <input
         type="file"

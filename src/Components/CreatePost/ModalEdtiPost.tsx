@@ -55,6 +55,7 @@ function ModalPost({
   imageHandler,
   removeImage,
   articleId,
+  setEdited,
 }: {
   newPost: INewPost;
   setNewPost: Function;
@@ -74,6 +75,7 @@ function ModalPost({
   imageHandler: Function | any;
   removeImage: Function;
   articleId: any;
+  setEdited: any;
 }): JSX.Element {
   const router = useRouter();
 
@@ -412,6 +414,7 @@ function ModalPost({
               </button>
               <button
                 type="submit"
+                onClick={() => setEdited(false)}
                 className="w-[30%] p-3 rounded bg-blue-300 hover:bg-blue-400  text-white font-bold tracking-wider active:animate-jelly"
               >
                 Update
