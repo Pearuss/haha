@@ -292,7 +292,7 @@ function ModalPost({
                 )}
               </div>
               <div className={`border ${isErrorContent ? 'border-darkRed' : ''} `}>
-                <MarkDown content={newPost.content} setNewPost={setNewPost} />
+                <MarkDown content={newPost.content} setNewPost={setNewPost} setEdited={setEdited} />
               </div>
             </div>
           </div>

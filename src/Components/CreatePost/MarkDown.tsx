@@ -12,12 +12,13 @@ const MarkdownEditor = dynamic<any>(
   { ssr: false },
 );
 
-function HomePage({ content, setNewPost }: any) {
+function HomePage({ content, setNewPost, setEdited }: any) {
   const handleChange: any = (_editor: IInstance, _data: ReactCodeMirror, value: string) => {
     setNewPost((state: any) => ({
       ...state,
       content: value,
     }));
+    setEdited(true);
   };
 
   return (
