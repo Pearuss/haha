@@ -27,7 +27,7 @@ function Category({ data, items }: any) {
       menuMobile.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full'
+        'ssm:-translate-x-full',
       );
       menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -46,7 +46,7 @@ function Category({ data, items }: any) {
         // keywords={article.meta_keywords}
       />
       <div className="flex items-center mb-4">
-      <Image
+        <Image
           loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/category2.png`}
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/category2.png`}
           // src="/images/category2.png"
@@ -54,7 +54,7 @@ function Category({ data, items }: any) {
           width={16}
           height={16}
         />
-        <h1 className="text-black ml-[1vw]">
+        <h1 className="text-black ml-[1vw] text-[26px]">
           <Link href={`/${router.query.category}`}>
             <span className="hover:hover:opacity-70 cursor-pointer">
               {capitalizeFirstLetter(router.query.category?.toString() || '')}

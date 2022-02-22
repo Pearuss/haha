@@ -21,7 +21,9 @@ import Select from 'react-select';
 import Swal from 'sweetalert2';
 
 import useFetch from '../../hooks/use-fetch';
-import { Article, Category, INewPost, Tag } from '../../models';
+import {
+ Article, Category, INewPost, Tag,
+} from '../../models';
 import { countWord } from '../../utilities/helper';
 import {
   postSchema,
@@ -124,7 +126,7 @@ function ModalPost({
 
     if (isValid) {
       setIsLoading(true);
-      const { message }: any = await useFetch(`/api/v1/user/article/${articleId}`, {
+      const { message, data }: any = await useFetch(`/api/v1/user/article/${articleId}`, {
         method: 'PUT',
         body: JSON.stringify({
           article: {
@@ -143,10 +145,12 @@ function ModalPost({
       });
       if (message === 200) {
         setIsLoading(false);
-        await fetch('/', {
+        // console.log(data);
+
+        await fetch(`/posts/${data[0].slug}`, {
           method: 'HEAD',
         });
-        router.push('/');
+        router.push(`/posts/${data[0].slug}`);
         Swal.fire({
           title: 'Successfully',
           text: 'Article is created successfully!',
@@ -159,7 +163,7 @@ function ModalPost({
           } else {
             setTimeout(() => {
               router.reload();
-            }, 500);
+            }, 600);
           }
         });
         // Swal.fire('Article is edited successfully!');
@@ -307,7 +311,7 @@ function ModalPost({
                   classNamePrefix="select"
                   onChange={changeSectionNo}
                   value={sectionNoOptions?.filter(
-                    (option: any) => option.value === newPost.sectionNo?.toString()
+                    (option: any) => option.value === newPost.sectionNo?.toString(),
                   )}
                   name="sectionno"
                   options={sectionNoOptions}
@@ -338,7 +342,7 @@ function ModalPost({
                     name="mainCategory"
                     options={catOptions}
                     value={catOptions?.filter(
-                      (option: any) => option.value === newPost.mainCategory
+                      (option: any) => option.value === newPost.mainCategory,
                     )}
                     onChange={changeMainCategory}
                   />
@@ -348,9 +352,7 @@ function ModalPost({
                     classNamePrefix="select"
                     placeholder="Related category"
                     name="relatedCategory"
-                    value={catOptions?.filter((option) =>
-                      newPost.relatedCategory.includes(option.value)
-                    )}
+                    value={catOptions?.filter((option) => newPost.relatedCategory.includes(option.value))}
                     options={catOptions}
                     onChange={changeRelatedCategory}
                   />

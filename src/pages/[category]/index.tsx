@@ -25,7 +25,7 @@ function Category({ data, category }: any) {
       menuMobile.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full'
+        'ssm:-translate-x-full',
       );
       menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -52,7 +52,7 @@ function Category({ data, category }: any) {
           width={16}
           height={16}
         />
-        <h1 className="text-black ml-[1vw]">
+        <h1 className="text-black ml-[1vw] text-[26px]">
           {capitalizeFirstLetter(router.query.category?.toString() || '')}
         </h1>
       </div>
