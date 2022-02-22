@@ -1,20 +1,20 @@
 import React from 'react';
 
-import AdminAuth from '../Components/Auth/admin-auth';
+import Auth from '../Components/Auth/auth';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header/Header';
 import TagSection from '../Components/TagContent/TagSection';
 import { LayoutProps } from '../models';
 
-export function AdminLayout({ children }: LayoutProps) {
+export function UserLayout({ children }: LayoutProps) {
   return (
-    <AdminAuth className="antialiased w-full float-left block bg-white">
+    <Auth className="antialiased w-full">
       <Header />
-      <div className="mainContent mt-[163px] lg:mt-[110px] md:mt-[110px] sm:mt-[110px] ssm:mt-[110px] bg-white relative">
+      <div className="mainContent mt-[163px] lg:mt-[100px] md:mt-[100px] sm:mt-[100px] ssm:mt-[100px] bg-white relative">
         {children}
         <TagSection />
       </div>
       <Footer />
-    </AdminAuth>
+    </Auth>
   );
 }

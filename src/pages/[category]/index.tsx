@@ -49,8 +49,8 @@ function Category({ data, category }: any) {
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/category2.png`}
           // src="/images/category2.png"
           alt="Category"
-          width={16}
-          height={16}
+          width={20}
+          height={20}
         />
         <h1 className="text-black ml-[1vw] text-[26px]">
           {capitalizeFirstLetter(router.query.category?.toString() || '')}

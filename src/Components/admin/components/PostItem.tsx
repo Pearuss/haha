@@ -52,7 +52,13 @@ function PostList({ post, handleCheckItemClick }: any) {
         {post?.authorName ? post.authorName : `${post?.authorFirstname} ${post?.authorLastname}`}
       </span>
       <span>
-        <Image src="/images/check1.png" alt="Check" width={20} height={20} />
+        <Image
+          loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
+          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
+          alt="Check"
+          width={20}
+          height={20}
+        />
       </span>
 
       {/* <Link href={linkDetail}>
@@ -62,15 +68,33 @@ function PostList({ post, handleCheckItemClick }: any) {
         </Link> */}
       <span className="grid grid-cols-3 ml-[-40%]">
         <button className="flex items-center">
-          <Image src="/images/target.png" alt="Target" width={20} height={20} />
+          <Image
+            loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/target.png`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/target.png`}
+            alt="Target"
+            width={20}
+            height={20}
+          />
           <span className="ml-[10%]">{post.countInwork}</span>
         </button>
         <button className="flex items-center 2xl:ml-[18%]">
-          <Image src="/images/heart.png" alt="Like" width={20} height={20} />
+          <Image
+            loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/heart.png`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/heart.png`}
+            alt="Like"
+            width={20}
+            height={20}
+          />
           <span className="ml-[10%]">{post.countLike}</span>
         </button>
         <button className="flex items-center 2xl:ml-[38%]">
-          <Image src="/images/comment.png" alt="Comment" width={20} height={20} />
+          <Image
+            loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/comment.png`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/comment.png`}
+            alt="Comment"
+            width={20}
+            height={20}
+          />
           <span className="ml-[10%]">{post.countComment}</span>
         </button>
       </span>

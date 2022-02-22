@@ -42,7 +42,15 @@ const Header: React.FC<HeaderProps> = (props) => {
               content: (
                 <Link href="/">
                   <div className="relative items-center cursor-pointer max-w-[150px] w-[150px] md:h-[38px] md:mt-1 sm:mt-[5px] sm:h-[35px] sm:ml-[-4rem] ssm:h-[32px] ssm:ml-[-5rem] h-[45px] max-h-[35px]">
-                    <Image src="/logo.svg" alt="Logo" layout="fill" priority />
+                    <Image
+                      loader={() =>
+                        `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/logo.svg`
+                      }
+                      src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/logo.svg`}
+                      alt="Logo"
+                      layout="fill"
+                      priority
+                    />
                   </div>
                 </Link>
               ),

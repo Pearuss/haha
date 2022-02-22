@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import Post from '../Components/Post';
 import TagSectionMobile from '../Components/TagContent/TagSectionMobile';
 import { useAuth } from '../hooks';
-import { AdminLayout } from '../layout';
+import { UserLayout } from '../layout';
 
 function FollowingTag() {
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
@@ -66,5 +66,5 @@ function FollowingTag() {
     </div>
   );
 }
-FollowingTag.Layout = AdminLayout;
+FollowingTag.Layout = UserLayout;
 export default FollowingTag;

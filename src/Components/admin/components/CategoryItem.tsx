@@ -33,7 +33,13 @@ function CategoryItem(props: any) {
 
       <span className="flex items-center gap-[45%]">
         <span>
-          <Image src="/images/check1.png" alt="Check" width={20} height={20} />
+          <Image
+            loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
+            alt="Check"
+            width={20}
+            height={20}
+          />
         </span>
         <Tooltip title="Edit">
           <IconButton
@@ -42,7 +48,13 @@ function CategoryItem(props: any) {
               setCategorySelected(cat);
             }}
           >
-            <Image src="/images/edit.png" alt="Edit" width={20} height={20} />
+            <Image
+              loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
+              alt="Edit"
+              width={20}
+              height={20}
+            />
           </IconButton>
         </Tooltip>
       </span>

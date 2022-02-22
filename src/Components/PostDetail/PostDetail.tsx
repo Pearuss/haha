@@ -166,7 +166,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
         {profile?.data?.userId === article?.author_id && (
           <Link href={`/posts/edit/${article.slug}`}>
             <Tooltip disableFocusListener disableTouchListener title="Edit">
-              <span className="mt-1 ml-2">
+              <span className="mt-1 ml-2 cursor-pointer">
                 <Image
                   loader={() =>
                     `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/pencil.png`

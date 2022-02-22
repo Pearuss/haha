@@ -17,7 +17,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ThemeProvider } from 'styled-components';
 
-import Auth from '../../Auth/auth';
+import AdminAuth from '../../Auth/admin-auth';
 import Header from './Header';
 import menuItems from './menuItem';
 import SEO, { SEOProps } from './SEO';
@@ -54,7 +54,7 @@ const LayoutPage: React.FC<SEOProps> = ({ children, ...rest }) => {
   const authLayout = router.pathname.startsWith('/auth');
 
   return (
-    <Auth className="antialiased w-full">
+    <AdminAuth className="antialiased w-full">
       <SEO {...rest} />
       <ThemeProvider theme={themes('default', dir)}>
         <>
@@ -125,7 +125,7 @@ const LayoutPage: React.FC<SEOProps> = ({ children, ...rest }) => {
           </Layout>
         </>
       </ThemeProvider>
-    </Auth>
+    </AdminAuth>
   );
 };
 

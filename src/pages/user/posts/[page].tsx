@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 import Post from '../../../Components/Post';
 import TagSectionMobile from '../../../Components/TagContent/TagSectionMobile';
 import useCall from '../../../hooks/use-call';
-import { AdminLayout } from '../../../layout';
+import { UserLayout } from '../../../layout';
 import { Article } from '../../../models';
 
 function PostsPage() {
@@ -141,6 +141,6 @@ function PostsPage() {
   );
 }
 
-PostsPage.Layout = AdminLayout;
+PostsPage.Layout = UserLayout;
 
 export default PostsPage;

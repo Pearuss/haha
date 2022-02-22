@@ -47,13 +47,25 @@ function CustomerItem(props: any) {
         {customer.status ? (
           <Tooltip title="Status">
             <IconButton>
-              <Image src="/images/check1.png" alt="check" width={20} height={20} />
+              <Image
+                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
+                alt="check"
+                width={20}
+                height={20}
+              />
             </IconButton>
           </Tooltip>
         ) : (
           <Tooltip title="Status">
             <IconButton>
-              <Image src="/images/cross.png" alt="cross" width={20} height={20} />
+              <Image
+                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`}
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`}
+                alt="cross"
+                width={20}
+                height={20}
+              />
             </IconButton>
           </Tooltip>
         )}
@@ -64,12 +76,24 @@ function CustomerItem(props: any) {
               setUserSelected(customer);
             }}
           >
-            <Image src="/images/edit.png" alt="edit" width={20} height={20} />
+            <Image
+              loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
+              alt="edit"
+              width={20}
+              height={20}
+            />
           </IconButton>
         </Tooltip>
         <Tooltip title="Notification">
           <IconButton onClick={setShowDialogSendMessage}>
-            <Image src="/images/send-mail.png" alt="send" width={21} height={21} />
+            <Image
+              loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/send-mail.png`}
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/send-mail.png`}
+              alt="send"
+              width={21}
+              height={21}
+            />
           </IconButton>
         </Tooltip>
       </span>
