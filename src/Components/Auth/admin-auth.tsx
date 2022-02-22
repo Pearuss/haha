@@ -11,17 +11,19 @@ function AdminAuth({ children }: any) {
   const { profile, firstLoading } = useAuth();
 
   const [open, setOpen] = React.useState(true);
+  const role = profile?.data?.role;
+
   const handleClose = () => {
     setOpen(false);
   };
 
   useEffect(() => {
-    if ((!firstLoading && !profile?.data) || profile?.data?.role !== 40) {
+    if (!firstLoading && role !== 40) {
       router.replace('/login');
     }
-  }, [router, profile, firstLoading]);
+  }, [router, role, firstLoading]);
 
-  if (!profile?.data) {
+  if (!profile?.data?.role) {
     return (
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme: any) => theme.zIndex.drawer + 1 }}
