@@ -5,8 +5,8 @@ import Calendar from 'react-calendar';
 import useSWR from 'swr';
 import 'react-calendar/dist/Calendar.css';
 
-import FollowTag from './FollowTag';
 import { useAuth } from '../../hooks/use-auth';
+import FollowTag from './FollowTag';
 
 function TagSection() {
   const { profile, firstLoading } = useAuth();

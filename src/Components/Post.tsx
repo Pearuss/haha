@@ -2,7 +2,6 @@
 import React from 'react';
 
 import { EyeIcon, ChatIcon } from '@heroicons/react/outline';
-// import Image from 'next/image';
 import Link from 'next/link';
 
 import { Article } from '../models';
@@ -13,8 +12,6 @@ function Post({ article }: { article: Article }) {
 
   const tagArray = article?.articleTagNames?.split(',');
   const tagSlugArray = article?.articleTagSlugs?.split(',');
-  // console.log(tagArray);
-  // console.log(tagSlugArray);
 
   return (
     <div className="relative flex ssm:flex-col w-full  h-auto bg-white rounded-lg px-3 py-5 mb-4 cursor-pointer ssm:border ssm:border-gray-300 ssm:p-4 ssm:pb-20">
@@ -54,7 +51,8 @@ function Post({ article }: { article: Article }) {
             {tagArray?.map((tag: any, index: number) => (
               <Link href={`/tag${tagSlugArray[index]}`} key={tag}>
                 <span className="px-2 py-1 border border-gray-300 mr-2 text-xs rounded-md hover:bg-backgroundGrayTextTag cursor-pointer">
-                  #{tag}
+                  #
+                  {tag}
                 </span>
               </Link>
             ))}
@@ -62,7 +60,10 @@ function Post({ article }: { article: Article }) {
           <span className="text-sm mr-4">{formatDate(new Date(article?.published_at))}</span>
         </p>
         <p className="absolute bottom-0 ssm:bottom-[-4.2rem] ssm:left-0 ssm:text-sm">
-          <Link href={`${article.slugCategory}`}>{article?.mainCategory}</Link> -{' '}
+          <Link href={`${article.slugCategory}`}>{article?.mainCategory}</Link>
+          {' '}
+          -
+          {' '}
           <Link href={`/user/${article.author_id}`}>
             {article.authorName
               ? `${article.authorName}`

@@ -1,9 +1,10 @@
-/* eslint-disable react/button-has-type */
+/* eslint-disable */
 import React from 'react';
+
+import Checkbox from '@mui/material/Checkbox';
 
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import LayoutAdminPage from '../../../Components/admin/layout';
-import Checkbox from '@mui/material/Checkbox';
 
 function CreateCategory() {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };

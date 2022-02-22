@@ -13,7 +13,6 @@ function MemberItem(props: any) {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
   const { member, handleCheckItemClick, setOpenPopup, setAdminSelected } = props;
-  console.log(member);
 
   return (
     <div className="grid grid-cols-6 bg-white hover:bg- px-3 py-1 font-medium items-center">

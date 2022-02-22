@@ -12,8 +12,8 @@ import { useRouter } from 'next/router';
 import Post from '../../../Components/Post';
 import TagSectionMobile from '../../../Components/TagContent/TagSectionMobile';
 import useCall from '../../../hooks/use-call';
-import { Article } from '../../../models';
 import { AdminLayout } from '../../../layout';
+import { Article } from '../../../models';
 
 function PostsPage() {
   const router = useRouter();
@@ -144,4 +144,3 @@ function PostsPage() {
 PostsPage.Layout = AdminLayout;
 
 export default PostsPage;
-

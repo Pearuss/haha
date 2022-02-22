@@ -23,7 +23,7 @@ function HomePage({ articles, news }: { articles: any; news: any }) {
       // revalidateOnMount: true,
       revalidateIfStale: true,
       fallbackData: articles,
-    }
+    },
   );
   const { data: allNews } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/news/full-list`, {
     revalidateOnMount: true,
@@ -42,7 +42,7 @@ function HomePage({ articles, news }: { articles: any; news: any }) {
       menuMobile?.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full'
+        'ssm:-translate-x-full',
       );
       menuMobile?.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });

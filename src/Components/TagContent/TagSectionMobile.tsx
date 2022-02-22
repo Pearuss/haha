@@ -5,8 +5,8 @@ import Calendar from 'react-calendar';
 import useSWR from 'swr';
 import 'react-calendar/dist/Calendar.css';
 
-import FollowTag from './FollowTag';
 import { useAuth } from '../../hooks';
+import FollowTag from './FollowTag';
 
 function TagSectionMobile({ isShowTagMobile }: any) {
   const { profile, firstLoading } = useAuth();

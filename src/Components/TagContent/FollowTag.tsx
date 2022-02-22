@@ -12,7 +12,7 @@ interface FollowTagProp {
 
 function FollowTag({ data, titleTagName }: FollowTagProp) {
   const [tagFollow, setTagFollow] = useState<Tag[]>([]);
-  const isFollowingTitle = titleTagName === "Following Tags" ? true : false
+  const isFollowingTitle = titleTagName === 'Following Tags';
   useEffect(() => {
     if (data) {
       setTagFollow(data);
@@ -22,7 +22,13 @@ function FollowTag({ data, titleTagName }: FollowTagProp) {
     <>
       <Link href="/following-tags">
         <div className="tagContent">
-          <p className={`p-3 rounded-lg w-full flex items-center justify-center border-2 border-blueCyanLogo my-6 text-blueCyanLogo ${isFollowingTitle ? 'hover:animate-jelly hover:text-opacity-80 cursor-pointer': 'cursor-pointer'}`}>
+          <p
+            className={`p-3 rounded-lg w-full flex items-center justify-center border-2 border-blueCyanLogo my-6 text-blueCyanLogo ${
+              isFollowingTitle
+                ? 'hover:animate-jelly hover:text-opacity-80 cursor-pointer'
+                : 'cursor-pointer'
+            }`}
+          >
             {titleTagName}
           </p>
           <p className="flex w-full flex-wrap">

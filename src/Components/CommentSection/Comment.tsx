@@ -74,8 +74,7 @@ function Comment({
           loader={() =>
             `${process.env.NEXT_PUBLIC_IMAGE_URL}${
               UserComment?.thumbnail || profile.data.thumbnail
-            }`
-          }
+            }`}
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}${
             UserComment?.thumbnail || profile.data.thumbnail
           }`}
@@ -123,8 +122,7 @@ function Comment({
               >
                 <Image
                   loader={() =>
-                    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/star.png`
-                  }
+                    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/star.png`}
                   src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/star.png`}
                   alt="Like"
                   width={20}
@@ -153,8 +151,7 @@ function Comment({
                 setActiveComment({
                   id: commentContent.id,
                   type: 'replying',
-                })
-              }
+                })}
             >
               Reply
             </span>
@@ -170,9 +167,8 @@ function Comment({
                 // `${parentId == null ? '' : `@${commentContent.username}`} ${text}`,
                 text,
                 replyId,
-                commentContent?.user.id
-              )
-            }
+                commentContent?.user.id,
+              )}
             handleCancel={() => setActiveComment(null)}
           />
         )}

@@ -32,7 +32,10 @@ function NewItem({ _new, handleCheckItemClick }: any) {
         <div className="flex flex-col mt-[-2px] mb-auto">
           <h6 className="text-textAdmin text-base">{truncate(`${_new.title}`, 85)}</h6>
           <Link href={`/news/${_new.id}`}>
-            <span className="text-sm cursor-pointer hover:opacity-40"># {_new.slug}</span>
+            <span className="text-sm cursor-pointer hover:opacity-40">
+              #
+              {_new.slug}
+            </span>
           </Link>
         </div>
       </span>
