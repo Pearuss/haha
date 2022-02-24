@@ -15,7 +15,7 @@ import MarkDown from '../../../Components/CreatePost/MarkDown';
 import useFetch from '../../../hooks/use-fetch';
 // import useFetch from '../../../hooks/use-fetch';
 
-function EditPost() {
+function CreateNew() {
   const [dateEvent, setDateEvent] = React.useState<Date | null>(null);
   console.log(dateEvent);
 
@@ -60,12 +60,12 @@ function EditPost() {
   return (
     <LayoutAdminPage title="Create a New">
       <HeaderAdmin
-        titlePage="Article"
-        subTitlePage="Total number of articles 20"
-        searchPlaceholder="Article title..."
+        titlePage="Create a news"
+        subTitlePage=""
+        searchPlaceholder="News title..."
       />
       <div className="py-4 w-full">
-        <h5 className="pb-4 mb-4 border-b-2 border-gray-600">Article content</h5>
+        <h5 className="pb-4 mb-4 border-b-2 border-gray-600">News content</h5>
         <div className="flex flex-col items-center w-[70vw] mx-auto">
           <div className="flex items-center w-full mt-8">
             <span className="w-40 flex font-medium text-gray-600 justify-end">Title*</span>
@@ -147,32 +147,5 @@ function EditPost() {
   );
 }
 
-export default EditPost;
+export default CreateNew;
 
-// export const getStaticPaths = async () => {
-//   const res = await fetch('http://localhost:3001/posts?_limit=200');
-//   const posts = await res.json();
-
-//   const paths = posts?.data?.map((post: any) => ({
-//     params: { postId: post.id.toString() },
-//   }));
-
-//   return {
-//     paths,
-//     fallback: 'blocking',
-//   };
-// };
-
-// export const getStaticProps = async (context: any) => {
-//   const { postId } = context?.params;
-//   if (!postId) return { notFound: true };
-//   const res = await fetch(`http://localhost:3001/posts/${postId}?_limit=200`);
-//   const posts = await res.json();
-
-//   return {
-//     props: {
-//       data: posts,
-//     },
-//     revalidate: 1,
-//   };
-// };
