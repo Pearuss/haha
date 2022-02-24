@@ -59,11 +59,7 @@ function CreateNew() {
 
   return (
     <LayoutAdminPage title="Create a New">
-      <HeaderAdmin
-        titlePage="Create a news"
-        subTitlePage=""
-        searchPlaceholder="News title..."
-      />
+      <HeaderAdmin titlePage="Create a news" subTitlePage="" searchPlaceholder="News title..." />
       <div className="py-4 w-full">
         <h5 className="pb-4 mb-4 border-b-2 border-gray-600">News content</h5>
         <div className="flex flex-col items-center w-[70vw] mx-auto">
@@ -148,4 +144,3 @@ function CreateNew() {
 }
 
 export default CreateNew;
-

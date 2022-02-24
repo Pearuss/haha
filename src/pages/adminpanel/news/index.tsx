@@ -133,7 +133,7 @@ function News() {
           <span>Public at</span>
           {/* <span>Author</span> */}
           <span>Status</span>
-          <span>Statistics</span>
+          <span>Edit</span>
         </div>
         {dataPosts?.map((_new: any) => {
           return <NewItem key={_new.id} _new={_new} handleCheckItemClick={handleCheckItemClick} />;

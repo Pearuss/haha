@@ -1,13 +1,15 @@
-import React from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useState } from 'react';
 
 import {
   Button,
+  Checkbox,
   DialogActions,
   FormControl,
   MenuItem,
   Select,
   SelectChangeEvent,
-  TextField,
+  Typography,
 } from '@mui/material';
 import { Theme, useTheme } from '@mui/material/styles';
 
@@ -46,9 +48,12 @@ const category = [
 
 export default function FormUpdateAdmin(props: any) {
   const { setOpenPopup, handleUpdateClick, admin } = props;
+  const label = { inputProps: { 'aria-label': 'Checkbox status user' } };
 
   const theme = useTheme();
   const [catName, setCatName] = React.useState<string[]>(category);
+  const [role, setRole] = useState(admin.role);
+  const [status, setStatus] = useState(!!admin.status);
 
   const handleChange = (event: SelectChangeEvent<typeof catName>) => {
     const {
@@ -61,9 +66,35 @@ export default function FormUpdateAdmin(props: any) {
   };
   return (
     <div className="flex flex-col items-center mx-auto px-8">
-      <div className="flex items-center w-full mt-8">
-        <span className="w-20 mr-4 flex font-medium text-gray-600 justify-start">Name*</span>
-        <TextField defaultValue={admin.name} size="small" id="outlined-basic" variant="outlined" />
+      <div className="flex items-end w-full mt-8">
+        <span className="w-20 mr-4 font-medium text-gray-600">Name*</span>
+        <Typography className="font-medium text-gray-600 leading-none">
+          {admin.authorName ? admin.authorName : `${admin.firstName} ${admin.lastName}`}
+        </Typography>
+      </div>
+      <div className="flex items-end w-full mt-8">
+        <span className="w-20 mr-4 font-medium text-gray-600">Email*</span>
+        <Typography className="font-medium text-gray-600 leading-none">{admin.email}</Typography>
+      </div>
+      <div className="flex items-end w-full mt-8">
+        <span className="w-20 mr-4 font-medium text-gray-600">Role*</span>
+        <FormControl variant="filled" fullWidth>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Age"
+            defaultValue={admin.role}
+            value={role}
+            onChange={(e) => {
+              setRole(+e.target.value);
+            }}
+          >
+            <MenuItem value={0}>NONE</MenuItem>
+            <MenuItem value={10}>USER</MenuItem>
+            <MenuItem value={20}>MOD</MenuItem>
+            <MenuItem value={30}>ADMIN</MenuItem>
+          </Select>
+        </FormControl>
       </div>
       <div className="flex items-center w-full mt-8">
         <span className="w-20 mr-4 flex font-medium text-gray-600 justify-start">Mode*</span>
@@ -84,9 +115,13 @@ export default function FormUpdateAdmin(props: any) {
           </Select>
         </FormControl>
       </div>
+      <div className="flex items-center w-full mt-8">
+        <span className="w-20 flex font-medium text-gray-600 justify-start">Status*</span>
+        <Checkbox onChange={() => setStatus(!status)} {...label} checked={status} />
+      </div>
       <DialogActions>
         <Button onClick={() => setOpenPopup(false)}>Cancel</Button>
-        <Button onClick={handleUpdateClick} autoFocus>
+        <Button onClick={() => handleUpdateClick(admin.id, status, role)} autoFocus>
           Update
         </Button>
       </DialogActions>

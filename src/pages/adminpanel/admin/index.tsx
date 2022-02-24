@@ -12,6 +12,8 @@ import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import MemberItem from '../../../Components/admin/components/MemberItem';
 import LayoutAdminPage from '../../../Components/admin/layout';
 import useSWR from 'swr';
+import useFetch from '../../../hooks/use-fetch';
+import Swal from 'sweetalert2';
 
 function AdminPage() {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -29,7 +31,6 @@ function AdminPage() {
     revalidateOnMount: true,
     revalidateIfStale: true,
   });
-  console.log(dataMembers);
 
   useEffect(() => {
     if (data?.data) {
@@ -79,8 +80,33 @@ function AdminPage() {
     router.push('/adminpanel/admin/create');
   };
 
-  const handleUpdateClick = () => {
-    console.log('updated');
+  const handleUpdateClick = async (id: number, status: number, role: number) => {
+    setOpenPopup(false);
+
+    const response = await useFetch('/api/v1/user/change-status', {
+      method: 'PUT',
+      body: JSON.stringify({
+        userId: id,
+        status: status ? 1 : 0,
+        role,
+      }),
+    });
+    if (response.message === 200) {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Admin has been saved',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      router.reload();
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You are not authorized to do that!',
+      });
+    }
   };
 
   return (
@@ -89,7 +115,7 @@ function AdminPage() {
 
       <div className="bg-white rounded h-full p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
-          <h4>All user</h4>
+          <h4>All admin</h4>
           <span className="text-sm mt-2 ml-2">(Total {dataMembers.length})</span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <button onClick={handleClickAdd}>

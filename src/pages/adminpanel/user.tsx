@@ -80,7 +80,7 @@ function Cpanel() {
     handleClose();
   };
 
-  const handleUpdateClick = async (id: number, status: number) => {
+  const handleUpdateClick = async (id: number, status: number, role: number) => {
     setOpenPopup(false);
 
     const response = await useFetch('/api/v1/user/change-status', {
@@ -88,17 +88,24 @@ function Cpanel() {
       body: JSON.stringify({
         userId: id,
         status: status ? 1 : 0,
+        role,
       }),
     });
     if (response.message === 200) {
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'Status has been saved',
+        title: 'User has been saved',
         showConfirmButton: false,
         timer: 1500,
       });
       router.reload();
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You are not authorized to do that!',
+      });
     }
   };
 

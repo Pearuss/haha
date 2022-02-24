@@ -2,15 +2,22 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
+import { IconButton, Tooltip } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-// import Link from 'next/link';
 import { formatDate, truncate } from '../../../utilities/helper';
 
 function NewItem({ _new, handleCheckItemClick }: any) {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+  const router = useRouter();
+
+  const goToEditPage = (id: number) => {
+    router.push(`/adminpanel/news/${id}`);
+  };
 
   return (
     <div className="grid grid-cols-7 gap-1 bg-white hover:bg- px-3 py-1 font-medium items-center">
@@ -56,37 +63,22 @@ function NewItem({ _new, handleCheckItemClick }: any) {
             <Image src="/images/edit.png" width={20} height={20} />
           </button>
         </Link> */}
-      <span className="grid grid-cols-3 ml-[-40%]">
-        <button className="flex items-center">
-          <Image
-            loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/target.png`}
-            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/target.png`}
-            alt="Target"
-            width={20}
-            height={20}
-          />
-          <span className="ml-[10%]">{_new.inWorks}</span>
-        </button>
-        <button className="flex items-center 2xl:ml-[18%]">
-          <Image
-            loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/heart.png`}
-            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/heart.png`}
-            alt="Heart"
-            width={20}
-            height={20}
-          />
-          <span className="ml-[10%]">{_new.likes}</span>
-        </button>
-        <button className="flex items-center 2xl:ml-[38%]">
-          <Image
-            loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/comment.png`}
-            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/comment.png`}
-            alt="Comment"
-            width={20}
-            height={20}
-          />
-          <span className="ml-[10%]">{_new.comments}</span>
-        </button>
+      <span className="flex justify-start">
+        <Tooltip title="Edit">
+          <IconButton
+            onClick={() => {
+              goToEditPage(_new.id);
+            }}
+          >
+            <Image
+              loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
+              alt="edit"
+              width={20}
+              height={20}
+            />
+          </IconButton>
+        </Tooltip>
       </span>
     </div>
   );

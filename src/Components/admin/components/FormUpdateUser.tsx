@@ -2,7 +2,13 @@
 import React, { useState } from 'react';
 
 import {
-  Button, Checkbox, DialogActions, Typography,
+  Button,
+  Checkbox,
+  DialogActions,
+  Typography,
+  FormControl,
+  Select,
+  MenuItem,
 } from '@mui/material';
 
 export default function FormUpdateUser(props: any) {
@@ -10,6 +16,7 @@ export default function FormUpdateUser(props: any) {
   const label = { inputProps: { 'aria-label': 'Checkbox status user' } };
 
   const [status, setStatus] = useState(!!user.status);
+  const [role, setRole] = useState(user.role);
 
   return (
     <div className="flex flex-col items-center mx-auto px-8">
@@ -23,13 +30,33 @@ export default function FormUpdateUser(props: any) {
         <span className="w-20 mr-4 font-medium text-gray-600">Email*</span>
         <Typography className="font-medium text-gray-600 leading-none">{user.email}</Typography>
       </div>
+      <div className="flex items-end w-full mt-8">
+        <span className="w-20 mr-4 font-medium text-gray-600">Role*</span>
+        <FormControl variant="filled" fullWidth>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Age"
+            defaultValue={user.role}
+            value={role}
+            onChange={(e) => {
+              setRole(+e.target.value);
+            }}
+          >
+            <MenuItem value={0}>NONE</MenuItem>
+            <MenuItem value={10}>USER</MenuItem>
+            <MenuItem value={20}>MOD</MenuItem>
+            <MenuItem value={30}>ADMIN</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
       <div className="flex items-center w-full mt-8">
         <span className="w-20 flex font-medium text-gray-600 justify-start">Status*</span>
         <Checkbox onChange={() => setStatus(!status)} {...label} checked={status} />
       </div>
       <DialogActions>
         <Button onClick={() => setOpenPopup(false)}>Cancel</Button>
-        <Button onClick={() => handleUpdateClick(user.id, status)} autoFocus>
+        <Button onClick={() => handleUpdateClick(user.id, status, role)} autoFocus>
           Update
         </Button>
       </DialogActions>
