@@ -21,6 +21,13 @@ function HeaderRight() {
     if (!firstLoading && !profile?.data) {
       setIsLogin(false);
     } else if (profile?.data) {
+      if (profile.data.status === 0) {
+        logoutHandler();
+        setTimeout(() => {
+          Swal.fire('Account is locking');
+        }, 500)
+        
+      }
       setIsLogin(true);
     }
   }, [profile, firstLoading]);
@@ -28,7 +35,7 @@ function HeaderRight() {
   const logoutHandler = useCallback(async () => {
     try {
       await logout();
-      router.push('/');
+      router.replace('/');
       if (router.pathname === '/') {
         Swal.fire('Logout success!');
       }
