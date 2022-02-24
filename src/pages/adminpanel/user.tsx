@@ -5,6 +5,8 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import Swal from 'sweetalert2';
 import useSWR from 'swr';
 
 import DialogDelete from '../../Components/admin/common/dialogDelete';
@@ -13,6 +15,7 @@ import CustomerItem from '../../Components/admin/components/CustomerItem';
 import FormUpdateUser from '../../Components/admin/components/FormUpdateUser';
 import HeaderAdmin from '../../Components/admin/components/HeaderAdmin';
 import LayoutAdminPage from '../../Components/admin/layout';
+import useFetch from '../../hooks/use-fetch';
 
 function Cpanel() {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -22,12 +25,13 @@ function Cpanel() {
   const [dataCustomers, setDataCustomers] = useState<any>([]);
   const [userSelected, setUserSelected] = useState();
 
+  const router = useRouter();
+
   const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/user/all-client`, {
     // revalidateOnMount: false,
     revalidateOnMount: true,
     revalidateIfStale: true,
   });
-  console.log(dataCustomers);
 
   useEffect(() => {
     if (data?.data) {
@@ -76,8 +80,26 @@ function Cpanel() {
     handleClose();
   };
 
-  const handleUpdateClick = () => {
-    console.log('updated');
+  const handleUpdateClick = async (id: number, status: number) => {
+    setOpenPopup(false);
+
+    const response = await useFetch('/api/v1/user/change-status', {
+      method: 'PUT',
+      body: JSON.stringify({
+        userId: id,
+        status: status ? 1 : 0,
+      }),
+    });
+    if (response.message === 200) {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Status has been saved',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      router.reload();
+    }
   };
 
   return (

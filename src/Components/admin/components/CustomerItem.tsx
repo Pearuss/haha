@@ -35,14 +35,12 @@ function CustomerItem(props: any) {
 
       <Link href={`/user/${customer?.id}`}>
         <span className="hover:opacity-50 cursor-pointer">
-          {customer?.author_name
-            ? customer.author_name
-            : `${customer?.first_name} ${customer?.last_name}`}
+          {customer.authorName ? customer.authorName : `${customer.firstName} ${customer.lastName}`}
         </span>
       </Link>
 
       <span className="ml-6">{customer?.total}</span>
-      <span>{formatDate(new Date(customer?.created_at))}</span>
+      <span>{formatDate(new Date(customer?.createdAt))}</span>
       <span className="flex items-center gap-[24%] mr-2">
         {customer.status ? (
           <Tooltip title="Status">
