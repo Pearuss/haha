@@ -18,7 +18,9 @@ function HomePage({ content, setNewPost, setEdited }: any) {
       ...state,
       content: value,
     }));
-    setEdited(true);
+    if (setEdited) {
+      setEdited(true);
+    }
   };
 
   return (

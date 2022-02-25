@@ -30,7 +30,7 @@ import {
   postTitleSchema,
   postContentSchema,
   postShortContentSchema,
-  postTagSchema,
+  // postTagSchema,
   postCategorySchema,
   postImageSchema,
 } from '../../validation/createPost';
@@ -85,7 +85,7 @@ function ModalPost({
   const [isErrorTitle, setIsErrorTitle] = useState(false);
   const [isErrorShortContent, setIsErrorShortContent] = useState(false);
   const [isErrorContent, setIsErrorContent] = useState(false);
-  const [isErrorTag, setIsErrorTag] = useState(false);
+  // const [isErrorTag, setIsErrorTag] = useState(false);
   const [isErrorCategory, setIsErrorCategory] = useState(false);
   const [isErrorImage, setIsErrorImage] = useState(false);
 
@@ -120,7 +120,7 @@ function ModalPost({
       title: newPost.title,
       shortContent: countWord(newPost.shortContent),
       content: countWord(newPost.content),
-      tag: newPost.tag,
+      // tag: newPost.tag,
       mainCategory: newPost.mainCategory,
       image: newPost.image,
     };
@@ -208,11 +208,11 @@ function ModalPost({
       const isValidContent = await postContentSchema.isValid(formContent);
       setIsErrorContent(!isValidContent);
 
-      const formTag = {
-        tag: newPost.tag,
-      };
-      const isValidTag = await postTagSchema.isValid(formTag);
-      setIsErrorTag(!isValidTag);
+      // const formTag = {
+      //   tag: newPost.tag,
+      // };
+      // const isValidTag = await postTagSchema.isValid(formTag);
+      // setIsErrorTag(!isValidTag);
 
       const formCategory = {
         mainCategory: newPost.mainCategory,
@@ -281,14 +281,14 @@ function ModalPost({
                 onChange={changeShortContent}
                 value={newPost.shortContent}
                 error={isErrorShortContent}
-                label={isErrorShortContent ? 'Short content must be more than 30 words.' : ''}
+                label={isErrorShortContent ? 'Short content must be more than 10 words.' : ''}
               />
             </div>
             <div className="w-full bg-white">
               <div className="flex items-center">
                 <p className="flex p-3 w-32 ml-4 text-gray-900 font-medium ">Content:</p>
                 {isErrorContent ? (
-                  <p className="text-darkRed">Content must be more than 100 words</p>
+                  <p className="text-darkRed">Content must be more than 10 words</p>
                 ) : (
                   ''
                 )}
@@ -363,9 +363,7 @@ function ModalPost({
               <div className="flex border-b border-gray-300 pb-1">
                 <p className="w-23 font-medium mr-8 lg:mr-1">Tag:</p>
                 <Select
-                  className={`basic-multi-select ${
-                    isErrorTag ? 'border border-darkRed rounded-md' : ''
-                  }`}
+                  className="basic-multi-select"
                   isMulti
                   classNamePrefix="select"
                   placeholder="Choose tag"

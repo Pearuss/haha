@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
 import { Loading } from '../../../common/Loading';
-import ModalPost from '../../../Components/CreatePost/ModalEdtiPost';
+import ModalPost from '../../../Components/CreatePost/ModalEditPost';
 import useCall from '../../../hooks/use-call';
 import useFetch from '../../../hooks/use-fetch';
 import { HeaderLayout } from '../../../layout';
