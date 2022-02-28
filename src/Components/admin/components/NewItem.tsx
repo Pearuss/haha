@@ -20,7 +20,7 @@ function NewItem({ _new, handleCheckItemClick }: any) {
   };
 
   return (
-    <div className="grid grid-cols-7 gap-1 bg-white hover:bg- px-3 py-1 font-medium items-center">
+    <div className="grid grid-cols-6 gap-1 bg-white hover:bg- px-3 py-1 font-medium items-center">
       <span className="flex items-center">
         <Checkbox {...label} checked={_new?.selected} onClick={() => handleCheckItemClick(_new)} />
       </span>
@@ -39,16 +39,13 @@ function NewItem({ _new, handleCheckItemClick }: any) {
         <div className="flex flex-col mt-[-2px] mb-auto">
           <h6 className="text-textAdmin text-base">{truncate(`${_new.title}`, 85)}</h6>
           <Link href={`/news/${_new.id}`}>
-            <span className="text-sm cursor-pointer hover:opacity-40">
-              #
-              {_new.slug}
-            </span>
+            <span className="text-sm cursor-pointer hover:opacity-40">#{_new.slug}</span>
           </Link>
         </div>
       </span>
       <span>{formatDate(new Date(_new?.createdAt))}</span>
       {/* <span>{_new.author}</span> */}
-      <span>
+      <span className="flex items-center gap-[45%]">
         <Image
           loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
           src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
@@ -56,6 +53,23 @@ function NewItem({ _new, handleCheckItemClick }: any) {
           width={20}
           height={20}
         />
+        <span>
+          <Tooltip title="Edit">
+            <IconButton
+              onClick={() => {
+                goToEditPage(_new.id);
+              }}
+            >
+              <Image
+                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
+                alt="edit"
+                width={20}
+                height={20}
+              />
+            </IconButton>
+          </Tooltip>
+        </span>
       </span>
 
       {/* <Link href={linkDetail}>
@@ -63,23 +77,6 @@ function NewItem({ _new, handleCheckItemClick }: any) {
             <Image src="/images/edit.png" width={20} height={20} />
           </button>
         </Link> */}
-      <span className="flex justify-start">
-        <Tooltip title="Edit">
-          <IconButton
-            onClick={() => {
-              goToEditPage(_new.id);
-            }}
-          >
-            <Image
-              loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
-              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
-              alt="edit"
-              width={20}
-              height={20}
-            />
-          </IconButton>
-        </Tooltip>
-      </span>
     </div>
   );
 }

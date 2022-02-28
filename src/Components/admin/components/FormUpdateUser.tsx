@@ -21,22 +21,23 @@ export default function FormUpdateUser(props: any) {
   return (
     <div className="flex flex-col items-center mx-auto px-8">
       <div className="flex items-end w-full mt-8">
-        <span className="w-20 mr-4 font-medium text-gray-600">Name*</span>
-        <Typography className="font-medium text-gray-600 leading-none">
-          {user.authorName ? user.authorName : `${user.firstName} ${user.lastName}`}
+        <span className="w-20 mr-4 font-medium text-gray-800">Name*</span>
+        <Typography className="w-full font-medium text-gray-800 leading-none">
+          {user.author ? user.author : `${user.first_name} ${user.last_name}`}
         </Typography>
       </div>
       <div className="flex items-end w-full mt-8">
-        <span className="w-20 mr-4 font-medium text-gray-600">Email*</span>
-        <Typography className="font-medium text-gray-600 leading-none">{user.email}</Typography>
+        <span className="w-20 mr-4 font-medium text-gray-800">Email*</span>
+        <Typography className="w-full font-medium text-gray-800 leading-none">{user.email}</Typography>
       </div>
-      <div className="flex items-end w-full mt-8">
-        <span className="w-20 mr-4 font-medium text-gray-600">Role*</span>
-        <FormControl variant="filled" fullWidth>
+      <div className="flex items-center w-full mt-9">
+        <span className="w-20 mr-4 font-medium text-gray-800">Role*</span>
+        <FormControl fullWidth>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            label="Age"
+            // label="Age"
+            size='small'
             defaultValue={user.role}
             value={role}
             onChange={(e) => {
@@ -51,7 +52,7 @@ export default function FormUpdateUser(props: any) {
         </FormControl>
       </div>
       <div className="flex items-center w-full mt-8">
-        <span className="w-20 flex font-medium text-gray-600 justify-start">Status*</span>
+        <span className="w-20 flex font-medium text-gray-800 justify-start">Status*</span>
         <Checkbox onChange={() => setStatus(!status)} {...label} checked={status} />
       </div>
       <DialogActions>

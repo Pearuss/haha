@@ -67,22 +67,22 @@ export default function FormUpdateAdmin(props: any) {
   return (
     <div className="flex flex-col items-center mx-auto px-8">
       <div className="flex items-end w-full mt-8">
-        <span className="w-20 mr-4 font-medium text-gray-600">Name*</span>
-        <Typography className="font-medium text-gray-600 leading-none">
-          {admin.authorName ? admin.authorName : `${admin.firstName} ${admin.lastName}`}
+        <span className="w-20 mr-4 font-medium text-gray-800">Name*</span>
+        <Typography className="w-full font-medium text-gray-800 leading-none">
+          {admin.author ? admin.author : `${admin.first_name} ${admin.last_name}`}
         </Typography>
       </div>
       <div className="flex items-end w-full mt-8">
-        <span className="w-20 mr-4 font-medium text-gray-600">Email*</span>
-        <Typography className="font-medium text-gray-600 leading-none">{admin.email}</Typography>
+        <span className="w-20 mr-4 font-medium text-gray-800">Email*</span>
+        <Typography className="w-full font-medium text-gray-800 leading-none">{admin.email}</Typography>
       </div>
-      <div className="flex items-end w-full mt-8">
-        <span className="w-20 mr-4 font-medium text-gray-600">Role*</span>
-        <FormControl variant="filled" fullWidth>
+      <div className="flex items-center w-full mt-8">
+        <span className="w-20 mr-4 font-medium text-gray-800">Role*</span>
+        <FormControl fullWidth>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            label="Age"
+            size='small'
             defaultValue={admin.role}
             value={role}
             onChange={(e) => {
@@ -97,11 +97,12 @@ export default function FormUpdateAdmin(props: any) {
         </FormControl>
       </div>
       <div className="flex items-center w-full mt-8">
-        <span className="w-20 mr-4 flex font-medium text-gray-600 justify-start">Mode*</span>
-        <FormControl sx={{ m: 1, width: 300 }}>
+        <span className="w-20 mr-4 flex font-medium text-gray-800 justify-start">Mode*</span>
+        <FormControl sx={{  width: 300 }}>
           <Select
             id="demo-multiple-name"
             size="small"
+            className='ml-[-1rem]'
             multiple
             value={catName}
             onChange={handleChange}
@@ -116,7 +117,7 @@ export default function FormUpdateAdmin(props: any) {
         </FormControl>
       </div>
       <div className="flex items-center w-full mt-8">
-        <span className="w-20 flex font-medium text-gray-600 justify-start">Status*</span>
+        <span className="w-20 flex font-medium text-gray-800 justify-start">Status*</span>
         <Checkbox onChange={() => setStatus(!status)} {...label} checked={status} />
       </div>
       <DialogActions>

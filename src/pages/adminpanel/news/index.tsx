@@ -83,7 +83,10 @@ function News() {
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All news</h4>
-          <span className="text-sm mt-2 ml-2">({dataPosts.length})</span>
+          <span className="text-sm mt-2 ml-2">
+            (Total{` `}
+            {dataPosts.length})
+          </span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <Link href="/adminpanel/news/create">
               <button type="button">
@@ -123,7 +126,7 @@ function News() {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-7 bg-titleAdmin px-3 py-1 font-medium items-center">
+        <div className="grid grid-cols-6 bg-titleAdmin px-3 py-1 font-medium items-center">
           <span className="flex items-center">
             <span className="flex-1">
               <Checkbox {...label} checked={selectAll} onChange={handleSelectAllClick} />
@@ -133,7 +136,7 @@ function News() {
           <span>Public at</span>
           {/* <span>Author</span> */}
           <span>Status</span>
-          <span>Edit</span>
+          {/* <span>Options</span> */}
         </div>
         {dataPosts?.map((_new: any) => {
           return <NewItem key={_new.id} _new={_new} handleCheckItemClick={handleCheckItemClick} />;

@@ -26,6 +26,7 @@ function Cpanel() {
   const [userSelected, setUserSelected] = useState();
 
   const router = useRouter();
+  console.log(dataCustomers);
 
   const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/user/all-client`, {
     // revalidateOnMount: false,
@@ -41,7 +42,7 @@ function Cpanel() {
 
   const hasSelectedCustomer = useMemo(
     () => dataCustomers.find((customer: any) => customer.selected === true),
-    [dataCustomers],
+    [dataCustomers]
   );
 
   useEffect(() => {
@@ -116,16 +117,14 @@ function Cpanel() {
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All user</h4>
           <span className="text-sm mt-2 ml-2">
-            (Total
-            {dataCustomers.length}
-            )
+            (Total{` `}
+            {dataCustomers.length})
           </span>
-          <button
+          {/* <button
             className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer"
             onClick={handleClickOpen}
             disabled={typeof hasSelectedCustomer === 'undefined'}
           >
-            {/* <Image src="/images/share.png" width={20} height={20} /> */}
             <Image
               loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`}
               src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`}
@@ -133,7 +132,7 @@ function Cpanel() {
               width={20}
               height={20}
             />
-          </button>
+          </button> */}
         </div>
 
         <div className="grid grid-cols-6 bg-titleAdmin px-3 py-1 font-medium items-center rounded-sm">

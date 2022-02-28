@@ -30,13 +30,13 @@ function MemberItem(props: any) {
       </Link>
       <Link href={`/user/${member?.id}`}>
         <span className="hover:opacity-50">
-          {member?.authorName ? member.authorName : `${member?.firstName} ${member?.lastName}`}
+          {member?.author ? member.author : `${member?.first_name} ${member?.last_name}`}
         </span>
       </Link>
 
       {/* <span>{member.authorization}</span> */}
       <span>All category</span>
-      <span>{formatDate(new Date(member?.createdAt))}</span>
+      <span>{formatDate(new Date(member?.created_at))}</span>
       <span className="flex items-center gap-[45%]">
         <span>
           <Image

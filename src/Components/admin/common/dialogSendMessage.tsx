@@ -7,8 +7,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import TextField from '@mui/material/TextField';
 
-export default function AlertDialog() {
-  const [open, setOpen] = React.useState(true);
+export default function AlertDialog({ open, setOpen } : any) {
+  // const [open, setOpen] = React.useState(true);
 
   //   const handleClickOpen = () => {
   //     setOpen(true);
