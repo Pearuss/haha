@@ -20,64 +20,64 @@ function AllPost() {
   const [selectAll, setSelectAll] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
 
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+  // const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
   const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/full-list`, {
     // revalidateOnMount: false,
     revalidateOnMount: true,
     revalidateIfStale: true,
   });
-  useEffect(() => {
-    if (data?.data) {
-      console.log(data?.data);
+  // useEffect(() => {
+  //   if (data?.data) {
+  //     console.log(data?.data);
 
-      setDataPosts(data?.data?.map((post: any) => ({ ...post, selected: false })));
-    }
-  }, [data]);
+  //     setDataPosts(data?.data?.map((post: any) => ({ ...post, selected: false })));
+  //   }
+  // }, [data]);
 
   // const totalPage = Math.ceil(Number(data?.pagination?._totalRow) / 5 || 0);
   // const currentPage = Number(router.query.page);
-  console.log(dataPosts);
+  // console.log(dataPosts);
 
   const handleClickExport = () => {};
 
-  const hasSelectedTag = useMemo(
-    () => dataPosts?.find((post: any) => post.selected === true),
-    [dataPosts]
-  );
+  // const hasSelectedTag = useMemo(
+  //   () => dataPosts?.find((post: any) => post.selected === true),
+  //   [dataPosts]
+  // );
 
-  useEffect(() => {
-    const isSelectedAll = dataPosts?.find((post: any) => post.selected === false);
-    if (typeof isSelectedAll === 'undefined') setSelectAll(true);
-    else setSelectAll(false);
-  }, [dataPosts]);
+  // useEffect(() => {
+  //   const isSelectedAll = dataPosts?.find((post: any) => post.selected === false);
+  //   if (typeof isSelectedAll === 'undefined') setSelectAll(true);
+  //   else setSelectAll(false);
+  // }, [dataPosts]);
 
-  const handleSelectAllClick = () => {
-    const newDataTags = [...dataPosts].map((post: any) => ({ ...post, selected: !selectAll }));
-    setSelectAll(!selectAll);
-    setDataPosts(newDataTags);
-  };
+  // const handleSelectAllClick = () => {
+  //   const newDataTags = [...dataPosts].map((post: any) => ({ ...post, selected: !selectAll }));
+  //   setSelectAll(!selectAll);
+  //   setDataPosts(newDataTags);
+  // };
 
-  const handleCheckItemClick = (tag: any) => {
-    const index = dataPosts.indexOf(tag);
-    const newDataTags = [...dataPosts];
-    newDataTags.splice(index, 1, { ...tag, selected: !tag.selected });
-    setDataPosts(newDataTags);
-  };
+  // const handleCheckItemClick = (tag: any) => {
+  //   const index = dataPosts.indexOf(tag);
+  //   const newDataTags = [...dataPosts];
+  //   newDataTags.splice(index, 1, { ...tag, selected: !tag.selected });
+  //   setDataPosts(newDataTags);
+  // };
 
-  const handleClickOpen = () => {
-    if (!hasSelectedTag) return;
-    setOpenDialog(true);
-  };
+  // const handleClickOpen = () => {
+  //   if (!hasSelectedTag) return;
+  //   setOpenDialog(true);
+  // };
 
-  const handleClose = () => {
-    setOpenDialog(false);
-  };
+  // const handleClose = () => {
+  //   setOpenDialog(false);
+  // };
 
-  const handleDeleteClick = () => {
-    const dataSelected = dataPosts.filter((post: any) => post.selected === true);
-    console.log(dataSelected);
-    handleClose();
-  };
+  // const handleDeleteClick = () => {
+  //   const dataSelected = dataPosts.filter((post: any) => post.selected === true);
+  //   console.log(dataSelected);
+  //   handleClose();
+  // };
 
   // const goOtherPage = (page: number) => {
   //   router.push(`/adminpanel/articles/page/${page}`);
@@ -106,38 +106,31 @@ function AllPost() {
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All articles</h4>
-          <span className="text-sm mt-2 ml-2">(Total {dataPosts.length})</span>
+          <span className="text-sm mt-2 ml-2">(Total {data?.data?.length})</span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <button onClick={handleClickExport}>
               <Image src="/images/share.png" width={20} height={20} />
             </button>
-            <button>
+            {/* <button>
               <Image onClick={handleClickOpen} src="/images/delete.png" width={20} height={20} />
-            </button>
+            </button> */}
           </div>
         </div>
-        <div className="grid grid-cols-8 bg-titleAdmin px-3 py-1 font-medium items-center">
-          <span className="flex items-center">
+        <div className="grid grid-cols-9 bg-titleAdmin px-3 py-1 font-medium items-center">
+          {/* <span className="flex items-center">
             <span className="flex-1">
               <Checkbox {...label} checked={selectAll} onChange={handleSelectAllClick} />
             </span>
-          </span>
-          <span className="col-span-3 ml-[-12%]">Title</span>
+          </span> */}
+          <span className="col-span-4">Title</span>
           <span>Published at</span>
           <span>Author</span>
           <span>Status</span>
           <span>Statistics</span>
         </div>
-        {dataPosts?.map((post: any) => (
-          <PostItem key={post.id} post={post} handleCheckItemClick={handleCheckItemClick} />
+        {data?.data?.map((post: any) => (
+          <PostItem key={post.id} post={post} />
         ))}
-        <DialogDelete
-          label="Do you want to remove the article?"
-          subContnet="Please consider this carefully, deleted articles cannot be recovered."
-          openDialog={openDialog}
-          handleClose={handleClose}
-          handleDeleteClick={handleDeleteClick}
-        />
         {/* <div className="flex justify-between">
           <div className="flex items-center text-sm mt-3 ml-2">{`Total number of articles ${data?.pagination._totalRow}`}</div>
           <Pagination

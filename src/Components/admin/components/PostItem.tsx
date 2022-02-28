@@ -8,19 +8,20 @@ import Link from 'next/link';
 
 // import Link from 'next/link';
 import { formatDate, truncate } from '../../../utilities/helper';
+import { IconButton, Tooltip } from '@mui/material';
 
 function PostList({ post, handleCheckItemClick }: any) {
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
   const [imgArticle, setImgArticle] = useState(
-    `${process.env.NEXT_PUBLIC_IMAGE_URL}${post.thumbnail}`,
+    `${process.env.NEXT_PUBLIC_IMAGE_URL}${post.thumbnail}`
   );
 
   return (
-    <div className="grid grid-cols-8 gap-1 bg-white hover:bg- px-3 py-1 font-medium items-center">
-      <span className="flex items-center">
+    <div className="grid grid-cols-9 gap-1 bg-white hover:bg- px-3 py-1 font-medium items-center">
+      {/* <span className="flex items-center">
         <Checkbox {...label} checked={post?.selected} onClick={() => handleCheckItemClick(post)} />
-      </span>
-      <span className="col-span-3 flex items-center w-[100%] py-1 ml-[-12%]">
+      </span> */}
+      <span className="col-span-4 flex items-center w-[100%] py-1">
         <div className="relative w-[220px] max-w-[120px] mr-2 h-[68px] ">
           <Image
             className="overflow-hidden rounded"
@@ -28,7 +29,7 @@ function PostList({ post, handleCheckItemClick }: any) {
             src={imgArticle}
             onError={() => {
               setImgArticle(
-                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`,
+                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`
               );
             }}
             alt="Article's image"
@@ -38,11 +39,10 @@ function PostList({ post, handleCheckItemClick }: any) {
           />
         </div>
         <div className="flex flex-col mt-[-5px] mb-auto">
-          <h6 className="text-textAdmin text-base">{truncate(`${post.title}`, 55)}</h6>
+          <h6 className="text-textAdmin text-base">{truncate(`${post.title}`, 52)}</h6>
           <Link href={`/posts/${post?.slug}`}>
             <span className="text-sm cursor-pointer hover:opacity-50">
-              #
-              {truncate(`${post?.slug}`, 55)}
+              #{truncate(`${post?.slug}`, 36)}
             </span>
           </Link>
         </div>
@@ -98,6 +98,22 @@ function PostList({ post, handleCheckItemClick }: any) {
           <span className="ml-[10%]">{post.countComment}</span>
         </button>
       </span>
+      <Tooltip title="Edit">
+        <IconButton
+          // onClick={() => {
+          //   setOpenPopup(true);
+          //   setCategorySelected(cat);
+          // }}
+        >
+          <Image
+            loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
+            alt="Edit"
+            width={20}
+            height={20}
+          />
+        </IconButton>
+      </Tooltip>
     </div>
   );
 }

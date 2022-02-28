@@ -41,7 +41,7 @@ function Category() {
 
   const hasSelectedCat = useMemo(
     () => dataCats.find((cat: any) => cat.selected === true),
-    [dataCats],
+    [dataCats]
   );
 
   useEffect(() => {
@@ -81,10 +81,6 @@ function Category() {
     router.push('/adminpanel/category/create');
   };
 
-  const handleUpdateClick = () => {
-    console.log('updated');
-  };
-
   return (
     <LayoutAdminPage title="Category">
       <HeaderAdmin
@@ -97,9 +93,8 @@ function Category() {
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All category</h4>
           <span className="text-sm mt-2 ml-2">
-            (Total
-            {dataCats.length}
-            )
+            (Total{` `}
+            {dataCats.length})
           </span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <button onClick={handleClickAdd}>
@@ -113,7 +108,9 @@ function Category() {
             </button>
             <button onClick={handleClickOpen} disabled={typeof hasSelectedCat === 'undefined'}>
               <Image
-                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`}
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`
+                }
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`}
                 alt="Delete"
                 width={20}
@@ -131,7 +128,7 @@ function Category() {
           <span>Category Name</span>
           <span>Type</span>
           <span>Date created</span>
-          <span>Total category</span>
+          <span>Total articles</span>
           <span>Status</span>
         </div>
         {dataCats.map((cat: any) => (
@@ -152,11 +149,7 @@ function Category() {
         />
       </div>
       <Popup title="Update Category" openPopup={openPopup}>
-        <FormUpdateCategory
-          category={categorySelected}
-          setOpenPopup={setOpenPopup}
-          handleUpdateClick={handleUpdateClick}
-        />
+        <FormUpdateCategory category={categorySelected} setOpenPopup={setOpenPopup} />
       </Popup>
     </LayoutAdminPage>
   );
