@@ -89,6 +89,7 @@ function Cpanel() {
         userId: id,
         status: status ? 1 : 0,
         role,
+        mods: [],
       }),
     });
     if (response.message === 200) {

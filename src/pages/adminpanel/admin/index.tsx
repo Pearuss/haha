@@ -80,7 +80,7 @@ function AdminPage() {
     router.push('/adminpanel/admin/create');
   };
 
-  const handleUpdateClick = async (id: number, status: number, role: number) => {
+  const handleUpdateClick = async (id: number, status: number, role: number, mods: number[]) => {
     setOpenPopup(false);
 
     const response = await useFetch('/api/v1/user/change-status', {
@@ -89,6 +89,7 @@ function AdminPage() {
         userId: id,
         status: status ? 1 : 0,
         role,
+        mods,
       }),
     });
     if (response.message === 200) {

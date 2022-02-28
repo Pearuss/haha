@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable object-curly-newline */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
@@ -34,8 +35,12 @@ function MemberItem(props: any) {
         </span>
       </Link>
 
-      {/* <span>{member.authorization}</span> */}
-      <span>All category</span>
+      <span
+        className="inline-block w-36 whitespace-nowrap overflow-hidden overflow-ellipsis"
+        title={member.modNames}
+      >
+        {member.role === 40 ? 'All categories' : member.modNames ? `${member.modNames}` : 'No'}
+      </span>
       <span>{formatDate(new Date(member?.createdAt))}</span>
       <span className="flex items-center gap-[45%]">
         <span>

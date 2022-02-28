@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/no-throw-literal */
 /* eslint-disable no-restricted-globals */
@@ -71,6 +72,7 @@ function UserCreatePage({ data }: any) {
     public: true,
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  console.log('newPost', newPost);
 
   useEffect(() => {
     try {
@@ -240,30 +242,12 @@ UserCreatePage.Layout = HeaderLayout;
 
 export default UserCreatePage;
 
-export const getStaticPaths = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/full-list?limit=100`);
-  const posts = await res.json();
-
-  const paths = posts?.data?.map((post: any) => ({
-    params: { slug: post.slug.toString() },
-  }));
-
-  return {
-    paths,
-    fallback: 'blocking',
-  };
-};
-
-export const getStaticProps = async (context: any) => {
-  const { slug } = context?.params;
-  if (!slug) return { notFound: true };
+export async function getServerSideProps(context: any) {
+  const { slug } = context.query;
+  // Fetch data from external API
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/${slug}/detail`);
-  const data: any = await res.json();
+  const data = await res.json();
 
-  return {
-    props: {
-      data,
-    },
-    revalidate: 1,
-  };
-};
+  // Pass data to the page via props
+  return { props: { data } };
+}

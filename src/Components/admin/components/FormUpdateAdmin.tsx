@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 
@@ -12,6 +13,7 @@ import {
   Typography,
 } from '@mui/material';
 import { Theme, useTheme } from '@mui/material/styles';
+import useSWR from 'swr';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -24,42 +26,34 @@ const MenuProps = {
   },
 };
 
-function getStyles(name: string, catName: string[], theme: Theme) {
+function getStyles(theme: Theme) {
   return {
-    fontWeight:
-      catName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
+    fontWeight: theme.typography.fontWeightMedium,
   };
 }
-
-const category = [
-  'Minnas Cover',
-  'Paine Hunter',
-  'Teachnical',
-  'Ralph Hubbard',
-  'Omar Alexander',
-  'Carlos Abbott',
-  'Miriam Wagner',
-  'Bradley Wilkerson',
-  'Virginia Andrews',
-  'Kelly Snyder',
-];
 
 export default function FormUpdateAdmin(props: any) {
   const { setOpenPopup, handleUpdateClick, admin } = props;
   const label = { inputProps: { 'aria-label': 'Checkbox status user' } };
 
   const theme = useTheme();
-  const [catName, setCatName] = React.useState<string[]>(category);
+
+  const arrIds = admin.modIds?.split(',').map((id: string) => +id);
+
+  const { data: cata }: any = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/category/menu`, {
+    revalidateOnFocus: false,
+  });
+  const categories = cata?.data.map((item: any) => ({ id: item.id, name: item.name }));
+
+  const [mods, setMods] = React.useState(arrIds || []);
   const [role, setRole] = useState(admin.role);
   const [status, setStatus] = useState(!!admin.status);
 
-  const handleChange = (event: SelectChangeEvent<typeof catName>) => {
+  const handleChange = (event: SelectChangeEvent<typeof mods>) => {
     const {
       target: { value },
     } = event;
-    setCatName(
+    setMods(
       // On autofill we get a the stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
@@ -93,6 +87,7 @@ export default function FormUpdateAdmin(props: any) {
             <MenuItem value={10}>USER</MenuItem>
             <MenuItem value={20}>MOD</MenuItem>
             <MenuItem value={30}>ADMIN</MenuItem>
+            <MenuItem value={40}>SUPER ADMIN</MenuItem>
           </Select>
         </FormControl>
       </div>
@@ -103,13 +98,13 @@ export default function FormUpdateAdmin(props: any) {
             id="demo-multiple-name"
             size="small"
             multiple
-            value={catName}
+            value={mods}
             onChange={handleChange}
             MenuProps={MenuProps}
           >
-            {category.map((cat) => (
-              <MenuItem key={cat} value={cat} style={getStyles(cat, catName, theme)}>
-                {cat}
+            {categories?.map((category: any) => (
+              <MenuItem key={category.id} value={category.id} style={getStyles(theme)}>
+                {category.name}
               </MenuItem>
             ))}
           </Select>
@@ -121,7 +116,7 @@ export default function FormUpdateAdmin(props: any) {
       </div>
       <DialogActions>
         <Button onClick={() => setOpenPopup(false)}>Cancel</Button>
-        <Button onClick={() => handleUpdateClick(admin.id, status, role)} autoFocus>
+        <Button onClick={() => handleUpdateClick(admin.id, status, role, mods)} autoFocus>
           Update
         </Button>
       </DialogActions>

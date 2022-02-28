@@ -17,7 +17,6 @@ import useFetch from '../../../hooks/use-fetch';
 
 function CreateNew() {
   const [dateEvent, setDateEvent] = React.useState<Date | null>(null);
-  console.log(dateEvent);
 
   const [newContent, setNewContent] = useState<any>({
     content: '',
@@ -82,7 +81,7 @@ function CreateNew() {
               value={newShortContent}
             />
           </div>
-          <div className="flex items-start w-full mt-8">
+          <div className="flex items-start w-full mt-8 max-w-[87%] xl:max-w-[83%]">
             <span className="w-40 flex font-medium text-gray-600 justify-end">Main content*</span>
             <div className="outline-none rounded ml-8 h-full w-full">
               {/* <textarea className="w-full py-2 px-4 outline-none rounded ml-8 h-72" /> */}
