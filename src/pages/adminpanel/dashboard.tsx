@@ -7,7 +7,7 @@ import LayoutAdmin from '../../Components/admin/layout/index';
 function Dashboard() {
   return (
     <LayoutAdmin title="Home">
-      <HeaderAdmin titlePage="Dashboard" subTitlePage="" searchPlaceholder="Email..." />
+      <HeaderAdmin titlePage="Dashboard" subTitlePage="" searchPlaceholder="Email..." showSearch={false} />
     </LayoutAdmin>
   );
 }

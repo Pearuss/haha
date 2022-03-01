@@ -28,6 +28,7 @@ export default function FormUpdateCategory(props: any) {
     });
     if (res?.message === 200) {
       Swal.fire('Successfully!');
+      setOpenPopup(false);
     } else {
       Swal.fire('Category name is invalid!');
     }

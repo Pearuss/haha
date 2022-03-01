@@ -9,9 +9,13 @@ import {
   DialogTitle,
 } from '@mui/material';
 
-function DialogDelete({
-  label, subContnet, openDialog, handleClose, handleDeleteClick,
-}: any) {
+function DialogDelete({ label, subContnet, openDialog, setOpenDialog }: any) {
+  const handleClose = () => {
+    setOpenDialog(false);
+  };
+  const handleDeleteClick = () => {
+    setOpenDialog(false);
+  };
   return (
     <Dialog
       open={openDialog}

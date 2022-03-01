@@ -13,9 +13,6 @@ import useSWR from 'swr';
 import Link from 'next/link';
 
 function News() {
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-  const [dataPosts, setDataPosts] = useState<any>([]);
-  const [selectAll, setSelectAll] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
 
   const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/news/full-list`, {
@@ -24,60 +21,13 @@ function News() {
     revalidateIfStale: true,
   });
 
-  useEffect(() => {
-    if (data?.data) {
-      console.log(data?.data);
-
-      setDataPosts(data.data.map((post: any) => ({ ...post, selected: false })));
-    }
-  }, [data]);
-
-  // const handleClickExport = () => {};
-
-  const hasSelectedTag = useMemo(
-    () => dataPosts?.find((post: any) => post.selected === true),
-    [dataPosts]
-  );
-
-  useEffect(() => {
-    const isSelectedAll = dataPosts?.find((post: any) => post.selected === false);
-    if (typeof isSelectedAll === 'undefined') setSelectAll(true);
-    else setSelectAll(false);
-  }, [dataPosts]);
-
-  const handleSelectAllClick = () => {
-    const newDataTags = [...dataPosts].map((post: any) => ({ ...post, selected: !selectAll }));
-    setSelectAll(!selectAll);
-    setDataPosts(newDataTags);
-  };
-
-  const handleCheckItemClick = (tag: any) => {
-    const index = dataPosts.indexOf(tag);
-    const newDataTags = [...dataPosts];
-    newDataTags.splice(index, 1, { ...tag, selected: !tag.selected });
-    setDataPosts(newDataTags);
-  };
-
-  const handleClickOpen = () => {
-    if (!hasSelectedTag) return;
-    setOpenDialog(true);
-  };
-
-  const handleClose = () => {
-    setOpenDialog(false);
-  };
-
-  const handleDeleteClick = () => {
-    const dataSelected = dataPosts.filter((post: any) => post.selected === true);
-    console.log(dataSelected);
-    handleClose();
-  };
   return (
     <LayoutAdminPage title="News">
       <HeaderAdmin
         titlePage="News Management"
         subTitlePage=""
         searchPlaceholder="Article title..."
+        showSearch={false}
       />
       <AdvancedSearch />
       <div className="bg-white rounded p-4 px-6">
@@ -85,7 +35,7 @@ function News() {
           <h4>All news</h4>
           <span className="text-sm mt-2 ml-2">
             (Total{` `}
-            {dataPosts.length})
+            {data?.data?.length})
           </span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <Link href="/adminpanel/news/create">
@@ -113,7 +63,7 @@ function News() {
                 height={20}
               />
             </button>
-            <button type="button" onClick={handleClickOpen}>
+            <button type="button">
               <Image
                 loader={() =>
                   `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`
@@ -127,26 +77,18 @@ function News() {
           </div>
         </div>
         <div className="grid grid-cols-6 bg-titleAdmin px-3 py-1 font-medium items-center">
-          <span className="flex items-center">
-            <span className="flex-1">
-              <Checkbox {...label} checked={selectAll} onChange={handleSelectAllClick} />
-            </span>
-          </span>
-          <span className="col-span-3 ml-[-12%]">Title</span>
+          <span className="col-span-4">Title</span>
           <span>Public at</span>
-          {/* <span>Author</span> */}
           <span>Status</span>
-          {/* <span>Options</span> */}
         </div>
-        {dataPosts?.map((_new: any) => {
-          return <NewItem key={_new.id} _new={_new} handleCheckItemClick={handleCheckItemClick} />;
+        {data?.data?.map((_new: any) => {
+          return <NewItem key={_new.id} _new={_new} />;
         })}
         <DialogDelete
           label="Do you want to remove the article?"
           subContnet="Please consider this carefully, deleted articles cannot be recovered."
           openDialog={openDialog}
-          handleClose={handleClose}
-          handleDeleteClick={handleDeleteClick}
+          setOpenDialog={setOpenDialog}
         />
       </div>
     </LayoutAdminPage>

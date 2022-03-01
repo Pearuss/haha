@@ -67,7 +67,7 @@ function CreateCategory() {
   };
   return (
     <LayoutAdminPage title="Home">
-      <HeaderAdmin titlePage="Create a Category" subTitlePage="" searchPlaceholder="Category..." />
+      <HeaderAdmin titlePage="Create a Category" subTitlePage="" searchPlaceholder="Category..." showSearch={false} />
       <div className="py-4 w-full">
         <h5 className="pb-4 mb-4 border-b-2 border-gray-600">Category information</h5>
         <div className="flex flex-col items-center w-[50vw] mx-auto">

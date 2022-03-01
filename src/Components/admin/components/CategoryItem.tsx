@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState } from 'react';
 
 import { IconButton, Tooltip } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
@@ -7,23 +7,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { formatDate } from '../../../utilities/helper';
+import Popup from '../common/popUp';
+import FormUpdateCategory from './FormUpdateCategory';
 
-function CategoryItem(props: any) {
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
-  const {
-    cat, handleCheckItemClick, setOpenPopup, setCategorySelected,
-  } = props;
-
+function CategoryItem({ cat }: any) {
+  const [openPopup, setOpenPopup] = useState(false);
   return (
     <div className="grid grid-cols-6 bg-white hover:bg- px-3 py-1 font-medium items-center">
-      <span className="flex items-center">
-        <span className="flex-1">
-          <Checkbox {...label} checked={cat.selected} onClick={() => handleCheckItemClick(cat)} />
-        </span>
-      </span>
       <Link href={cat?.slug}>
-        <span className="hover:opacity-50 cursor-pointer">{cat?.name}</span>
+        <span className="col-span-2 hover:opacity-50 cursor-pointer">{cat?.name}</span>
       </Link>
       <span>{cat?.parent_id === 0 ? 'Main' : 'Sub'}</span>
       <span>{formatDate(new Date(cat?.created_at))}</span>
@@ -45,7 +37,6 @@ function CategoryItem(props: any) {
           <IconButton
             onClick={() => {
               setOpenPopup(true);
-              setCategorySelected(cat);
             }}
           >
             <Image
@@ -58,6 +49,9 @@ function CategoryItem(props: any) {
           </IconButton>
         </Tooltip>
       </span>
+      <Popup title="Update Category" open={openPopup} setOpen={setOpenPopup}>
+        <FormUpdateCategory category={cat} setOpenPopup={setOpenPopup} />
+      </Popup>
     </div>
   );
 }

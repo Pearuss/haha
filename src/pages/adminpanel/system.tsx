@@ -20,6 +20,7 @@ function Dashboard() {
         titlePage="Website maintenance"
         subTitlePage="Cannot access from the user"
         searchPlaceholder="Admin..."
+        showSearch={false}
       />
       <div className="py-4 w-full">
         <h5 className="pb-4 mb-4 border-b-2 border-gray-600">Notification</h5>

@@ -101,6 +101,7 @@ function AllPost() {
         titlePage="Article Management"
         subTitlePage=""
         searchPlaceholder="Article title..."
+        showSearch={false}
       />
       <AdvancedSearch />
       <div className="bg-white rounded p-4 px-6">

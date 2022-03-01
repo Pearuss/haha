@@ -60,6 +60,7 @@ function CreateCategory() {
         titlePage="Create a Administrator"
         subTitlePage=""
         searchPlaceholder="Administrator..."
+        showSearch={true}
       />
       <div className="py-4 w-full">
         <h5 className="pb-4 mb-4 border-b-2 border-gray-600">Administrator information</h5>

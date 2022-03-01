@@ -112,7 +112,7 @@ function Cpanel() {
 
   return (
     <LayoutAdminPage title="Customer">
-      <HeaderAdmin titlePage="User Management" subTitlePage="" searchPlaceholder="Email user..." />
+      <HeaderAdmin titlePage="User Management" subTitlePage="" searchPlaceholder="Email user..." showSearch={true} />
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All user</h4>

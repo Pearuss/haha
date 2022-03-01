@@ -10,23 +10,12 @@ import Link from 'next/link';
 import { formatDate } from '../../../utilities/helper';
 
 function MemberItem(props: any) {
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
-  const { member, handleCheckItemClick, setOpenPopup, setAdminSelected } = props;
+  const { member, setOpenPopup } = props;
 
   return (
     <div className="grid grid-cols-6 bg-white hover:bg- px-3 py-1 font-medium items-center">
-      <span className="flex items-center">
-        <span className="flex-1">
-          <Checkbox
-            {...label}
-            checked={member.selected}
-            onClick={() => handleCheckItemClick(member)}
-          />
-        </span>
-      </span>
       <Link href={`/user/${member?.id}`}>
-        <span className="ml-[-42%] hover:opacity-50">{member?.email}</span>
+        <span className="col-span-2 hover:opacity-50">{member?.email}</span>
       </Link>
       <Link href={`/user/${member?.id}`}>
         <span className="hover:opacity-50">
@@ -51,7 +40,6 @@ function MemberItem(props: any) {
           <IconButton
             onClick={() => {
               setOpenPopup(true);
-              setAdminSelected(member);
             }}
           >
             <Image

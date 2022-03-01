@@ -34,6 +34,7 @@ function EditPost({ data }: any) {
         titlePage="Article"
         subTitlePage="Total number of articles 20"
         searchPlaceholder="Article title..."
+        showSearch={true}
       />
       <div className="py-4 w-full">
         <h5 className="pb-4 mb-4 border-b-2 border-gray-600">Article content</h5>
