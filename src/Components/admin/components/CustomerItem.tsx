@@ -16,9 +16,9 @@ function CustomerItem(props: any) {
 
   const [showDialogSendMessage, setShowDialogSendMessage] = useToggle(false);
   return (
-    <div className="grid grid-cols-5 bg-white hover:bg- px-3 py-1 font-medium items-center">
+    <div className="grid grid-cols-7 bg-white hover:bg- px-3 py-1 font-medium items-center">
       <Link href={`/user/${customer?.id}`}>
-        <span className="ml-[5%] hover:opacity-50 cursor-pointer">{customer?.email}</span>
+        <span className="col-span-2 hover:opacity-50 cursor-pointer">{customer?.email}</span>
       </Link>
 
       <Link href={`/user/${customer?.id}`}>
@@ -29,7 +29,7 @@ function CustomerItem(props: any) {
 
       <span className="ml-6">{customer?.total}</span>
       <span>{formatDate(new Date(customer?.createdAt))}</span>
-      <span className="flex items-center gap-[24%] mr-2">
+      <span className="flex items-center gap-[24%] mr-2 col-span-2">
         {customer.status ? (
           <Tooltip title="Status">
             <IconButton>
