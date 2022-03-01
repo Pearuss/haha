@@ -1,12 +1,10 @@
 /* eslint-disable max-len */
 /* eslint-disable */
-import React, { useEffect, useMemo, useState } from 'react';
+import React from 'react';
 
-import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
 // import { useRouter } from 'next/router';
 
-import DialogDelete from '../../../../Components/admin/common/dialogDelete';
 import AdvancedSearch from '../../../../Components/admin/components/AdvancedSearch';
 import HeaderAdmin from '../../../../Components/admin/components/HeaderAdmin';
 import PostItem from '../../../../Components/admin/components/PostItem';
@@ -16,12 +14,12 @@ import useSWR from 'swr';
 
 function AllPost() {
   // const router = useRouter();
-  const [dataPosts, setDataPosts] = useState<any>([]);
-  const [selectAll, setSelectAll] = useState(false);
-  const [openDialog, setOpenDialog] = useState(false);
+  // const [dataPosts, setDataPosts] = useState<any>([]);
+  // const [selectAll, setSelectAll] = useState(false);
+  // const [openDialog, setOpenDialog] = useState(false);
 
   // const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/full-list`, {
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/admin/full-list`, {
     // revalidateOnMount: false,
     revalidateOnMount: true,
     revalidateIfStale: true,
@@ -148,28 +146,3 @@ function AllPost() {
 }
 
 export default AllPost;
-
-// export async function getStaticPaths() {
-//   // const res = await fetch('http://localhost:3001/posts?_page=1&_limit=300');
-//   // const { pagination } = await res.json();
-//   // const totalPage = Math.ceil(pagination._totalRow / 5);
-
-//   const paths = [];
-//   for (let i = 1; i <= 3; i++) {
-//     paths.push({ params: { page: '1' } });
-//   }
-
-//   return { paths, fallback: false };
-// }
-
-// export const getStaticProps = async () => {
-//   // const res = await fetch(`http://localhost:3001/posts?_page=${params.page}&_limit=300`);
-//   // const posts = await res.json();
-
-//   return {
-//     props: {
-//       data: [],
-//     },
-//     revalidate: 1,
-//   };
-// };

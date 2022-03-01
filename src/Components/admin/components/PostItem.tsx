@@ -2,18 +2,16 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 
-import Checkbox from '@mui/material/Checkbox';
+import { IconButton, Tooltip } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 
 // import Link from 'next/link';
 import { formatDate, truncate } from '../../../utilities/helper';
-import { IconButton, Tooltip } from '@mui/material';
 
-function PostList({ post, handleCheckItemClick }: any) {
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+function PostList({ post }: any) {
   const [imgArticle, setImgArticle] = useState(
-    `${process.env.NEXT_PUBLIC_IMAGE_URL}${post.thumbnail}`
+    `${process.env.NEXT_PUBLIC_IMAGE_URL}${post.thumbnail}`,
   );
 
   return (
@@ -29,7 +27,7 @@ function PostList({ post, handleCheckItemClick }: any) {
             src={imgArticle}
             onError={() => {
               setImgArticle(
-                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`
+                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`,
               );
             }}
             alt="Article's image"
@@ -42,7 +40,8 @@ function PostList({ post, handleCheckItemClick }: any) {
           <h6 className="text-textAdmin text-base">{truncate(`${post.title}`, 52)}</h6>
           <Link href={`/posts/${post?.slug}`}>
             <span className="text-sm cursor-pointer hover:opacity-50">
-              #{truncate(`${post?.slug}`, 36)}
+              #
+              {truncate(`${post?.slug}`, 36)}
             </span>
           </Link>
         </div>
@@ -99,12 +98,7 @@ function PostList({ post, handleCheckItemClick }: any) {
         </button>
       </span>
       <Tooltip title="Edit">
-        <IconButton
-          // onClick={() => {
-          //   setOpenPopup(true);
-          //   setCategorySelected(cat);
-          // }}
-        >
+        <IconButton>
           <Image
             loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
             src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}

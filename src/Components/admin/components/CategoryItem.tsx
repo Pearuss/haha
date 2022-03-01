@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 
 import { IconButton, Tooltip } from '@mui/material';
-import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
 import Link from 'next/link';
 

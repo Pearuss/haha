@@ -1,19 +1,20 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
+
+import { Tooltip } from '@mui/material';
 import Image from 'next/image';
+import Link from 'next/link';
 import useSWR from 'swr';
 
 import DialogDelete from '../../../Components/admin/common/dialogDelete';
 import CategoryItem from '../../../Components/admin/components/CategoryItem';
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import LayoutAdminPage from '../../../Components/admin/layout';
-import Link from 'next/link';
-import { Tooltip } from '@mui/material';
 
 function Category() {
   const [openDialog, setOpenDialog] = useState(false);
-  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/category/full-list`, {
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/category/admin/full-list`, {
     // revalidateOnMount: false,
     revalidateOnMount: true,
     revalidateIfStale: true,
@@ -25,24 +26,23 @@ function Category() {
         titlePage="Category Management"
         subTitlePage=""
         searchPlaceholder="Search category..."
-        showSearch={true}
+        showSearch
       />
 
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All category</h4>
           <span className="text-sm mt-2 ml-2">
-            (Total{` `}
-            {data?.data?.length})
+            (Total
+            {data?.data?.length}
+            )
           </span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <Link href="/adminpanel/category/create">
               <Tooltip title="Add">
                 <button>
                   <Image
-                    loader={() =>
-                      `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/plus.png`
-                    }
+                    loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/plus.png`}
                     src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/plus.png`}
                     alt="Add"
                     width={19}
@@ -54,9 +54,7 @@ function Category() {
             <Tooltip title="Disable all">
               <button onClick={() => setOpenDialog(true)}>
                 <Image
-                  loader={() =>
-                    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`
-                  }
+                  loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`}
                   src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`}
                   alt="Delete"
                   width={20}

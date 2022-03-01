@@ -1,7 +1,6 @@
 /* eslint-disable */
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useState } from 'react';
 
-import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
 
 import NewItem from '../../../Components/admin/components/NewItem';
