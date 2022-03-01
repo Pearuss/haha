@@ -63,12 +63,14 @@ export default function FormUpdateAdmin(props: any) {
       <div className="flex items-end w-full mt-8">
         <span className="w-20 mr-4 font-medium text-gray-800">Name*</span>
         <Typography className="w-full font-medium text-gray-800 leading-none">
-          {admin.author ? admin.author : `${admin.first_name} ${admin.last_name}`}
+          {admin.authorName ? admin.authorName : `${admin.firstName} ${admin.lastName}`}
         </Typography>
       </div>
       <div className="flex items-end w-full mt-8">
         <span className="w-20 mr-4 font-medium text-gray-800">Email*</span>
-        <Typography className="w-full font-medium text-gray-800 leading-none">{admin.email}</Typography>
+        <Typography className="w-full font-medium text-gray-800 leading-none">
+          {admin.email}
+        </Typography>
       </div>
       <div className="flex items-center w-full mt-8">
         <span className="w-20 mr-4 font-medium text-gray-800">Role*</span>
@@ -76,7 +78,7 @@ export default function FormUpdateAdmin(props: any) {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            size='small'
+            size="small"
             defaultValue={admin.role}
             value={role}
             onChange={(e) => {
@@ -93,11 +95,11 @@ export default function FormUpdateAdmin(props: any) {
       </div>
       <div className="flex items-center w-full mt-8">
         <span className="w-20 mr-4 flex font-medium text-gray-800 justify-start">Mode*</span>
-        <FormControl sx={{  width: 300 }}>
+        <FormControl sx={{ width: 300 }}>
           <Select
             id="demo-multiple-name"
             size="small"
-            className='ml-[-1rem]'
+            className="ml-[-1rem]"
             multiple
             value={mods}
             onChange={handleChange}

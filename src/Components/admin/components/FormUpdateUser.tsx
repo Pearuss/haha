@@ -23,12 +23,14 @@ export default function FormUpdateUser(props: any) {
       <div className="flex items-end w-full mt-8">
         <span className="w-20 mr-4 font-medium text-gray-800">Name*</span>
         <Typography className="w-full font-medium text-gray-800 leading-none">
-          {user.author ? user.author : `${user.first_name} ${user.last_name}`}
+          {user.authorName ? user.authorName : `${user.firstName} ${user.lastName}`}
         </Typography>
       </div>
       <div className="flex items-end w-full mt-8">
         <span className="w-20 mr-4 font-medium text-gray-800">Email*</span>
-        <Typography className="w-full font-medium text-gray-800 leading-none">{user.email}</Typography>
+        <Typography className="w-full font-medium text-gray-800 leading-none">
+          {user.email}
+        </Typography>
       </div>
       <div className="flex items-center w-full mt-9">
         <span className="w-20 mr-4 font-medium text-gray-800">Role*</span>
@@ -37,7 +39,7 @@ export default function FormUpdateUser(props: any) {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             // label="Age"
-            size='small'
+            size="small"
             defaultValue={user.role}
             value={role}
             onChange={(e) => {

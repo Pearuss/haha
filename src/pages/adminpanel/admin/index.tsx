@@ -1,11 +1,9 @@
 /* eslint-disable */
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useState } from 'react';
 
-import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import DialogDelete from '../../../Components/admin/common/dialogDelete';
 import Popup from '../../../Components/admin/common/popUp';
 import FormUpdateAdmin from '../../../Components/admin/components/FormUpdateAdmin';
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
@@ -62,7 +60,12 @@ function AdminPage() {
 
   return (
     <LayoutAdminPage title="Member">
-      <HeaderAdmin titlePage="Administrator" subTitlePage="" searchPlaceholder="Admin email..." showSearch={false} />
+      <HeaderAdmin
+        titlePage="Administrator"
+        subTitlePage=""
+        searchPlaceholder="Admin email..."
+        showSearch={false}
+      />
 
       <div className="bg-white rounded h-full p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
@@ -94,10 +97,11 @@ function AdminPage() {
             setOpenPopup={setOpenPopup}
             key={member.id}
             member={member}
+            setAdminSelected={setAdminSelected}
           />
         ))}
       </div>
-      <Popup title="Update Admin" openPopup={openPopup}>
+      <Popup title="Update Admin" open={openPopup}>
         <FormUpdateAdmin
           admin={adminSelected}
           setOpenPopup={setOpenPopup}

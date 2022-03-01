@@ -98,7 +98,7 @@ function EditNew({ _new }: any) {
           </div>
           <div className="flex items-start w-full mt-8">
             <span className="w-40 flex font-medium text-gray-600 justify-end">Main content*</span>
-            <div className="outline-none rounded ml-8 h-full w-full">
+            <div className="outline-none rounded ml-8 h-full w-full max-w-[87%] xl:max-w-[83%]">
               <MarkDown
                 content={newContent.content}
                 setNewPost={setNewContent}

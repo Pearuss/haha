@@ -2,7 +2,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Image from 'next/image';
@@ -13,34 +12,23 @@ import { formatDate } from '../../../utilities/helper';
 import DialogSendMessage from '../common/dialogSendMessage';
 
 function CustomerItem(props: any) {
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
-  const { customer, handleCheckItemClick, setOpenPopup, setUserSelected } = props;
+  const { customer, setOpenPopup, setUserSelected } = props;
 
   const [showDialogSendMessage, setShowDialogSendMessage] = useToggle(false);
   return (
-    <div className="grid grid-cols-6 bg-white hover:bg- px-3 py-1 font-medium items-center">
-      <span className="flex items-center">
-        <span className="flex-1">
-          <Checkbox
-            {...label}
-            checked={customer.selected}
-            onClick={() => handleCheckItemClick(customer)}
-          />
-        </span>
-      </span>
+    <div className="grid grid-cols-5 bg-white hover:bg- px-3 py-1 font-medium items-center">
       <Link href={`/user/${customer?.id}`}>
-        <span className="ml-[-42%] hover:opacity-50 cursor-pointer">{customer?.email}</span>
+        <span className="ml-[5%] hover:opacity-50 cursor-pointer">{customer?.email}</span>
       </Link>
 
       <Link href={`/user/${customer?.id}`}>
         <span className="hover:opacity-50 cursor-pointer">
-          {customer.author ? customer.author : `${customer.first_name} ${customer.last_name}`}
+          {customer.authorName ? customer.authorName : `${customer.firstName} ${customer.lastName}`}
         </span>
       </Link>
 
       <span className="ml-6">{customer?.total}</span>
-      <span>{formatDate(new Date(customer?.created_at))}</span>
+      <span>{formatDate(new Date(customer?.createdAt))}</span>
       <span className="flex items-center gap-[24%] mr-2">
         {customer.status ? (
           <Tooltip title="Status">
