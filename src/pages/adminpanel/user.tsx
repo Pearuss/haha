@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/button-has-type */
 /* eslint-disable max-len */
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 import Swal from 'sweetalert2';
@@ -18,6 +18,9 @@ function Cpanel() {
   const [openPopup, setOpenPopup] = useState(false);
   const [dataCustomers, setDataCustomers] = useState<any>([]);
   const [userSelected, setUserSelected] = useState();
+  const [inputSearchUser, setInputSearchUser] = useState('');
+  const [dataSearch, setDataSearch] = useState([]);
+  console.log(dataSearch);
 
   const router = useRouter();
 
@@ -26,6 +29,26 @@ function Cpanel() {
     revalidateOnMount: true,
     revalidateIfStale: true,
   });
+
+  // const userSearchHandler = () => {
+  //   console.log(inputSearchUser);
+
+  // };
+  const userSearchHandler = useCallback(async () => {
+    if (inputSearchUser.trim()) {
+      const res = await useFetch('http://localhost:3100/api/v1/user/search-user', {
+        method: 'POST',
+        body: JSON.stringify({
+          keyword: inputSearchUser,
+        }),
+      });
+      if (res?.message === 200) {
+        setDataSearch(res.data);
+      } else {
+        Swal.fire('Something went wrong!');
+      }
+    }
+  }, [inputSearchUser]);
 
   useEffect(() => {
     if (data?.data) {
@@ -70,6 +93,9 @@ function Cpanel() {
         subTitlePage=""
         searchPlaceholder="Email user..."
         showSearch
+        setInputValue={setInputSearchUser}
+        inputValue={inputSearchUser}
+        searchHandler={userSearchHandler}
       />
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
@@ -94,12 +120,12 @@ function Cpanel() {
           </button> */}
         </div>
 
-        <div className="grid grid-cols-5 bg-titleAdmin px-3 py-1 font-medium items-center rounded-sm">
-          <span className=" ml-[10%]">Email</span>
+        <div className="grid grid-cols-7 bg-titleAdmin px-3 py-1 font-medium items-center rounded-sm">
+          <span className="col-span-2">Email</span>
           <span>Username</span>
           <span>Total articles</span>
           <span>Date created</span>
-          <span>Status</span>
+          <span className="col-span-2">Status</span>
         </div>
         {dataCustomers.map((customer: any) => (
           <CustomerItem

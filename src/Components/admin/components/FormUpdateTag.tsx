@@ -6,7 +6,7 @@ import {
 } from '@mui/material';
 
 export default function FormUpdateTag(props: any) {
-  const { setOpenPopup, handleUpdateClick, tag } = props;
+  const { setOpenPopup, tag } = props;
   const label = { inputProps: { 'aria-label': 'Checkbox status user' } };
   return (
     <div className="flex flex-col items-center mx-auto px-8">
@@ -20,9 +20,7 @@ export default function FormUpdateTag(props: any) {
       </div>
       <DialogActions>
         <Button onClick={() => setOpenPopup(false)}>Cancel</Button>
-        <Button onClick={handleUpdateClick} autoFocus>
-          Update
-        </Button>
+        <Button autoFocus>Update</Button>
       </DialogActions>
     </div>
   );
