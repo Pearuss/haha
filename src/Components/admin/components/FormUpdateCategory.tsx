@@ -5,10 +5,8 @@ import { Button, Checkbox, DialogActions, TextField } from '@mui/material';
 import useFetch from '../../../hooks/use-fetch';
 import Swal from 'sweetalert2';
 
-export default function FormUpdateCategory(props: any) {
-  const { setOpenPopup, category } = props;
+export default function FormUpdateCategory({ setOpenPopup, category, setCallGetCateAgain }: any) {
   const label = { inputProps: { 'aria-label': 'Checkbox status user' } };
-  console.log(category);
   const [categoryName, setCategoryName] = useState(category.name);
   const [checked, setChecked] = useState(category.status);
 
@@ -17,6 +15,7 @@ export default function FormUpdateCategory(props: any) {
   };
 
   const updateCategoryHandler = async () => {
+    setOpenPopup(false);
     const res = await useFetch(`/api/v1/category/${category.id}`, {
       method: 'PUT',
       body: JSON.stringify({
@@ -28,10 +27,12 @@ export default function FormUpdateCategory(props: any) {
     });
     if (res?.message === 200) {
       Swal.fire('Successfully!');
-      setOpenPopup(false);
+      // await mutate();
+      setCallGetCateAgain(true);
     } else {
       Swal.fire('Category name is invalid!');
     }
+    
   };
 
   return (

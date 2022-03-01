@@ -1,29 +1,21 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
+import React, { useState } from 'react';
 
 import { IconButton, Tooltip } from '@mui/material';
-import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { formatDate } from '../../../utilities/helper';
+import Popup from '../common/popUp';
+import FormUpdateTag from './FormUpdateTag';
 
-function TagList(props: any) {
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
-  const {
-    tag, handleCheckItemClick, setOpenPopup, setTagSelected,
-  } = props;
+function TagList({ tag }: any) {
+  const [openPopup, setOpenPopup] = useState(false);
 
   return (
-    <div className="grid grid-cols-5 bg-white hover:bg- px-3 py-1 font-medium items-center">
-      <span className="flex items-center">
-        <span className="flex-1">
-          <Checkbox {...label} checked={tag.selected} onClick={() => handleCheckItemClick(tag)} />
-        </span>
-      </span>
+    <div className="grid grid-cols-4 bg-white hover:bg- px-3 py-1 font-medium items-center">
       <Link href={`/tag${tag?.slug}`}>
-        <span className="ml-[-50%] hover:opacity-50 cursor-pointer">{tag?.name}</span>
+        <span className="hover:opacity-50 cursor-pointer">{tag?.name}</span>
       </Link>
 
       <span>{formatDate(new Date(tag?.created_at))}</span>
@@ -45,7 +37,6 @@ function TagList(props: any) {
           <IconButton
             onClick={() => {
               setOpenPopup(true);
-              setTagSelected(tag);
             }}
           >
             <Image
@@ -58,6 +49,9 @@ function TagList(props: any) {
           </IconButton>
         </Tooltip>
       </span>
+      <Popup title="Update Tag" open={openPopup}>
+        <FormUpdateTag tag={tag} setOpenPopup={setOpenPopup} />
+      </Popup>
     </div>
   );
 }

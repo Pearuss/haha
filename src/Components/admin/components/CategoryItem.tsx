@@ -10,7 +10,7 @@ import { formatDate } from '../../../utilities/helper';
 import Popup from '../common/popUp';
 import FormUpdateCategory from './FormUpdateCategory';
 
-function CategoryItem({ cat }: any) {
+function CategoryItem({ cat, setCallGetCateAgain }: any) {
   const [openPopup, setOpenPopup] = useState(false);
   return (
     <div className="grid grid-cols-6 bg-white hover:bg- px-3 py-1 font-medium items-center">
@@ -50,7 +50,7 @@ function CategoryItem({ cat }: any) {
         </Tooltip>
       </span>
       <Popup title="Update Category" open={openPopup} setOpen={setOpenPopup}>
-        <FormUpdateCategory category={cat} setOpenPopup={setOpenPopup} />
+        <FormUpdateCategory category={cat} setOpenPopup={setOpenPopup} setCallGetCateAgain={setCallGetCateAgain} />
       </Popup>
     </div>
   );

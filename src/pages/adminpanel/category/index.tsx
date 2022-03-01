@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/button-has-type */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import useSWR from 'swr';
 
@@ -13,11 +13,19 @@ import { Tooltip } from '@mui/material';
 
 function Category() {
   const [openDialog, setOpenDialog] = useState(false);
-  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/category/full-list`, {
+  const [callGetCateAgain, setCallGetCateAgain] = useState(false);
+  const { data, mutate } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/category/full-list`, {
     // revalidateOnMount: false,
     revalidateOnMount: true,
     revalidateIfStale: true,
   });
+
+  useEffect(() => {
+    if (callGetCateAgain) {
+      mutate();
+      setCallGetCateAgain(false);
+    }
+  }, [callGetCateAgain]);
 
   return (
     <LayoutAdminPage title="Category">
@@ -52,7 +60,7 @@ function Category() {
               </Tooltip>
             </Link>
             <Tooltip title="Disable all">
-              <button onClick={() => setOpenDialog(true)}>
+              <button onClick={async () => await mutate()}>
                 <Image
                   loader={() =>
                     `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`
@@ -74,7 +82,7 @@ function Category() {
           <span>Status</span>
         </div>
         {data?.data.map((cat: any) => (
-          <CategoryItem key={cat.id} cat={cat} />
+          <CategoryItem key={cat.id} cat={cat} setCallGetCateAgain={setCallGetCateAgain} />
         ))}
         <DialogDelete
           label="Do you want to remove the category?"
