@@ -58,7 +58,12 @@ function CreateNew() {
 
   return (
     <LayoutAdminPage title="Create a New">
-      <HeaderAdmin titlePage="Create a news" subTitlePage="" searchPlaceholder="News title..." showSearch={false} />
+      <HeaderAdmin
+        titlePage="Create a news"
+        subTitlePage=""
+        searchPlaceholder="News title..."
+        showSearch={false}
+      />
       <div className="py-4 w-full">
         <h5 className="pb-4 mb-4 border-b-2 border-gray-600">News content</h5>
         <div className="flex flex-col items-center w-[70vw] mx-auto">
@@ -81,9 +86,9 @@ function CreateNew() {
               value={newShortContent}
             />
           </div>
-          <div className="flex items-start w-full mt-8 max-w-[87%] xl:max-w-[83%]">
+          <div className="flex items-start w-full mt-8">
             <span className="w-40 flex font-medium text-gray-600 justify-end">Main content*</span>
-            <div className="outline-none rounded ml-8 h-full w-full">
+            <div className="outline-none rounded ml-8 h-full w-full max-w-[87%] xl:max-w-[83%]">
               {/* <textarea className="w-full py-2 px-4 outline-none rounded ml-8 h-72" /> */}
               <MarkDown
                 content={newContent.content}

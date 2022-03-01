@@ -4,14 +4,13 @@
 import React from 'react';
 
 import { IconButton, Tooltip } from '@mui/material';
-import Checkbox from '@mui/material/Checkbox';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { formatDate } from '../../../utilities/helper';
 
 function MemberItem(props: any) {
-  const { member, setOpenPopup } = props;
+  const { member, setOpenPopup, setAdminSelected } = props;
 
   return (
     <div className="grid grid-cols-6 bg-white hover:bg- px-3 py-1 font-medium items-center">
@@ -20,7 +19,7 @@ function MemberItem(props: any) {
       </Link>
       <Link href={`/user/${member?.id}`}>
         <span className="hover:opacity-50">
-          {member?.author ? member.author : `${member?.first_name} ${member?.last_name}`}
+          {member?.authorName ? member.authorName : `${member?.firstName} ${member?.lastName}`}
         </span>
       </Link>
 
@@ -45,6 +44,7 @@ function MemberItem(props: any) {
           <IconButton
             onClick={() => {
               setOpenPopup(true);
+              setAdminSelected(member);
             }}
           >
             <Image
