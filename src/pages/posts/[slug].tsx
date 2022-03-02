@@ -158,8 +158,8 @@ function DetailArticlePage({ data }: any) {
   return (
     <div className="relative flex md:mr-0 sm:mr-0 w-full">
       <NextSeo
-        title={article.title}
-        defaultTitle={article.meta_description}
+        title={article?.title}
+        defaultTitle={article?.meta_description}
         description="Hybrid Technologies Know-How"
         // keywords={article.meta_keywords}
       />

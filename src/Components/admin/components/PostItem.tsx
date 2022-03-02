@@ -38,12 +38,19 @@ function PostList({ post }: any) {
         </div>
         <div className="flex flex-col mt-[-5px] mb-auto">
           <h6 className="text-textAdmin text-base">{truncate(`${post.title}`, 52)}</h6>
-          <Link href={`/posts/${post?.slug}`}>
-            <span className="text-sm cursor-pointer hover:opacity-50">
+          {post.status ? (
+            <Link href={`/posts/${post?.slug}`}>
+              <span className="text-sm cursor-pointer hover:opacity-50">
+                #
+                {truncate(`${post?.slug}`, 36)}
+              </span>
+            </Link>
+          ) : (
+            <span className="text-sm">
               #
               {truncate(`${post?.slug}`, 36)}
             </span>
-          </Link>
+          )}
         </div>
       </span>
       <span>{formatDate(new Date(post?.published_at))}</span>
