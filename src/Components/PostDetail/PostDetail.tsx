@@ -26,13 +26,13 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   const tagSlugArray = article?.articleTagSlugs?.split(',');
 
   const { data: totalLikedRes, mutate: mutateLike }: any = useSWR(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/user/articlelike/total-like/${article.id}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/user/articlelike/total-like/${article?.id}`,
     {
       revalidateOnFocus: true,
     }
   );
   const { data: totalInWorkRes, mutate: mutateInWork }: any = useSWR(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/user/articleinwork/total-inwork/${article.id}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/user/articleinwork/total-inwork/${article?.id}`,
     {
       revalidateOnFocus: true,
     }
@@ -40,13 +40,13 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
 
   useEffect(() => {
     const checkIsLiked = async () => {
-      const res = await useFetch(`/api/v1/user/articlelike/isLiked/${article.id}`);
+      const res = await useFetch(`/api/v1/user/articlelike/isLiked/${article?.id}`);
       if (res.message === 200) {
         setIsLiked(res.data);
       }
     };
     const checkIsInWork = async () => {
-      const res = await useFetch(`/api/v1/user/articleinwork/isInworked/${article.id}`);
+      const res = await useFetch(`/api/v1/user/articleinwork/isInworked/${article?.id}`);
       if (res.message === 200) {
         setIsInWork(res.data);
       }
@@ -58,8 +58,8 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   }, [isLogin]);
 
   const contentBody = isReadMore
-    ? truncateBody(`${article.content}`, 580).toString() // max content length is 580
-    : truncateBody(`${article.content}`, 20000).toString(); // see full content
+    ? truncateBody(`${article?.content}`, 580).toString() // max content length is 580
+    : truncateBody(`${article?.content}`, 20000).toString(); // see full content
   // const contentBody =
   //   isReadMore && !isLogin
   //     ? truncateBody(`${article.content}`, 580).toString() // max content length is 580
@@ -88,7 +88,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
       mutateLike({ data: totalLikedRes.data + 1 }, false);
       useFetch('/api/v1/user/articlelike/like', {
         method: 'POST',
-        body: JSON.stringify({ articleId: article.id }),
+        body: JSON.stringify({ articleId: article?.id }),
       });
       setIsLiked(true);
     }
@@ -96,7 +96,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
       mutateLike({ data: totalLikedRes.data - 1 }, false);
       useFetch('/api/v1/user/articlelike/unlike', {
         method: 'POST',
-        body: JSON.stringify({ articleId: article.id }),
+        body: JSON.stringify({ articleId: article?.id }),
       });
       setIsLiked(false);
     }
@@ -106,7 +106,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
       mutateInWork({ data: totalInWorkRes.data + 1 }, false);
       useFetch('/api/v1/user/articleinwork/inwork', {
         method: 'POST',
-        body: JSON.stringify({ articleId: article.id }),
+        body: JSON.stringify({ articleId: article?.id }),
       });
       setIsInWork(true);
     }
@@ -114,7 +114,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
       mutateInWork({ data: totalInWorkRes.data - 1 }, false);
       useFetch('/api/v1/user/articleinwork/uninwork', {
         method: 'POST',
-        body: JSON.stringify({ articleId: article.id }),
+        body: JSON.stringify({ articleId: article?.id }),
       });
       setIsInWork(false);
     }
@@ -146,14 +146,14 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
         </Link>
         <Link href={`/user/${article?.author_id}`}>
           <span className="font-medium text-xl ml-2 text-blueCyanLogo cursor-pointer hover:opacity-50">
-            {article.authorName
-              ? `${article.authorName}`
-              : `${article.authorFirstname} ${article.authorLastname}`}
+            {article?.authorName
+              ? `${article?.authorName}`
+              : `${article?.authorFirstname} ${article?.authorLastname}`}
           </span>
         </Link>
         <Link href={`/${article?.mainCategory.trim().toLowerCase().replace(/ /g, '-')}`}>
           <span className="text-gray-500 text-sm ml-1 mt-1 cursor-pointer hover:opacity-50">
-            @{`${article.mainCategory} • ${timeAgo(new Date(article?.published_at))} • `}
+            @{`${article?.mainCategory} • ${timeAgo(new Date(article?.published_at))} • `}
           </span>
         </Link>
         <span className="flex items-center mt-[5px] text-gray-500 pl-2">
@@ -164,7 +164,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
         </span>
 
         {profile?.data?.userId === article?.author_id && (
-          <Link href={`/posts/edit/${article.slug}`}>
+          <Link href={`/posts/edit/${article?.slug}`}>
             <Tooltip disableFocusListener disableTouchListener title="Edit">
               <span className="mt-1 ml-2 cursor-pointer">
                 <Image

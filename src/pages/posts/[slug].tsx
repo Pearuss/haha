@@ -23,7 +23,7 @@ const CommentSection = dynamic(() => import('../../Components/CommentSection/Com
 function DetailArticlePage({ data }: any) {
   const [isLogin, setIsLogin] = useState(false);
   const [showFormComment, setShowFormComment] = useState(false);
-  const [isShowContentIndex, setIsShowContentIndex] = useState(true);
+  const [isShowContentIndex, setIsShowContentIndex] = useState(false);
   const [isReadMore, setIsReadMore] = useState(true);
   const [isShowTopicMobile, setIsShowTopicMobile] = useState(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
@@ -73,8 +73,8 @@ function DetailArticlePage({ data }: any) {
         }</a></li>`;
       }
 
-      if (html === '') {
-        setIsShowContentIndex(false);
+      if (html !== '') {
+        setIsShowContentIndex(true);
       }
 
       contentIndexE.innerHTML = contentIndexE == null ? '' : html;
@@ -158,8 +158,8 @@ function DetailArticlePage({ data }: any) {
   return (
     <div className="relative flex md:mr-0 sm:mr-0 w-full">
       <NextSeo
-        title={article.title}
-        defaultTitle={article.meta_description}
+        title={article?.title}
+        defaultTitle={article?.meta_description}
         description="Hybrid Technologies Know-How"
         // keywords={article.meta_keywords}
       />
