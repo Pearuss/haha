@@ -5,22 +5,45 @@ import React, { useState, useEffect } from 'react';
 import { Tooltip } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
+import Swal from 'sweetalert2';
 import useSWR from 'swr';
 
 import DialogDelete from '../../../Components/admin/common/dialogDelete';
 import CategoryItem from '../../../Components/admin/components/CategoryItem';
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import LayoutAdminPage from '../../../Components/admin/layout';
+import useFetch from '../../../hooks/use-fetch';
 
 function Category() {
   const [openDialog, setOpenDialog] = useState(false);
-  // const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/category/admin/full-list`, {
+  const [inputSearchCategory, setInputSearchCategory] = useState('');
+  const [allCategory, setAllCategory] = useState([]);
   const [callGetCateAgain, setCallGetCateAgain] = useState(false);
   const { data, mutate } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/category/admin/full-list`, {
     // revalidateOnMount: false,
     revalidateOnMount: true,
     revalidateIfStale: true,
   });
+
+  const categorySearchHandler = async () => {
+    const res = await useFetch('http://localhost:3100/api/v1/category/search', {
+      method: 'POST',
+      body: JSON.stringify({
+        keyword: inputSearchCategory,
+      }),
+    });
+    if (res?.message === 200) {
+      setAllCategory(res.data);
+    } else {
+      Swal.fire('Something went wrong!');
+    }
+  };
+
+  useEffect(() => {
+    if (data?.data) {
+      setAllCategory(data.data);
+    }
+  }, [data?.data]);
 
   useEffect(() => {
     if (callGetCateAgain) {
@@ -36,6 +59,9 @@ function Category() {
         subTitlePage=""
         searchPlaceholder="Search category..."
         showSearch
+        inputValue={inputSearchCategory}
+        setInputValue={setInputSearchCategory}
+        searchHandler={categorySearchHandler}
       />
 
       <div className="bg-white rounded p-4 px-6">
@@ -43,7 +69,8 @@ function Category() {
           <h4>All category</h4>
           <span className="text-sm mt-2 ml-2">
             (Total
-            {data?.data?.length}
+            {' '}
+            {allCategory?.length}
             )
           </span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
@@ -80,7 +107,7 @@ function Category() {
           <span>Total articles</span>
           <span>Status</span>
         </div>
-        {data?.data.map((cat: any) => (
+        {allCategory?.map((cat: any) => (
           <CategoryItem key={cat.id} cat={cat} setCallGetCateAgain={setCallGetCateAgain} />
         ))}
         <DialogDelete

@@ -1,21 +1,45 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/button-has-type */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import Swal from 'sweetalert2';
 import useSWR from 'swr';
 
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import TagItem from '../../../Components/admin/components/TagItem';
 import LayoutAdminPage from '../../../Components/admin/layout';
+import useFetch from '../../../hooks/use-fetch';
 
 function Tag() {
+  const [inputSearchTags, setInputSearchTags] = useState('');
+  const [allTag, setAllTag] = useState([]);
   const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/tags/full-list`, {
     // revalidateOnMount: false,
     revalidateOnMount: true,
     revalidateIfStale: true,
   });
+
+  useEffect(() => {
+    if (data?.data) {
+      setAllTag(data.data);
+    }
+  }, [data?.data]);
+
+  const tagSearchHandler = async () => {
+    const res = await useFetch('http://localhost:3100/api/v1/tags/search', {
+      method: 'POST',
+      body: JSON.stringify({
+        keyword: inputSearchTags,
+      }),
+    });
+    if (res?.message === 200) {
+      setAllTag(res.data);
+    } else {
+      Swal.fire('Something went wrong!');
+    }
+  };
 
   return (
     <LayoutAdminPage title="HashTag">
@@ -24,13 +48,18 @@ function Tag() {
         subTitlePage=""
         searchPlaceholder="Search tag..."
         showSearch
+        inputValue={inputSearchTags}
+        setInputValue={setInputSearchTags}
+        searchHandler={tagSearchHandler}
       />
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All hashtag</h4>
           <span className="text-sm mt-2 ml-2">
             (Total
-            {data?.data?.length}
+            {' '}
+            {' '}
+            {allTag?.length}
             )
           </span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
@@ -62,7 +91,7 @@ function Tag() {
           <span>Total Articles</span>
           <span>Status</span>
         </div>
-        {data?.data?.map((tag: any) => (
+        {allTag?.map((tag: any) => (
           <TagItem key={tag.id} tag={tag} />
         ))}
         {/* <DialogDelete

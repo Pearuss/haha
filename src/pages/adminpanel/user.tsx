@@ -19,8 +19,6 @@ function Cpanel() {
   const [dataCustomers, setDataCustomers] = useState<any>([]);
   const [userSelected, setUserSelected] = useState();
   const [inputSearchUser, setInputSearchUser] = useState('');
-  const [dataSearch, setDataSearch] = useState([]);
-  console.log(dataSearch);
 
   const router = useRouter();
 
@@ -35,24 +33,22 @@ function Cpanel() {
 
   // };
   const userSearchHandler = useCallback(async () => {
-    if (inputSearchUser.trim()) {
-      const res = await useFetch('http://localhost:3100/api/v1/user/search-user', {
-        method: 'POST',
-        body: JSON.stringify({
-          keyword: inputSearchUser,
-        }),
-      });
-      if (res?.message === 200) {
-        setDataSearch(res.data);
-      } else {
-        Swal.fire('Something went wrong!');
-      }
+    const res = await useFetch('http://localhost:3100/api/v1/user/search-user', {
+      method: 'POST',
+      body: JSON.stringify({
+        keyword: inputSearchUser,
+      }),
+    });
+    if (res?.message === 200) {
+      setDataCustomers(res.data);
+    } else {
+      Swal.fire('Something went wrong!');
     }
   }, [inputSearchUser]);
 
   useEffect(() => {
     if (data?.data) {
-      setDataCustomers(data.data.map((post: any) => ({ ...post, selected: false })));
+      setDataCustomers(data.data);
     }
   }, [data]);
 
@@ -102,6 +98,7 @@ function Cpanel() {
           <h4>All user</h4>
           <span className="text-sm mt-2 ml-2">
             (Total
+            {' '}
             {dataCustomers.length}
             )
           </span>

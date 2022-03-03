@@ -97,17 +97,19 @@ function PostList({ post }: any) {
           <span className="ml-[10%]">{post.countComment}</span>
         </button>
       </span>
-      <Tooltip title="Edit">
-        <IconButton>
-          <Image
-            loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
-            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
-            alt="Edit"
-            width={20}
-            height={20}
-          />
-        </IconButton>
-      </Tooltip>
+      <span className="ml-8">
+        <Tooltip title="Edit">
+          <IconButton>
+            <Image
+              loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
+              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
+              alt="Edit"
+              width={20}
+              height={20}
+            />
+          </IconButton>
+        </Tooltip>
+      </span>
     </div>
   );
 }

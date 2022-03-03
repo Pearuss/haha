@@ -126,6 +126,7 @@ function AllPost() {
           <span>Author</span>
           <span>Status</span>
           <span>Statistics</span>
+          <span className="ml-8">Option</span>
         </div>
         {data?.data?.map((post: any) => (
           <PostItem key={post.id} post={post} />
