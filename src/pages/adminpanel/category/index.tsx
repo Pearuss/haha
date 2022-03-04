@@ -26,7 +26,7 @@ function Category() {
   });
 
   const categorySearchHandler = async () => {
-    const res = await useFetch('http://localhost:3100/api/v1/category/search', {
+    const res = await useFetch(`${process.env.NEXT_PUBLIC_BASE_URL}/category/search`, {
       method: 'POST',
       body: JSON.stringify({
         keyword: inputSearchCategory,
@@ -67,18 +67,15 @@ function Category() {
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All category</h4>
-          <span className="text-sm mt-2 ml-2">
-            (Total
-            {' '}
-            {allCategory?.length}
-            )
-          </span>
+          <span className="text-sm mt-2 ml-2">(Total {allCategory?.length})</span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <Link href="/adminpanel/category/create">
               <Tooltip title="Add">
                 <button>
                   <Image
-                    loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/plus.png`}
+                    loader={() =>
+                      `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/plus.png`
+                    }
                     src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/plus.png`}
                     alt="Add"
                     width={19}
@@ -90,7 +87,9 @@ function Category() {
             <Tooltip title="Disable all">
               <button>
                 <Image
-                  loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`}
+                  loader={() =>
+                    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`
+                  }
                   src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`}
                   alt="Delete"
                   width={20}

@@ -84,7 +84,7 @@ function HeaderRight() {
               <Link href="/following-tags">
                 <a className="link ">Following tags</a>
               </Link>
-              {profile?.data?.role === 40 && (
+              {profile?.data?.role > 25 && (
                 <Link href="/adminpanel/dashboard">
                   <a className="link ">Moderator</a>
                 </Link>

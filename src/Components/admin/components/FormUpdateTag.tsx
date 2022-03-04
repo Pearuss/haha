@@ -26,7 +26,7 @@ export default function FormUpdateTag(props: any) {
       // await mutate();
       setCallMutateAgain(true);
     } else {
-      Swal.fire('Category name is invalid!');
+      Swal.fire('Tag name is invalid!');
     }
   };
   return (

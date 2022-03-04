@@ -37,7 +37,7 @@ function Tag() {
   }, [callMutateAgain]);
 
   const tagSearchHandler = async () => {
-    const res = await useFetch('http://localhost:3100/api/v1/tags/search', {
+    const res = await useFetch(`${process.env.NEXT_PUBLIC_BASE_URL}/tags/search`, {
       method: 'POST',
       body: JSON.stringify({
         keyword: inputSearchTags,
@@ -66,14 +66,15 @@ function Tag() {
           <h4>All hashtag</h4>
           <span className="text-sm mt-2 ml-2">
             (Total
-            {allTag?.length}
-            )
+            {allTag?.length})
           </span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <Link href="/adminpanel/tag/create">
               <button>
                 <Image
-                  loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/plus.png`}
+                  loader={() =>
+                    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/plus.png`
+                  }
                   src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/plus.png`}
                   alt="Add"
                   width={19}
@@ -83,7 +84,9 @@ function Tag() {
             </Link>
             <button>
               <Image
-                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`}
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`
+                }
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/delete.png`}
                 alt="Delete"
                 width={20}
