@@ -29,7 +29,7 @@ function Cpanel() {
   });
 
   const userSearchHandler = useCallback(async () => {
-    const res = await useFetch('http://localhost:3100/api/v1/user/search-user', {
+    const res = await useFetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/search-user`, {
       method: 'POST',
       body: JSON.stringify({
         keyword: inputSearchUser,
@@ -92,12 +92,7 @@ function Cpanel() {
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All user</h4>
-          <span className="text-sm mt-2 ml-2">
-            (Total
-            {' '}
-            {dataCustomers.length}
-            )
-          </span>
+          <span className="text-sm mt-2 ml-2">(Total {dataCustomers.length})</span>
           {/* <button
             className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer"
             onClick={handleClickOpen}
