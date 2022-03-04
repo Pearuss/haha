@@ -1,24 +1,47 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 
 import NewItem from '../../../Components/admin/components/NewItem';
-import DialogDelete from '../../../Components/admin/common/dialogDelete';
 import AdvancedSearch from '../../../Components/admin/components/AdvancedSearch';
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
 import LayoutAdminPage from '../../../Components/admin/layout';
-import useSWR from 'swr';
 import Link from 'next/link';
+import useFetch from '../../../hooks/use-fetch';
 
 function News() {
-  const [openDialog, setOpenDialog] = useState(false);
+  const [allNews, setAllNews] = useState<any>([]);
+  const [keyword, setKeyword] = useState<string>('');
+  const [beginDate, setBeginDate] = useState<Date>();
+  const [endDate, setEndDate] = useState<Date>();
 
-  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/news/full-list`, {
-    // revalidateOnMount: false,
-    revalidateOnMount: true,
-    revalidateIfStale: true,
-  });
+  const fetchArticle = async (key: string, begin: Date | undefined, end: Date | undefined) => {
+    const res = await useFetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/news/full-list?keyword=${key}&beginDate=${
+        begin || new Date('01-01-2021')
+      }&endDate=${end || new Date()}`
+    );
+    setAllNews(res?.data);
+  };
+
+  console.log('allArticles', allNews);
+
+  useEffect(() => {
+    fetchArticle(keyword, beginDate, endDate);
+  }, []);
+
+  const handleClickExport = () => {};
+  const handleClickSearch = () => {
+    fetchArticle(keyword, beginDate, endDate);
+  };
+
+  const handleCancleSearch = () => {
+    setKeyword('');
+    setBeginDate(undefined);
+    setEndDate(undefined);
+    fetchArticle('', undefined, undefined);
+  };
 
   return (
     <LayoutAdminPage title="News">
@@ -28,13 +51,22 @@ function News() {
         searchPlaceholder="Article title..."
         showSearch={false}
       />
-      <AdvancedSearch />
+      <AdvancedSearch
+        handleClickSearch={handleClickSearch}
+        keyword={keyword}
+        beginDate={beginDate}
+        endDate={endDate}
+        setKeyword={setKeyword}
+        setEndDate={setEndDate}
+        setBeginDate={setBeginDate}
+        handleCancleSearch={handleCancleSearch}
+      />
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All news</h4>
           <span className="text-sm mt-2 ml-2">
             (Total{` `}
-            {data?.data?.length})
+            {allNews.length})
           </span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <Link href="/adminpanel/news/create">
@@ -80,30 +112,14 @@ function News() {
           <span>Public at</span>
           <span>Status</span>
         </div>
-        {data?.data?.map((_new: any) => {
-          return <NewItem key={_new.id} _new={_new} />;
-        })}
-        <DialogDelete
-          label="Do you want to remove the article?"
-          subContnet="Please consider this carefully, deleted articles cannot be recovered."
-          openDialog={openDialog}
-          setOpenDialog={setOpenDialog}
-        />
+        {allNews?.length > 0 ? (
+          allNews?.map((_new: any) => <NewItem key={_new.id} _new={_new} />)
+        ) : (
+          <p className="text-xl text-red-500">No data</p>
+        )}
       </div>
     </LayoutAdminPage>
   );
 }
 
 export default News;
-
-// export const getStaticProps = async () => {
-//   // const res = await fetch('http://localhost:3001/posts?_limit=4');
-//   // const news = await res.json();
-
-//   // return {
-//   //   props: {
-//   //     data: [],
-//   //   },
-//   //   revalidate: 1,
-//   // };
-// };

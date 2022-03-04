@@ -26,7 +26,7 @@ const items: MenuItemType[] = [
       },
       {
         title: "User's Article",
-        link: { href: '/adminpanel/articles/page/1' },
+        link: { href: '/adminpanel/articles' },
       },
     ],
   },
