@@ -10,7 +10,6 @@ function CreateTag() {
   const [tagName, setTagName] = useState<string>('');
 
   const createTagHandler = async () => {
-    console.log(tagName);
     const res = await useFetch('/api/v1/tags', {
       method: 'POST',
       body: JSON.stringify({

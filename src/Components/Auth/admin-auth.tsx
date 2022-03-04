@@ -18,7 +18,7 @@ function AdminAuth({ children }: any) {
   };
 
   useEffect(() => {
-    if (!firstLoading && role !== 40) {
+    if (!firstLoading && role < 25) {
       router.replace('/login');
     }
   }, [router, role, firstLoading]);

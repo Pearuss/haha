@@ -13,8 +13,8 @@ import DialogSendMessage from '../common/dialogSendMessage';
 
 function CustomerItem(props: any) {
   const { customer, setOpenPopup, setUserSelected } = props;
-
   const [showDialogSendMessage, setShowDialogSendMessage] = useToggle(false);
+  
   return (
     <div className="grid grid-cols-7 bg-white hover:bg- px-3 py-1 font-medium items-center">
       <Link href={`/user/${customer?.id}`}>
@@ -30,11 +30,13 @@ function CustomerItem(props: any) {
       <span className="ml-6">{customer?.total}</span>
       <span>{formatDate(new Date(customer?.createdAt))}</span>
       <span className="flex items-center gap-[24%] mr-2 col-span-2">
-        {customer.status ? (
+        {customer.status !== 0 ? (
           <Tooltip title="Status">
             <IconButton>
               <Image
-                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`
+                }
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
                 alt="check"
                 width={20}
@@ -46,7 +48,9 @@ function CustomerItem(props: any) {
           <Tooltip title="Status">
             <IconButton>
               <Image
-                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`}
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`
+                }
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`}
                 alt="cross"
                 width={20}
@@ -74,7 +78,9 @@ function CustomerItem(props: any) {
         <Tooltip title="Notification">
           <IconButton onClick={setShowDialogSendMessage}>
             <Image
-              loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/send-mail.png`}
+              loader={() =>
+                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/send-mail.png`
+              }
               src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/send-mail.png`}
               alt="send"
               width={21}
