@@ -1,5 +1,6 @@
 /* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
+
 import Swal from 'sweetalert2';
 
 import HeaderAdmin from '../../../Components/admin/components/HeaderAdmin';
@@ -26,7 +27,12 @@ function CreateTag() {
   };
   return (
     <LayoutAdminPage title="Home">
-      <HeaderAdmin titlePage="Create a tag" subTitlePage="" searchPlaceholder="Tag..." showSearch={false} />
+      <HeaderAdmin
+        titlePage="Create a tag"
+        subTitlePage=""
+        searchPlaceholder="Tag..."
+        showSearch={false}
+      />
       <div className="py-4 w-full">
         <h5 className="pb-4 mb-4 border-b-2 border-gray-600">Tag information</h5>
         <div className="flex flex-col items-center w-[50vw] mx-auto">

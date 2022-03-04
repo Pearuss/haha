@@ -6,15 +6,14 @@ import Switch from '@material-ui/core/Switch';
 import { IconButton, Tooltip } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
-
-// import Link from 'next/link';
-import { formatDate, truncate } from '../../../utilities/helper';
 import Swal from 'sweetalert2';
+
 import useFetch from '../../../hooks/use-fetch';
+import { formatDate, truncate } from '../../../utilities/helper';
 
 function PostList({ post }: any) {
   const [imgArticle, setImgArticle] = useState(
-    `${process.env.NEXT_PUBLIC_IMAGE_URL}${post.thumbnail}`
+    `${process.env.NEXT_PUBLIC_IMAGE_URL}${post.thumbnail}`,
   );
   const [statusArticle, setStatusArticle] = useState(post.status);
 
@@ -70,7 +69,7 @@ function PostList({ post }: any) {
             src={imgArticle}
             onError={() => {
               setImgArticle(
-                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`
+                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`,
               );
             }}
             alt="Article's image"
@@ -84,11 +83,15 @@ function PostList({ post }: any) {
           {post.status ? (
             <Link href={`/posts/${post?.slug}`}>
               <span className="text-sm cursor-pointer hover:opacity-50">
-                #{truncate(`${post?.slug}`, 36)}
+                #
+                {truncate(`${post?.slug}`, 36)}
               </span>
             </Link>
           ) : (
-            <span className="text-sm">#{truncate(`${post?.slug}`, 36)}</span>
+            <span className="text-sm">
+              #
+              {truncate(`${post?.slug}`, 36)}
+            </span>
           )}
         </div>
       </span>
@@ -97,13 +100,11 @@ function PostList({ post }: any) {
         {post?.authorName ? post.authorName : `${post?.authorFirstname} ${post?.authorLastname}`}
       </span>
       <span>
-      {post.status !== 0 ? (
+        {post.status !== 0 ? (
           <Tooltip title="Status">
             <IconButton>
               <Image
-                loader={() =>
-                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`
-                }
+                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
                 alt="check"
                 width={20}
@@ -115,9 +116,7 @@ function PostList({ post }: any) {
           <Tooltip title="Status">
             <IconButton>
               <Image
-                loader={() =>
-                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`
-                }
+                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`}
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`}
                 alt="cross"
                 width={20}

@@ -25,13 +25,11 @@ function News() {
     setAllNews(res?.data);
   };
 
-  console.log('allArticles', allNews);
-
   useEffect(() => {
     fetchArticle(keyword, beginDate, endDate);
   }, []);
 
-  const handleClickExport = () => {};
+  // const handleClickExport = () => {};
   const handleClickSearch = () => {
     fetchArticle(keyword, beginDate, endDate);
   };
