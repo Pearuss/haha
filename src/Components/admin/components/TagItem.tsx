@@ -9,7 +9,7 @@ import { formatDate } from '../../../utilities/helper';
 import Popup from '../common/popUp';
 import FormUpdateTag from './FormUpdateTag';
 
-function TagList({ tag }: any) {
+function TagList({ tag, setCallMutateAgain }: any) {
   const [openPopup, setOpenPopup] = useState(false);
 
   return (
@@ -50,7 +50,11 @@ function TagList({ tag }: any) {
         </Tooltip>
       </span>
       <Popup title="Update Tag" open={openPopup}>
-        <FormUpdateTag tag={tag} setOpenPopup={setOpenPopup} />
+        <FormUpdateTag
+          tag={tag}
+          setOpenPopup={setOpenPopup}
+          setCallMutateAgain={setCallMutateAgain}
+        />
       </Popup>
     </div>
   );

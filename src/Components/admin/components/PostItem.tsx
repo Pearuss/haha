@@ -2,7 +2,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 
-import { IconButton, Tooltip } from '@mui/material';
+import Switch from '@material-ui/core/Switch';
+import { Tooltip } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -13,6 +14,14 @@ function PostList({ post }: any) {
   const [imgArticle, setImgArticle] = useState(
     `${process.env.NEXT_PUBLIC_IMAGE_URL}${post.thumbnail}`,
   );
+  const [statusArticle, setStatusArticle] = useState(post.status);
+
+  const changeStatusHandler = () => {
+    if (statusArticle) {
+      console.log('abc');
+    }
+    setStatusArticle(!statusArticle);
+  };
 
   return (
     <div className="grid grid-cols-9 gap-1 bg-white hover:bg- px-3 py-1 font-medium items-center">
@@ -105,16 +114,14 @@ function PostList({ post }: any) {
         </button>
       </span>
       <span className="ml-8">
-        <Tooltip title="Edit">
-          <IconButton>
-            <Image
-              loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
-              src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/edit.png`}
-              alt="Edit"
-              width={20}
-              height={20}
-            />
-          </IconButton>
+        <Tooltip title="Switch status">
+          <Switch
+            checked={statusArticle}
+            onChange={changeStatusHandler}
+            color="default"
+            className="text-red-400"
+            inputProps={{ 'aria-label': 'primary checkbox' }}
+          />
         </Tooltip>
       </span>
     </div>

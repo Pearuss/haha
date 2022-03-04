@@ -15,7 +15,9 @@ import useFetch from '../../../hooks/use-fetch';
 function Tag() {
   const [inputSearchTags, setInputSearchTags] = useState('');
   const [allTag, setAllTag] = useState([]);
-  const { data } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/tags/full-list`, {
+  const [callMutateAgain, setCallMutateAgain] = useState(false);
+
+  const { data, mutate } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/tags/full-list`, {
     // revalidateOnMount: false,
     revalidateOnMount: true,
     revalidateIfStale: true,
@@ -26,6 +28,13 @@ function Tag() {
       setAllTag(data.data);
     }
   }, [data?.data]);
+
+  useEffect(() => {
+    if (callMutateAgain) {
+      mutate();
+      setCallMutateAgain(false);
+    }
+  }, [callMutateAgain]);
 
   const tagSearchHandler = async () => {
     const res = await useFetch('http://localhost:3100/api/v1/tags/search', {
@@ -57,8 +66,6 @@ function Tag() {
           <h4>All hashtag</h4>
           <span className="text-sm mt-2 ml-2">
             (Total
-            {' '}
-            {' '}
             {allTag?.length}
             )
           </span>
@@ -92,7 +99,7 @@ function Tag() {
           <span>Status</span>
         </div>
         {allTag?.map((tag: any) => (
-          <TagItem key={tag.id} tag={tag} />
+          <TagItem key={tag.id} tag={tag} setCallMutateAgain={setCallMutateAgain} />
         ))}
         {/* <DialogDelete
           label="Do you want to remove the tag?"

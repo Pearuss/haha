@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 // import { useRouter } from 'next/router';
@@ -14,7 +14,7 @@ import useSWR from 'swr';
 
 function AllPost() {
   // const router = useRouter();
-  // const [dataPosts, setDataPosts] = useState<any>([]);
+  const [allArticles, setAllArticles] = useState<any>([]);
   // const [selectAll, setSelectAll] = useState(false);
   // const [openDialog, setOpenDialog] = useState(false);
 
@@ -24,13 +24,13 @@ function AllPost() {
     revalidateOnMount: true,
     revalidateIfStale: true,
   });
-  // useEffect(() => {
-  //   if (data?.data) {
-  //     console.log(data?.data);
+  const articles = data?.data?.list;
 
-  //     setDataPosts(data?.data?.map((post: any) => ({ ...post, selected: false })));
-  //   }
-  // }, [data]);
+  useEffect(() => {
+    if (articles) {
+      setAllArticles(articles);
+    }
+  }, [articles]);
 
   // const totalPage = Math.ceil(Number(data?.pagination?._totalRow) / 5 || 0);
   // const currentPage = Number(router.query.page);
@@ -105,7 +105,7 @@ function AllPost() {
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All articles</h4>
-          <span className="text-sm mt-2 ml-2">(Total {data?.data?.length})</span>
+          <span className="text-sm mt-2 ml-2">(Total {allArticles?.length})</span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <button onClick={handleClickExport}>
               <Image src="/images/share.png" width={20} height={20} />
@@ -128,7 +128,7 @@ function AllPost() {
           <span>Statistics</span>
           <span className="ml-8">Option</span>
         </div>
-        {data?.data?.map((post: any) => (
+        {allArticles?.map((post: any) => (
           <PostItem key={post.id} post={post} />
         ))}
         {/* <div className="flex justify-between">
