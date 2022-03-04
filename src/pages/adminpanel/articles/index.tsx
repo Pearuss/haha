@@ -121,7 +121,7 @@ function AllPost() {
         <div className="flex justify-between">
           {total > 10 ? (
             <Pagination
-              totalPage={total ? Math.round(total / 10) : 1}
+              totalPage={total ? Math.ceil(total / 10) : 1}
               currentPage={pageIndex}
               goOtherPage={goOtherPage}
               goNextPage={goNextPage}
