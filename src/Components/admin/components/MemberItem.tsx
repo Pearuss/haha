@@ -32,13 +32,35 @@ function MemberItem(props: any) {
       <span>{formatDate(new Date(member?.createdAt))}</span>
       <span className="flex items-center gap-[45%]">
         <span>
-          <Image
-            loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
-            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
-            alt="Check"
-            width={20}
-            height={20}
-          />
+        {member.status !== 0 ? (
+          <Tooltip title="Status">
+            <IconButton>
+              <Image
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`
+                }
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
+                alt="check"
+                width={20}
+                height={20}
+              />
+            </IconButton>
+          </Tooltip>
+        ) : (
+          <Tooltip title="Status">
+            <IconButton>
+              <Image
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`
+                }
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`}
+                alt="cross"
+                width={20}
+                height={20}
+              />
+            </IconButton>
+          </Tooltip>
+        )}
         </span>
         <Tooltip title="Edit">
           <IconButton

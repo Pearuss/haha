@@ -27,13 +27,35 @@ function NewItem({ _new }: any) {
       </span>
       <span>{formatDate(new Date(_new?.createdAt))}</span>
       <span className="flex items-center gap-[45%]">
-        <Image
-          loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
-          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
-          alt="Check"
-          width={20}
-          height={20}
-        />
+        {_new.status !== "0" ? (
+          <Tooltip title="Status">
+            <IconButton>
+              <Image
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`
+                }
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
+                alt="check"
+                width={20}
+                height={20}
+              />
+            </IconButton>
+          </Tooltip>
+        ) : (
+          <Tooltip title="Status">
+            <IconButton>
+              <Image
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`
+                }
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`}
+                alt="cross"
+                width={20}
+                height={20}
+              />
+            </IconButton>
+          </Tooltip>
+        )}
         <span>
           <Tooltip title="Edit">
             <IconButton

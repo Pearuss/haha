@@ -24,6 +24,9 @@ function AdminPage() {
     revalidateIfStale: true,
   });
 
+  console.log(data?.data);
+  
+
   const handleClickAdd = () => {
     router.push('/adminpanel/admin/create');
   };

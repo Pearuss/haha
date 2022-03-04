@@ -28,10 +28,6 @@ function Cpanel() {
     revalidateIfStale: true,
   });
 
-  // const userSearchHandler = () => {
-  //   console.log(inputSearchUser);
-
-  // };
   const userSearchHandler = useCallback(async () => {
     const res = await useFetch('http://localhost:3100/api/v1/user/search-user', {
       method: 'POST',

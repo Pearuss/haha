@@ -11,6 +11,7 @@ import FormUpdateCategory from './FormUpdateCategory';
 
 function CategoryItem({ cat, setCallGetCateAgain }: any) {
   const [openPopup, setOpenPopup] = useState(false);
+
   return (
     <div className="grid grid-cols-6 bg-white hover:bg- px-3 py-1 font-medium items-center">
       <Link href={cat?.slug}>
@@ -24,13 +25,35 @@ function CategoryItem({ cat, setCallGetCateAgain }: any) {
 
       <span className="flex items-center gap-[45%]">
         <span>
-          <Image
-            loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
-            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
-            alt="Check"
-            width={20}
-            height={20}
-          />
+          {cat.status !== 0 ? (
+            <Tooltip title="Status">
+              <IconButton>
+                <Image
+                  loader={() =>
+                    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`
+                  }
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
+                  alt="check"
+                  width={20}
+                  height={20}
+                />
+              </IconButton>
+            </Tooltip>
+          ) : (
+            <Tooltip title="Status">
+              <IconButton>
+                <Image
+                  loader={() =>
+                    `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`
+                  }
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`}
+                  alt="cross"
+                  width={20}
+                  height={20}
+                />
+              </IconButton>
+            </Tooltip>
+          )}
         </span>
         <Tooltip title="Edit">
           <IconButton

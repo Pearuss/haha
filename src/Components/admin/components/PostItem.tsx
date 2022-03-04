@@ -3,24 +3,58 @@
 import React, { useState } from 'react';
 
 import Switch from '@material-ui/core/Switch';
-import { Tooltip } from '@mui/material';
+import { IconButton, Tooltip } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 
 // import Link from 'next/link';
 import { formatDate, truncate } from '../../../utilities/helper';
+import Swal from 'sweetalert2';
+import useFetch from '../../../hooks/use-fetch';
 
 function PostList({ post }: any) {
   const [imgArticle, setImgArticle] = useState(
-    `${process.env.NEXT_PUBLIC_IMAGE_URL}${post.thumbnail}`,
+    `${process.env.NEXT_PUBLIC_IMAGE_URL}${post.thumbnail}`
   );
   const [statusArticle, setStatusArticle] = useState(post.status);
 
   const changeStatusHandler = () => {
-    if (statusArticle) {
-      console.log('abc');
-    }
-    setStatusArticle(!statusArticle);
+    Swal.fire({
+      title: 'Are you sure change status this article?',
+      showCancelButton: true,
+      confirmButtonText: 'Ok',
+    }).then(async (result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        if (statusArticle) {
+          const res = await useFetch(`/api/v1/user/article/change-status/${post.id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+              status: 0,
+            }),
+          });
+          if (res?.message === 200) {
+            Swal.fire('Successfully!');
+            setStatusArticle(false);
+          } else {
+            Swal.fire('Something went wrong!');
+          }
+        } else {
+          const res = await useFetch(`/api/v1/user/article/change-status/${post.id}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+              status: 1,
+            }),
+          });
+          if (res?.message === 200) {
+            Swal.fire('Successfully!');
+            setStatusArticle(true);
+          } else {
+            Swal.fire('Something went wrong!');
+          }
+        }
+      }
+    });
   };
 
   return (
@@ -36,7 +70,7 @@ function PostList({ post }: any) {
             src={imgArticle}
             onError={() => {
               setImgArticle(
-                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`,
+                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cover-photo4.jpg`
               );
             }}
             alt="Article's image"
@@ -50,15 +84,11 @@ function PostList({ post }: any) {
           {post.status ? (
             <Link href={`/posts/${post?.slug}`}>
               <span className="text-sm cursor-pointer hover:opacity-50">
-                #
-                {truncate(`${post?.slug}`, 36)}
+                #{truncate(`${post?.slug}`, 36)}
               </span>
             </Link>
           ) : (
-            <span className="text-sm">
-              #
-              {truncate(`${post?.slug}`, 36)}
-            </span>
+            <span className="text-sm">#{truncate(`${post?.slug}`, 36)}</span>
           )}
         </div>
       </span>
@@ -67,13 +97,35 @@ function PostList({ post }: any) {
         {post?.authorName ? post.authorName : `${post?.authorFirstname} ${post?.authorLastname}`}
       </span>
       <span>
-        <Image
-          loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
-          src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
-          alt="Check"
-          width={20}
-          height={20}
-        />
+      {post.status !== 0 ? (
+          <Tooltip title="Status">
+            <IconButton>
+              <Image
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`
+                }
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
+                alt="check"
+                width={20}
+                height={20}
+              />
+            </IconButton>
+          </Tooltip>
+        ) : (
+          <Tooltip title="Status">
+            <IconButton>
+              <Image
+                loader={() =>
+                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`
+                }
+                src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`}
+                alt="cross"
+                width={20}
+                height={20}
+              />
+            </IconButton>
+          </Tooltip>
+        )}
       </span>
 
       {/* <Link href={linkDetail}>
