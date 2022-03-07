@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 import Switch from '@material-ui/core/Switch';
 import { IconButton, Tooltip } from '@mui/material';
 import Image from 'next/image';
-import Link from 'next/link';
 import Swal from 'sweetalert2';
 
 import useFetch from '../../../hooks/use-fetch';
@@ -58,9 +57,6 @@ function PostList({ post }: any) {
 
   return (
     <div className="grid grid-cols-9 gap-1 bg-white hover:bg- px-3 py-1 font-medium items-center">
-      {/* <span className="flex items-center">
-        <Checkbox {...label} checked={post?.selected} onClick={() => handleCheckItemClick(post)} />
-      </span> */}
       <span className="col-span-4 flex items-center w-[100%] py-1">
         <div className="relative w-[220px] max-w-[120px] mr-2 h-[68px] ">
           <Image
@@ -79,14 +75,17 @@ function PostList({ post }: any) {
           />
         </div>
         <div className="flex flex-col mt-[-5px] mb-auto">
-          <h6 className="text-textAdmin text-base">{truncate(`${post.title}`, 52)}</h6>
+          <h6 className="text-textAdmin text-base">{truncate(`${post.title}`, 60)}</h6>
           {post.status ? (
-            <Link href={`/posts/${post?.slug}`}>
-              <span className="text-sm cursor-pointer hover:opacity-50">
-                #
-                {truncate(`${post?.slug}`, 36)}
-              </span>
-            </Link>
+            <a
+              href={`/posts/${post?.slug}`}
+              target="_blank"
+              rel="article link noreferrer"
+              className="text-sm cursor-pointer hover:opacity-50 no-underline text-textAdmin"
+            >
+              #
+              {truncate(`${post?.slug}`, 36)}
+            </a>
           ) : (
             <span className="text-sm">
               #
