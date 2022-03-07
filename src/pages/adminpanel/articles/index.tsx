@@ -60,7 +60,7 @@ function AllPost() {
   };
 
   const goNextPage = () => {
-    if (pageIndex < Math.round(total / 10)) {
+    if (pageIndex < Math.ceil(total / 10)) {
       setPageIndex(pageIndex + 1);
       fetchArticle(pageIndex + 1, keyword, beginDate, endDate);
     }

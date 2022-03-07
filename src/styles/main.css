@@ -32,8 +32,19 @@ a {
 .postContent code {
   white-space: break-spaces !important;
 }
+.postContent iframe {
+  @apply my-4 mx-auto w-[40vw] h-[40vh];
+}
+.postContent img {
+  @apply my-4 mx-auto w-[40vw];
+}
 .postDetail {
   white-space: break-word;
+}
+
+/* Markdown */
+.markdown iframe {
+  @apply w-full h-96 my-4;
 }
 
 @tailwind components;

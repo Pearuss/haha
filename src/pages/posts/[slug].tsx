@@ -78,9 +78,7 @@ function DetailArticlePage({ data }: any) {
       }
 
       contentIndexE.innerHTML = contentIndexE == null ? '' : html;
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }, [isReadMore]);
 
   useEffect(() => {
