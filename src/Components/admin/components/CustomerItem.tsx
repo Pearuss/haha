@@ -5,7 +5,6 @@ import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import useToggle from '../../../hooks/use-toggle';
 import { formatDate } from '../../../utilities/helper';
@@ -14,18 +13,26 @@ import DialogSendMessage from '../common/dialogSendMessage';
 function CustomerItem(props: any) {
   const { customer, setOpenPopup, setUserSelected } = props;
   const [showDialogSendMessage, setShowDialogSendMessage] = useToggle(false);
-  
+
   return (
     <div className="grid grid-cols-7 bg-white hover:bg- px-3 py-1 font-medium items-center">
-      <Link href={`/user/${customer?.id}`}>
-        <span className="col-span-2 hover:opacity-50 cursor-pointer">{customer?.email}</span>
-      </Link>
+      <a
+        href={`/user/${customer?.id}`}
+        target="_blank"
+        rel="profile link noreferrer"
+        className="col-span-2 hover:opacity-50 no-underline text-textAdmin"
+      >
+        {customer?.email}
+      </a>
 
-      <Link href={`/user/${customer?.id}`}>
-        <span className="hover:opacity-50 cursor-pointer">
-          {customer.authorName ? customer.authorName : `${customer.firstName} ${customer.lastName}`}
-        </span>
-      </Link>
+      <a
+        href={`/user/${customer?.id}`}
+        target="_blank"
+        rel="profile link noreferrer"
+        className="hover:opacity-50 no-underline text-textAdmin"
+      >
+        {customer.authorName ? customer.authorName : `${customer.firstName} ${customer.lastName}`}
+      </a>
 
       <span className="ml-6">{customer?.total}</span>
       <span>{formatDate(new Date(customer?.createdAt))}</span>
@@ -34,9 +41,7 @@ function CustomerItem(props: any) {
           <Tooltip title="Status">
             <IconButton>
               <Image
-                loader={() =>
-                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`
-                }
+                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/check1.png`}
                 alt="check"
                 width={20}
@@ -48,9 +53,7 @@ function CustomerItem(props: any) {
           <Tooltip title="Status">
             <IconButton>
               <Image
-                loader={() =>
-                  `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`
-                }
+                loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`}
                 src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/cross.png`}
                 alt="cross"
                 width={20}
@@ -78,9 +81,7 @@ function CustomerItem(props: any) {
         <Tooltip title="Notification">
           <IconButton onClick={setShowDialogSendMessage}>
             <Image
-              loader={() =>
-                `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/send-mail.png`
-              }
+              loader={() => `${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/send-mail.png`}
               src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/uploads/static/images/send-mail.png`}
               alt="send"
               width={21}

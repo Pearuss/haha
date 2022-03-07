@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 
 import { IconButton, Tooltip } from '@mui/material';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import { formatDate } from '../../../utilities/helper';
 import Popup from '../common/popUp';
@@ -14,14 +13,25 @@ function TagList({ tag, setCallMutateAgain }: any) {
 
   return (
     <div className="grid grid-cols-4 bg-white hover:bg- px-3 py-1 font-medium items-center">
-      <Link href={`/tag${tag?.slug}`}>
-        <span className="hover:opacity-50 cursor-pointer">{tag?.name}</span>
-      </Link>
+      <a
+        href={`/tag${tag?.slug}`}
+        target="_blank"
+        rel="tag link noreferrer"
+        className="hover:opacity-50 no-underline text-textAdmin"
+      >
+        {tag?.name}
+      </a>
 
       <span>{formatDate(new Date(tag?.created_at))}</span>
-      <Link href={`/tag${tag?.slug}`}>
-        <span className="ml-6 hover:opacity-50 cursor-pointer">{tag?.total}</span>
-      </Link>
+
+      <a
+        href={`/tag${tag?.slug}`}
+        target="_blank"
+        rel="tag link noreferrer"
+        className="ml-6 hover:opacity-50 no-underline text-textAdmin"
+      >
+        {tag?.total}
+      </a>
 
       <span className="flex items-center gap-[45%]">
         <span>
