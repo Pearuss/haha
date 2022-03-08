@@ -25,7 +25,6 @@ function AdminPage() {
   });
 
   console.log(data?.data);
-  
 
   const handleClickAdd = () => {
     router.push('/adminpanel/admin/create');
@@ -73,7 +72,7 @@ function AdminPage() {
       <div className="bg-white rounded h-full p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All admin</h4>
-          <span className="text-sm mt-2 ml-2">(Total {data?.data?.length})</span>
+          <span className="text-sm mt-2 ml-2">({`Total ${data?.data?.length}`})</span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <button onClick={handleClickAdd}>
               <Image

@@ -25,14 +25,14 @@ function AllPost() {
     page: number,
     key: string,
     begin: Date | undefined,
-    end: Date | undefined,
+    end: Date | undefined
   ) => {
     const res = await useFetch(
       `${
         process.env.NEXT_PUBLIC_BASE_URL
       }/user/article/admin/full-list?pageIndex=${page}&pageSize=10&keyword=${key}&beginDate=${
         begin || new Date('01-01-2021')
-      }&endDate=${end || new Date()}`,
+      }&endDate=${end || new Date()}`
     );
     setAllArticles(res?.data?.list);
     setTotal(res?.data?.total);
@@ -94,11 +94,7 @@ function AllPost() {
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All articles</h4>
-          <span className="text-sm mt-2 ml-2">
-            (Total
-            {allArticles?.length}
-            )
-          </span>
+          <span className="text-sm mt-2 ml-2">({`Total ${allArticles?.length}`})</span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <button onClick={handleClickExport}>
               <Image src="/images/share.png" width={20} height={20} />

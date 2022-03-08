@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
 import { Category } from '../../models';
-import { capitalizeFirstLetter } from '../../utilities/helper';
+import { createSlug } from '../../utilities/helper';
 
 /* eslint-disable */
 function Menu() {
@@ -129,9 +129,9 @@ function Menu() {
           data.data !== null &&
           Object.keys(data.data).map((category: string) => (
             <li key={category} className="dropdown" data-dropdown>
-              <Link href={`/${category.toLowerCase().replace(/ /g, '-')}`}>
+              <Link href={`/${createSlug(category)}`}>
                 <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
-                  {capitalizeFirstLetter(category)}
+                  {category}
                 </a>
               </Link>
 
@@ -187,7 +187,7 @@ function Menu() {
               } w-full text-left py-4 px-6 ssm:px-0 border-b border-gray-300`}
               data-dropdown
             >
-              <Link href={`/${category.toLowerCase().replace(/ /g, '-')}`}>
+              <Link href={`/${createSlug(category)}`}>
                 <a className="cursor-pointer ssm:text-xs" data-dropdown-button>
                   {category}
                 </a>

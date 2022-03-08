@@ -67,7 +67,7 @@ function Category() {
       <div className="bg-white rounded p-4 px-6">
         <div className="flex pb-4 mb-4 border-b-2 border-gray-500 items-center">
           <h4>All category</h4>
-          <span className="text-sm mt-2 ml-2">(Total {allCategory?.length})</span>
+          <span className="text-sm mt-2 ml-2">(({`Total ${allCategory?.length}`})</span>
           <div className="flex gap-4 ml-auto mt-2 pr-3 cursor-pointer">
             <Link href="/adminpanel/category/create">
               <Tooltip title="Add">

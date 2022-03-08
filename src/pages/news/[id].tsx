@@ -8,6 +8,8 @@ import NewsDetail from '../../Components/PostDetail/NewsDetail';
 import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
 // import { useAuth } from '../../hooks';
 import { DetailPostLayout } from '../../layout';
+import { GetServerSidePropsContext } from 'next';
+import useFetch from '../../hooks/use-fetch';
 
 function NewSection({ data }: any) {
   const [isShowTopicMobile, setIsShowTopicMobile] = useState(false);
@@ -73,30 +75,45 @@ NewSection.Layout = DetailPostLayout;
 
 export default NewSection;
 
-export const getStaticPaths = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news/full-list`);
-  const news = await res.json();
+// export const getStaticPaths = async () => {
+//   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news/full-list`);
+//   const news = await res.json();
 
-  const paths = news?.data?.map((post: any) => ({
-    params: { id: post.id.toString() },
-  }));
+//   const paths = news?.data?.map((post: any) => ({
+//     params: { id: post.id.toString() },
+//   }));
 
-  return {
-    paths,
-    fallback: 'blocking',
-  };
-};
+//   return {
+//     paths,
+//     fallback: 'blocking',
+//   };
+// };
 
-export const getStaticProps = async (context: any) => {
-  const { id } = context?.params;
+// export const getStaticProps = async (context: any) => {
+//   const { id } = context?.params;
+//   if (!id) return { notFound: true };
+//   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news/${id}/detail`);
+//   const data: any = await res.json();
+
+//   return {
+//     props: {
+//       data: data,
+//     },
+//     revalidate: 1,
+//   };
+// };
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  context.res.setHeader('Cache-Control', 's-maxage=1');
+  const id = context.query.id;
   if (!id) return { notFound: true };
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news/${id}/detail`);
-  const data: any = await res.json();
 
+  const data = await useFetch(`${process.env.NEXT_PUBLIC_BASE_URL}/news/${id}/detail`);
+  // const data: any = await res.json();
+  // ...
   return {
     props: {
       data: data,
     },
-    revalidate: 1,
   };
-};
+}

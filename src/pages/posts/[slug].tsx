@@ -11,14 +11,14 @@ import PostDetail from '../../Components/PostDetail/PostDetail';
 import TagSectionMobile from '../../Components/TagContent/TagSectionMobile';
 import { useAuth } from '../../hooks';
 import { DetailPostLayout } from '../../layout';
-import dynamic from 'next/dynamic';
 import useFetch from '../../hooks/use-fetch';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
+import CommentSection from '../../Components/CommentSection/CommentSection';
 
-const CommentSection = dynamic(() => import('../../Components/CommentSection/CommentSection'), {
-  ssr: false,
-});
+// const CommentSection = dynamic(() => import('../../Components/CommentSection/CommentSection'), {
+//   ssr: false,
+// });
 
 function DetailArticlePage({ data }: any) {
   const [isLogin, setIsLogin] = useState(false);

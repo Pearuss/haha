@@ -2,46 +2,41 @@
 import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 
 import Post from '../../Components/Post';
 import TagSectionMobile from '../../Components/TagContent/TagSection';
 import useToggle from '../../hooks/use-toggle';
 import { MainLayout } from '../../layout';
-import { capitalizeFirstLetter } from '../../utilities/helper';
 import useSWR from 'swr';
 import { Tag } from '../../models';
 import useFetch from '../../hooks/use-fetch';
 import { NextSeo } from 'next-seo';
+import { useRouter } from 'next/router';
 
-function PostsTag({ data, tag }: any) {
+function PostsTag({ data, currentTag }: any) {
+  const router = useRouter();
   const [isFollow, setIsFollow] = useToggle(false);
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
-  const [currentTagId, setCurrentTagId] = useState<string | null>(null);
   const [totalFollow, setTotalFollow] = useState<number | null>(0);
-  const router = useRouter();
-
-  const { data: allTag } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`, {
-    revalidateOnFocus: false,
-  });
+  const tagId = currentTag.id;
 
   const { data: followTags } = useSWR('/api/v1/following-tag/get-full');
 
   const followHandler = async () => {
-    if (currentTagId && isFollow) {
+    if (currentTag.id && isFollow) {
       const res = await useFetch('/api/v1/following-tag/unfollow', {
         method: 'POST',
         body: JSON.stringify({
-          tagId: currentTagId,
+          tagId: currentTag.id,
         }),
       });
       res.message.toString() === '200' ? setIsFollow(false) : null;
     }
-    if (currentTagId && !isFollow) {
+    if (currentTag.id && !isFollow) {
       const res = await useFetch('/api/v1/following-tag/follow', {
         method: 'POST',
         body: JSON.stringify({
-          tagId: currentTagId,
+          tagId: currentTag.id,
         }),
       });
       res.message.toString() === '200' ? setIsFollow(true) : null;
@@ -51,17 +46,10 @@ function PostsTag({ data, tag }: any) {
   useEffect(() => {
     if (followTags?.errCd) return;
     let currentTagIndex = -1;
-    currentTagIndex = followTags?.data?.findIndex(
-      (tag: Tag) => tag.slug.toString() === `/${router.query.tag}`
-    );
+    currentTagIndex = followTags?.data?.findIndex((tag: Tag) => tag.id === tagId);
     if (currentTagIndex === -1) {
-      const currentTag = allTag?.data?.findIndex(
-        (tag: Tag) => tag.slug.toString() === `/${router.query.tag}`
-      );
-      setCurrentTagId(allTag?.data[currentTag]?.id || null);
       setIsFollow(false);
     } else {
-      setCurrentTagId(followTags?.data[currentTagIndex]?.id || null);
       setIsFollow(true);
     }
   }, [router, followTags]);
@@ -69,16 +57,16 @@ function PostsTag({ data, tag }: any) {
   useEffect(() => {
     const getTotalFollow = async () => {
       const res = await useFetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/following-tag/total-follower/${currentTagId}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/following-tag/total-follower/${currentTag.id}`
       );
       if (res?.message.toString() === '200') {
         setTotalFollow(res.data);
       }
     };
-    if (currentTagId) {
+    if (currentTag.id) {
       getTotalFollow();
     }
-  }, [currentTagId, followTags, isFollow]);
+  }, [tagId, followTags, isFollow]);
 
   useEffect(() => {
     const btnShowTag = document.querySelector('.btnShowTag');
@@ -103,10 +91,10 @@ function PostsTag({ data, tag }: any) {
   return (
     <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw] flex-1">
       <NextSeo
-        title={capitalizeFirstLetter(tag)}
-        defaultTitle={`All articles in ${tag} tag`}
+        title={currentTag.name}
+        // defaultTitle={`All articles in ${currentTag.name} tag`}
         description="Hybrid Technologies Know-How"
-        // keywords={article.meta_keywords}
+        // keywords={currentTag.name}
       />
       <div className="flex items-center ">
         <Image
@@ -117,7 +105,7 @@ function PostsTag({ data, tag }: any) {
           height={40}
         />
         <p className="text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[40px] sm:text-[40px] ssm:text-3xl text-black font-normal ml-[1vw]">
-          Tag: {capitalizeFirstLetter(router.query.tag?.toString() || '')}
+          Tag: {currentTag?.name || ''}
         </p>
       </div>
       {!followTags?.errCd && (
@@ -150,8 +138,7 @@ PostsTag.Layout = MainLayout;
 export default PostsTag;
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`);
-  const tags = await res.json();
+  const tags = await useFetch(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`);
 
   const paths = tags.data.map((tag: any) => {
     return {
@@ -169,18 +156,20 @@ export const getStaticProps = async ({ params }: any) => {
   const { tag } = params;
   if (!tag) return { notFound: true };
 
-  const resFullTags = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`);
-  const fullTags = await resFullTags.json();
+  const fullTags = await useFetch(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`);
 
   const tagResult = fullTags.data.find((item: any) => item.slug === `/${tag}`);
+  if (!tagResult) return { notFound: true };
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/tag/${tagResult?.id}`);
-  const { data }: any = await res.json();
+  const res = await useFetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/user/article/tag/${tagResult?.id}`
+  );
+  const { data }: any = res;
 
   return {
     props: {
       data,
-      tag,
+      currentTag: tagResult,
     },
     revalidate: 1,
   };

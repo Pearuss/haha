@@ -86,7 +86,7 @@ function HeaderRight() {
               </Link>
               {profile?.data?.role > 25 && (
                 <Link href="/adminpanel/dashboard">
-                  <a className="link ">Moderator</a>
+                  <a className="link ">Administrator</a>
                 </Link>
               )}
               <div className="link  hover:rounded-full" onClick={logoutHandler} aria-hidden="true">

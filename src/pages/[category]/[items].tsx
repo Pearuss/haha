@@ -11,8 +11,9 @@ import Post from '../../Components/Post';
 import TagSectionMobile from '../../Components/TagContent/TagSection';
 import { MainLayout } from '../../layout';
 import { capitalizeFirstLetter } from '../../utilities/helper';
+import useFetch from '../../hooks/use-fetch';
 
-function Category({ data, items }: any) {
+function Category({ data, currentCategory }: any) {
   const [isShowTagMobile, setIsShowTagMobile] = useState(false);
 
   const router = useRouter();
@@ -27,7 +28,7 @@ function Category({ data, items }: any) {
       menuMobile.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full',
+        'ssm:-translate-x-full'
       );
       menuMobile.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -40,8 +41,8 @@ function Category({ data, items }: any) {
   return (
     <div className="flex-1 mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw]">
       <NextSeo
-        title={capitalizeFirstLetter(items)}
-        defaultTitle={`All articles in ${items} category`}
+        title={currentCategory.name}
+        defaultTitle={`All articles in ${currentCategory.name} category`}
         description="Hybrid Technologies Know-How"
         // keywords={article.meta_keywords}
       />
@@ -63,7 +64,7 @@ function Category({ data, items }: any) {
           /{' '}
           <Link href="">
             <span className="hover:hover:opacity-70  cursor-pointer">
-              {capitalizeFirstLetter(router.query.items?.toString() || '')}
+              {currentCategory.name}
             </span>
           </Link>
         </h1>
@@ -85,19 +86,6 @@ function Category({ data, items }: any) {
 Category.Layout = MainLayout;
 export default Category;
 
-// export async function getStaticPaths() {
-//   const res = await fetch('http://localhost:3001/posts?_limit=5');
-//   const posts = await res.json();
-
-//   const paths = posts?.data?.map((post: any) => ({
-//     params: { tag: post.id.toString() },
-//   }));
-//   return {
-//     paths,
-//     // paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
-//     fallback: true,
-//   };
-// }
 export const getStaticPaths = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/category/menu`);
   const tags = await res.json();
@@ -116,12 +104,9 @@ export const getStaticProps = async ({ params }: any) => {
   const { items, category } = params;
   if (!items) return { notFound: true };
 
-  const resFullCat = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/category/menu`);
-  const fullCats = await resFullCat.json();
-  // const catResult = fullCats.data.find(
-  //   (item: any) => item.name.toLowerCase() === category.toLowerCase(),
-  // );
+  const fullCats = await useFetch(`${process.env.NEXT_PUBLIC_BASE_URL}/category/menu`);
   const catResult = fullCats.data.find((item: any) => item.slug === `/${category}/${items}`);
+  if (!catResult) return { notFound: true };
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/article/cat/${catResult?.id}`);
   const { data }: any = await res.json();
@@ -129,7 +114,7 @@ export const getStaticProps = async ({ params }: any) => {
   return {
     props: {
       data,
-      items,
+      currentCategory: catResult,
     },
     revalidate: 1,
   };

@@ -22,7 +22,7 @@ function TagSection() {
 
   const { data: allTag } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/tags`, {
     revalidateOnFocus: false,
-    // dedupingInterval: 60 * 1000,
+    dedupingInterval: 2 * 1000,
   });
 
   let { data: followTags } = useSWR(isLogin ? '/api/v1/following-tag/get-full' : null, {

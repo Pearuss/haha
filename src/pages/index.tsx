@@ -23,7 +23,7 @@ function HomePage({ articles, news }: { articles: any; news: any }) {
       // revalidateOnMount: true,
       revalidateIfStale: true,
       fallbackData: articles,
-    },
+    }
   );
   const { data: allNews } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/news/full-list`, {
     revalidateOnMount: true,
@@ -42,7 +42,7 @@ function HomePage({ articles, news }: { articles: any; news: any }) {
       menuMobile?.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full',
+        'ssm:-translate-x-full'
       );
       menuMobile?.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -56,7 +56,7 @@ function HomePage({ articles, news }: { articles: any; news: any }) {
   return (
     <div className="mr-12 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw] flex-1">
       {allNews?.data[0]?.id && (
-        <div className="relative w-full h-auto bg-white p-4 pt-0 rounded-md shadow-sm ssm:h-auto ssm:min-h-[250px] sm:min-h-[210px]">
+        <div className="relative w-full h-auto bg-white p-4 pt-0 rounded-md shadow-sm ssm:h-auto ssm:min-h-[250px] sm:min-h-[210px] border-r md:mb-4 lg:mb-4">
           <Link href={`/news/${allNews?.data[0]?.id}`}>
             <div className="text-[37px] 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-[30px] sm:text-[28px] ssm:text-2xl pb-3 text-black font-normal cursor-pointer mt-[-9px] hover:opacity-70">
               {allNews?.data[0]?.title}
@@ -71,17 +71,16 @@ function HomePage({ articles, news }: { articles: any; news: any }) {
           </div>
         </div>
       )}
-      <div className="mt-4 text-gray-900">
+      <div className="mt-4 text-gray-900 md:hidden lg:hidden">
         <div
           className={`flex items-center sm:h-[10.5rem] xl:h-[10.5rem] h-40 gap-12 pt-4 mb-10 ssm:mx-auto ${
             allNews?.data[2]?.id ? '' : 'hidden'
           }`}
         >
-          {/* <div className="grid grid-cols-3 lg:grid-cols-2 xl:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 ssm:grid-cols-1 sm:h-[10.5rem] xl:h-[10.5rem] h-40 gap-10 pt-4 mb-10 ssm:mx-auto"> */}
           {allNews?.data[2]?.id && (
-            <div className="relative w-full h-full min-h-[150px] bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:shadow-custom hover:scale-105 transition-all duration-300 ">
+            <div className="relative w-full h-full min-h-[160px] 3xl:min-h-[140px] lg:min-h-[170px] bg-white p-4 pb-2 rounded-md shadow-sm cursor-pointer hover:transform hover:shadow-custom transition-all duration-300 border-r border-b ">
               <Link href={`/news/${allNews?.data[1]?.id}`}>
-                <div className="font-medium pb-1 text-black">{allNews?.data[1]?.title}</div>
+                <div className="font-medium pb-1 text-black">{truncate(`${allNews.data[1]?.title}`, 60)}</div>
               </Link>
               <div className="mb-2">{truncate(`${allNews?.data[1]?.shortContent}`, 112)}</div>
 
@@ -93,10 +92,10 @@ function HomePage({ articles, news }: { articles: any; news: any }) {
             </div>
           )}
           {allNews?.data[2]?.id && (
-            <div className="relative w-full h-full min-h-[150px] bg-white p-4 rounded-md shadow-md cursor-pointer hover:transform hover:shadow-custom hover:scale-105 transition-all duration-300  ssm:hidden">
+            <div className="relative w-full h-full min-h-[160px] 3xl:min-h-[140px] lg:min-h-[170px] bg-white p-4 rounded-md shadow-sm cursor-pointer hover:transform hover:shadow-custom transition-all duration-300  ssm:hidden border-r border-b">
               <Link href={`/news/${allNews.data[2]?.id}`}>
                 <div className="font-medium pb-1 text-black">
-                  {truncate(`${allNews.data[2]?.title}`, 40)}
+                  {truncate(`${allNews.data[2]?.title}`, 60)}
                 </div>
               </Link>
               <div className="mb-2 xl:mb-4 lg:mb-5 md:mb-5">
