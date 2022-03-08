@@ -120,21 +120,27 @@ li {
 .dropdown-menu {
   @apply absolute left-2 top-[calc(100%+1px)] bg-white z-40 pl-4 pr-6 py-4 rounded-md pointer-events-none translate-y-20 shadow-md w-max min-w-[12vw] 2xl:min-w-[13vw] xl:min-w-[14vw] lg:min-w-[18vw] md:min-w-[20vw] sm:min-w-[21vw] ssm:min-w-[28vw] lg:left-[10%] md:left-[10%] sm:left-[10%] md:p-4 sm:py-2 sm:px-[2px] ssm:py-2 ssm:px-0 md:top-full sm:top-full ssm:top-full opacity-0 animate-transformCustom transition-all;
 }
+
 .dropdown-menu a {
   @apply py-2 px-4 2xl:px-2 xl:px-2  md:px-1 sm:px-1 ssm:text-xs;
 }
+
 .dropdown.activeClass > a + .dropdown-menu {
   @apply opacity-100 translate-y-0 pointer-events-auto;
 }
+
 .dropdown.activeClass .dropdown-menu a {
   @apply hover:opacity-60;
 }
+
 .userDropdown {
   @apply flex gap-2 items-center border-2 rounded-[2rem] relative cursor-pointer border-[1.5px] border-blueCyanLogo;
 }
+
 .userDropdown-menu {
   @apply absolute right-[10%] top-[calc(100%+0.8rem)] bg-white z-40 py-4 rounded-md pointer-events-none translate-y-20 opacity-0 shadow-md w-[10vw] ssm:w-[26vw] sm:w-[22vw] md:w-[20vw] lg:w-[16vw] xl:w-[13vw] 2xl:w-[11vw] ssm:text-xs sm:text-sm animate-transformCustom transition-all;
 }
+
 .userDropdown.activeClass .userDropdown-menu {
   @apply opacity-100 translate-y-0 pointer-events-auto;
 }
@@ -166,6 +172,7 @@ li {
 .calendar .react-calendar__tile--active {
   @apply bg-blueCyanLogo;
 }
+
 .calendar .react-calendar__navigation__label__labelText {
   @apply capitalize text-grayCalendar;
   @apply font-semibold;
@@ -173,9 +180,11 @@ li {
   @apply xl:text-lg;
   @apply lg:text-base;
 }
+
 .calendar .react-calendar__month-view__days__day--weekend {
   @apply text-blueCyanLogo;
 }
+
 .calendar .react-calendar__tile--now.react-calendar__month-view__days__day--weekend {
   @apply text-white;
 }
@@ -201,10 +210,12 @@ li {
 .mentions--singleLine .mentions__control {
   display: inline-block;
 }
+
 .mentions--singleLine .mentions__higlighter {
   padding: 1px;
   border: 2px inset transparent;
 }
+
 .mentions--singleLine .mentions__input {
   padding: 5px;
   border: 2px inset;
@@ -216,9 +227,11 @@ li {
   /* border: 1px solid silver; */
   border: 1px solid transparent;
 }
+
 .mentions--multiLine .mentions__highlighter {
   padding: 9px;
 }
+
 .mentions--multiLine .mentions__input {
   padding: 9px;
   min-height: 63px;
