@@ -192,4 +192,5 @@ const toTitleCase = (str: any) => str.replace(/\w\S*/g, (txt: string) => txt.cha
 export const createSlug = (str: string): string => toTitleCase(cleanAccents(str.trim()))
   .replace(/[^\w\s]/gi, '')
   .replace(/\s+/g, ' ')
+  .trim()
   .replace(/\s/g, '-');
