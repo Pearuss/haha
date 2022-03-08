@@ -68,9 +68,7 @@ function DetailArticlePage({ data }: any) {
       let html = '';
       for (let i = 0; i < headingE.length; i++) {
         headingE[i].id = `${i + 1}-h-id`;
-        html += `<li><a class="headingContent cursor-pointer">${i + 1}. ${
-          headingE[i].innerHTML
-        }</a></li>`;
+        html += `<li><a class="headingContent cursor-pointer">${headingE[i].innerHTML}</a></li>`;
       }
 
       if (html !== '') {
@@ -78,9 +76,7 @@ function DetailArticlePage({ data }: any) {
       }
 
       contentIndexE.innerHTML = contentIndexE == null ? '' : html;
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }, [isReadMore]);
 
   useEffect(() => {
@@ -254,7 +250,7 @@ export const getStaticPaths = async () => {
   const posts = await res.json();
 
   const paths = posts?.data?.map((post: any) => ({
-    params: { slug: post.slug.toString() },
+    params: { slug: post?.slug.toString() },
   }));
 
   return {

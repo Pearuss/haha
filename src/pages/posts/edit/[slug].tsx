@@ -69,10 +69,9 @@ function UserCreatePage({ data }: any) {
     relatedCategory:
       oldArticle?.articleCategories?.split(',').map((item: string) => parseInt(item, 10)) || [],
     image: `${process.env.NEXT_PUBLIC_IMAGE_URL}${oldArticle?.thumbnail}`,
-    public: true,
+    public: false,
   });
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  console.log('newPost', newPost);
 
   useEffect(() => {
     try {

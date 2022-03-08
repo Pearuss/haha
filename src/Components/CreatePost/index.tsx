@@ -131,6 +131,7 @@ function ModalPost({
             content: newPost.content,
             thumbnail: newPost.image,
             status: 1,
+            public: newPost.public ? 1 : 0,
             main_cat_id: newPost.mainCategory,
           },
           tagIds: newPost.tag,

@@ -12,11 +12,10 @@ a {
   @apply text-blue-700;
 }
 
-/* h1 {
-  color: black;
-  font-size: 3em !important;
-  font-weight: bolder !important;
-} */
+@tailwind utilities;
+@tailwind base;
+@tailwind components;
+
 .markdownCustomWidth > * {
   @apply w-full h-full;
 }
@@ -26,14 +25,47 @@ a {
 .md-editor-preview ul li {
   list-style-type: inherit !important;
 }
+.postContent {
+  @apply text-black font-sans;
+}
 .postContent > h1 {
   @apply text-xl text-black font-bold mt-[30px];
 }
 .postContent code {
   white-space: break-spaces !important;
 }
+.postContent iframe {
+  @apply my-4 mx-auto w-[40vw] h-[40vh];
+}
+.postContent img {
+  @apply my-4 mx-auto w-[40vw];
+}
+
+.postContent a {
+  @apply text-blueRice hover:opacity-80;
+}
+
+.postContent pre, p, code {
+  @apply text-black font-sans;
+}
+
+.postContent ol, ul {
+  list-style: auto;
+  margin: 0;
+  padding: 8px 36px;
+}
+
+.postContent li {
+  list-style-type: initial;
+}
+
 .postDetail {
   white-space: break-word;
+}
+
+/* Markdown */
+.markdown iframe {
+  @apply w-full h-96 my-4;
 }
 
 @tailwind components;
@@ -244,10 +276,6 @@ li {
 /* .topic {s
 
 } */
-
-@tailwind utilities;
-@tailwind base;
-@tailwind components;
 
 @layer utilities {
   .changePlaceholder::placeholder {

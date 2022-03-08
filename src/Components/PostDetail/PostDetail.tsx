@@ -75,6 +75,15 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
     }
   }, [profile, firstLoading]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      const postContent: any = document.getElementsByClassName('postContent');
+      postContent[0].innerHTML = postContent[0].innerHTML
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>');
+    }, 1000);
+  }, []);
+
   const ReadMoreHandler = useCallback(() => {
     if (isLogin) {
       setIsReadMore(false);
@@ -192,7 +201,7 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
       </div>
 
       <div className="postContent mx-2 mb-6 mt-5 h-auto">
-        <ReactMarkdown components={CodeBlock} children={contentBody} />
+        <ReactMarkdown components={CodeBlock} children={contentBody} skipHtml={false} />
       </div>
       {article?.content?.length > 580 && (
         <button
