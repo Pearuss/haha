@@ -137,6 +137,7 @@ function ModalPost({
             title: newPost.title,
             shortContent: newPost.shortContent,
             content: newPost.content,
+            public: newPost.public ? 1 : 0,
             thumbnail: newPost.image,
             status: 1,
             main_cat_id: newPost.mainCategory,
@@ -147,12 +148,11 @@ function ModalPost({
       });
       if (message === 200) {
         setIsLoading(false);
-        // console.log(data);
 
-        await fetch(`/posts/${data[0].slug}`, {
+        await fetch(`/posts/${data?.slug}`, {
           method: 'HEAD',
         });
-        router.push(`/posts/${data[0].slug}`);
+        router.push(`/posts/${data?.slug}`);
         Swal.fire({
           title: 'Successfully',
           text: 'Article is created successfully!',
