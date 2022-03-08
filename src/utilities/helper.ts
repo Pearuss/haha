@@ -1,6 +1,7 @@
-/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-plusplus */
 /* eslint-disable eqeqeq */
+/* eslint-disable no-restricted-syntax */
 import { indexOf } from 'lodash';
 
 export function truncate(string: string, n: number) {
@@ -113,14 +114,13 @@ export function timeAgo(date: Date) {
   return `${Math.floor(seconds)} seconds`;
 }
 
-const createImage = (url: string) =>
-  new Promise((resolve, reject) => {
-    const image = new Image();
-    image.addEventListener('load', () => resolve(image));
-    image.addEventListener('error', (error) => reject(error));
-    image.setAttribute('crossOrigin', 'anonymous'); // needed to avoid cross-origin issues on CodeSandbox
-    image.src = url;
-  });
+const createImage = (url: string) => new Promise((resolve, reject) => {
+  const image = new Image();
+  image.addEventListener('load', () => resolve(image));
+  image.addEventListener('error', (error) => reject(error));
+  image.setAttribute('crossOrigin', 'anonymous'); // needed to avoid cross-origin issues on CodeSandbox
+  image.src = url;
+});
 
 function getRadianAngle(degreeValue: any) {
   return (degreeValue * Math.PI) / 180;
@@ -157,7 +157,7 @@ export default async function getCroppedImg(imageSrc: string, pixelCrop: any, ro
   ctx.putImageData(
     data,
     0 - safeArea / 2 + image.width * 0.5 - pixelCrop.x,
-    0 - safeArea / 2 + image.height * 0.5 - pixelCrop.y
+    0 - safeArea / 2 + image.height * 0.5 - pixelCrop.y,
   );
 
   // As Base64 string
@@ -165,7 +165,7 @@ export default async function getCroppedImg(imageSrc: string, pixelCrop: any, ro
   // return canvas;
 }
 
-const cleanAccents = (str: any) => {
+const cleanAccents = (str: string): string => {
   str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a');
   str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, 'e');
   str = str.replace(/ì|í|ị|ỉ|ĩ/g, 'i');
@@ -187,15 +187,9 @@ const cleanAccents = (str: any) => {
   return str;
 };
 
-const toTitleCase = (str: any) => {
-  return str.replace(/\w\S*/g, function (txt: string) {
-    return txt.charAt(0).toLowerCase() + txt.substr(1).toLowerCase();
-  });
-};
+const toTitleCase = (str: any) => str.replace(/\w\S*/g, (txt: string) => txt.charAt(0).toLowerCase() + txt.substr(1).toLowerCase());
 
-export const createSlug = (str: string): string => {
-  return toTitleCase(cleanAccents(str.trim()))
-    .replace(/[^\w\s]/gi, '')
-    .replace(/\s+/g, ' ')
-    .replace(/\s/g, '-');
-};
+export const createSlug = (str: string): string => toTitleCase(cleanAccents(str.trim()))
+  .replace(/[^\w\s]/gi, '')
+  .replace(/\s+/g, ' ')
+  .replace(/\s/g, '-');
