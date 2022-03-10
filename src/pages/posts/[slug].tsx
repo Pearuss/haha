@@ -159,7 +159,7 @@ function DetailArticlePage({ data }: any) {
         description="Hybrid Technologies Know-How"
         // keywords={article.meta_keywords}
       />
-      {isShowContentIndex && (
+      {isShowContentIndex && !isReadMore && (
         <div className="mr-4 sm:mr-8 ssm:mr-12">
           <div
             className={`topicSsm w-[10vw] ssm:w-[70vw] pl-2 ssm:topicSsm ssm:z-50 ssm:bg-white transition duration-200 ease-in-out ssm:fixed ssm:left-0 ssm:top-0 ${

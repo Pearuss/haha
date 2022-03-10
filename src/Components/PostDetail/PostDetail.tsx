@@ -76,12 +76,8 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
   }, [profile, firstLoading]);
 
   useEffect(() => {
-    setTimeout(() => {
-      const postContent: any = document.getElementsByClassName('postContent');
-      postContent[0].innerHTML = postContent[0].innerHTML
-        .replace(/&lt;/g, '<')
-        .replace(/&gt;/g, '>');
-    }, 1000);
+    const postContent: any = document.getElementsByClassName('postContent');
+    postContent[0].innerHTML = postContent[0].innerHTML.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
   }, []);
 
   const ReadMoreHandler = useCallback(() => {

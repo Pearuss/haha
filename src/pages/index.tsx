@@ -23,7 +23,7 @@ function HomePage({ articles, news }: { articles: any; news: any }) {
       // revalidateOnMount: true,
       revalidateIfStale: true,
       fallbackData: articles,
-    }
+    },
   );
   const { data: allNews } = useSWR(`${process.env.NEXT_PUBLIC_BASE_URL}/news/full-list`, {
     revalidateOnMount: true,
@@ -42,7 +42,7 @@ function HomePage({ articles, news }: { articles: any; news: any }) {
       menuMobile?.classList.add(
         'md:-translate-x-full',
         'sm:-translate-x-full',
-        'ssm:-translate-x-full'
+        'ssm:-translate-x-full',
       );
       menuMobile?.classList.remove('md:translate-x-0', 'sm:translate-x-0', 'ssm:translate-x-0');
     });
@@ -80,7 +80,9 @@ function HomePage({ articles, news }: { articles: any; news: any }) {
           {allNews?.data[2]?.id && (
             <div className="relative w-full h-full min-h-[160px] 3xl:min-h-[140px] lg:min-h-[170px] bg-white p-4 pb-2 rounded-md shadow-sm cursor-pointer hover:transform hover:shadow-custom transition-all duration-300 border-r border-b ">
               <Link href={`/news/${allNews?.data[1]?.id}`}>
-                <div className="font-medium pb-1 text-black">{truncate(`${allNews.data[1]?.title}`, 60)}</div>
+                <div className="font-medium pb-1 text-black">
+                  {truncate(`${allNews.data[1]?.title}`, 60)}
+                </div>
               </Link>
               <div className="mb-2">{truncate(`${allNews?.data[1]?.shortContent}`, 112)}</div>
 

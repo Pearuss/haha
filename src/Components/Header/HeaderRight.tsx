@@ -17,21 +17,6 @@ function HeaderRight() {
   const [isLogin, setIsLogin] = useState(false);
   const [showSearchInput, setShowSearchInput] = useToggle(false);
 
-  useEffect(() => {
-    if (!firstLoading && !profile?.data) {
-      setIsLogin(false);
-    } else if (profile?.data) {
-      if (profile.data.status === 0) {
-        logoutHandler();
-        setTimeout(() => {
-          Swal.fire('Account is locking');
-        }, 500)
-        
-      }
-      setIsLogin(true);
-    }
-  }, [profile, firstLoading]);
-
   const logoutHandler = useCallback(async () => {
     try {
       await logout();
@@ -43,6 +28,20 @@ function HeaderRight() {
       console.log(error);
     }
   }, []);
+
+  useEffect(() => {
+    if (!firstLoading && !profile?.data) {
+      setIsLogin(false);
+    } else if (profile?.data) {
+      if (profile.data.status === 0) {
+        logoutHandler();
+        setTimeout(() => {
+          Swal.fire('Account is locking');
+        }, 500);
+      }
+      setIsLogin(true);
+    }
+  }, [profile, firstLoading]);
 
   return (
     <div className="userMenu relative flex items-center justify-end text-blueCyanLogo gap-4 ssm:gap-2 ">
@@ -80,6 +79,9 @@ function HeaderRight() {
               </Link>
               <Link href="/user/posts/1">
                 <a className="link ">My posts</a>
+              </Link>
+              <Link href="/news">
+                <a className="link ">News</a>
               </Link>
               <Link href="/following-tags">
                 <a className="link ">Following tags</a>

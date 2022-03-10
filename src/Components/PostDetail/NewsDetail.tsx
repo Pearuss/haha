@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
@@ -9,6 +9,12 @@ import { timeAgo } from '../../utilities/helper';
 
 function PostDetail({ dataPostDetail }: any) {
   const article = dataPostDetail.data;
+
+  useEffect(() => {
+    const postContent: any = document.getElementsByClassName('postContent');
+    postContent[0].innerHTML = postContent[0].innerHTML.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  }, []);
+
   return (
     <div className="relative bg-white rounded-lg shadow-md px-4 pt-2 py-16 mb-8 text-gray-600  h-auto">
       <div className="w-full text-black font-semibold text-3xl sm:text-2xl ssm:text-xl pl-2 py-4 mx-auto">
