@@ -77,8 +77,11 @@ function PostDetail({ dataPostDetail, isReadMore, setIsReadMore }: any) {
 
   useEffect(() => {
     const postContent: any = document.getElementsByClassName('postContent');
+    if (!postContent[0].innerHTML.includes('&lt;') && !postContent[0].innerHTML.includes('&gt;'))
+      return;
+
     postContent[0].innerHTML = postContent[0].innerHTML.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
-  }, []);
+  }, [isLogin]);
 
   const ReadMoreHandler = useCallback(() => {
     if (isLogin) {

@@ -95,6 +95,7 @@ function PostsPage() {
   //     router.push(`/user/posts/${currentPage - 1}`);
   //   }
   // };
+  console.log(articles?.data[0]);
   return (
     <div className="mr-16 md:mr-0 sm:mr-0 ssm:mx-auto ssm:px-[2vw] flex-1">
       <div className="relative w-full">
@@ -115,7 +116,13 @@ function PostsPage() {
           />
         </div> */}
         <h1 className="text-4xl font-medium mb-6">
-          {articles?.data[0] ? `${articles?.data[0]?.authorFirstname}'s Posts` : ''}
+          {articles?.data[0]
+            ? `${
+              articles?.data[0]?.authorName
+                ? articles?.data[0]?.authorName
+                : `${articles?.data[0]?.authorFirstname} ${articles?.data[0]?.authorLastname}`
+            }'s Posts`
+            : ''}
         </h1>
       </div>
       {articles?.data.map((article: Article) => (
